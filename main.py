@@ -576,6 +576,8 @@ fruit_emojis = {"Apple": " \U0001F34E ", "Orange": " \U0001f34a ", "Blueberry": 
 
 
 tab5, tab6, tab7, tab8, tab9, tab10  = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKIN", "💸TRADER", "👨‍🔬CALCULATOR", "📜NFT LIST"])
+st.divider()
+
 with tab5:
     # Define default farm ID
     DEFAULT_FARM_ID = ""
