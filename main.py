@@ -7,12 +7,26 @@ from st_keyup import st_keyup
 from PIL import Image
 from decimal import Decimal
 import streamlit.components.v1 as components
+from streamlit.components.v1 import html
 import pandas as pd
 import urllib.request
 import asyncio
 import aiohttp
 from datetime import datetime, timedelta
 import sys
+
+# Define the JavaScript code for copying to clipboard
+copy_to_clipboard_js = """
+const copyToClipboard = (text) => {
+  const el = document.createElement('textarea');
+  el.value = text;
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  document.body.removeChild(el);
+}
+"""
+
 #import numpy as np
 
 favicon = Image.open('favicon.png')
@@ -1208,6 +1222,12 @@ with tab5:
                 farm_info.write(f" - 🟠 **{total_iron_amount:.2f} Iron** — {num_iron}x Iron Rocks")
                 farm_info.write(f" - 🟡 **{total_gold_amount:.2f} Gold** — {num_gold}x Gold Rocks")
                 farm_info.write(f" - 🥚 **{total_chickens_amount:.2f} Eggs** — {num_chickens}x Chickens")
+
+                if st.button("Copy to Clipboard"):
+                    data_to_copy = f"{total_wood_amount:.2f} Wood, {num_wood}x Trees, {total_stone_amount:.2f} Stone, {num_stones}x Stones"
+                    copy_to_clipboard_func = f"copyToClipboard({data_to_copy})"
+                    html("<script>" + copy_to_clipboard_js + "</script>", unsafe_allow_html=True)
+                    html(f'<button onclick="{copy_to_clipboard_func}">Copy to Clipboard</button>', unsafe_allow_html=True)
 
                 #farm_info.write("\n")          
                 #farm_info.success(f"\n 📊 **Total Nodes:**")
