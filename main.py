@@ -39,46 +39,6 @@ st.write(
 )
 
 
-dark = '''
-<style>
-    .stApp {
-    background: rgb(14, 17, 23);
-    color: rgb(250, 250, 250);
-    }
-</style>
-'''
-
-light = '''
-<style>
-    .stApp {
-    background: rgb(255, 255, 255);
-    color: rgb(49, 51, 63);
-    }
-</style>
-'''
-st.markdown(light, unsafe_allow_html=True)
-
-# Create a toggle button
-toggle = st.button("Toggle theme")
-
-# Use a global variable to store the current theme
-if "theme" not in st.session_state:
-    st.session_state.theme = "light"
-
-# Change the theme based on the button state
-if toggle:
-    if st.session_state.theme == "light":
-        st.session_state.theme = "dark"
-    else:
-        st.session_state.theme = "light"
-
-# Apply the theme to the app
-if st.session_state.theme == "dark":
-    st.markdown(dark, unsafe_allow_html=True)
-else:
-    st.markdown(light, unsafe_allow_html=True)
-
-
 @st.cache_resource(ttl=604800, show_spinner="Updating Lantern Ingredients")
 def retrieve_lantern_ingredients():
     url = "https://api.sunflower-land.com/visit/1"
