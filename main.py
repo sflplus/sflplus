@@ -28,21 +28,12 @@ st.set_page_config(
     }
 )
 
-hide_menu_style = """
-        <style>
-        #MainMenu {visibility: hidden;}
-        </style>
-        """
-st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 local_css("style.css")
-st.write(
-    '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" />',
-    unsafe_allow_html=True,
-)
+
 
 @st.cache_resource(ttl=604800, show_spinner="Updating Lantern Ingredients")
 def retrieve_lantern_ingredients():
