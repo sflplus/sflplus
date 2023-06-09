@@ -1215,6 +1215,14 @@ with tab5:
                 if dawn_breaker_tickets_count > 0:
                     farm_info.write(f"- 🎟️ **{dawn_breaker_tickets_count} Dawn Breaker Ticket**")    
 
+                # Display the data
+                total_wood_amount = 100
+                num_wood = 5
+                total_stone_amount = 50
+                num_stones = 10
+
+                farm_info = st.empty()
+
                 farm_info.write("\n")   
                 farm_info.success(f"\n ⚒️ **Resources to be Gathered:**")
                 farm_info.write(f" - 🌲 **{total_wood_amount:.2f} Wood** — {num_wood}x Trees")
