@@ -612,29 +612,32 @@ fruits_price = {"Apple": 0.3125, "Orange": 0.225, "Blueberry": 0.15}
 fruit_emojis = {"Apple": " \U0001F34E ", "Orange": " \U0001f34a ", "Blueberry": " \U0001f347 "}
 
 
-with st.sidebar:
-        tabs = on_hover_tabs(tabName=['Home', 'Ranking', 'Bumpkins'], 
-                             iconName=['home', 'emoji_events', 'group'],
-                             styles = {'navtab': {'background-color':'#1a202b',
-                                                  'color': '#818181',
-                                                  'font-size': '18px',
-                                                  'transition': '.3s',
-                                                  'white-space': 'nowrap',
-                                                  'text-transform': 'uppercase'},
-                                       'tabOptionsStyle': {':hover :hover': {'color': '#1C83E1',
-                                                                      'cursor': 'pointer'}},
-                                       'iconStyle':{'position':'fixed',
-                                                    'left':'5.5px',
-                                                    'text-align': 'left'},
-                                       'tabStyle' : {'list-style-type': 'none',
-                                                     'margin-bottom': '30px',
-                                                     'padding-left': '30px'}},
-                             key="1")
+# specify the primary menu definition
+menu_data = [
+    {'icon': "far fa-copy", 'label':"Left End"},
+    {'id':'Copy','icon':"🐙",'label':"Copy"},
+    {'icon': "fa-solid fa-radar",'label':"Dropdown1", 'submenu':[{'id':' subid11','icon': "fa fa-paperclip", 'label':"Sub-item 1"},{'id':'subid12','icon': "💀", 'label':"Sub-item 2"},{'id':'subid13','icon': "fa fa-database", 'label':"Sub-item 3"}]},
+    {'icon': "far fa-chart-bar", 'label':"Chart"},#no tooltip message
+    {'id':' Crazy return value 💀','icon': "💀", 'label':"Calendar"},
+    {'icon': "fas fa-tachometer-alt", 'label':"Dashboard",'ttip':"I'm the Dashboard tooltip!"}, #can add a tooltip message
+    {'icon': "far fa-copy", 'label':"Right End"},
+    {'icon': "fa-solid fa-radar",'label':"Dropdown2", 'submenu':[{'label':"Sub-item 1", 'icon': "fa fa-meh"},{'label':"Sub-item 2"},{'icon':'🙉','label':"Sub-item 3",}]},
+]
+
+over_theme = {'txc_inactive': '#FFFFFF'}
+menu_id = hc.nav_bar(
+    menu_definition=menu_data,
+    override_theme=over_theme,
+    home_name='Home',
+    login_name='Logout',
+    hide_streamlit_markers=False, #will show the st hamburger as well as the navbar now!
+    sticky_nav=True, #at the top or not
+    sticky_mode='pinned', #jumpy or not-jumpy, but sticky or pinned
+)
 
 
 tab5, tab6, tab7 = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKINS"])
 with tab5:
-
     # Define default farm ID
     DEFAULT_FARM_ID = ""
 
@@ -1912,7 +1915,6 @@ with tab5:
         st.error(error_message)
      
 with tab6:
-#if tabs =='Ranking':  
     st.markdown("##### 🔻 SEARCH FARM ID 🔻")
     col_search, col_ok, buff = st.columns([2.5,2,6])
     with col_search:
@@ -2173,9 +2175,7 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())   
 
-with tab7:
-
-#if tabs =='Bumpkin':      
+with tab7:     
         status_ok2 = st.container() 
         col18, col19, col20, col21 = st.columns([2, 2, 2, 2], gap="medium")
         with col18:
@@ -2319,10 +2319,3 @@ with tab7:
                         status_ok2.error(f"Bumpkin {text_search2} not found.")
                 else:
                     status_ok2.error("Invalid response or error occurred.") 
-
-if tabs =='Home':
-    tab5
-elif tabs == 'Ranking':
-    tab6
-elif tabs == 'Bumpkins':
-    tab7
