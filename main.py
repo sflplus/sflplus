@@ -8,27 +8,12 @@ from PIL import Image
 from decimal import Decimal
 import streamlit.components.v1 as components
 from streamlit.components.v1 import html
-import clipboard
 import pandas as pd
 import urllib.request
 import asyncio
 import aiohttp
 from datetime import datetime, timedelta
 import sys
-
-# Define the JavaScript code for copying to clipboard
-copy_to_clipboard_js = """
-const copyToClipboard = (text) => {
-  const el = document.createElement('textarea');
-  el.value = text;
-  document.body.appendChild(el);
-  el.select();
-  document.execCommand('copy');
-  document.body.removeChild(el);
-}
-"""
-
-#import numpy as np
 
 favicon = Image.open('favicon.png')
 
@@ -1233,10 +1218,21 @@ with tab5:
                 farm_info.write(f" - 🥚 **{total_chickens_amount:.2f} Eggs** — {num_chickens}x Chickens")
 
                 # Create a button to copy the data to clipboard
-                if st.button("Copy to Clipboard"):
-                    data_to_copy = f"{total_wood_amount:.2f} Wood, {num_wood}x Trees, {total_stone_amount:.2f} Stone, {num_stones}x Stones"
-                    clipboard.copy(data_to_copy)
-                    st.success("Data copied to clipboard!")
+                copy_button_code = """
+                function copyToClipboard() {
+                  const textToCopy = `{} Wood, {}x Trees, {} Stone, {}x Stones`;
+                  navigator.clipboard.writeText(textToCopy)
+                    .then(() => {{
+                      console.log('Text copied to clipboard');
+                    }})
+                    .catch((error) => {{
+                      console.error('Error copying text to clipboard:', error);
+                    }});
+                }
+                """.format(total_wood_amount, num_wood, total_stone_amount, num_stones)
+
+                copy_button = st.button("Copy to Clipboard", on_click="copyToClipboard")
+                st.components.v1.html("<script>{}</script>".format(copy_button_code))
 
                 #farm_info.write("\n")          
                 #farm_info.success(f"\n 📊 **Total Nodes:**")
