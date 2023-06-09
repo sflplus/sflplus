@@ -632,10 +632,8 @@ with st.sidebar:
                              key="1")
 
 
-
-#tab5, tab6, tab7 = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKINS"])
-#with tab5:
-if tabs =='Home':
+tab5, tab6, tab7 = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKINS"])
+with tab5:
 
     # Define default farm ID
     DEFAULT_FARM_ID = ""
@@ -1913,8 +1911,8 @@ if tabs =='Home':
         # Display the error message in Streamlit
         st.error(error_message)
      
-#with tab6:
-if tabs =='Ranking':  
+with tab6:
+#if tabs =='Ranking':  
     st.markdown("##### 🔻 SEARCH FARM ID 🔻")
     col_search, col_ok, buff = st.columns([2.5,2,6])
     with col_search:
@@ -2175,9 +2173,9 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())   
 
-#with tab7:
+with tab7:
 
-if tabs =='Bumpkin':      
+#if tabs =='Bumpkin':      
         status_ok2 = st.container() 
         col18, col19, col20, col21 = st.columns([2, 2, 2, 2], gap="medium")
         with col18:
@@ -2321,3 +2319,10 @@ if tabs =='Bumpkin':
                         status_ok2.error(f"Bumpkin {text_search2} not found.")
                 else:
                     status_ok2.error("Invalid response or error occurred.") 
+
+if tabs =='Home':
+    st.tabs = tab5
+elif tabs == 'Ranking':
+    st.tabs = tab6
+elif tabs == 'Bumpkins':
+    st.tabs = tab7
