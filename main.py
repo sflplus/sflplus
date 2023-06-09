@@ -494,10 +494,12 @@ def wearable_list(equipped_dict, return_type='filtered_df'):
 app_state = st.experimental_get_query_params()
 app_state = {k: v[0] if isinstance(v, list) else v for k, v in app_state.items()} # fetch the first item in each query string as we don't have multiple values for each query string key in this example
 
-st.markdown('[![Foo](https://raw.githubusercontent.com/vitt0/sunflower-land/main/sflplus_logo.png)](https://sflplus.info)  <span style="vertical-align:bottom;color:rgb(0, 221, 66);font-weight:bold;">v3.1</span>', unsafe_allow_html=True)
 
 
-col11x, col0x, buff5 = st.columns([1.75,1.75,6.5])
+
+col00, col11x, col0x, buff5 = st.columns([1.75,1.75,1.75,4.75])
+with col00:
+    st.markdown('[![Foo](https://raw.githubusercontent.com/vitt0/sunflower-land/main/sflplus_logo.png)](https://sflplus.info)  <span style="vertical-align:bottom;color:rgb(0, 221, 66);font-weight:bold;">v3.1</span>', unsafe_allow_html=True)
 with col11x:
     general_info = st.container()
     if sfl_supply is not None:
