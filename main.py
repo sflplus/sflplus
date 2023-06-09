@@ -519,8 +519,10 @@ with col0x:
     supply_percentage_final = float(supply_percentage_number) / 100
     supply_percentage_inv =  1 - supply_percentage_final 
 
-    general_info.write(f" - 🟣 Matic: **{matic_price:.2f}** - 🌻 SFL: **{sfl_price:.4f}** \n - 📈 Current Supply: **{format_supply}**")
-    general_info2.write(f" - ⏳ Next Halvening: **30,000,000** \n - 📊 In Percentage: **{supply_progress_percentage:.2f}%**")
+    general_info.write(f" 🟣 Matic: **{matic_price:.2f}** - 🌻 SFL: **{sfl_price:.4f}**")
+    general_info.write(f" 📈 Current Supply: **{format_supply}**")
+    general_info2.write(f" ⏳ Next Halvening: **30,000,000**")
+    general_info2.write(f" 📊 In Percentage: **{supply_progress_percentage:.2f}%**")
     #general_info.progress(supply_percentage_inv, text=None)
     #features_info = st.expander("📗 **FEATURES**", expanded=False)
 
