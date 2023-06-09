@@ -41,7 +41,7 @@ st.write(
 
 with st.sidebar:
         tabs = on_hover_tabs(tabName=['Home', 'Ranking', 'Bumpkins'], 
-                             iconName=['home', 'stars', 'group'],
+                             iconName=['home', 'trophy', 'group'],
                              styles = {'navtab': {'background-color':'#1a202b',
                                                   'color': '#818181',
                                                   'font-size': '18px',
