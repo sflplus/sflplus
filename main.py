@@ -631,8 +631,8 @@ fruits_price = {"Apple": 0.3125, "Orange": 0.225, "Blueberry": 0.15}
 fruit_emojis = {"Apple": " \U0001F34E ", "Orange": " \U0001f34a ", "Blueberry": " \U0001f347 "}
 
 
-tab5, tab6, tab7 = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKINS"])
-with tab5 tabName="Home":
+Home, Ranking, Bumpkin = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKINS"])
+with Home:
 
     # Define default farm ID
     DEFAULT_FARM_ID = ""
@@ -1910,7 +1910,7 @@ with tab5 tabName="Home":
         # Display the error message in Streamlit
         st.error(error_message)
         
-with tab6:
+with Ranking:
     st.markdown("##### 🔻 SEARCH FARM ID 🔻")
     col_search, col_ok, buff = st.columns([2.5,2,6])
     with col_search:
@@ -2171,7 +2171,7 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())   
 
-with tab7:
+with Bumpkin:
         status_ok2 = st.container() 
         col18, col19, col20, col21 = st.columns([2, 2, 2, 2], gap="medium")
         with col18:
