@@ -4,5 +4,3 @@ streamlit-extras
 streamlit-keyup
 pandas
 aiohttp
-hydralit_components
-clipboard
