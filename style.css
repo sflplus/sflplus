@@ -23,4 +23,11 @@ div.e1pxm3bq6.css-b2odz7:nth-of-type(1) {display: none;}
 div.e1pxm3bq6.css-b2odz7:nth-of-type(2) {display: none;}
 button[title="View fullscreen"]{visibility: hidden;}
 
+div[data-stale="false"] > iframe[title="hydralit_components.NavBar.nav_bar"]{
+margin-left:-3rem;
+}
+#complexnavbarSupportedContent{
+margin-left:2rem;
+}
+
 </style>
