@@ -2321,8 +2321,8 @@ with tab7:
                     status_ok2.error("Invalid response or error occurred.") 
 
 if tabs =='Home':
-    st.tabs = tab5
+    tab5
 elif tabs == 'Ranking':
-    st.tabs = tab6
+    tab6
 elif tabs == 'Bumpkins':
-    st.tabs = tab7
+    tab7
