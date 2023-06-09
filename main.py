@@ -29,6 +29,36 @@ st.set_page_config(
     }
 )
 
+def copy_to_clipboard():
+    # Define the data to be copied
+    total_wood_amount = 100
+    num_wood = 5
+    total_stone_amount = 50
+    num_stones = 10
+
+    # Display the data
+    farm_info = st.empty()
+    farm_info.success(f"\n ⚒️ **Resources to be Gathered:**")
+    farm_info.write(f" - 🌲 **{total_wood_amount:.2f} Wood** — {num_wood}x Trees")
+    farm_info.write(f" - ⚪ **{total_stone_amount:.2f} Stone** — {num_stones}x Stones")
+
+    # Create a button to copy the data to clipboard
+    copy_button_code = """
+    function copyToClipboard() {{
+      const textToCopy = `{:.2f} Wood, ${}x Trees, {:.2f} Stone, ${}x Stones`;
+      navigator.clipboard.writeText(textToCopy)
+        .then(() => {{
+          console.log('Text copied to clipboard');
+        }})
+        .catch((error) => {{
+          console.error('Error copying text to clipboard:', error);
+        }});
+    }}
+    """.format(total_wood_amount, num_wood, total_stone_amount, num_stones)
+
+    copy_button = st.button("Copy to Clipboard", on_click="copyToClipboard")
+    st.components.v1.html("<script>{}</script>".format(copy_button_code))
+
 hide_menu_style = """
         <style>
         #MainMenu {visibility: hidden;}
@@ -1217,22 +1247,8 @@ with tab5:
                 farm_info.write(f" - 🟡 **{total_gold_amount:.2f} Gold** — {num_gold}x Gold Rocks")
                 farm_info.write(f" - 🥚 **{total_chickens_amount:.2f} Eggs** — {num_chickens}x Chickens")
 
-                # Create a button to copy the data to clipboard
-                copy_button_code = """
-                function copyToClipboard() {{
-                  const textToCopy = `{:.2f} Wood, ${}x Trees, {:.2f} Stone, ${}x Stones`;
-                  navigator.clipboard.writeText(textToCopy)
-                    .then(() => {{
-                      console.log('Text copied to clipboard');
-                    }})
-                    .catch((error) => {{
-                      console.error('Error copying text to clipboard:', error);
-                    }});
-                }}
-                """.format(total_wood_amount, num_wood, total_stone_amount, num_stones)
-
-                copy_button = st.button("Copy to Clipboard", on_click="copyToClipboard")
-                st.components.v1.html("<script>{}</script>".format(copy_button_code))
+                copy_to = copy_to_clipboard()
+                farm_info.write(f"{copy_to}")
 
                 #farm_info.write("\n")          
                 #farm_info.success(f"\n 📊 **Total Nodes:**")
