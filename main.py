@@ -497,7 +497,7 @@ app_state = {k: v[0] if isinstance(v, list) else v for k, v in app_state.items()
 
 
 
-col00, col11x, col0x, buff5 = st.columns([1.75,1.75,1.75,4.75])
+col00, col11x, col0x, col10x, buff = st.columns([1.75,1.75,1.75,1.75,3.5])
 with col00:
     st.markdown('[![Foo](https://raw.githubusercontent.com/vitt0/sunflower-land/main/sflplus_logo.png)](https://sflplus.info)  <span style="vertical-align:bottom;color:rgb(0, 221, 66);font-weight:bold;">v3.1</span>', unsafe_allow_html=True)
 with col11x:
@@ -511,6 +511,9 @@ with col11x:
         supply_progress = 0
 with col0x:
     general_info2 = st.container()
+
+with col10x:
+    general_info3 = st.container()
 
     supply_progress_per = (supply_progress / 10000000) * 100
     supply_percentage_float = float(supply_progress_per)
@@ -527,8 +530,8 @@ with col0x:
     #features_info = st.expander("📗 **FEATURES**", expanded=False)
 
 st.divider()
-st.markdown("💬 Feedback? Tag me `@Vitt0c` or use this [Discord thread](https://discord.com/channels/880987707214544966/1087607534967341087/1087607534967341087)")
-st.markdown("☕ Donations Wallet: `0x24C262a7c49F8BBc889688A0cb0Fea97d04839c5`")    
+general_info3.markdown("💬 Feedback? Tag me `@Vitt0c` or use this [Discord thread](https://discord.com/channels/880987707214544966/1087607534967341087/1087607534967341087)")
+general_info3.markdown("☕ Donations Wallet: `0x24C262a7c49F8BBc889688A0cb0Fea97d04839c5`")    
 #features_info.write(f" - 💎 Farm Worth  - 🏝️ Farm Resources \n - 🚜 Hoarder Limit - 🤑 Spent Checker \n - 👜 Basket Checker - 💰 SFL Balance \n - 🍒 Fruits Harvest Left  - 👨‍🌾 Bumpkins Stats \n - 🐔 Mutant Chickens ")
 
 skills_description = {
