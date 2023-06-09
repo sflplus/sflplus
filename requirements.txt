@@ -4,4 +4,4 @@ streamlit-extras
 streamlit-keyup
 pandas
 aiohttp
-streamlit-on-Hover-tabs
+hydralit_components
