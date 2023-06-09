@@ -39,25 +39,6 @@ st.write(
     unsafe_allow_html=True,
 )
 
-with st.sidebar:
-        tabs = on_hover_tabs(tabName=['Home', 'Ranking', 'Bumpkins'], 
-                             iconName=['home', 'emoji_events', 'group'],
-                             styles = {'navtab': {'background-color':'#1a202b',
-                                                  'color': '#818181',
-                                                  'font-size': '18px',
-                                                  'transition': '.3s',
-                                                  'white-space': 'nowrap',
-                                                  'text-transform': 'uppercase'},
-                                       'tabOptionsStyle': {':hover :hover': {'color': '#1C83E1',
-                                                                      'cursor': 'pointer'}},
-                                       'iconStyle':{'position':'fixed',
-                                                    'left':'5.5px',
-                                                    'text-align': 'left'},
-                                       'tabStyle' : {'list-style-type': 'none',
-                                                     'margin-bottom': '30px',
-                                                     'padding-left': '30px'}},
-                             key="1")
-
 @st.cache_resource(ttl=604800, show_spinner="Updating Lantern Ingredients")
 def retrieve_lantern_ingredients():
     url = "https://api.sunflower-land.com/visit/1"
@@ -631,8 +612,30 @@ fruits_price = {"Apple": 0.3125, "Orange": 0.225, "Blueberry": 0.15}
 fruit_emojis = {"Apple": " \U0001F34E ", "Orange": " \U0001f34a ", "Blueberry": " \U0001f347 "}
 
 
-Home, Ranking, Bumpkin = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKINS"])
-with Home:
+with st.sidebar:
+        tabs = on_hover_tabs(tabName=['Home', 'Ranking', 'Bumpkins'], 
+                             iconName=['home', 'emoji_events', 'group'],
+                             styles = {'navtab': {'background-color':'#1a202b',
+                                                  'color': '#818181',
+                                                  'font-size': '18px',
+                                                  'transition': '.3s',
+                                                  'white-space': 'nowrap',
+                                                  'text-transform': 'uppercase'},
+                                       'tabOptionsStyle': {':hover :hover': {'color': '#1C83E1',
+                                                                      'cursor': 'pointer'}},
+                                       'iconStyle':{'position':'fixed',
+                                                    'left':'5.5px',
+                                                    'text-align': 'left'},
+                                       'tabStyle' : {'list-style-type': 'none',
+                                                     'margin-bottom': '30px',
+                                                     'padding-left': '30px'}},
+                             key="1")
+
+
+
+#tab5, tab6, tab7 = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKINS"])
+#with tab5:
+if tabs =='Home':
 
     # Define default farm ID
     DEFAULT_FARM_ID = ""
@@ -1909,8 +1912,9 @@ with Home:
         sys.stderr.write(error_message)
         # Display the error message in Streamlit
         st.error(error_message)
-        
-with Ranking:
+     
+#with tab6:
+if tabs =='Ranking':  
     st.markdown("##### 🔻 SEARCH FARM ID 🔻")
     col_search, col_ok, buff = st.columns([2.5,2,6])
     with col_search:
@@ -2171,7 +2175,9 @@ async def main():
 if __name__ == "__main__":
     asyncio.run(main())   
 
-with Bumpkin:
+#with tab7:
+
+if tabs =='Bumpkin':      
         status_ok2 = st.container() 
         col18, col19, col20, col21 = st.columns([2, 2, 2, 2], gap="medium")
         with col18:
