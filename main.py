@@ -526,6 +526,7 @@ with col0x:
     #general_info.progress(supply_percentage_inv, text=None)
     #features_info = st.expander("📗 **FEATURES**", expanded=False)
 
+st.divider()
 st.markdown("💬 Feedback? Tag me `@Vitt0c` or use this [Discord thread](https://discord.com/channels/880987707214544966/1087607534967341087/1087607534967341087)")
 st.markdown("☕ Donations Wallet: `0x24C262a7c49F8BBc889688A0cb0Fea97d04839c5`")    
 #features_info.write(f" - 💎 Farm Worth  - 🏝️ Farm Resources \n - 🚜 Hoarder Limit - 🤑 Spent Checker \n - 👜 Basket Checker - 💰 SFL Balance \n - 🍒 Fruits Harvest Left  - 👨‍🌾 Bumpkins Stats \n - 🐔 Mutant Chickens ")
