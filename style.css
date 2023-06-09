@@ -2,6 +2,7 @@
 .st-cw {overflow-y: visible;}
 .st-cv {gap: 0.5rem;}
 .st-bn {gap: 0.5rem;}
+stTabs {overflow-x: hidden !important;}
 button, [type="button"] {padding:0.5rem;}
 .css-q8sbsg p {font-size:1.1rem;font-weight:600}
 .css-17b7mgn {width:100%;}
