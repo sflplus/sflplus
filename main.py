@@ -8,6 +8,7 @@ from PIL import Image
 from decimal import Decimal
 import streamlit.components.v1 as components
 from streamlit.components.v1 import html
+import clipboard
 import pandas as pd
 import urllib.request
 import asyncio
@@ -1231,11 +1232,11 @@ with tab5:
                 farm_info.write(f" - 🟡 **{total_gold_amount:.2f} Gold** — {num_gold}x Gold Rocks")
                 farm_info.write(f" - 🥚 **{total_chickens_amount:.2f} Eggs** — {num_chickens}x Chickens")
 
+                # Create a button to copy the data to clipboard
                 if st.button("Copy to Clipboard"):
                     data_to_copy = f"{total_wood_amount:.2f} Wood, {num_wood}x Trees, {total_stone_amount:.2f} Stone, {num_stones}x Stones"
-                    copy_to_clipboard_func = f"copyToClipboard({data_to_copy})"
-                    html("<script>" + copy_to_clipboard_js + "</script>", unsafe_allow_html=True)
-                    html(f'<button onclick="{copy_to_clipboard_func}">Copy to Clipboard</button>', unsafe_allow_html=True)
+                    clipboard.copy(data_to_copy)
+                    st.success("Data copied to clipboard!")
 
                 #farm_info.write("\n")          
                 #farm_info.success(f"\n 📊 **Total Nodes:**")
