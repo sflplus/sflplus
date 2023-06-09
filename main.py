@@ -40,8 +40,8 @@ st.write(
 )
 
 with st.sidebar:
-        tabs = on_hover_tabs(tabName=['Dashboard', 'Money', 'Economy'], 
-                             iconName=['dashboard', 'money', 'economy'],
+        tabs = on_hover_tabs(tabName=['Home', 'Ranking', 'Bumpkins'], 
+                             iconName=['home', 'stars', 'group'],
                              styles = {'navtab': {'background-color':'#1a202b',
                                                   'color': '#818181',
                                                   'font-size': '18px',
@@ -51,7 +51,7 @@ with st.sidebar:
                                        'tabOptionsStyle': {':hover :hover': {'color': '#1C83E1',
                                                                       'cursor': 'pointer'}},
                                        'iconStyle':{'position':'fixed',
-                                                    'left':'7.5px',
+                                                    'left':'5.5px',
                                                     'text-align': 'left'},
                                        'tabStyle' : {'list-style-type': 'none',
                                                      'margin-bottom': '30px',
