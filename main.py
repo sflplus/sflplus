@@ -632,7 +632,7 @@ fruit_emojis = {"Apple": " \U0001F34E ", "Orange": " \U0001f34a ", "Blueberry": 
 
 
 tab5, tab6, tab7 = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKINS"])
-with tab5:
+with tab5 tabName="Home":
 
     # Define default farm ID
     DEFAULT_FARM_ID = ""
