@@ -13,7 +13,6 @@ import asyncio
 import aiohttp
 from datetime import datetime, timedelta
 import sys
-import hydralit_components as hc
 #import numpy as np
 
 favicon = Image.open('favicon.png')
@@ -30,25 +29,12 @@ st.set_page_config(
     }
 )
 
-# specify the primary menu definition💾
-menu_data = [
-    {'id':'RANKING','icon':"🏆",'label':"RANKING"},
-    {'id':'BUMPKINS','icon': "👥", 'label':"BUMPKINS"},
-    #{'icon': "fa-solid fa-radar",'label':"Dropdown1", 'submenu':[{'id':' subid11','icon': "fa fa-paperclip", 'label':"Sub-item 1"},{'id':'subid12','icon': "💀", 'label':"Sub-item 2"},{'id':'subid13','icon': "fa fa-database", 'label':"Sub-item 3"}]},
-    #{'icon': "far fa-chart-bar", 'label':"Chart"},#no tooltip message
-]
-
-over_theme = {'txc_inactive': '#FFFFFF'}
-menu_id = hc.nav_bar(
-    menu_definition=menu_data,
-    override_theme=over_theme,
-    home_name='HOME',
-    login_name=None,
-    use_animation=False,
-    hide_streamlit_markers=True, #will show the st hamburger as well as the navbar now!
-    sticky_nav=True, #at the top or not
-    sticky_mode='sticky', #jumpy or not-jumpy, but sticky or pinned
-)
+hide_menu_style = """
+        <style>
+        #MainMenu {visibility: hidden;}
+        </style>
+        """
+st.markdown(hide_menu_style, unsafe_allow_html=True)
 
 def local_css(file_name):
     with open(file_name) as f:
