@@ -45,7 +45,7 @@ button[kind="header"] {
     /* The navigation menu specs and size */
     section[data-testid='stSidebar'] > div {
         height: 100%;
-        width: 95px;
+        width: 65px;
         position: relative;
         z-index: 1;
         top: 0;
@@ -53,7 +53,7 @@ button[kind="header"] {
         background-color: #1a202b;
         overflow-x: hidden;
         transition: 0.5s ease;
-        padding-top: 60px;
+        padding-top: 35px;
         white-space: nowrap;
     }
 
