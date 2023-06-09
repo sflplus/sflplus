@@ -13,6 +13,7 @@ import asyncio
 import aiohttp
 from datetime import datetime, timedelta
 import sys
+from st_on_hover_tabs import on_hover_tabs
 #import numpy as np
 
 favicon = Image.open('favicon.png')
@@ -37,6 +38,25 @@ st.write(
     '<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap" />',
     unsafe_allow_html=True,
 )
+
+with st.sidebar:
+        tabs = on_hover_tabs(tabName=['Dashboard', 'Money', 'Economy'], 
+                             iconName=['dashboard', 'money', 'economy'],
+                             styles = {'navtab': {'background-color':'#111',
+                                                  'color': '#818181',
+                                                  'font-size': '18px',
+                                                  'transition': '.3s',
+                                                  'white-space': 'nowrap',
+                                                  'text-transform': 'uppercase'},
+                                       'tabOptionsStyle': {':hover :hover': {'color': 'red',
+                                                                      'cursor': 'pointer'}},
+                                       'iconStyle':{'position':'fixed',
+                                                    'left':'7.5px',
+                                                    'text-align': 'left'},
+                                       'tabStyle' : {'list-style-type': 'none',
+                                                     'margin-bottom': '30px',
+                                                     'padding-left': '30px'}},
+                             key="1")
 
 
 @st.cache_resource(ttl=604800, show_spinner="Updating Lantern Ingredients")
