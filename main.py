@@ -564,7 +564,7 @@ fruits_price = {"Apple": 0.3125, "Orange": 0.225, "Blueberry": 0.15}
 fruit_emojis = {"Apple": " \U0001F34E ", "Orange": " \U0001f34a ", "Blueberry": " \U0001f347 "}
 
 
-tab5, tab6, tab7, tab8, tab9 = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKINS", "👥BKIdassfa", " \n sfafafaf adaNS"])
+tab5, tab6, tab7 = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKINS"])
 with tab5:
     # Define default farm ID
     DEFAULT_FARM_ID = ""
@@ -2247,5 +2247,3 @@ with tab7:
                         status_ok2.error(f"Bumpkin {text_search2} not found.")
                 else:
                     status_ok2.error("Invalid response or error occurred.") 
-with tab8: 
-    st.write(f"this is some try text")    
