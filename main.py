@@ -497,8 +497,10 @@ app_state = {k: v[0] if isinstance(v, list) else v for k, v in app_state.items()
 st.markdown('[![Foo](https://raw.githubusercontent.com/vitt0/sunflower-land/main/sflplus_logo.png)](https://sflplus.info)  <span style="vertical-align:bottom;color:rgb(0, 221, 66);font-weight:bold;">v3.1</span>', unsafe_allow_html=True)
 
 
-col0, buff5 = st.columns([3.5,6.5])
-with col0:
+col0, col11, buff5 = st.columns([1.75,1.75,6.5])
+with col0
+    general_info2 = st.container()
+with col11:
     general_info = st.container()
     if sfl_supply is not None:
         format_supply = "{:,.0f}".format(sfl_supply / 1e18)
@@ -515,7 +517,8 @@ with col0:
     supply_percentage_final = float(supply_percentage_number) / 100
     supply_percentage_inv =  1 - supply_percentage_final 
 
-    general_info.write(f" - 🟣 Matic: **{matic_price:.2f}** - 🌻 SFL: **{sfl_price:.4f}** \n - 📈 Current Supply: **{format_supply}** \n - ⏳ Next Halvening: **30,000,000** \n - 📊 In Percentage: **{supply_progress_percentage:.2f}%**")
+    general_info.write(f" - 🟣 Matic: **{matic_price:.2f}** - 🌻 SFL: **{sfl_price:.4f}** \n - 📈 Current Supply: **{format_supply}**")
+    general_info2.write(f" - ⏳ Next Halvening: **30,000,000** \n - 📊 In Percentage: **{supply_progress_percentage:.2f}%**")
     #general_info.progress(supply_percentage_inv, text=None)
     #features_info = st.expander("📗 **FEATURES**", expanded=False)
 
