@@ -13,7 +13,7 @@ import asyncio
 import aiohttp
 from datetime import datetime, timedelta
 import sys
-from st_on_hover_tabs import on_hover_tabs
+import hydralit_components as hc
 #import numpy as np
 
 favicon = Image.open('favicon.png')
