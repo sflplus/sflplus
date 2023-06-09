@@ -1219,8 +1219,8 @@ with tab5:
 
                 # Create a button to copy the data to clipboard
                 copy_button_code = """
-                function copyToClipboard() {
-                  const textToCopy = `{} Wood, {}x Trees, {} Stone, {}x Stones`;
+                function copyToClipboard() {{
+                  const textToCopy = `{:.2f} Wood, ${}x Trees, {:.2f} Stone, ${}x Stones`;
                   navigator.clipboard.writeText(textToCopy)
                     .then(() => {{
                       console.log('Text copied to clipboard');
@@ -1228,7 +1228,7 @@ with tab5:
                     .catch((error) => {{
                       console.error('Error copying text to clipboard:', error);
                     }});
-                }
+                }}
                 """.format(total_wood_amount, num_wood, total_stone_amount, num_stones)
 
                 copy_button = st.button("Copy to Clipboard", on_click="copyToClipboard")
