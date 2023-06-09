@@ -1,5 +1,6 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Noto+Color+Emoji&display=swap');
+#MainMenu {visibility: hidden;}
 .st-cw {overflow-y: visible;}
 .st-cv {gap: 0.5rem;}
 .st-bn {gap: 0.5rem;}
