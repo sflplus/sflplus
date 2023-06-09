@@ -3,6 +3,7 @@
 .st-cv {gap: 0.5rem;}
 .st-bn {gap: 0.5rem;}
 .st-bg {flex-wrap: wrap;}
+.st-cx {display: none;}
 .stTabs {overflow-x: hidden !important;}
 button, [type="button"] {padding:0.5rem;}
 .css-q8sbsg p {font-size:1.1rem;font-weight:600}
