@@ -2284,7 +2284,7 @@ with tab8:
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
             <div class="row row-cols-1 row-cols-md-3 g-4">
               <div class="col">
-                <div class="card text-dark bg-info mb-3" style="max-width: 18rem;" "h-100">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" "h-100">
                   <a href="{}" style="display: inline-block" target="_blank"><img src="{}" alt="Crop Image" class="card-img-top" alt="..."></a>
                   <div class="card-body">
                     <h5 class="card-title">{}</h5>
