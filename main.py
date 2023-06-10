@@ -2474,7 +2474,7 @@ with tab8:
             for tag in crop["type"]
             if tag.strip() in tags_info
         ])
-
+        st.write(type_badges)
         markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
                 <a href="{}{}" style="display: inline-block" target="_blank">
