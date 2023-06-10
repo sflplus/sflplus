@@ -2478,35 +2478,27 @@ with tab8:
         crop["type"] = updated_tags    
 
     # Use the updated crop dictionary to display the crop cards
-    # Use the updated crop dictionary to display the crop cards
     for index, crop in enumerate(crops):
-        tags = crop.get("type", [])
-        st.write("Tags:", tags)  # Add this line for debugging
-
         type_badges = " ".join([
-            f'<span class="badge text-center rounded-pill start-50 {tags_dict.get(tag.strip(), {}).get("class", "")}" style="background-color: #{tags_dict.get(tag.strip(), {}).get("color", "")} !important;">{tags_dict.get(tag.strip(), {}).get("emoji", "")} {tag}</span>'
+            f'<span class="badge text-center rounded-pill start-50 {tags_info.get(tag.strip(), {}).get("class", "")}">{tags_info.get(tag.strip(), {}).get("emoji", "")} {tag}</span>'
             for tag in crop.get("type", [])
         ])
 
-        # Print the tag and color for debugging
-        st.write("Tag:", tag)
-        st.write("Color:", tags_dict.get(tag.strip(), {}).get("color", ""))
-        
         markdown_content = """
-            <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
-                <a href="{}{}" style="display: inline-block" target="_blank">
-                    <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
-                <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
-                    {}
-                </div>                 
-                <div class="card-body" style="min-height:8rem">
-                    <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
-                    <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
-                </div>
-                <div class="card-footer">
-                    <span class="card-text">💰 <b>Avg Price: {}</b></span>                    
-                </div>
+        <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
+            <a href="{}{}" style="display: inline-block" target="_blank">
+                <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
+            <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
+                {}
+            </div>                 
+            <div class="card-body" style="min-height:8rem">
+                <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
+                <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
             </div>
+            <div class="card-footer">
+                <span class="card-text">💰 <b>Avg Price: {}</b></span>                    
+            </div>
+        </div>
         """.format(
             opensea_url_base,
             crop["url"],
