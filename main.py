@@ -2354,7 +2354,7 @@ with tab8:
         },
         {
             "name": "Golden Cauliflower",
-            "type": ["🌱 Crop: #28a745", "🤍 Cauliflower: #20c997"],
+            "type": ["🌱 Crop: #28a745", "&#x1F90D; Cauliflower: #20c997"],
             "description": ["+200% Cauliflower Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
