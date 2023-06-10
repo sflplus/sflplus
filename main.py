@@ -2268,51 +2268,6 @@ with tab8:
         column3 = st.container()    
     with colD:
         column4 = st.container()
-
-    def display_crop_cards(crops):
-        for index, crop in enumerate(crops):
-            # Generate type badges with colors
-            type_badges = " ".join([
-                f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
-                if ":" in t
-                else f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;">{t.strip()}</span>'
-                for t in crop["type"]
-            ])
-
-            markdown_content = """
-            <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
-                <a href="{}{}" style="display: inline-block" target="_blank">
-                    <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
-                <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
-                    {}
-                </div>                 
-                <div class="card-body" style="min-height:8rem">
-                    <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
-                    <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
-                </div>
-                <div class="card-footer">
-                    <span class="card-text">💰 <b>Avg Price: {}</b></span>                    
-                </div>
-            </div>
-            """.format(
-                opensea_url_base,
-                crop["url"],
-                crop["urlImg"],
-                type_badges,
-                crop["name"],
-                crop["description"][0],
-                crop["currentPrice"],
-                crop["collection"],
-            )
-
-            if index % 4 == 0:
-                column1.markdown(markdown_content, unsafe_allow_html=True)
-            elif index % 4 == 1:
-                column2.markdown(markdown_content, unsafe_allow_html=True)
-            elif index % 4 == 2:
-                column3.markdown(markdown_content, unsafe_allow_html=True)
-            else:
-                column4.markdown(markdown_content, unsafe_allow_html=True)
         
     opensea_url_base = 'https://opensea.io/assets/matic/0x22d5f9b75c524fec1d6619787e582644cd4d7422/'
     crops = [
@@ -2464,6 +2419,52 @@ with tab8:
             "isSelling": True,
         },
     ]
+
+    def display_crop_cards(crops):
+        for index, crop in enumerate(crops):
+            # Generate type badges with colors
+            type_badges = " ".join([
+                f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
+                if ":" in t
+                else f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;">{t.strip()}</span>'
+                for t in crop["type"]
+            ])
+
+            markdown_content = """
+            <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
+                <a href="{}{}" style="display: inline-block" target="_blank">
+                    <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
+                <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
+                    {}
+                </div>                 
+                <div class="card-body" style="min-height:8rem">
+                    <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
+                    <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
+                </div>
+                <div class="card-footer">
+                    <span class="card-text">💰 <b>Avg Price: {}</b></span>                    
+                </div>
+            </div>
+            """.format(
+                opensea_url_base,
+                crop["url"],
+                crop["urlImg"],
+                type_badges,
+                crop["name"],
+                crop["description"][0],
+                crop["currentPrice"],
+                crop["collection"],
+            )
+
+            if index % 4 == 0:
+                column1.markdown(markdown_content, unsafe_allow_html=True)
+            elif index % 4 == 1:
+                column2.markdown(markdown_content, unsafe_allow_html=True)
+            elif index % 4 == 2:
+                column3.markdown(markdown_content, unsafe_allow_html=True)
+            else:
+                column4.markdown(markdown_content, unsafe_allow_html=True)
+
     keywords = st_tags(
         label= ' 🔻 **SEARCH FOR TAGS:** 🔻',
         text='Press enter to add more',
