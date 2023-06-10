@@ -2304,7 +2304,7 @@ with tab8:
         },
     ]
     # Create the layout grid for the crop cards
-    col111, col112, col113 = tab8.columns(3)
+    col111, col112, col113 = st.columns(3)
 
     # Iterate over the crops list and display the crop cards
     for index, crop in enumerate(crops):
@@ -2336,4 +2336,4 @@ with tab8:
         )
         with col111 if index % 3 == 0 else col112 if index % 3 == 1 else col113:
             # Display the Markdown content
-            st.markdown(markdown_content, unsafe_allow_html=True)
+            tab8.markdown(markdown_content, unsafe_allow_html=True)
