@@ -2440,7 +2440,7 @@ with tab8:
         column3 = st.container()   
     with colD:
         column4 = st.container() 
-
+        
     # Define the tags dictionary
     tags_dict = {
         "Crop": {"color": "28a745", "emoji": "🌱"},
