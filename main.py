@@ -2251,7 +2251,7 @@ with tab7:
                 else:
                     status_ok2.error("Invalid response or error occurred.") 
 with tab8:
-
+    opensea_url_base = 'https://opensea.io/assets/matic/0x22d5f9b75c524fec1d6619787e582644cd4d7422'
     crops = [
         {
             "name": "Easter Bunny",
@@ -2285,8 +2285,8 @@ with tab8:
             <div class="row row-cols-1 row-cols-md-3 g-4">
               <div class="col">
                 <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" "h-100">
-                  <h5 class="card-title">{}. {}</h5>
-                  <a href="{}" style="display: inline-block" target="_blank"><img src="{}" alt="Crop Image" class="card-img-top" alt="..."></a>
+                  <h5 class="card-header">{}. {}</h5>
+                  <a href="{}{}" style="display: inline-block" target="_blank"><img src="{}" alt="Crop Image" class="card-img-top" alt="..."></a>
                   <div class="card-body">                    
                     <p class="card-text"><b>Description: </b>{}</p>
                     <span class="card-text"><b>Collection: </b>{}</span>
@@ -2297,6 +2297,7 @@ with tab8:
                 </div>
             </div>
         """.format(
+            opensea_url_base,
             index + 1,
             crop["name"],
             crop["url"],
