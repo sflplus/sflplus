@@ -2472,6 +2472,7 @@ with tab8:
         type_badges = " ".join([
             f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{tags_info[tag.strip()]["color"]}">{tag}</span>'
             for tag in crop["type"]
+            if tag.strip() in tags_info
         ])
 
         markdown_content = """
