@@ -2454,6 +2454,9 @@ with tab8:
         # Add more tag entries as needed
     }
 
+    # Create a dictionary for the tags using the tag name as the key
+    tags_info = {tag_name: tag_info for tag_name, tag_info in tags_dict.items()}
+
     # Iterate over the crops list and replace the tag names with the corresponding information
     for crop in crops:
         tags = crop.get("type", [])
@@ -2464,7 +2467,6 @@ with tab8:
                 updated_tags.append(f'{tag_info["emoji"]} {tag}')
         crop["type"] = updated_tags
 
-    st.write(updated_tags)
     # Use the updated crop dictionary to display the crop cards
     for index, crop in enumerate(crops):
         type_badges = " ".join([
