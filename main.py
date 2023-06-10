@@ -2284,21 +2284,33 @@ col111, col112, col113 = st.columns(3)
 # Iterate over the crops list and display the crop cards
 for index, crop in enumerate(crops):
     with col111 if index % 3 == 0 else col112 if index % 3 == 1 else col113:
-        st.markdown(
-            f"""
-            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                <a href="{opensea_url_base}{crop['url']}" style="display: inline-block" target="_blank">
-                    <img src="{crop['urlImg']}" class="card-img-top" alt="Crop Image">
-                </a>
-                <div class="card-body">
-                    <h5 class="card-title">{index + 1}. <b>{crop['name']}</b></h5>
-                    <p class="card-text"><b>Description: </b>{crop['description'][0]}</p>
-                    <small class="text-muted"><b>{crop['collection']}</b></small>
-                </div>
-                <div class="card-footer">
-                    <small class="text-muted"><b>Current Price: </b>{crop['currentPrice']}</small>
+        markdown_content = """
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+              <div class="col">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" "h-100">                  
+                  <a href="{}{}" style="display: inline-block" target="_blank"><img src="{}" alt="Crop Image" class="card-img-top" alt="..."></a>
+                  <div class="card-body"> 
+                    <h5 class="card-title">{}. <b>{}</b></h5>
+                    <p class="card-text"><b>Description: </b>{}</p>
+                    <small class="text-muted"><b>{}</b></small>
+                  </div>
+                  <div class="card-footer">
+                    <small class="text-muted"><b>Current Price: </b>{}</small>
+                  </div>
                 </div>
             </div>
-            """,
-            unsafe_allow_html=True
+        """.format(
+            opensea_url_base,
+            crop["url"],
+            crop["urlImg"],
+            index + 1,
+            crop["name"],
+            crop["description"][0],
+            crop["collection"],
+            crop["currentPrice"],
         )
+
+        # Display the Markdown content
+        st.markdown(markdown_content, unsafe_allow_html=True)
+
