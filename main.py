@@ -2438,7 +2438,7 @@ with tab8:
                   </a>
                   <div class="card-body">
                     <h5 class="card-title">{}. <b>{}</b></h5>
-                    <p class="card-text"><b>Description: </b>{}</p>
+                    <p class="card-text"><b>Description: </b>{} <span class="badge bg-success">Crop</span></p>
                     <small class="text-muted"><b>{}</b></small>
                   </div>
                   <div class="card-footer">
