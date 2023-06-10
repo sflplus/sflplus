@@ -2463,7 +2463,7 @@ with tab8:
         tags = crop.get("type", [])
         updated_tags = []
         for tag in tags:
-            tag_info = tags_info.get(tag)
+            tag_info = tags_info.get(tag.strip())
             if tag_info:
                 updated_tags.append(f'{tag_info["emoji"]} {tag}')
         crop["type"] = updated_tags
