@@ -2448,14 +2448,13 @@ with tab8:
         types = crop.get("type", [])  # Get the type list for the crop
 
         for type_str in types:
-            type_name = type_str.split(":")[0].strip()  # Extract the type name
+            type_name = type_str.split(":")[0].strip() if ":" in type_str else type_str.strip()  # Extract the type name
 
             # Add the type name to the tags_dict
             if type_name not in tags_dict:
                 tags_dict[type_name] = []
 
             tags_dict[type_name].append(crop["name"])
-    #st.write(tags_dict)
 
     selected_tags = set(keywords)
 
