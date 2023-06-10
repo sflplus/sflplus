@@ -2,5 +2,6 @@ requests==2.28.2
 streamlit
 streamlit-extras
 streamlit-keyup
+streamlit-tags
 pandas
 aiohttp
