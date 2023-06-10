@@ -2464,6 +2464,7 @@ with tab8:
                 updated_tags.append(f'{tag_info["emoji"]} {tag}')
         crop["type"] = updated_tags
 
+    st.write(updated_tags)
     # Use the updated crop dictionary to display the crop cards
     for index, crop in enumerate(crops):
         type_badges = " ".join([
