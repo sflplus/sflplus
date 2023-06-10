@@ -2471,8 +2471,10 @@ with tab8:
 
     # Use the updated crop dictionary to display the crop cards
     for index, crop in enumerate(crops):
-        # Generate type badges with colors
-        type_badges = f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{tag_info_dict[crop["type"]]["color"]}">{crop["type"]}</span>'
+        type_badges = " ".join([
+            f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{tags_info[tag]["color"]}">{tag}</span>'
+            for tag in crop["type"]
+        ])
 
         markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
