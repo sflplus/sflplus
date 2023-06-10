@@ -2455,7 +2455,6 @@ with tab8:
         },
         # Add more tag entries as needed
     ]
-
     # Create a dictionary for the tags using the tag name as the key
     tags_info = {tag["name"]: tag for tag in tags_dict}
 
