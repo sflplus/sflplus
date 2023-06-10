@@ -2435,21 +2435,22 @@ with tab8:
                 <div class="card text-white bg-dark mb-3" style="max-width: 25rem;">
                   <a href="{}{}" style="display: inline-block" target="_blank">
                     <img src="{}" alt="NFT Image" class="card-img-top" alt="..."></a>
-                    <span class="w-100 p-3 badge bg-dark position-absolute bottom-100 start-50"><b>Avg Price: </b>{}</span>                  
+                    <span class="w-100 h-5 bg-dark position-absolute bottom-100 start-50"><b>{}</b></span>                  
                   <div class="card-body">
-                    <h5 class="card-title"><b>{}</b> <span class="badge rounded-pill bg-success">Crop</span></h5>                                      
+                    <h5 class="card-title"><span class="badge rounded-pill bg-success">Crop</span></h5>
+                    <span class="card-text"><b>Description: </b>{}</span>
                   </div>
                   <div class="card-footer">
-                    <span class="card-text"><b>Description: </b>{}</span>
+                    <span class="card-text"><b>Avg Price: </b>{}<</span>                    
                   </div>
                 </div>
         """.format(
             opensea_url_base,
             crop["url"],
             crop["urlImg"],
-            crop["currentPrice"],
             crop["name"],
             crop["description"][0],
+            crop["currentPrice"],
             crop["collection"],
             index + 1,
         )
