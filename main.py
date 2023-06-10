@@ -8,6 +8,7 @@ from PIL import Image
 from decimal import Decimal
 import streamlit.components.v1 as components
 from streamlit.components.v1 import html
+from streamlit_tags import st_tags
 import pandas as pd
 import urllib.request
 import asyncio
@@ -2419,6 +2420,17 @@ with tab8:
             "isSelling": True,
         },
     ]
+    keywords = st_tags(
+        label='# Choose the Type:',
+        text='Press enter to add more',
+        value=['Crop', 'Potato', 'Cabbage'],
+        suggestions=['crop', 'potato', 'cabbage'],
+        maxtags= 4,
+        key="tags")
+
+    st.write("### Results:")
+    st.write(type(keywords))
+
     # Create the layout grid for the crop cards
     colA, colB, colC, colD = st.columns([3,3,3,3])
     with colA:
