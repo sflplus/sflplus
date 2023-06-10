@@ -2483,7 +2483,7 @@ with tab8:
             f'<span class="badge text-center rounded-pill start-50 {tags_info.get(tag.strip(), {}).get("class", "")}" style="background-color: #{tags_info.get(tag.strip(), {}).get("color", "")}">{tags_info.get(tag.strip(), {}).get("emoji", "")} {tag}</span>'
             for tag in crop.get("type", [])
         ])
-    st.write(f"Type Badges HTML: {type_badges}")
+        st.write(f"Type Badges HTML: {type_badges}")
         markdown_content = """
         <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
             <a href="{}{}" style="display: inline-block" target="_blank">
