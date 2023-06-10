@@ -249,7 +249,7 @@ def nft_price():
                      'Potato', 'Pumpkin', 'Carrot', 'Cabbage', 'Beetroot', 'Cauliflower',
                      'Parsnip', 'Radish', 'Wheat', 'Kale', 'Apple', 'Orange', 'Blueberry',
                      'Wood', 'Stone', 'Iron', 'Gold', 'Egg', 'Iron Pickaxe', 'Stone Pickaxe',
-                     'Pickaxe', 'Axe', 'Eggplant', 'Chicken', 'Wild Mushroom']
+                     'Pickaxe', 'Axe', 'Eggplant', 'Chicken', 'Wild Mushroom', 'Chef Apron']
     # create a boolean mask for the rows that contain any of the excluded names in the 'NFT' column
     name_mask = df['NFT'].isin(exclude_names)
     # create a boolean mask for the rows that contain 'Flag' as part of their name in the 'NFT' column
