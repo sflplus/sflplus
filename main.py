@@ -203,7 +203,7 @@ def fetch_top_ten_ids():
         print(f"Failed to fetch top ten IDs. Error: {e}")
         return []
 
-@st.cache_resource(ttl=780, show_spinner="Updating Top10 lanterns") # cache for 13 min
+#@st.cache_resource(ttl=780, show_spinner="Updating Top10 lanterns") # cache for 13 min
 def retrieve_lanterns_data(top_ten_ids):
     # Building payload using the provided IDs
     payload = json.dumps({"ids": top_ten_ids})
@@ -222,7 +222,7 @@ def retrieve_lanterns_data(top_ten_ids):
             farm_data = farm.get('dawnBreaker', {}).get('lanternsCraftedByWeek', {})
             week_data = {
                 str(week): farm_data.get(str(week), 0)
-                for week in range(1, 6)
+                for week in range(1, 8)
             }
             lanterns_data[str(farm_id)] = week_data
         except Exception as e:
