@@ -2426,9 +2426,10 @@ with tab8:
         suggestions=['crop', 'potato', 'cabbage'],
         maxtags= 4,
         key="tags")
-    #st.markdown("##### 🔻 SEARCH FOR TAGS 🔻:")
     #st.write((keywords))
 
+    if any(tag in selected_tags for tag in types):
+        filtered_crops.append(crop)
     # Create the layout grid for the crop cards
     colA, colB, colC, colD = st.columns([3,3,3,3])
     with colA:
@@ -2454,10 +2455,18 @@ with tab8:
                 tags_dict[type_name] = []
 
             tags_dict[type_name].append(crop["name"])
-    st.write(tags_dict)
+    #st.write(tags_dict)
+
+    selected_tags = set(keywords)
+
+    filtered_crops = []
+
+    for crop in crops:
+        types = crop.get("type", [])
+    
 
     # Use the updated crop dictionary to display the crop cards
-    for index, crop in enumerate(crops):
+    for index, crop in enumerate(filtered_crops):
         # Generate type badges with colors
         type_badges = " ".join([
             f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
