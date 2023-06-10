@@ -29,11 +29,16 @@ st.set_page_config(
     }
 )
 
-
+st.write(
+    '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">',
+    unsafe_allow_html=True,
+)
 def local_css(file_name):
     with open(file_name) as f:
         st.markdown(f'<style>{f.read()}</style>', unsafe_allow_html=True)
 local_css("style.css")
+
+
 
 
 @st.cache_resource(ttl=604800, show_spinner="Updating Lantern Ingredients")
@@ -2427,9 +2432,6 @@ with tab8:
     # Iterate over the crops list and display the crop cards
     for index, crop in enumerate(crops):
         markdown_content = """
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-              <div class="col">
                 <div class="card text-white bg-dark mb-3" style="max-width: 25rem;">
                   <a href="{}{}" style="display: inline-block" target="_blank">
                     <img src="{}" alt="Crop Image" class="card-img-top" alt="...">
@@ -2443,8 +2445,6 @@ with tab8:
                     <small class="text-muted"><b>Current Price: </b>{}</small>
                   </div>
                 </div>
-              </div>
-            </div>
         """.format(
             opensea_url_base,
             crop["url"],
