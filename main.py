@@ -7,6 +7,7 @@ from st_keyup import st_keyup
 from PIL import Image
 from decimal import Decimal
 import streamlit.components.v1 as components
+import streamlit.components.v1 as html
 import pandas as pd
 import urllib.request
 import asyncio
