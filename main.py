@@ -2304,7 +2304,7 @@ with tab8:
         },
     ]
     # Create the layout grid for the crop cards
-    colA, colB, colC = tab8.columns(3)
+    colA, colB, colC = st.columns([3,3,3])
     with colA:
         column1 = st.container()
     with colB:
