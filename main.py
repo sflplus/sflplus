@@ -2470,6 +2470,10 @@ with tab8:
             for tag in crop.get("type", [])
         ])
 
+        # Print the tag and color for debugging
+        print("Tag:", tag)
+        print("Color:", tags_dict.get(tag.strip(), {}).get("color", ""))
+
         markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
                 <a href="{}{}" style="display: inline-block" target="_blank">
