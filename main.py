@@ -2285,7 +2285,7 @@ with tab8:
             <div class="row row-cols-1 row-cols-md-3 g-4">
               <div class="col">
                 <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" "h-100">
-                  <h5 class="card-header">{}. {}</h5>
+                  <div class="card-header">{}. {}</div>
                   <a href="{}{}" style="display: inline-block" target="_blank"><img src="{}" alt="Crop Image" class="card-img-top" alt="..."></a>
                   <div class="card-body">                    
                     <p class="card-text"><b>Description: </b>{}</p>
