@@ -2470,7 +2470,7 @@ with tab8:
     # Use the updated crop dictionary to display the crop cards
     for index, crop in enumerate(crops):
         type_badges = " ".join([
-            f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{tags_info.get(tag.strip(), {}).get("color", "#000000")}">{tag}</span>'
+            f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{tags_info.get(tag.strip(), {})}">{tag}</span>'
             for tag in crop["type"]
         ])
 
