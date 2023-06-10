@@ -2437,10 +2437,10 @@ with tab8:
                     <img src="{}" alt="NFT Image" class="card-img-top" alt="...">
                   </a>
                   <div class="card-body">
-                    <h5 class="card-title"><b>{}</b> <span class="badge bg-success">Crop</span></h5>
+                    <h5 class="card-title"><b>{}</b> <span class="badge rounded-pill bg-success">Crop</span></h5>
                     <span class="card-text"><b>Description: </b>{}</span>                    
                   </div>
-                  <div class="card-footer">
+                  <div class="card-footer bg-dark bg-gradient">
                     <span class="card-text"><b>Avg Price: </b>{}</span>
                   </div>
                 </div>
