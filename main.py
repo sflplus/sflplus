@@ -2309,7 +2309,7 @@ with tab8:
             column1 = st.container()
         with colB:
             column2 = st.container()               
-        with colA:
+        with colC:
             column3 = st.container()
             
     # Iterate over the crops list and display the crop cards
