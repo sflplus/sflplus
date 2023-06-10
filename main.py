@@ -2276,6 +2276,32 @@ with tab8:
             "collection": "Sunflower Land Collectibles",
             "isSelling": True,
         },
+        {
+            "name": "Peeled Potato",
+            "type": "crop",
+            "description": ["+20% potato"],
+            "currentPrice": 0,
+            "offerPrice": 0,
+            "url": "433",
+            "urlImg": "https://i.seadn.io/gcs/files/61edb0f1faad0caa36231058a75b5152.gif?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
+        {
+            "name": "Cabbage Boy",
+            "type": "crop",
+            "description": ["+0.25 cabbage"],
+            "combos": [
+                {"name": "Cabbage Girl", "effect": "+0.15 cabbage", "buffs": True}
+            ],
+            "alerts": ["Karkinos has no effect with Cabbage Boy"],
+            "currentPrice": 0,
+            "offerPrice": 0,
+            "url": "434",
+            "urlImg": "https://i.seadn.io/gcs/files/02a0eacbf56270f822db210f8cdce4ad.png?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
     ]
 
     # Create the layout grid for the crop cards
