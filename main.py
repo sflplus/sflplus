@@ -2466,7 +2466,7 @@ with tab8:
             if tag_info:
                 updated_tags.append(f'{tag_info["emoji"]} {tag}')
         crop["type"] = updated_tags
-
+    st.write(tags_info)
     # Use the updated crop dictionary to display the crop cards
     for index, crop in enumerate(crops):
         type_badges = " ".join([
@@ -2474,7 +2474,7 @@ with tab8:
             for tag in crop["type"]
             if tag.strip() in tags_info
         ])
-        st.write(type_badges)
+
         markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
                 <a href="{}{}" style="display: inline-block" target="_blank">
@@ -2500,7 +2500,7 @@ with tab8:
             crop["currentPrice"],
             crop["collection"],
         )
-
+        st.write(type_badges)
         if index % 4 == 0:
             column1.markdown(markdown_content, unsafe_allow_html=True)
         elif index % 4 == 1:
