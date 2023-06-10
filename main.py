@@ -2289,7 +2289,7 @@ with tab8:
                   <div class="card-body"> 
                     <h5 class="card-title">{}. {}</h5>
                     <p class="card-text"><b>Description: </b>{}</p>
-                    <span class="card-text"><b>Collection: </b>{}</span>
+                    <small class="text-muted"><b>Collection: </b>{}</small>
                   </div>
                   <div class="card-footer">
                     <small class="text-muted"><b>Current Price: </b>{}</small>
