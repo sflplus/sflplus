@@ -2434,26 +2434,25 @@ with tab8:
         markdown_content = """
                 <div class="card text-white bg-dark mb-3" style="max-width: 25rem;">
                   <a href="{}{}" style="display: inline-block" target="_blank">
-                    <img src="{}" alt="Crop Image" class="card-img-top" alt="...">
+                    <img src="{}" alt="NFT Image" class="card-img-top" alt="...">
                   </a>
                   <div class="card-body">
-                    <h5 class="card-title">{}. <b>{}</b></h5>
-                    <p class="card-text"><b>Description: </b>{} <span class="badge bg-success">Crop</span></p>
-                    <small class="text-muted"><b>{}</b></small>
+                    <h5 class="card-title"><b>{}</b><span class="badge bg-success">Crop</span></h5>
+                    <p class="card-text"><b>Description: </b>{}</p>                    
                   </div>
                   <div class="card-footer">
-                    <small class="text-muted"><b>Current Price: </b>{}</small>
+                    <small class="text-muted"><b>Avg Price: </b>{}</small>
                   </div>
                 </div>
         """.format(
             opensea_url_base,
             crop["url"],
             crop["urlImg"],
-            index + 1,
             crop["name"],
             crop["description"][0],
-            crop["collection"],
             crop["currentPrice"],
+            crop["collection"],
+            index + 1,
         )
 
         if index % 4 == 0:
