@@ -2252,7 +2252,7 @@ with tab7:
                 else:
                     status_ok2.error("Invalid response or error occurred.") 
 with tab8:
-    opensea_url_base = 'https://opensea.io/assets/matic/0x22d5f9b75c524fec1d6619787e582644cd4d7422'
+    opensea_url_base = 'https://opensea.io/assets/matic/0x22d5f9b75c524fec1d6619787e582644cd4d7422/'
     crops = [
         {
             "name": "Easter Bunny",
