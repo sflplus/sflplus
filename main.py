@@ -2442,21 +2442,19 @@ with tab8:
         column4 = st.container() 
         
     # Define the tags dictionary
-    tags_dict = [
-        {
-            "name": "Crop",
+    tags_dict = {
+        "Crop": {
             "color": "#28a745",
             "emoji": "🌱",
         },
-        {
-            "name": "Potato",
-            "color": "#c2866",
+        "Potato": {
+            "color": "#c28606",
             "emoji": "🥔",
         },
         # Add more tag entries as needed
-    ]
+    }
     # Create a dictionary for the tags using the tag name as the key
-    tags_info = {tag["name"]: tag for tag in tags_dict}
+    tags_info = {tag["name"]: tag for tag in tags_dict.values()}
 
     # Iterate over the crops list and replace the tag names with the corresponding information
     for crop in crops:
