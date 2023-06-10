@@ -2278,37 +2278,27 @@ with tab8:
         },
     ]
 
-    # Generate the HTML markup for the crops cards
-    cards_content = '<div class="row row-cols-1 row-cols-md-3 g-4">'
-    for index, crop in enumerate(crops):
-        card_content = """
-            <div class="col">
-                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
-                    <a href="{}{}" style="display: inline-block" target="_blank">
-                        <img src="{}" class="card-img-top" alt="Crop Image">
-                    </a>
-                    <div class="card-body">
-                        <h5 class="card-title">{}. <b>{}</b></h5>
-                        <p class="card-text"><b>Description: </b>{}</p>
-                        <small class="text-muted"><b>{}</b></small>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted"><b>Current Price: </b>{}</small>
-                    </div>
+# Create the layout grid for the crop cards
+col111, col112, col113 = st.columns(3)
+
+# Iterate over the crops list and display the crop cards
+for index, crop in enumerate(crops):
+    with col111 if index % 3 == 0 else col112 if index % 3 == 1 else col113:
+        st.markdown(
+            f"""
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <a href="{opensea_url_base}{crop['url']}" style="display: inline-block" target="_blank">
+                    <img src="{crop['urlImg']}" class="card-img-top" alt="Crop Image">
+                </a>
+                <div class="card-body">
+                    <h5 class="card-title">{index + 1}. <b>{crop['name']}</b></h5>
+                    <p class="card-text"><b>Description: </b>{crop['description'][0]}</p>
+                    <small class="text-muted"><b>{crop['collection']}</b></small>
+                </div>
+                <div class="card-footer">
+                    <small class="text-muted"><b>Current Price: </b>{crop['currentPrice']}</small>
                 </div>
             </div>
-        """.format(
-            opensea_url_base,
-            crop["url"],
-            crop["urlImg"],
-            index + 1,
-            crop["name"],
-            crop["description"][0],
-            crop["collection"],
-            crop["currentPrice"],
+            """,
+            unsafe_allow_html=True
         )
-        cards_content += card_content
-    cards_content += '</div>'
-
-    # Display the crops cards
-    html(cards_content)
