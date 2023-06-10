@@ -2273,7 +2273,7 @@ with tab8:
     crops = [
         {
             "name": "Peeled Potato",
-            "type": "crop",
+            "type": ["🌱 Crop","🥔 Potato",],
             "description": ["+20% chances of getting +1 Potato"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2284,7 +2284,7 @@ with tab8:
         },
         {
             "name": "Cabbage Boy",
-            "type": "crop",
+            "type": ["🌱 Crop"],
             "description": ["+0.25 Cabbage Yield (+0.40 with Cabbage Girl)"],
             "combos": [{"name": "Cabbage Girl", "effect": "+0.15 cabbage", "buffs": True}],
             "alerts": ["Karkinos has no effect with Cabbage Boy"],
@@ -2297,7 +2297,7 @@ with tab8:
         },
         {
             "name": "Easter Bunny",
-            "type": "crop",
+            "type": ["🌱 Crop"],
             "description": ["+20% Carrot Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2308,7 +2308,7 @@ with tab8:
         },
         {
             "name": "Victoria Sisters",
-            "type": "crop",
+            "type": ["🌱 Crop"],
             "description": ["+20% Pumpkin Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2319,7 +2319,7 @@ with tab8:
         },
         {
             "name": "Cabbage Girl",
-            "type": "crop",
+            "type": ["🌱 Crop"],
             "description": ["-50% Cabbage Grow Time"],
             "combos": [{"name": "Cabbage Boy", "effect": "+0.15 cabbage"}],
             "currentPrice": 0,
@@ -2331,7 +2331,7 @@ with tab8:
         },
         {
             "name": "Karkinos",
-            "type": "crop",
+            "type": ["🌱 Crop"],
             "description": ["+0.1 Cabbage Yield"],
             "alerts": ["Karkinos has no effect with Cabbage Boy"],
             "currentPrice": 0,
@@ -2343,7 +2343,7 @@ with tab8:
         },
         {
             "name": "Mysterious Parsnip",
-            "type": "crop",
+            "type": ["🌱 Crop"],
             "description": ["-50% Parsnip Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2354,7 +2354,7 @@ with tab8:
         },
         {
             "name": "Golden Cauliflower",
-            "type": "crop",
+            "type": ["🌱 Crop"],
             "description": ["+200% Cauliflower Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2365,7 +2365,7 @@ with tab8:
         },
         {
             "name": "Carrot Sword",
-            "type": "crop",
+            "type": ["🌱 Crop"],
             "description": ["+300% Chances of Finding a Mutant Crop"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2376,7 +2376,7 @@ with tab8:
         },
         {
             "name": "Lunar Calendar",
-            "type": "crop",
+            "type": ["🌱 Crop"],
             "description": ["-10% Crops Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2387,7 +2387,7 @@ with tab8:
         },
         {
             "name": "Nancy",
-            "type": "crop",
+            "type": ["🌱 Crop"],
             "description": ["-15% Crops Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2398,7 +2398,7 @@ with tab8:
         },
         {
             "name": "Scarecrow",
-            "type": "crop",
+            "type": ["🌱 Crop"],
             "description": ["-15% Crops Grow Time - +20% Crop Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2409,7 +2409,7 @@ with tab8:
         },
         {
             "name": "Kuebiko",
-            "type": "crop",
+            "type": ["🌱 Crop"],
             "description": ["-15% Crops Grow Time - +20% Crop Yield - Seeds are Free"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2435,7 +2435,10 @@ with tab8:
                 <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
                   <a href="{}{}" style="display: inline-block" target="_blank">
                     <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
-                    <span class="w-100 p-2 bg-secondary position-relative bottom-0 text-center"><span class="badge text-center rounded-pill bg-success start-50" style="font-size:1rem;">🌱 Crop</span></span>                 
+                    <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
+                    <span class="badge text-center rounded-pill bg-success start-50" style="font-size:1rem;">{}</span>
+                    <span class="badge text-center rounded-pill bg-success start-50" style="font-size:1rem;">{}</span>
+                    </div>                 
                   <div class="card-body" style="min-height:8rem">
                     <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
                     <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
@@ -2448,6 +2451,8 @@ with tab8:
             opensea_url_base,
             crop["url"],
             crop["urlImg"],
+            crop["type"][0],
+            crop["type"][1],
             crop["name"],
             crop["description"][0],
             crop["currentPrice"],
