@@ -2316,13 +2316,15 @@ with tab8:
         },
     ]
     # Create the layout grid for the crop cards
-    colA, colB, colC = st.columns([3,3,3])
+    colA, colB, colC, colD = st.columns([3,3,3,3])
     with colA:
         column1 = st.container()
     with colB:
         column2 = st.container()               
     with colC:
-        column3 = st.container()             
+        column3 = st.container()   
+    with colD:
+        column3 = st.container() 
     # Iterate over the crops list and display the crop cards
     for index, crop in enumerate(crops):
         markdown_content = """
@@ -2355,9 +2357,11 @@ with tab8:
             crop["currentPrice"],
         )
 
-        if index % 3 == 0:
+        if index % 4 == 0:
             column1.markdown(markdown_content, unsafe_allow_html=True)
-        elif index % 3 == 1:
+        elif index % 4 == 1:
             column2.markdown(markdown_content, unsafe_allow_html=True)
-        elif index % 3 == 2:
+        elif index % 4 == 2:
             column3.markdown(markdown_content, unsafe_allow_html=True)
+        elif index % 4 == 3:
+            column3.markdown(markdown_content, unsafe_allow_html=True)            
