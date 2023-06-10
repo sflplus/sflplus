@@ -2421,13 +2421,13 @@ with tab8:
         },
     ]
     keywords = st_tags(
-        label='# Choose the Type:',
+        label='##### 🔻 SEARCH FOR TAGS 🔻:',
         text='Press enter to add more',
         value=['Crop', 'Potato', 'Cabbage'],
         suggestions=['crop', 'potato', 'cabbage'],
         maxtags= 4,
         key="tags")
-
+    #st.markdown("🔻 SEARCH BUMPKIN ID 🔻")
     st.write((keywords))
 
     # Create the layout grid for the crop cards
