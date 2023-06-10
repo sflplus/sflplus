@@ -2305,7 +2305,7 @@ with tab8:
     ]
 
     # Create the layout grid for the crop cards
-    colA, colB, colC, colD = tab8.columns([2,2,2,2])
+    colA, colB, colC, colD = st.columns([2, 2, 2, 2])
 
     # Iterate over the crops list and display the crop cards
     for index, crop in enumerate(crops):
@@ -2338,6 +2338,6 @@ with tab8:
             crop["collection"],
             crop["currentPrice"],
         )
-    with colA if index % 4 == 0 else colB if index % 4 == 1 else colC if index % 4 == 2 else colD:
-        # Display the Markdown content
-        tab8.markdown(markdown_content, unsafe_allow_html=True)
+        with colA if index % 4 == 0 else colB if index % 4 == 1 else colC if index % 4 == 2 else colD:
+            # Display the Markdown content
+            st.markdown(markdown_content, unsafe_allow_html=True)
