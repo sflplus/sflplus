@@ -2432,10 +2432,10 @@ with tab8:
     # Iterate over the crops list and display the crop cards
     for index, crop in enumerate(crops):
         markdown_content = """
-                <div class="card text-white bg-dark mb-3" style="max-width: 25rem;">
+                <div class="card text-white bg-secondary mb-3" style="max-width: 25rem;">
                   <a href="{}{}" style="display: inline-block" target="_blank">
                     <img src="{}" alt="NFT Image" class="card-img-top" alt="..."></a>
-                    <span class="w-100 p-1 bg-secondary position-relative bottom-0"><span class="badge rounded-pill bg-success start-50">Crop</span></span>                 
+                    <span class="w-100 p-1 bg-dark position-relative bottom-0 text-center"><span class="badge h5 text-center rounded-pill bg-success start-50">Crop</span></span>                 
                   <div class="card-body">
                     <h5 class="card-title" style="padding-bottom:0rem;"><b>{}</b></h5>
                     <span class="card-text"><b>Description: </b>{}</span></span>                                      
