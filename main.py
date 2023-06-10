@@ -2324,7 +2324,7 @@ with tab8:
     with colC:
         column3 = st.container()   
     with colD:
-        column3 = st.container() 
+        column4 = st.container() 
     # Iterate over the crops list and display the crop cards
     for index, crop in enumerate(crops):
         markdown_content = """
@@ -2364,4 +2364,4 @@ with tab8:
         elif index % 4 == 2:
             column3.markdown(markdown_content, unsafe_allow_html=True)
         elif index % 4 == 3:
-            column3.markdown(markdown_content, unsafe_allow_html=True)            
+            column4.markdown(markdown_content, unsafe_allow_html=True)            
