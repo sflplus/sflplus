@@ -2399,7 +2399,7 @@ with tab8:
         {
             "name": "Scarecrow",
             "type": "crop",
-            "description": ["-15% Crops Grow Time - +20% Crop Yield],
+            "description": ["-15% Crops Grow Time - +20% Crop Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
             "url": "404",
