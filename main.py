@@ -2485,6 +2485,7 @@ with tab8:
         type_badges = " ".join([
             f'<span class="badge text-center rounded-pill start-50 {tags_info.get(tag.strip(), {}).get("class", "")}" style="background-color: #{tags_info.get(tag.strip(), {}).get("color", "")}">{tags_info.get(tag.strip(), {}).get("emoji", "")} {tag}</span>'
             for tag in crop.get("type", [])
+            if tags_info.get(tag.strip())
         ])
         st.write(f"Type Badges HTML: {type_badges}")
         markdown_content = """
