@@ -571,7 +571,7 @@ fruits_price = {"Apple": 0.3125, "Orange": 0.225, "Blueberry": 0.15}
 fruit_emojis = {"Apple": " \U0001F34E ", "Orange": " \U0001f34a ", "Blueberry": " \U0001f347 "}
 
 
-tab5, tab6, tab7, tab8, tab9, tab10  = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKIN", "💸TRADER", "👨‍🔬CALCULATOR", "📜NFT LIST"])
+tab5, tab6, tab7, tab8, tab9, tab10  = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKIN", "📜NFT LIST", "👨‍🔬CALCULATOR", "💸TRADER"])
 
 with tab5:
     # Define default farm ID
