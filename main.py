@@ -2310,4 +2310,4 @@ with tab8:
     cards_content += '</div>'
 
     # Display the crops cards
-    st.markdown(cards_content, unsafe_allow_html=True)
+    components.html(cards_content)
