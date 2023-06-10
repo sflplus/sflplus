@@ -2468,7 +2468,7 @@ with tab8:
         st.write("Tags:", tags)  # Add this line for debugging
 
         type_badges = " ".join([
-            f'<span class="badge text-center rounded-pill start-50" style="background-color:# {tags_dict.get(tag.strip(), {}).get("color", "")}!important;font-size:1rem;">{tags_dict.get(tag.strip(), {}).get("emoji", "")} {tag}</span>'
+            f'<span class="badge text-center rounded-pill start-50" style="background-color:#{tags_dict.get(tag.strip(), {}).get("color", "")}!important;font-size:1rem;">{tags_dict.get(tag.strip(), {}).get("emoji", "")} {tag}</span>'
             for tag in tags
         ])
 
