@@ -2421,7 +2421,7 @@ with tab8:
         },
     ]
     keywords = st_tags(
-        label= '### SEARCH FOR TAGS:',
+        label= '### 🔻 SEARCH FOR TAGS:',
         text='Press enter to add more',
         value=['Crop', 'Potato', 'Cabbage'],
         suggestions=['crop', 'potato', 'cabbage'],
