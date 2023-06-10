@@ -2339,5 +2339,5 @@ with tab8:
             colA.markdown(markdown_content, unsafe_allow_html=True)
         elif index % 3 == 1:
             colB.markdown(markdown_content, unsafe_allow_html=True)
-        elif index % 3 == 1:
+        elif index % 3 == 2:
             colC.markdown(markdown_content, unsafe_allow_html=True)
