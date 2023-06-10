@@ -2319,7 +2319,7 @@ with tab8:
         },
         {
             "name": "Cabbage Girl",
-            "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c", "⌛ Time: #d7e4d5"],
+            "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c", "⌛ Time: #dc3545"],
             "description": ["-50% Cabbage Grow Time"],
             "combos": [{"name": "Cabbage Boy", "effect": "+0.15 cabbage"}],
             "currentPrice": 0,
@@ -2343,7 +2343,7 @@ with tab8:
         },
         {
             "name": "Mysterious Parsnip",
-            "type": ["🌱 Crop: #28a745", "💛 Parsnip: #ffc107", "⌛ Time: #d7e4d5"],
+            "type": ["🌱 Crop: #28a745", "💛 Parsnip: #ffc107", "⌛ Time: #dc3545"],
             "description": ["-50% Parsnip Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2354,7 +2354,7 @@ with tab8:
         },
         {
             "name": "Golden Cauliflower",
-            "type": ["🌱 Crop: #28a745", "🤍 Cauliflower: #FFF"],
+            "type": ["🌱 Crop: #28a745", "🤍 Cauliflower: #20c997"],
             "description": ["+200% Cauliflower Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2365,7 +2365,7 @@ with tab8:
         },
         {
             "name": "Carrot Sword",
-            "type": ["🌱 Crop: #28a745", "🎲 Chance: #8cdeff"],
+            "type": ["🌱 Crop: #28a745", "🎲 Chance: #007bff"],
             "description": ["+300% Chances of Finding a Mutant Crop"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2376,7 +2376,7 @@ with tab8:
         },
         {
             "name": "Lunar Calendar",
-            "type": ["🌱 Crop: #28a745", "⌛ Time: #d7e4d5"],
+            "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
             "description": ["-10% Crops Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2387,7 +2387,7 @@ with tab8:
         },
         {
             "name": "Nancy",
-            "type": ["🌱 Crop: #28a745", "⌛ Time: #d7e4d5"],
+            "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
             "description": ["-15% Crops Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2398,7 +2398,7 @@ with tab8:
         },
         {
             "name": "Scarecrow",
-            "type": ["🌱 Crop: #28a745", "⌛ Time: #d7e4d5"],
+            "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
             "description": ["-15% Crops Grow Time - +20% Crop Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2409,7 +2409,7 @@ with tab8:
         },
         {
             "name": "Kuebiko",
-            "type": ["🌱 Crop: #28a745", "⌛ Time: #d7e4d5"],
+            "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
             "description": ["-15% Crops Grow Time - +20% Crop Yield - Seeds are Free"],
             "currentPrice": 0,
             "offerPrice": 0,
