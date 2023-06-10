@@ -2285,9 +2285,9 @@ with tab8:
             <div class="row row-cols-1 row-cols-md-3 g-4">
               <div class="col">
                 <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" "h-100">
+                  <h5 class="card-title">{}. {}</h5>
                   <a href="{}" style="display: inline-block" target="_blank"><img src="{}" alt="Crop Image" class="card-img-top" alt="..."></a>
-                  <div class="card-body">
-                    <h5 class="card-title">{}</h5>
+                  <div class="card-body">                    
                     <p class="card-text"><b>Description: </b>{}</p>
                     <span class="card-text"><b>Collection: </b>{}</span>
                   </div>
@@ -2297,9 +2297,10 @@ with tab8:
                 </div>
             </div>
         """.format(
+            index + 1,
+            crop["name"],
             crop["url"],
             crop["urlImg"],
-            crop["name"],
             crop["description"][0],
             crop["collection"],
             crop["currentPrice"],
