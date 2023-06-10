@@ -2256,7 +2256,7 @@ with tab8:
         {
             "name": "Easter Bunny",
             "type": "crop",
-            "description": ["+20% carrot"],
+            "description": "+20% carrot",
             "currentPrice": 0,
             "offerPrice": 0,
             "url": "909",
@@ -2267,7 +2267,7 @@ with tab8:
         {
             "name": "Victoria Sisters",
             "type": "crop",
-            "description": ["+20% pumpkin"],
+            "description": "+20% pumpkin",
             "currentPrice": 0,
             "offerPrice": 0,
             "url": "432",
@@ -2277,33 +2277,36 @@ with tab8:
         },
     ]
 
+    st.markdown(
+        """
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+        """
+    )
+
     # Iterate over the crops list
-    for index, crop in enumerate(crops):
-        # Generate the Markdown content for each crop
-        markdown_content = """
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-            <div class="card bg-light mb-3">
-                <h5 class="card-header">{}.  <a href="{}" style="display: inline-block" target="_blank">{}</h5>
-                <div class="card-body">
-                    <span class="card-text"><b>Description: </b>{}</span><br/>
-                    <span class="card-text"><b>Collection: </b>{}</span><br/>
-                    <span class="card-text"><b>Current Price: </b>{}</span><br/>
-                    <span class="card-text"><b>Offer Price: </b>{}</span><br/><br/>
-                    <img src="{}" alt="Crop Image" style="width: 384px"/><br/><br/>
-                    <span class="card-text"><b>Selling: </b>{}</span>
+    for crop in crops:
+        # Generate the HTML markup for each crop card
+        card_content = """
+            <div class="col">
+                <div class="card h-100">
+                    <img src="{}" class="card-img-top" alt="Crop Image">
+                    <div class="card-body">
+                        <h5 class="card-title">{}</h5>
+                        <p class="card-text">{}</p>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted">Collection: {}</small>
+                    </div>
                 </div>
             </div>
         """.format(
-            index + 1,
-            crop["url"],
-            crop["name"],
-            crop["description"][0],
-            crop["collection"],
-            crop["currentPrice"],
-            crop["offerPrice"],
             crop["urlImg"],
-            crop["isSelling"],
+            crop["name"],
+            crop["description"],
+            crop["collection"],
         )
 
-        # Display the Markdown content
-        st.markdown(markdown_content, unsafe_allow_html=True)
+        # Display the crop card
+        st.markdown(card_content, unsafe_allow_html=True)
+
+    st.markdown("</div>", unsafe_allow_html=True)
