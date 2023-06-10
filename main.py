@@ -2436,7 +2436,7 @@ with tab8:
                   <a href="{}{}" style="display: inline-block" target="_blank">
                     <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
                     <span class="w-100 p-2 bg-secondary position-relative bottom-0 text-center"><span class="badge text-center rounded-pill bg-success start-50" style="font-size:1rem;">🌱 Crop</span></span>                 
-                  <div class="card-body">
+                  <div class="card-body" style="min-height:8rem">
                     <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
                     <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
                   </div>
