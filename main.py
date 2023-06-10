@@ -2273,7 +2273,7 @@ with tab8:
     crops = [
         {
             "name": "Peeled Potato",
-            "type": ["🌱 Crop: #000FFF","🥔 Potato: #00FF99",],
+            "type": ["🌱 Crop: #28a745","🥔 Potato: #c28669",],
             "description": ["+20% chances of getting +1 Potato"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2284,7 +2284,7 @@ with tab8:
         },
         {
             "name": "Cabbage Boy",
-            "type": ["🌱 Crop: #000FFF"],
+            "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c"],
             "description": ["+0.25 Cabbage Yield (+0.40 with Cabbage Girl)"],
             "combos": [{"name": "Cabbage Girl", "effect": "+0.15 cabbage", "buffs": True}],
             "alerts": ["Karkinos has no effect with Cabbage Boy"],
@@ -2297,7 +2297,7 @@ with tab8:
         },
         {
             "name": "Easter Bunny",
-            "type": ["🌱 Crop: #000FFF"],
+            "type": ["🌱 Crop: #28a745", "🥕 Carrot: #ffc32d"],
             "description": ["+20% Carrot Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2308,7 +2308,7 @@ with tab8:
         },
         {
             "name": "Victoria Sisters",
-            "type": ["🌱 Crop: #000FFF"],
+            "type": ["🌱 Crop: #28a745", "🎃 Pumpkin: #fd7e14"],
             "description": ["+20% Pumpkin Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2319,7 +2319,7 @@ with tab8:
         },
         {
             "name": "Cabbage Girl",
-            "type": ["🌱 Crop: #000FFF"],
+            "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c", "⌛ Time: #d7e4d5"],
             "description": ["-50% Cabbage Grow Time"],
             "combos": [{"name": "Cabbage Boy", "effect": "+0.15 cabbage"}],
             "currentPrice": 0,
@@ -2331,7 +2331,7 @@ with tab8:
         },
         {
             "name": "Karkinos",
-            "type": ["🌱 Crop: #000FFF"],
+            "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c"],
             "description": ["+0.1 Cabbage Yield"],
             "alerts": ["Karkinos has no effect with Cabbage Boy"],
             "currentPrice": 0,
@@ -2343,7 +2343,7 @@ with tab8:
         },
         {
             "name": "Mysterious Parsnip",
-            "type": ["🌱 Crop: #000FFF"],
+            "type": ["🌱 Crop: #28a745", "💛 Parsnip: #ffc107", "⌛ Time: #d7e4d5"],
             "description": ["-50% Parsnip Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2354,7 +2354,7 @@ with tab8:
         },
         {
             "name": "Golden Cauliflower",
-            "type": ["🌱 Crop: #000FFF"],
+            "type": ["🌱 Crop: #28a745", "🤍 Cauliflower: #FFF"],
             "description": ["+200% Cauliflower Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2365,7 +2365,7 @@ with tab8:
         },
         {
             "name": "Carrot Sword",
-            "type": ["🌱 Crop: #000FFF"],
+            "type": ["🌱 Crop: #28a745", "🎲 Chance: #8cdeff"],
             "description": ["+300% Chances of Finding a Mutant Crop"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2376,7 +2376,7 @@ with tab8:
         },
         {
             "name": "Lunar Calendar",
-            "type": ["🌱 Crop: #000FFF"],
+            "type": ["🌱 Crop: #28a745", "⌛ Time: #d7e4d5"],
             "description": ["-10% Crops Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2387,7 +2387,7 @@ with tab8:
         },
         {
             "name": "Nancy",
-            "type": ["🌱 Crop: #000FFF"],
+            "type": ["🌱 Crop: #28a745", "⌛ Time: #d7e4d5"],
             "description": ["-15% Crops Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2398,7 +2398,7 @@ with tab8:
         },
         {
             "name": "Scarecrow",
-            "type": ["🌱 Crop: #000FFF"],
+            "type": ["🌱 Crop: #28a745", "⌛ Time: #d7e4d5"],
             "description": ["-15% Crops Grow Time - +20% Crop Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2409,7 +2409,7 @@ with tab8:
         },
         {
             "name": "Kuebiko",
-            "type": ["🌱 Crop: #000FFF"],
+            "type": ["🌱 Crop: #28a745", "⌛ Time: #d7e4d5"],
             "description": ["-15% Crops Grow Time - +20% Crop Yield - Seeds are Free"],
             "currentPrice": 0,
             "offerPrice": 0,
