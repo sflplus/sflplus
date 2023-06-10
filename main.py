@@ -2253,7 +2253,7 @@ with tab7:
                     status_ok2.error("Invalid response or error occurred.") 
 with tab8:
     # Create the layout grid for the crop cards
-    colA, colB, colC = tab8.columns([3,3,3,3], gap="medium")
+    colA, colB, colC, colD = tab8.columns([3,3,3,3], gap="medium")
     with colA:
         column1 = st.container()
     with colB:
