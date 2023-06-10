@@ -2292,7 +2292,7 @@ with tab8:
         unsafe_allow_html=True,
     )
 
-    col1, col2, col3 = st.beta_columns(3)
+    col1, col2, col3 = st.columns([2, 2, 2], gap="medium")
 
     for crop in crops:
         with col1:
