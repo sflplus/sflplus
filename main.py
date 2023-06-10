@@ -2456,9 +2456,9 @@ with tab8:
         tags = crop.get("type", [])
         updated_tags = []
         for tag in tags:
-            tag_info = tags_info.get(tag.strip())
-            if tag_info:
-                updated_tags.append(f'{tag_info["emoji"]} {tag}')
+            tags_info = tags_info.get(tag.strip())
+            if tags_info:
+                updated_tags.append(f'{tags_info["emoji"]} {tag}')
         crop["type"] = updated_tags
 
     # Use the updated crop dictionary to display the crop cards
