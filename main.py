@@ -2443,8 +2443,8 @@ with tab8:
         
     # Define the tags dictionary
     tags_dict = {
-        "Crop": {"color": "28a745", "emoji": "🌱"},
-        "Potato": {"color": "c28606", "emoji": "🥔"},
+        "Crop": {"color": "bg-green", "emoji": "🌱"},
+        "Potato": {"color": "bg-yellow", "emoji": "🥔"},
         # Add more tag entries as needed
     }
 
@@ -2466,7 +2466,7 @@ with tab8:
     # Use the updated crop dictionary to display the crop cards
     for index, crop in enumerate(crops):
         type_badges = " ".join([
-            f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color: #{tags_dict.get(tag.strip(), {}).get("color", "")};">{tags_dict.get(tag.strip(), {}).get("emoji", "")} {tag}</span>'
+            f'<span class="badge text-center rounded-pill start-50 {tags_dict.get(tag.strip(), {}).get("color", "")}" style="font-size:1rem;">{tags_dict.get(tag.strip(), {}).get("emoji", "")} {tag}</span>'
             for tag in crop.get("type", [])
         ])
 
