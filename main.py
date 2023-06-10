@@ -2312,9 +2312,11 @@ with tab8:
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
             <div class="row row-cols-1 row-cols-md-3 g-4">
               <div class="col">
-                <div class="card text-white bg-dark mb-3" style="max-width: 25rem;" "h-100">                  
-                  <a href="{}{}" style="display: inline-block" target="_blank"><img src="{}" alt="Crop Image" class="card-img-top" alt="..."></a>
-                  <div class="card-body"> 
+                <div class="card text-white bg-dark mb-3" style="max-width: 25rem;">
+                  <a href="{}{}" style="display: inline-block" target="_blank">
+                    <img src="{}" alt="Crop Image" class="card-img-top" alt="...">
+                  </a>
+                  <div class="card-body">
                     <h5 class="card-title">{}. <b>{}</b></h5>
                     <p class="card-text"><b>Description: </b>{}</p>
                     <small class="text-muted"><b>{}</b></small>
@@ -2323,6 +2325,7 @@ with tab8:
                     <small class="text-muted"><b>Current Price: </b>{}</small>
                   </div>
                 </div>
+              </div>
             </div>
         """.format(
             opensea_url_base,
@@ -2334,8 +2337,8 @@ with tab8:
             crop["collection"],
             crop["currentPrice"],
         )
-        
-        if index % 3 == 0:   
+
+        if index % 3 == 0:
             colA.markdown(markdown_content, unsafe_allow_html=True)
         elif index % 3 == 1:
             colB.markdown(markdown_content, unsafe_allow_html=True)
