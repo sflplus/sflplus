@@ -2428,8 +2428,7 @@ with tab8:
         maxtags= 4,
         key="tags")
 
-    st.write("### Results:")
-    st.write(type(keywords))
+    st.write(keywords)
 
     # Create the layout grid for the crop cards
     colA, colB, colC, colD = st.columns([3,3,3,3])
