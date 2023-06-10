@@ -2431,28 +2431,29 @@ with tab8:
         column4 = st.container() 
     # Iterate over the crops list and display the crop cards
     for index, crop in enumerate(crops):
+        # Generate type badges
+        type_badges = " ".join([f'<span class="badge text-center rounded-pill bg-success start-50" style="font-size:1rem;">{t}</span>' for t in crop["type"]])
+
         markdown_content = """
-                <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
-                  <a href="{}{}" style="display: inline-block" target="_blank">
+            <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
+                <a href="{}{}" style="display: inline-block" target="_blank">
                     <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
-                    <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
-                    <span class="badge text-center rounded-pill bg-success start-50" style="font-size:1rem;">{}</span>
-                    <span class="badge text-center rounded-pill bg-success start-50" style="font-size:1rem;">{}</span>
-                    </div>                 
-                  <div class="card-body" style="min-height:8rem">
+                <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
+                    {}
+                </div>                 
+                <div class="card-body" style="min-height:8rem">
                     <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
                     <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
-                  </div>
-                  <div class="card-footer">
-                    <span class="card-text">💰 <b>Avg Price: {}</b></span>                    
-                  </div>
                 </div>
+                <div class="card-footer">
+                    <span class="card-text">💰 <b>Avg Price: {}</b></span>                    
+                </div>
+            </div>
         """.format(
             opensea_url_base,
             crop["url"],
             crop["urlImg"],
-            crop["type"][0],
-            crop["type"][1],
+            type_badges,
             crop["name"],
             crop["description"][0],
             crop["currentPrice"],
