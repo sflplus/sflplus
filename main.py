@@ -2279,16 +2279,16 @@ with tab8:
     ]
 
 # Create the layout grid for the crop cards
-col111, col112, col113 = st.columns(3)
+col111, col112, col113, col114 = st.columns(3)
 
 # Iterate over the crops list and display the crop cards
 for index, crop in enumerate(crops):
-    with col111 if index % 3 == 0 else col112 if index % 3 == 1 else col113:
+    with col111 if index % 3 == 0 else col112 if index % 3 == 1 else col113 if index % 4 == 2 else col114::
         markdown_content = """
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
             <div class="row row-cols-1 row-cols-md-3 g-4">
               <div class="col">
-                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" "h-100">                  
+                <div class="card text-white bg-dark mb-3" style="max-width: 25rem;" "h-100">                  
                   <a href="{}{}" style="display: inline-block" target="_blank"><img src="{}" alt="Crop Image" class="card-img-top" alt="..."></a>
                   <div class="card-body"> 
                     <h5 class="card-title">{}. <b>{}</b></h5>
