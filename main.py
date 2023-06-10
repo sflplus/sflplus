@@ -2454,7 +2454,7 @@ with tab8:
         # Add more tag entries as needed
     }
     # Create a dictionary for the tags using the tag name as the key
-    tags_info = {tag["name"]: tag for tag in tags_dict.values()}
+    tags_info = {tag["name"]: tag for tag in tags_dict}
 
     # Iterate over the crops list and replace the tag names with the corresponding information
     for crop in crops:
