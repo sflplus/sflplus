@@ -2435,10 +2435,10 @@ with tab8:
                 <div class="card text-white bg-dark mb-3" style="max-width: 25rem;">
                   <a href="{}{}" style="display: inline-block" target="_blank">
                     <img src="{}" alt="NFT Image" class="card-img-top" alt="..."></a>
-                    <h5 class="card title"><span class="w-100 bg-dark position-absolute top-0 start-50"><b>{}</b></span></h5>                  
+                    <span class="w-100 h5 bg-dark position-absolute top-0 text-center"><b>{}</b></span>                 
                   <div class="card-body">
-                    <span class="card-text"><b>Description: </b>{}</span>
-                    <span class="badge rounded-pill bg-success">Crop</span>
+                  <h5 class="card-title"><span class="badge rounded-pill bg-success">Crop</span></h5>
+                    <span class="card-text"><b>Description: </b>{}</span>                    
                   </div>
                   <div class="card-footer">
                     <span class="card-text"><b>Avg Price: {}</b></span>                    
