@@ -2274,7 +2274,7 @@ with tab8:
     crops = [
         {
             "name": "Peeled Potato",
-            "type": ["🌱 Crop: #28a745","🥔 Potato: #c28669",],
+            "type": ["Crop","Potato"],
             "description": ["+20% chances of getting +1 Potato"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2285,7 +2285,7 @@ with tab8:
         },
         {
             "name": "Cabbage Boy",
-            "type": ["🌱 Crop: #28a745"],
+            "type": ["Crop"],
             "description": ["+0.25 Cabbage Yield (+0.40 with Cabbage Girl)"],
             "combos": [{"name": "Cabbage Girl", "effect": "+0.15 cabbage", "buffs": True}],
             "alerts": ["Karkinos has no effect with Cabbage Boy"],
@@ -2298,7 +2298,7 @@ with tab8:
         },
         {
             "name": "Easter Bunny",
-            "type": ["🌱 Crop: #28a745"],
+            "type": ["Crop"],
             "description": ["+20% Carrot Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2309,7 +2309,7 @@ with tab8:
         },
         {
             "name": "Victoria Sisters",
-            "type": ["🌱 Crop: #28a745"],
+            "type": ["Crop"],
             "description": ["+20% Pumpkin Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2320,7 +2320,7 @@ with tab8:
         },
         {
             "name": "Cabbage Girl",
-            "type": ["🌱 Crop: #28a745"],
+            "type": ["Crop"],
             "description": ["-50% Cabbage Grow Time"],
             "combos": [{"name": "Cabbage Boy", "effect": "+0.15 cabbage"}],
             "currentPrice": 0,
@@ -2332,7 +2332,7 @@ with tab8:
         },
         {
             "name": "Karkinos",
-            "type": ["🌱 Crop: #28a745"],
+            "type": ["Crop"],
             "description": ["+0.1 Cabbage Yield"],
             "alerts": ["Karkinos has no effect with Cabbage Boy"],
             "currentPrice": 0,
@@ -2344,7 +2344,7 @@ with tab8:
         },
         {
             "name": "Mysterious Parsnip",
-            "type": ["🌱 Crop: #28a745"],
+            "type": ["Crop"],
             "description": ["-50% Parsnip Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2355,7 +2355,7 @@ with tab8:
         },
         {
             "name": "Golden Cauliflower",
-            "type": ["🌱 Crop: #28a745"],
+            "type": ["Crop"],
             "description": ["+200% Cauliflower Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2366,7 +2366,7 @@ with tab8:
         },
         {
             "name": "Carrot Sword",
-            "type": ["🌱 Crop: #28a745"],
+            "type": ["Crop"],
             "description": ["+300% Chances of Finding a Mutant Crop"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2377,7 +2377,7 @@ with tab8:
         },
         {
             "name": "Lunar Calendar",
-            "type": ["🌱 Crop: #28a745"],
+            "type": ["Crop"],
             "description": ["-10% Crops Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2388,7 +2388,7 @@ with tab8:
         },
         {
             "name": "Nancy",
-            "type": ["🌱 Crop: #28a745"],
+            "type": ["Crop"],
             "description": ["-15% Crops Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2399,7 +2399,7 @@ with tab8:
         },
         {
             "name": "Scarecrow",
-            "type": ["🌱 Crop: #28a745"],
+            "type": ["Crop"],
             "description": ["-15% Crops Grow Time - +20% Crop Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2410,7 +2410,7 @@ with tab8:
         },
         {
             "name": "Kuebiko",
-            "type": ["🌱 Crop: #28a745"],
+            "type": ["Crop"],
             "description": ["-15% Crops Grow Time - +20% Crop Yield - Seeds are Free"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2441,50 +2441,70 @@ with tab8:
     with colD:
         column4 = st.container() 
         
-    selected_tags = set([tag.lower() for tag in keywords])
-    displayed_cards = 0
+    # Define the tags dictionary
+    tags_dict = [
+        {
+            "name": "Crop",
+            "color": "#28a745",
+            "emoji": "🌱",
+        },
+        {
+            "name": "Potato",
+            "color": "#c2866",
+            "emoji": "🥔",
+        },
+        # Add more tag entries as needed
+    ]
+
+    # Create a dictionary for the tags using the tag name as the key
+    tags_info = {tag["name"]: tag for tag in tags_dict}
+
+    # Iterate over the crops list and replace the tag names with the corresponding information
     for crop in crops:
-        # Check if any of the crop's tags are in the selected tags
-        if any(tag.lower() in selected_tags for tag in crop["type"]):
-            # Generate type badges with colors
-            type_badges = " ".join([
-                f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
-                for t in crop["type"]
-            ])
+        tags = crop.get("type", [])
+        updated_tags = []
+        for tag in tags:
+            tag_info = tags_info.get(tag)
+            if tag_info:
+                updated_tags.append(f'{tag_info["emoji"]} {tag}')
+        crop["type"] = updated_tags
 
-            markdown_content = """
-                <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
-                    <a href="{}{}" style="display: inline-block" target="_blank">
-                        <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
-                    <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
-                        {}
-                    </div>                 
-                    <div class="card-body" style="min-height:8rem">
-                        <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
-                        <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
-                    </div>
-                    <div class="card-footer">
-                        <span class="card-text">💰 <b>Avg Price: {}</b></span>                    
-                    </div>
+    # Use the updated crop dictionary to display the crop cards
+    for index, crop in enumerate(crops):
+        # Generate type badges with colors
+        type_badges = f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{tag_info_dict[crop["type"]]["color"]}">{crop["type"]}</span>'
+
+        markdown_content = """
+            <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
+                <a href="{}{}" style="display: inline-block" target="_blank">
+                    <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
+                <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
+                    {}
+                </div>                 
+                <div class="card-body" style="min-height:8rem">
+                    <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
+                    <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
                 </div>
-            """.format(
-                opensea_url_base,
-                crop["url"],
-                crop["urlImg"],
-                type_badges,
-                crop["name"],
-                crop["description"][0],
-                crop["currentPrice"],
-                crop["collection"],
-            )
+                <div class="card-footer">
+                    <span class="card-text">💰 <b>Avg Price: {}</b></span>                    
+                </div>
+            </div>
+        """.format(
+            opensea_url_base,
+            crop["url"],
+            crop["urlImg"],
+            type_badges,
+            crop["name"],
+            crop["description"][0],
+            crop["currentPrice"],
+            crop["collection"],
+        )
 
-            if displayed_cards % 4 == 0:
-                column1.markdown(markdown_content, unsafe_allow_html=True)
-            elif displayed_cards % 4 == 1:
-                column2.markdown(markdown_content, unsafe_allow_html=True)
-            elif displayed_cards % 4 == 2:
-                column3.markdown(markdown_content, unsafe_allow_html=True)
-            elif displayed_cards % 4 == 3:
-                column4.markdown(markdown_content, unsafe_allow_html=True)
-
-            displayed_cards += 1
+        if index % 4 == 0:
+            column1.markdown(markdown_content, unsafe_allow_html=True)
+        elif index % 4 == 1:
+            column2.markdown(markdown_content, unsafe_allow_html=True)
+        elif index % 4 == 2:
+            column3.markdown(markdown_content, unsafe_allow_html=True)
+        elif index % 4 == 3:
+            column4.markdown(markdown_content, unsafe_allow_html=True)
