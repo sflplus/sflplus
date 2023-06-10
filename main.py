@@ -2252,6 +2252,7 @@ with tab7:
                     status_ok2.error("Invalid response or error occurred.") 
 with tab8:
 
+
     crops = [
         {
             "name": "Easter Bunny",
@@ -2279,43 +2280,47 @@ with tab8:
 
     st.markdown(
         """
-        <head>
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        </head>
-        """,
+        <style>
+            .card-img-top {
+                width: 100%;
+                height: 15rem;
+                object-fit: cover;
+            }
+        </style>
+        """
+        ,
         unsafe_allow_html=True,
     )
 
-    st.markdown(
-        """
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-        """
-    )
+    col1, col2, col3 = st.beta_columns(3)
 
-    # Iterate over the crops list
     for crop in crops:
-        # Generate the HTML markup for each crop card
-        card_content = """
-            <div class="col">
-                <div class="card h-100">
-                    <img src="{}" class="card-img-top" alt="Crop Image">
-                    <div class="card-body">
-                        <h5 class="card-title">{}</h5>
-                        <p class="card-text">{}</p>
-                    </div>
-                    <div class="card-footer">
-                        <small class="text-muted">Collection: {}</small>
-                    </div>
-                </div>
-            </div>
-        """.format(
-            crop["urlImg"],
-            crop["name"],
-            crop["description"],
-            crop["collection"],
-        )
+        with col1:
+            st.card(
+                (f"![Crop Image]({crop['urlImg']})"),
+                (
+                    f"**{crop['name']}**\n"
+                    f"Description: {crop['description']}\n"
+                    f"Collection: {crop['collection']}"
+                ),
+            )
 
-        # Display the crop card
-        st.markdown(card_content, unsafe_allow_html=True)
+        with col2:
+            st.card(
+                (f"![Crop Image]({crop['urlImg']})"),
+                (
+                    f"**{crop['name']}**\n"
+                    f"Description: {crop['description']}\n"
+                    f"Collection: {crop['collection']}"
+                ),
+            )
 
-    st.markdown("</div>", unsafe_allow_html=True)
+        with col3:
+            st.card(
+                (f"![Crop Image]({crop['urlImg']})"),
+                (
+                    f"**{crop['name']}**\n"
+                    f"Description: {crop['description']}\n"
+                    f"Collection: {crop['collection']}"
+                ),
+            )
