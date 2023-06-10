@@ -2336,4 +2336,4 @@ with tab8:
         )
         with col111 if index % 3 == 0 else col112 if index % 3 == 1 else col113:
             # Display the Markdown content
-            tab8.markdown(markdown_content, unsafe_allow_html=True)
+            st.markdown(markdown_content, unsafe_allow_html=True)
