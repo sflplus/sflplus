@@ -2277,23 +2277,23 @@ with tab8:
         },
     ]
 
-    # Iterate over the crops list
+    # Generate the HTML markup for the crops cards
+    cards_content = '<div class="row row-cols-1 row-cols-md-3 g-4">'
     for index, crop in enumerate(crops):
-        # Generate the Markdown content for each crop
-        markdown_content = """
-            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-              <div class="col">
-                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;" "h-100">                  
-                  <a href="{}{}" style="display: inline-block" target="_blank"><img src="{}" alt="Crop Image" class="card-img-top" alt="..."></a>
-                  <div class="card-body"> 
-                    <h5 class="card-title">{}. {}</h5>
-                    <p class="card-text"><b>Description: </b>{}</p>
-                    <small class="text-muted"><b>{}</b></small>
-                  </div>
-                  <div class="card-footer">
-                    <small class="text-muted"><b>Current Price: </b>{}</small>
-                  </div>
+        card_content = """
+            <div class="col">
+                <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                    <a href="{}{}" style="display: inline-block" target="_blank">
+                        <img src="{}" class="card-img-top" alt="Crop Image">
+                    </a>
+                    <div class="card-body">
+                        <h5 class="card-title">{}. <b>{}</b></h5>
+                        <p class="card-text"><b>Description: </b>{}</p>
+                        <small class="text-muted"><b>{}</b></small>
+                    </div>
+                    <div class="card-footer">
+                        <small class="text-muted"><b>Current Price: </b>{}</small>
+                    </div>
                 </div>
             </div>
         """.format(
@@ -2306,6 +2306,8 @@ with tab8:
             crop["collection"],
             crop["currentPrice"],
         )
+        cards_content += card_content
+    cards_content += '</div>'
 
-        # Display the Markdown content
-        st.markdown(markdown_content, unsafe_allow_html=True)
+    # Display the crops cards
+    st.markdown(cards_content, unsafe_allow_html=True)
