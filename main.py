@@ -2443,10 +2443,26 @@ with tab8:
         
     # Define the tags dictionary
     tags_dict = {
-        "Crop": {"color": "28a745", "emoji": "🌱"},
-        "Potato": {"color": "c28606", "emoji": "🥔"},
+        "Crop": {"color": "28a745", "emoji": "🌱", "class": "crop-badge"},
+        "Potato": {"color": "c28606", "emoji": "🥔", "class": "potato-badge"},
         # Add more tag entries as needed
     }
+    st.markdown(
+        """
+        <style>
+        .crop-badge {
+            font-size: 1rem;
+            background-color: #28a745 !important;
+        }
+        .potato-badge {
+            font-size: 1rem;
+            background-color: #c28606 !important;
+        }
+        /* Add more CSS classes for other tags */
+        </style>
+        """,
+        unsafe_allow_html=True
+    )
 
     # Create a dictionary for the tags using the tag name as the key
     tags_info = {tag_name: tag_info for tag_name, tag_info in tags_dict.items()}
@@ -2468,8 +2484,8 @@ with tab8:
         st.write("Tags:", tags)  # Add this line for debugging
 
         type_badges = " ".join([
-            f'<span class="badge text-center rounded-pill start-50" style="background-color:#{tags_dict.get(tag.strip(), {}).get("color", "")}!important;font-size:1rem;">{tags_dict.get(tag.strip(), {}).get("emoji", "")} {tag}</span>'
-            for tag in tags
+            f'<span class="badge text-center rounded-pill start-50 {tags_dict.get(tag.strip(), {}).get("class", "")}">{tags_dict.get(tag.strip(), {}).get("emoji", "")} {tag}</span>'
+            for tag in crop.get("type", [])
         ])
 
         # Print the tag and color for debugging
