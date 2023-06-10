@@ -2279,7 +2279,7 @@ with tab8:
     ]
 
 # Create the layout grid for the crop cards
-col111, col112, col113, col114 = st.columns(3)
+col111, col112, col113, col114 = st.columns(4)
 
 # Iterate over the crops list and display the crop cards
 for index, crop in enumerate(crops):
