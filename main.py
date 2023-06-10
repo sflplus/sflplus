@@ -2310,4 +2310,4 @@ with tab8:
     cards_content += '</div>'
 
     # Display the crops cards
-    components.html(cards_content)
+    html(cards_content)
