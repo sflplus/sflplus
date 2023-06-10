@@ -2051,7 +2051,6 @@ async def main():
                         'Week 1': lantern_data.get('1', 0)
                     }
                     df2 = pd.concat([df2, pd.DataFrame(new_row, index=[0])], ignore_index=True)
-            st.write(lanterns_data)
             # Remove emphy columns
             df2 = df2.dropna(axis=1, how='all')
 
