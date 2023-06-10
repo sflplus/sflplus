@@ -2297,9 +2297,9 @@ with tab8:
                 </div>
             </div>
         """.format(
-            opensea_url_base,
             index + 1,
             crop["name"],
+            opensea_url_base,
             crop["url"],
             crop["urlImg"],
             crop["description"][0],
