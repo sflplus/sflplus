@@ -2252,58 +2252,58 @@ with tab7:
                     status_ok2.error("Invalid response or error occurred.") 
 with tab8:
 
-crops = [
-    {
-        "name": "Easter Bunny",
-        "type": "crop",
-        "description": ["+20% carrot"],
-        "currentPrice": 0,
-        "offerPrice": 0,
-        "url": "909",
-        "urlImg": "https://i.seadn.io/gcs/files/53a44b4ba601ab61e7bf2368dd37258a.gif?auto=format&w=384",
-        "collection": "Sunflower Land Collectibles",
-        "isSelling": True,
-    },
-    {
-        "name": "Victoria Sisters",
-        "type": "crop",
-        "description": ["+20% pumpkin"],
-        "currentPrice": 0,
-        "offerPrice": 0,
-        "url": "432",
-        "urlImg": "https://i.seadn.io/gcs/files/1c2f23e736522b556b627701d07c9c4f.gif?auto=format&w=384",
-        "collection": "Sunflower Land Collectibles",
-        "isSelling": True,
-    },
-]
+    crops = [
+        {
+            "name": "Easter Bunny",
+            "type": "crop",
+            "description": ["+20% carrot"],
+            "currentPrice": 0,
+            "offerPrice": 0,
+            "url": "909",
+            "urlImg": "https://i.seadn.io/gcs/files/53a44b4ba601ab61e7bf2368dd37258a.gif?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
+        {
+            "name": "Victoria Sisters",
+            "type": "crop",
+            "description": ["+20% pumpkin"],
+            "currentPrice": 0,
+            "offerPrice": 0,
+            "url": "432",
+            "urlImg": "https://i.seadn.io/gcs/files/1c2f23e736522b556b627701d07c9c4f.gif?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
+    ]
 
-# Iterate over the crops list
-for index, crop in enumerate(crops):
-    # Generate the Markdown content for each crop
-    markdown_content = """
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <div class="card bg-light mb-3">
-            <h5 class="card-header">{}.  <a href="{}" style="display: inline-block" target="_blank">{}</h5>
-            <div class="card-body">
-                <span class="card-text"><b>Description: </b>{}</span><br/>
-                <span class="card-text"><b>Collection: </b>{}</span><br/>
-                <span class="card-text"><b>Current Price: </b>{}</span><br/>
-                <span class="card-text"><b>Offer Price: </b>{}</span><br/><br/>
-                <img src="{}" alt="Crop Image" style="width: 384px"/><br/><br/>
-                <span class="card-text"><b>Selling: </b>{}</span>
+    # Iterate over the crops list
+    for index, crop in enumerate(crops):
+        # Generate the Markdown content for each crop
+        markdown_content = """
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+            <div class="card bg-light mb-3">
+                <h5 class="card-header">{}.  <a href="{}" style="display: inline-block" target="_blank">{}</h5>
+                <div class="card-body">
+                    <span class="card-text"><b>Description: </b>{}</span><br/>
+                    <span class="card-text"><b>Collection: </b>{}</span><br/>
+                    <span class="card-text"><b>Current Price: </b>{}</span><br/>
+                    <span class="card-text"><b>Offer Price: </b>{}</span><br/><br/>
+                    <img src="{}" alt="Crop Image" style="width: 384px"/><br/><br/>
+                    <span class="card-text"><b>Selling: </b>{}</span>
+                </div>
             </div>
-        </div>
-    """.format(
-        index + 1,
-        crop["url"],
-        crop["name"],
-        crop["description"][0],
-        crop["collection"],
-        crop["currentPrice"],
-        crop["offerPrice"],
-        crop["urlImg"],
-        crop["isSelling"],
-    )
-    
-    # Display the Markdown content
-    st.markdown(markdown_content, unsafe_allow_html=True)
+        """.format(
+            index + 1,
+            crop["url"],
+            crop["name"],
+            crop["description"][0],
+            crop["collection"],
+            crop["currentPrice"],
+            crop["offerPrice"],
+            crop["urlImg"],
+            crop["isSelling"],
+        )
+
+        # Display the Markdown content
+        st.markdown(markdown_content, unsafe_allow_html=True)
