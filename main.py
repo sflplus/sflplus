@@ -2442,7 +2442,8 @@ with tab8:
         column4 = st.container() 
         
     selected_tags = set([tag.lower() for tag in keywords])
-    for index, crop in enumerate(crops):
+    displayed_cards = 0
+    for crop in crops:
         # Check if any of the crop's tags are in the selected tags
         if any(tag.lower() in selected_tags for tag in crop["type"]):
             # Generate type badges with colors
@@ -2475,14 +2476,15 @@ with tab8:
                 crop["description"][0],
                 crop["currentPrice"],
                 crop["collection"],
-                index + 1,
             )
 
-            if index % 4 == 0:
+            if displayed_cards % 4 == 0:
                 column1.markdown(markdown_content, unsafe_allow_html=True)
-            elif index % 4 == 1:
+            elif displayed_cards % 4 == 1:
                 column2.markdown(markdown_content, unsafe_allow_html=True)
-            elif index % 4 == 2:
+            elif displayed_cards % 4 == 2:
                 column3.markdown(markdown_content, unsafe_allow_html=True)
-            elif index % 4 == 3:
+            elif displayed_cards % 4 == 3:
                 column4.markdown(markdown_content, unsafe_allow_html=True)
+
+            displayed_cards += 1
