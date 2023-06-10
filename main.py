@@ -2274,7 +2274,7 @@ with tab8:
     crops = [
         {
             "name": "Peeled Potato",
-            "type": ["Crop","Potato"],
+            "type": ["🌱 Crop: #000FFF","🥔 Potato: #00FF99",],
             "description": ["+20% chances of getting +1 Potato"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2285,7 +2285,7 @@ with tab8:
         },
         {
             "name": "Cabbage Boy",
-            "type": ["Crop"],
+            "type": ["🌱 Crop: #000FFF"],
             "description": ["+0.25 Cabbage Yield (+0.40 with Cabbage Girl)"],
             "combos": [{"name": "Cabbage Girl", "effect": "+0.15 cabbage", "buffs": True}],
             "alerts": ["Karkinos has no effect with Cabbage Boy"],
@@ -2298,7 +2298,7 @@ with tab8:
         },
         {
             "name": "Easter Bunny",
-            "type": ["Crop"],
+            "type": ["🌱 Crop: #000FFF"],
             "description": ["+20% Carrot Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2309,7 +2309,7 @@ with tab8:
         },
         {
             "name": "Victoria Sisters",
-            "type": ["Crop"],
+            "type": ["🌱 Crop: #000FFF"],
             "description": ["+20% Pumpkin Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2320,7 +2320,7 @@ with tab8:
         },
         {
             "name": "Cabbage Girl",
-            "type": ["Crop"],
+            "type": ["🌱 Crop: #000FFF"],
             "description": ["-50% Cabbage Grow Time"],
             "combos": [{"name": "Cabbage Boy", "effect": "+0.15 cabbage"}],
             "currentPrice": 0,
@@ -2332,7 +2332,7 @@ with tab8:
         },
         {
             "name": "Karkinos",
-            "type": ["Crop"],
+            "type": ["🌱 Crop: #000FFF"],
             "description": ["+0.1 Cabbage Yield"],
             "alerts": ["Karkinos has no effect with Cabbage Boy"],
             "currentPrice": 0,
@@ -2344,7 +2344,7 @@ with tab8:
         },
         {
             "name": "Mysterious Parsnip",
-            "type": ["Crop"],
+            "type": ["🌱 Crop: #000FFF"],
             "description": ["-50% Parsnip Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2355,7 +2355,7 @@ with tab8:
         },
         {
             "name": "Golden Cauliflower",
-            "type": ["Crop"],
+            "type": ["🌱 Crop: #000FFF"],
             "description": ["+200% Cauliflower Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2366,7 +2366,7 @@ with tab8:
         },
         {
             "name": "Carrot Sword",
-            "type": ["Crop"],
+            "type": ["🌱 Crop: #000FFF"],
             "description": ["+300% Chances of Finding a Mutant Crop"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2377,7 +2377,7 @@ with tab8:
         },
         {
             "name": "Lunar Calendar",
-            "type": ["Crop"],
+            "type": ["🌱 Crop: #000FFF"],
             "description": ["-10% Crops Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2388,7 +2388,7 @@ with tab8:
         },
         {
             "name": "Nancy",
-            "type": ["Crop"],
+            "type": ["🌱 Crop: #000FFF"],
             "description": ["-15% Crops Grow Time"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2399,7 +2399,7 @@ with tab8:
         },
         {
             "name": "Scarecrow",
-            "type": ["Crop"],
+            "type": ["🌱 Crop: #000FFF"],
             "description": ["-15% Crops Grow Time - +20% Crop Yield"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2410,7 +2410,7 @@ with tab8:
         },
         {
             "name": "Kuebiko",
-            "type": ["Crop"],
+            "type": ["🌱 Crop: #000FFF"],
             "description": ["-15% Crops Grow Time - +20% Crop Yield - Seeds are Free"],
             "currentPrice": 0,
             "offerPrice": 0,
@@ -2441,52 +2441,29 @@ with tab8:
     with colD:
         column4 = st.container() 
         
-    # Define the tags dictionary
-    tags_dict = {
-        "Crop": {"color": "28a745", "emoji": "🌱", "class": "crop-badge"},
-        "Potato": {"color": "c28606", "emoji": "🥔", "class": "potato-badge"},
-        # Add more tag entries as needed
-    }
-    st.markdown(
-        """
-        <style>
-        .crop-badge {
-            font-size: 1rem;
-            background-color: #28a745 !important;
-        }
-        .potato-badge {
-            font-size: 1rem;
-            background-color: #c28606 !important;
-        }
-        /* Add more CSS classes for other tags */
-        </style>
-        """,
-        unsafe_allow_html=True
-    )
-
     # Create a dictionary for the tags using the tag name as the key
-    tags_info = {tag_name: tag_info for tag_name, tag_info in tags_dict.items()}
+    tags_dict = {}
 
-    # Print the tags_info dictionary for debugging
-    st.write(f"Tags Info: {tags_info}")
-
-    # Iterate over the crops list and replace the tag names with the corresponding information
     for crop in crops:
-        tags = crop.get("type", [])
-        updated_tags = []
-        for tag in tags:
-            tag_info = tags_info.get(tag.strip(), {})
-            if tag_info:
-                updated_tags.append(tag_info.get("emoji", "") + " " + tag.strip())
-        crop["type"] = updated_tags
+        types = crop.get("type", [])  # Get the type list for the crop
+
+        for type_str in types:
+            type_name = type_str.split(":")[0].strip()  # Extract the type name
+
+            # Add the type name to the tags_dict
+            if type_name not in tags_dict:
+                tags_dict[type_name] = []
+
+            tags_dict[type_name].append(crop["name"])
 
     # Use the updated crop dictionary to display the crop cards
     for index, crop in enumerate(crops):
+        # Generate type badges with colors
         type_badges = " ".join([
-            f'<span class="badge text-center rounded-pill start-50 {tags_info.get(tag.strip(), {}).get("class", "")}" style="background-color: #{tags_info.get(tag.strip(), {}).get("color", "") if tags_info.get(tag.strip(), {}).get("class") else ""}">{tags_info.get(tag.strip(), {}).get("emoji", "")} {tag}</span>'
-            for tag in crop.get("type", [])
+            f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
+            for t in crop["type"]
         ])
-        st.write(f"Type Badges HTML: {type_badges}")
+
         markdown_content = """
         <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
             <a href="{}{}" style="display: inline-block" target="_blank">
