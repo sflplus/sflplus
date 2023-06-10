@@ -2305,11 +2305,11 @@ with tab8:
     ]
 
     # Create the layout grid for the crop cards
-    col1, col2, col3, col4 = tab8.columns([2,2,2,2])
+    colA, colB, colC, colD = tab8.columns([2,2,2,2])
 
     # Iterate over the crops list and display the crop cards
     for index, crop in enumerate(crops):
-        with col1 if index % 4 == 0 else col2 if index % 4 == 1 else col3 if index % 4 == 2 else col4:
+        with colA if index % 4 == 0 else colB if index % 4 == 1 else colC if index % 4 == 2 else colD:
             markdown_content = """
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
                 <div class="row row-cols-1 row-cols-md-3 g-4">
