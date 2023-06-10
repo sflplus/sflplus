@@ -2472,6 +2472,8 @@ with tab8:
         # Generate type badges with colors
         type_badges = " ".join([
             f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
+            if ":" in t
+            else f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;">{t.strip()}</span>'
             for t in crop["type"]
         ])
 
@@ -2502,10 +2504,4 @@ with tab8:
         )
 
         if index % 4 == 0:
-            column1.markdown(markdown_content, unsafe_allow_html=True)
-        elif index % 4 == 1:
-            column2.markdown(markdown_content, unsafe_allow_html=True)
-        elif index % 4 == 2:
-            column3.markdown(markdown_content, unsafe_allow_html=True)
-        else:
-            column4.markdown(markdown_content, unsafe_allow_html=True)
+            column1.markdown
