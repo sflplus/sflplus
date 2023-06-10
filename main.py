@@ -2463,7 +2463,10 @@ with tab8:
 
     for crop in crops:
         types = crop.get("type", [])
-    
+
+        if any(tag in selected_tags for tag in types):
+            filtered_crops.append(crop)
+
 
     # Use the updated crop dictionary to display the crop cards
     for index, crop in enumerate(filtered_crops):
