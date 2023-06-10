@@ -2440,7 +2440,7 @@ with tab8:
         column3 = st.container()   
     with colD:
         column4 = st.container() 
-        
+
     # Define the tags dictionary
     tags_dict = {
         "Crop": {"color": "#28a745", "emoji": "🌱"},
@@ -2464,9 +2464,8 @@ with tab8:
     # Use the updated crop dictionary to display the crop cards
     for index, crop in enumerate(crops):
         type_badges = " ".join([
-            f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{tags_info[tag.strip()]["color"]}">{tags_info[tag.strip()]["emoji"]} {tag}</span>'
-            for tag in crop["type"]
-            if tag.strip() in tags_info
+            f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{tags_dict.get(tag.strip(), {}).get("color", "")}">{tags_dict.get(tag.strip(), {}).get("emoji", "")} {tag}</span>'
+            for tag in crop.get("type", [])
         ])
 
         markdown_content = """
