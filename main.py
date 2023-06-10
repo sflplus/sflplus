@@ -2366,7 +2366,7 @@ with tab8:
         {
             "name": "Carrot Sword",
             "type": "crop",
-            "description": ["Increases the chance of finding a Mutant Crops"],
+            "description": ["+300% Chances of Finding a Mutant Crop"],
             "currentPrice": 0,
             "offerPrice": 0,
             "url": "419",
