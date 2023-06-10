@@ -2459,9 +2459,7 @@ with tab8:
             tag_info = tags_info.get(tag.strip(), {})
             if tag_info:
                 updated_tags.append(f'{tag_info.get("emoji", "")} {tag}')
-        crop["type"] = updated_tags
-
-    st.write(crops)
+        crop["type"] = updated_tags    
 
     # Use the updated crop dictionary to display the crop cards
     for index, crop in enumerate(crops):
@@ -2471,8 +2469,8 @@ with tab8:
         ])
 
         # Print the tag and color for debugging
-        print("Tag:", tag)
-        print("Color:", tags_dict.get(tag.strip(), {}).get("color", ""))
+        st.write("Tag:", tag)
+        st.write("Color:", tags_dict.get(tag.strip(), {}).get("color", ""))
 
         markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
