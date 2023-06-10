@@ -2453,8 +2453,9 @@ with tab8:
         },
         # Add more tag entries as needed
     }
+
     # Create a dictionary for the tags using the tag name as the key
-    tags_info = {tag["name"]: tag for tag in tags_dict}
+    tags_info = {tag_name: tag_info for tag_name, tag_info in tags_dict.items()}
 
     # Iterate over the crops list and replace the tag names with the corresponding information
     for crop in crops:
@@ -2505,5 +2506,5 @@ with tab8:
             column2.markdown(markdown_content, unsafe_allow_html=True)
         elif index % 4 == 2:
             column3.markdown(markdown_content, unsafe_allow_html=True)
-        elif index % 4 == 3:
+        else:
             column4.markdown(markdown_content, unsafe_allow_html=True)
