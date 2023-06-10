@@ -2308,7 +2308,7 @@ with tab8:
 
     # Iterate over the crops list and display the crop cards
     for index, crop in enumerate(crops):
-        with col111 if index % 4 == 0 else col112 if index % 4 == 1 else col113 if index % 4 == 2 else col114::
+        with col111 if index % 4 == 0 else col112 if index % 4 == 1 else col113 if index % 4 == 2 else col114:
             markdown_content = """
                 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
                 <div class="row row-cols-1 row-cols-md-3 g-4">
