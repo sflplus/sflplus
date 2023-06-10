@@ -2432,6 +2432,7 @@ with tab8:
     # Iterate over the crops list and display the crop cards
     for index, crop in enumerate(crops):
         markdown_content = """
+            <div class="card h-100">
                 <div class="card text-white bg-dark mb-3" style="max-width: 25rem;">
                   <a href="{}{}" style="display: inline-block" target="_blank">
                     <img src="{}" alt="NFT Image" class="card-img-top" alt="..."></a>
@@ -2444,6 +2445,7 @@ with tab8:
                     <span class="card-text"><b>Avg Price: {}</b></span>                    
                   </div>
                 </div>
+            </div>
         """.format(
             opensea_url_base,
             crop["url"],
