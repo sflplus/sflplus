@@ -2467,6 +2467,9 @@ with tab8:
     # Create a dictionary for the tags using the tag name as the key
     tags_info = {tag_name: tag_info for tag_name, tag_info in tags_dict.items()}
 
+    # Print the tags_info dictionary for debugging
+    st.write(f"Tags Info: {tags_info}")
+
     # Iterate over the crops list and replace the tag names with the corresponding information
     for crop in crops:
         tags = crop.get("type", [])
