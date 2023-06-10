@@ -2253,13 +2253,15 @@ with tab7:
                     status_ok2.error("Invalid response or error occurred.") 
 with tab8:
     # Create the layout grid for the crop cards
-    colA, colB, colC = tab8.columns([3,3,3])
+    colA, colB, colC = tab8.columns([3,3,3,3], gap="medium")
     with colA:
         column1 = st.container()
     with colB:
         column2 = st.container()               
     with colC:
-        column3 = st.container()
+        column3 = st.container()    
+    with colD:
+        column4 = st.container()
         
     opensea_url_base = 'https://opensea.io/assets/matic/0x22d5f9b75c524fec1d6619787e582644cd4d7422/'
     crops = [
@@ -2312,14 +2314,6 @@ with tab8:
             "isSelling": True,
         },
     ]
-    # Create the layout grid for the crop cards
-    colA, colB, colC = st.columns([3,3,3])
-    with colA:
-        column1 = st.container()
-    with colB:
-        column2 = st.container()               
-    with colC:
-        column3 = st.container()
             
     # Iterate over the crops list and display the crop cards
     for index, crop in enumerate(crops):
@@ -2353,9 +2347,11 @@ with tab8:
             crop["currentPrice"],
         )
 
-        if index % 3 == 0:
+        if index % 4 == 0:
             column1.markdown(markdown_content, unsafe_allow_html=True)
-        elif index % 3 == 1:
+        elif index % 4 == 1:
             column2.markdown(markdown_content, unsafe_allow_html=True)
-        elif index % 3 == 2:
+        elif index % 4 == 2:
             column3.markdown(markdown_content, unsafe_allow_html=True)
+        elif index % 4 == 3:
+            column4.markdown(markdown_content, unsafe_allow_html=True)
