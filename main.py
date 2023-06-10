@@ -2443,8 +2443,8 @@ with tab8:
 
     # Define the tags dictionary
     tags_dict = {
-        "Crop": {"color": "#28a745", "emoji": "🌱"},
-        "Potato": {"color": "#c28606", "emoji": "🥔"},
+        "Crop": {"color": "28a745", "emoji": "🌱"},
+        "Potato": {"color": "c28606", "emoji": "🥔"},
         # Add more tag entries as needed
     }
 
