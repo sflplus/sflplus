@@ -2454,6 +2454,7 @@ with tab8:
                 tags_dict[type_name] = []
 
             tags_dict[type_name].append(crop["name"])
+    st.write(tags_dict)
 
     # Use the updated crop dictionary to display the crop cards
     for index, crop in enumerate(crops):
