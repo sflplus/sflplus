@@ -2996,7 +2996,7 @@ with tab8:
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">            
                 <a href="{}{}" style="display: inline-block" target="_blank">
                     <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
-                <button type="button" class="position-absolute top-0 start-0 mt-3 ml-3 btn btn-sm btn-secondary" style="width: 3rem; height:2.5rem;opacity:0.7;"><h6><b>#{}</b></h6></button>
+                <button type="button" class="position-absolute top-0 start-0 mt-2 ml-2 btn btn-sm btn-secondary" style="width: 3rem; height:2.2rem;opacity:0.75;"><h6><b>#{}</b></h6></button>
                 <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
                     {}
                 </div>                 
