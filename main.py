@@ -2511,6 +2511,8 @@ with tab8:
         column3 = st.container()    
     with colD:
         column4 = st.container()
-        
+    st.write((keywords))
+    st.write(filtered_crops)
+    st.write(tags_dict)
     # Call the function with filtered_crops
     display_crop_cards(filtered_crops)
