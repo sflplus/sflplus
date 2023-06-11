@@ -2799,6 +2799,16 @@ with tab8:
 
                 index += 1  # Increment index inside the loop
 
+
+    keywords = st_tags(
+        label='🔻 **SEARCH FOR TAGS:** 🔻',
+        text='Press enter to add more',
+        value=['Crop', 'Potato'],
+        suggestions=['crop', 'potato', 'cabbage'],
+        maxtags=4,
+        key="tags"
+    )
+
     # Create a dictionary for the tags using the tag name as the key
     tags_dict = populate_tags_dict(nft_list)
 
