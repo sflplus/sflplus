@@ -3,7 +3,6 @@ from streamlit import components
 import json
 import requests
 import time
-from st_keyup import st_keyup
 from PIL import Image
 from decimal import Decimal
 import streamlit.components.v1 as components
