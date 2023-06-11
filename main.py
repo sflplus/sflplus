@@ -2455,7 +2455,7 @@ with tab8:
                 "collection": "Sunflower Land Collectibles",
                 "isSelling": True,
             },
-        ]
+        ],
         "resources": [
             {
                 "name": "Tiki Totem",
@@ -2577,7 +2577,7 @@ with tab8:
                 "collection": "Sunflower Land Collectibles",
                 "isSelling": True,
             },        
-        ]
+        ],
         
         "animals": [
             {
