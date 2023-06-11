@@ -2991,11 +2991,12 @@ with tab8:
                     current_price_html = '❌ Not For Sale'
                 else:
                     current_price_html = '❌ Still Not Tradable'
-            
+            #<div class="position-relative bottom-0 end-0 float-end">#{}</div>
             markdown_content = """
-            <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
+            <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">            
                 <a href="{}{}" style="display: inline-block" target="_blank">
                     <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
+                <div class="position-absolute top-0 start-0">{}</div>
                 <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
                     {}
                 </div>                 
@@ -3004,19 +3005,18 @@ with tab8:
                     <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
                 </div>
                 <div class="card-footer">
-                    <span class="card-text"><b>{} &nbsp;</b></span>   
-                    <div class="position-relative bottom-0 end-0 float-end">#{}</div>  
+                    <span class="card-text"><b>{} &nbsp;</b></span>                     
                 </div>
             </div>
             """.format(
                 opensea_url_base,
                 item["url"],
                 item["urlImg"],
+                index +1,
                 type_badges,
                 item["name"],
                 item["description"][0],
                 current_price_html,
-                index +1,
                 item["collection"],
             )
 
