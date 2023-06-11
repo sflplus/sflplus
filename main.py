@@ -2006,7 +2006,7 @@ with tab6:
     df_dune = create_dataframe()
 
     # Display the dataframe
-    live_minted.dataframe(df_dune)    
+    live_minted.dataframe(df_dune, hide_index=True)    
 
 
     # Iterate over the list of queries and retrieve the owner counts
