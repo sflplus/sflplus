@@ -2752,8 +2752,8 @@ with tab8:
     def display_nft_cards(nft_list):
         index = 0  # Initialize index outside the loop
 
-        for item_category in nft_list.values():
-            for item in item_category:
+        for category, items in nft_list.items():
+            for item in items:
                 # Generate type badges with colors
                 type_badges = " ".join([
                     f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
@@ -2798,17 +2798,6 @@ with tab8:
                     column4.markdown(markdown_content, unsafe_allow_html=True)
 
                 index += 1  # Increment index inside the loop
-
-
-    keywords = st_tags(
-        label='🔻 **SEARCH FOR TAGS:** 🔻',
-        text='Press enter to add more',
-        value=['Crop', 'Potato'],
-        suggestions=['crop', 'potato', 'cabbage'],
-        maxtags=4,
-        key="tags"
-    )
-    # st.write((keywords))
 
     # Create a dictionary for the tags using the tag name as the key
     tags_dict = populate_tags_dict(nft_list)
