@@ -2313,7 +2313,7 @@ with tab8:
         },
         {
             "name": "Maximus",
-            "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #fd7e14"],
+            "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1"],
             "description": ["+1 Eggplant Harvest"],
             "currentPrice": 0,
             "url": "459",
@@ -2323,7 +2323,7 @@ with tab8:
         },   
         {
             "name": "Obie",
-            "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1"],
+            "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1", "⌛ Time: #dc3545"],
             "description": ["-25% Eggplant Grow Time"],
             "currentPrice": 0,
             "url": "458",
@@ -2333,7 +2333,7 @@ with tab8:
         }, 
         {
             "name": "Purple Trail",
-            "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #fd7e14"],
+            "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1"],
             "description": ["+0.2 Eggplant Harvest"],
             "currentPrice": 0,
             "url": "457",
