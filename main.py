@@ -2999,10 +2999,10 @@ with tab8:
                     current_price_html = '❌ Still Not Tradable'
             
             if item["info"] is None:
-                info_alert_html = None
+                info_alert_html = ""
             else:
                 info_alert = item["info"]
-                info_alert_html = f'<span class="alert alert-warning" role="alert">🚨 <b>Note: </b>{info_alert}</span></span>'
+                info_alert_html = f'<span class="alert alert-warning" role="alert">🚨 <b>Note: </b>{info_alert}</span>'
 
             markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">            
@@ -3014,10 +3014,11 @@ with tab8:
                 </div>                 
                 <div class="card-body" style="min-height:8rem">
                     <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
-                    <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
+                    <span class="card-text">📖 <b>Description: </b>{}</span></span>
+                    {}
                 </div>
                 <div class="card-footer">
-                    <span class="card-text"><b>{} &nbsp;</b></span>                     
+                    <span class="card-text"><b>{}</b></span>                     
                 </div>
             </div>
             """.format(
