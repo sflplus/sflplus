@@ -2306,7 +2306,7 @@ with tab8:
              {
                 "name": "Carrot Amulet",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🥕 Carrot: #ffc32d", "⌛ Time: #dc3545"],
-                "description": ["+20% Carrot Grow Speed"]
+                "description": ["+20% Carrot Grow Speed"],
                 "currentPrice": 0,
                 "url": "28",
                 "urlImg": "https://i.seadn.io/gcs/files/cbf74b26df2f03e2faf5bb39c15edb9d.png?auto=format&dpr=1&w=384",
@@ -2316,7 +2316,7 @@ with tab8:
             {
                 "name": "Sunflower Amulet",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🌻 Sunflower: #ffc107"],
-                "description": ["+10% Sunflower Yield"]
+                "description": ["+10% Sunflower Yield"],
                 "currentPrice": 0,
                 "url": "27",
                 "urlImg": "https://i.seadn.io/gcs/files/f38c9c14b77c846acaeddfb6ba34f485.png?auto=format&dpr=1&w=384",
@@ -2326,7 +2326,7 @@ with tab8:
             {
                 "name": "Beetroot Amulet",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "💜 Beetroot: #6610f2"],
-                "description": ["+20% Beetroot Yield"]
+                "description": ["+20% Beetroot Yield"],
                 "currentPrice": 0,
                 "url": "29",
                 "urlImg": "https://i.seadn.io/gcs/files/7e1a158e384cfd723076e9210ad638b4.png?auto=format&dpr=1&w=384",
@@ -2336,7 +2336,7 @@ with tab8:
             {
                 "name": "Green Amulet",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🎲 Chance: #007bff"],
-                "description": ["10% Chance of 10x Crops Yield"]
+                "description": ["10% Chance of 10x Crops Yield"],
                 "currentPrice": 0,
                 "url": "30",
                 "urlImg": "https://i.seadn.io/gcs/files/990e5aed14b88d868e42ec7b437bd450.png?auto=format&dpr=1&w=384",
@@ -2346,7 +2346,7 @@ with tab8:
             {
                 "name": "Sunflower Shield",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🌻 Sunflower: #ffc107"],
-                "description": ["Free Sunflower Seeds"]
+                "description": ["Free Sunflower Seeds"],
                 "currentPrice": 0,
                 "url": "31",
                 "urlImg": "https://i.seadn.io/gcs/files/86dfc0cbc0d928526112529871a80643.png?auto=format&dpr=1&w=384",
@@ -2396,7 +2396,7 @@ with tab8:
             {
                 "name": "Eggplant Onesie",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1"],
-                "description": ["+20% Parsnip Yield"]
+                "description": ["+20% Parsnip Yield"],
                 "currentPrice": 0,
                 "url": "124",
                 "urlImg": "https://i.seadn.io/gcs/files/fd74bc39605ed34dfb3d40fe5fd5681e.png?auto=format&dpr=1&w=384",
@@ -2438,7 +2438,7 @@ with tab8:
             {
                 "name": "Parsnip",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🤎 Parsnip: #c4914a"],
-                "description": ["+20% Parsnip Yield"]
+                "description": ["+20% Parsnip Yield"],
                 "currentPrice": 0,
                 "url": "59",
                 "urlImg": "https://i.seadn.io/gcs/files/dd7d9ab5e04626e1fabc9ecaf7387871.png?auto=format&dpr=1&w=384",
@@ -2508,7 +2508,7 @@ with tab8:
             {
                 "name": "Devil Wings",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🎲 Chance: #007bff"],
-                "description": ["30% Chance of Harvesting Crops instantly"]
+                "description": ["30% Chance of Harvesting Crops instantly"],
                 "currentPrice": 0,
                 "url": "74",
                 "urlImg": "https://i.seadn.io/gcs/files/21de9ee9836f4b990857b0c65a0e3544.png?auto=format&dpr=1&w=384",
@@ -2518,7 +2518,7 @@ with tab8:
             {
                 "name": "Angel Wings",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🎲 Chance: #007bff"],
-                "description": ["30% Chance of Harvesting Crops instantly"]
+                "description": ["30% Chance of Harvesting Crops instantly"],
                 "currentPrice": 0,
                 "url": "73",
                 "urlImg": "https://i.seadn.io/gcs/files/c0e113852eb306dbfbf0243de79c5e4b.png?auto=format&dpr=1&w=384",
