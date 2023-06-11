@@ -2802,6 +2802,16 @@ with tab8:
                 "collection": "Sunflower Land Collectibles",
                 "isSelling": False,
             },
+            {
+                "name": "Fruit Apron",
+                "type": ["👨‍🌾 Bumpkin: #e04a83","🍒 Fruit: #e83e8c"],
+                "description": ["+0.1 Fruits Drop"],
+                "currentPrice": 0,
+                "url": "86",
+                "urlImg": "https://i.seadn.io/gcs/files/605bd7471e40ce37bc6a395806670c29.png?auto=format&dpr=1&w=384",
+                "collection": "Bumpkin",
+                "isSelling": True,
+            },  
         ],
         "xp": [
             {
@@ -2834,6 +2844,26 @@ with tab8:
                 "collection": "Sunflower Land Collectibles",
                 "isSelling": True,
             },
+            {
+                "name": "Golden Spatula",
+                "type": ["👨‍🌾 Bumpkin: #e04a83","🔼 Expirience: #3B88C3"],
+                "description": ["+10% Experience Boost"],
+                "currentPrice": 0,
+                "url": "58",
+                "urlImg": "https://i.seadn.io/gcs/files/97a774bf000b26efb31e1dedd9a674aa.png?auto=format&dpr=1&w=384",
+                "collection": "Bumpkin",
+                "isSelling": True,
+            },
+            {
+                "name": "Chef Apron",
+                "type": ["👨‍🌾 Bumpkin: #e04a83","💸 SFL: #f4b811"],
+                "description": ["+20% Profit from Selling Cakes"],
+                "currentPrice": 0,
+                "url": "16",
+                "urlImg": "https://i.seadn.io/gcs/files/ffba3d642bf8cff7e5cb5309d471b31b.png?auto=format&dpr=1&w=384",
+                "collection": "Bumpkin",
+                "isSelling": True,
+            },  
         ],
         "treasure": [
             {
@@ -2858,7 +2888,7 @@ with tab8:
             },
             {
                 "name": "Treasure Map",
-                "type": ["🏝️ Treasure Island: #c19a2e"],
+                "type": ["🏝️ Treasure Island: #c19a2e", "💸 SFL: #f4b811"],
                 "description": ["+20% Profit from Beach Bounty Items"],
                 "currentPrice": 0,
                 "url": "449",
@@ -2942,21 +2972,21 @@ with tab8:
 
             index += 1  # Increment index inside the loop
     
-    col_nft, col_nft2 = st.columns([2,2])
-    with col_nft:        
-        keywords = st_tags(
-            label='🔻 **SEARCH FOR TAGS:** 🔻',
-            text='Press enter to add more',
-            #value=['Crop'],
-            suggestions=['Peeled','Potato','Crop','Cabbage','Boy','Girl','Easter','Bunny','Carrot','Pablo','Victoria','Sisters','Pumpkin','Maximus','Eggplant','Obie','Purple','Trail','Karkinos','Mysterious','Parsnip','Golden','Cauliflower','Sword','Lunar','Calendar','Nancy','Scarecrow','Kuebiko','Hoot','Foliant','Basic','Tiki','Totem','Wood','Nymph','Wendy','Rock','Golem','Stone','Chance'],
-            maxtags=4,
-            key="tags"
-        )
-    with col_nft2:
-        nft_collec = st.multiselect(
-            'From witch Collections?',
-            ['Sunflower Land', 'Bumpkins Wearables'],
-            ['Sunflower Land', 'Bumpkins Wearables'])
+    #col_nft, col_nft2 = st.columns([2,2])
+    #with col_nft:        
+    keywords = st_tags(
+        label='🔻 **SEARCH WITH TAGS:** 🔻',
+        text='Press enter to add more',
+        #value=['Crop'],
+        suggestions=['Peeled','Potato','Crop','Cabbage','Boy','Girl','Easter','Bunny','Carrot','Pablo','Victoria','Sisters','Pumpkin','Maximus','Eggplant','Obie','Purple','Trail','Karkinos','Mysterious','Parsnip','Golden','Cauliflower','Sword','Lunar','Calendar','Nancy','Scarecrow','Kuebiko','Hoot','Foliant','Basic','Tiki','Totem','Wood','Nymph','Wendy','Rock','Golem','Stone','Chance'],
+        maxtags=4,
+        key="tags"
+    )
+    #with col_nft2:
+    #    nft_collec = st.multiselect(
+    #        'From witch Collections?',
+    #        ['Sunflower Land', 'Bumpkins Wearables'],
+    #        ['Sunflower Land', 'Bumpkins Wearables'])
         
     # Create a dictionary for the tags using the tag name as the key
     tags_dict = populate_tags_dict(nft_list)
