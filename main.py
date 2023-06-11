@@ -2487,11 +2487,7 @@ with tab8:
             types = crop.get("type", [])
             if all(tag.lower() in type.lower() for tag in selected_tags for type in types):
                 filtered_crops.append(crop)
-            else:
-                # Check similarity between tag and crop name
-                name = crop.get("name", "").lower()
-                if any(fuzz.partial_ratio(tag.lower(), name) >= 70 for tag in selected_tags):
-                    filtered_crops.append(crop)
+
     # Create the layout grid for the crop cards
     colA, colB, colC, colD = tab8.columns([3,3,3,3])
     with colA:
