@@ -2460,7 +2460,7 @@ with tab8:
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
                 "description": ["+20% Grow Speed for Sunflowers, Potatos and Pumpkins"],
                 "currentPrice": 0,
-                "url": "420",
+                "url": "462",
                 "urlImg": "https://i.seadn.io/gcs/files/5a954084d82c27b8fdd6fa2cff9973c2.png?auto=format&dpr=1&w=384",
                 "collection": "Sunflower Land Collectibles",
                 "isSelling": True,
@@ -2982,8 +2982,8 @@ with tab8:
 
             index += 1  # Increment index inside the loop
     
-    #col_nft, col_nft2 = st.columns([2,2])
-    #with col_nft:        
+    col_nft, buff_nft = st.columns([2,2])
+    with col_nft:        
     keywords = st_tags(
         label='🔻 **SEARCH WITH TAGS:** 🔻',
         text='Press enter to add more',
