@@ -2480,21 +2480,23 @@ with tab8:
     selected_tags = set(tag.lower() for tag in keywords)  # Convert selected_tags to lowercase
 
     filtered_crops = []
-    for crop in crops:
-        types = crop.get("type", [])
-        for tag in selected_tags:
-            if any(tag.lower() in type.lower() for type in types):
-                filtered_crops.append(crop)
-                break
-        else:
-            # Check similarity between tag and crop name
-            name = crop.get("name", "").lower()
+    if not selected_tags:  # If no tags are selected, display all crops
+        filtered_crops = crops
+    else:
+        for crop in crops:
+            types = crop.get("type", [])
             for tag in selected_tags:
-                similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
-                if similarity_ratio >= 70:  # Adjust the threshold as needed
+                if any(tag.lower() in type.lower() for type in types):
                     filtered_crops.append(crop)
                     break
-
+            else:
+                # Check similarity between tag and crop name
+                name = crop.get("name", "").lower()
+                for tag in selected_tags:
+                    similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
+                    if similarity_ratio >= 70:  # Adjust the threshold as needed
+                        filtered_crops.append(crop)
+                        break
     # Create the layout grid for the crop cards
     colA, colB, colC, colD = tab8.columns([3,3,3,3])
     with colA:
