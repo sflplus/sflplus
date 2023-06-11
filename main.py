@@ -2983,9 +2983,11 @@ with tab8:
             
 
             if item["collection"] == "Sunflower Land Collectibles":
+                opensea_link = opensea_url_base
                 current_price = nft_price(item["name"], return_type='nft_list')
                 current_price_html = f'💰 Avg Price: ${current_price}'
             else:
+                opensea_link = opensea_url_bump
                 current_price = wearable_price(item["name"], return_type='nft_list')
                 current_price_html = f'💰 Last Sale: ${current_price}'
 
@@ -3019,7 +3021,7 @@ with tab8:
                 </div>
             </div>
             """.format(
-                opensea_url_base,
+                opensea_link,
                 item["url"],
                 item["urlImg"],
                 index +1,
