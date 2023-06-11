@@ -240,7 +240,7 @@ def nft_price_read():
         pass
     return dfs
 
-def nft_price(return_type='result_df'):
+def nft_price(item_name=None, return_type='result_df'):
     dfs = nft_price_read()
     df = pd.concat(dfs, axis=0)
     # drop the first columns
@@ -332,15 +332,13 @@ def nft_price(return_type='result_df'):
     
     # Return the result based on the specified 'return_type'
     if return_type == 'nft_list':
-        # Get the current price for the given item name
         current_price = df.loc[df['NFT'] == item_name, 'Average Price'].values[0]
         return current_price
     else:
         return df
    
 def nft_buffs(inventory, return_type='result_df'):
-
-    df = nft_price(return_type) 
+    df = nft_price(return_type=return_type)
     result_df = pd.concat([df], axis=0)
 
     # Check if the items in the 'NFT' column are present in the keys of the 'inventory' dictionary
