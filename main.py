@@ -2305,7 +2305,7 @@ with tab8:
             },
             {
                 "name": "Easter Bunny",
-                "type": ["🌱 Crop: #28a745", "🥕 Carrot: #ffc32d"],
+                "type": ["🌱 Crop: #28a745", "🥕 Carrot: #ff731c"],
                 "description": ["+20% Carrot Yield"],
                 "currentPrice": 0,
                 "url": "909",
@@ -2315,7 +2315,7 @@ with tab8:
             },
             {
                 "name": "Pablo the Bunny",
-                "type": ["🌱 Crop: #28a745", "🥕 Carrot: #ffc32d"],
+                "type": ["🌱 Crop: #28a745", "🥕 Carrot: #ff731c"],
                 "description": ["+0.1 Carrot Harvest"],
                 "currentPrice": 0,
                 "url": "926",
@@ -2486,16 +2486,6 @@ with tab8:
                 "isSelling": True,
             },
             {
-                "name": "Carrot Amulet",
-                "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🥕 Carrot: #ffc32d", "⌛ Time: #dc3545"],
-                "description": ["+20% Carrot Grow Speed"],
-                "currentPrice": 0,
-                "url": "28",
-                "urlImg": "https://i.seadn.io/gcs/files/7bcc04300bfc3fc7c7b7a73b0692ca0d.png?auto=format&dpr=1&w=384",
-                "collection": "Bumpkin",
-                "isSelling": True,
-            },
-            {
                 "name": "Sunflower Amulet",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🌻 Sunflower: #ffc107"],
                 "description": ["+10% Sunflower Yield"],
@@ -2505,6 +2495,16 @@ with tab8:
                 "collection": "Bumpkin",
                 "isSelling": True,
             },  
+            {
+                "name": "Carrot Amulet",
+                "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🥕 Carrot: #ff731c", "⌛ Time: #dc3545"],
+                "description": ["+20% Carrot Grow Speed"],
+                "currentPrice": 0,
+                "url": "28",
+                "urlImg": "https://i.seadn.io/gcs/files/7bcc04300bfc3fc7c7b7a73b0692ca0d.png?auto=format&dpr=1&w=384",
+                "collection": "Bumpkin",
+                "isSelling": True,
+            },
             {
                 "name": "Beetroot Amulet",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "💜 Beetroot: #6610f2"],
