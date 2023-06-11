@@ -1988,26 +1988,29 @@ with tab6:
     def create_dataframe():
         # Create a list to store the data
         data = []
+
         for i, query_id in enumerate(queries):
             owner_count = fetch_owner_count(query_id)
             query_name = queries_name[i]
-            query_quantity = queries_quantity[i]
             query_emoji = queries_emoji[i]
+            query_quantity = queries_quantity[i]
             query_ticket = queries_ticket[i]
-            data.append([query_emoji, query_name, owner_count, query_quantity, query_ticket])
+            nft = f"{query_emoji} {query_name}"
+            data.append([nft, owner_count, query_quantity, query_ticket])
+
         # Create a dataframe from the data list
-        df_dune = pd.DataFrame(data, columns=["Emoji", "Name", "Owner Count", "Quantity", "Ticket"])
+        df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply", "Tickets"])
         return df_dune
-    
-    live_minted.info(f"👨‍🔬 **This info is from Dune**")
+
+
     # Create or fetch the cached dataframe
     df_dune = create_dataframe()
-
+    
+    live_minted.info(f"👨‍🔬 **This info is from Dune**")
     # Display the dataframe
-    live_minted.dataframe(df_dune, hide_index=True)    
+    live_minted.dataframe(df_dune, hide_index=True)           
 
 
-    # Iterate over the list of queries and retrieve the owner counts
     live_odds.info(f"📝 *Note: This data was calculated using the weight numbers in the Treasure Island Docs 06/06/2023 and the 1 in X are approximations.*")
     live_odds.write(f"- 🍾 Old Bottle: **5.19%** (1 in 19 with Shovels)")
     live_odds.write(f"- 🌿 Seaweed: **2.60%** (1 in 38 with Shovels)")
