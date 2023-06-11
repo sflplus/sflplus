@@ -332,8 +332,11 @@ def nft_price(item_name=None, return_type='result_df'):
     
     # Return the result based on the specified 'return_type'
     if return_type == 'nft_list':
-        current_price = df.loc[df['NFT'] == item_name, 'Average Price'].values[0]
-        return current_price
+        if item_name is not None and item_name in df['NFT'].values:
+            current_price = df.loc[df['NFT'] == item_name, 'Average Price'].values[0]
+            return current_price
+        else:
+            return None
     else:
         return df
    
