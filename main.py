@@ -240,7 +240,7 @@ def nft_price_read():
         pass
     return dfs
 
-def nft_price():
+def nft_price(return_type='result_df'):
     dfs = nft_price_read()
     df = pd.concat(dfs, axis=0)
     # drop the first columns
@@ -330,11 +330,17 @@ def nft_price():
     # create a new DataFrame with only the "NFT" and "Average Price" columns
     df = df[['NFT', 'Average Price']]
     
-    return df
+    # Return the result based on the specified 'return_type'
+    if return_type == 'nft_list':
+        # Get the current price for the given item name
+        current_price = df.loc[df['NFT'] == item_name, 'Average Price'].values[0]
+        return current_price
+    else:
+        return df
    
 def nft_buffs(inventory, return_type='result_df'):
 
-    df = nft_price()
+    df = nft_price(return_type) 
     result_df = pd.concat([df], axis=0)
 
     # Check if the items in the 'NFT' column are present in the keys of the 'inventory' dictionary
@@ -2962,7 +2968,7 @@ with tab8:
                 else f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;">{t.strip()}</span>'
                 for t in item["type"]
             ])
-
+            current_price = nft_price(item["name"],return_type='nft_list')
             markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
                 <a href="{}{}" style="display: inline-block" target="_blank">
@@ -2986,7 +2992,7 @@ with tab8:
                 type_badges,
                 item["name"],
                 item["description"][0],
-                item["currentPrice"],
+                current_price,
                 index +1,
                 item["collection"],
             )
