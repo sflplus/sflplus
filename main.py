@@ -179,10 +179,7 @@ queries_emoji = ["💜", "🍆", "🐌"]
 queries_ticket = ["3200", "1200", "500"]
 
 @st.cache_resource(ttl=1800, show_spinner="Updating the NFT Minted") # cache for 30 MIN
-def fetch_owner_count_cached(query_id):
-    return fetch_owner_count(query_id)
-
-def fetch_owner_count(query_id):
+def fetch_owner_count(query_id, live_minted, queries_name, queries_quantity, queries_emoji, queries_ticket):
     dune_api_url = f"https://api.dune.com/api/v1/query/{query_id}/results?api_key={API_KEY_DUNE}"
     response = requests.get(dune_api_url)
     
@@ -1989,7 +1986,7 @@ with tab6:
     # Iterate over the list of queries and retrieve the owner counts
     live_minted.info(f"👨‍🔬 **This info is from Dune**")
     for i, query_id in enumerate(queries):
-        owner_count = fetch_owner_count_cached(query_id)  # Use the cached version of fetch_owner_count()
+        owner_count = fetch_owner_count(query_id)  # Use the cached version of fetch_owner_count()
         query_name = queries_name[i]
         query_quantity = queries_quantity[i]
         query_emoji = queries_emoji[i]
