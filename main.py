@@ -2877,14 +2877,6 @@ with tab8:
                     if any(tag.lower() in type.lower() for type in types):
                         filtered_items.append(item)
                         break
-                else:
-                    # Check similarity between tag and item name
-                    name = item.get("name", "").lower()
-                    for tag in selected_tags:
-                        similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
-                        if similarity_ratio >= 70:  # Adjust the threshold as needed
-                            filtered_items.append(item)
-                            break
 
     # Create the layout grid for the item cards
     colA, colB, colC, colD = tab8.columns([3, 3, 3, 3])
