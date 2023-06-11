@@ -203,7 +203,7 @@ def fetch_top_ten_ids():
         print(f"Failed to fetch top ten IDs. Error: {e}")
         return []
 
-#@st.cache_resource(ttl=780, show_spinner="Updating Top10 lanterns") # cache for 13 min
+@st.cache_resource(ttl=780, show_spinner="Updating Top10 lanterns") # cache for 13 min
 def retrieve_lanterns_data(top_ten_ids):
     # Building payload using the provided IDs
     payload = json.dumps({"ids": top_ten_ids})
