@@ -2752,7 +2752,7 @@ with tab8:
                 "description": ["+20 Digs Amount in Treasure Island (Total 50)"],
                 "currentPrice": 0,
                 "url": "450",
-                "urlImg": "https://i.seadn.io/gcs/files/eeadfc4c1c768af13739b4b3e9943ce8.gif?auto=format&dpr=1&w=384",
+                "urlImg": "https://i.seadn.io/gcs/files/6b4ddc31bbe8e1c21fecfaf383307352.gif?auto=format&dpr=1&w=384",
                 "collection": "Sunflower Land Collectibles",
                 "isSelling": True,
             },
