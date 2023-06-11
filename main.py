@@ -2484,10 +2484,10 @@ with tab8:
     filtered_crops = []
     for crop in crops:
         types = crop.get("type", [])
-
-        # Check if any tag in selected_tags matches any type in types
-        if any(tag.lower() in types for tag in selected_tags):
-            filtered_crops.append(crop)
+        for tag in selected_tags:
+            if any(tag.lower() in type.lower() for type in types):
+                filtered_crops.append(crop)
+                break
 
     st.write(filtered_crops)
 
