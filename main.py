@@ -386,7 +386,7 @@ def wearable_price_read():
         pass
     return dfs
 
-def wearable_price():
+def wearable_price(item_name=None, return_type='result_df'):
     dfs = wearable_price_read()
     df = pd.concat(dfs, axis=0)
     # drop the first columns
@@ -469,10 +469,18 @@ def wearable_price():
     # create a new DataFrame with only the "NFT" and "Average Price" columns
     df = df[['Wearable', 'Average Price']]
     
-    return df
+    # Return the result based on the specified 'return_type'
+    if return_type == 'nft_list':
+        if item_name is not None and item_name in df['NFT'].values:
+            current_price = df.loc[df['NFT'] == item_name, 'Average Price'].values[0]
+            return current_price
+        else:
+            return None
+    else:
+        return df
    
 def wearable_list(equipped_dict, return_type='filtered_df'):
-    df = wearable_price()
+    df = wearable_price(return_type=return_type)
     wearables = list(equipped_dict.values())
 
     filtered_df = df[df['Wearable'].isin(wearables)].copy()
@@ -2969,7 +2977,15 @@ with tab8:
                 else f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;">{t.strip()}</span>'
                 for t in item["type"]
             ])
-            current_price = nft_price(item["name"],return_type='nft_list')
+            
+            if isSelling False:
+                current_price = "Not for Sale"
+            else:
+                if item["collection"] == Sunflower Land Collectibles:
+                    current_price = nft_price(item["name"],return_type='nft_list')
+                else:
+                    current_price = wearable_price(item["name"],return_type='nft_list')
+            
             markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
                 <a href="{}{}" style="display: inline-block" target="_blank">
