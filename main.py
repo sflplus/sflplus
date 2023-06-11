@@ -1868,11 +1868,13 @@ with tab6:
         
     with col_rank2:
         live_update = st.container()        
-        live_lantern = st.expander("🏮 **LANTERNS RANKING**", expanded=True)  
+        live_lantern = st.expander("🏮 **LANTERNS RANKING**", expanded=True) 
+        live_odds = st.expander("🎲 **ODDS OF DIGGING**", expanded=True)
         
     with col_rank3:
         st.info(f"❤️ **Shoutout to Victor Gianvechio for providing the data.** ")
-        live_treasure = st.expander("🐢 **TURTLES RACE**", expanded=True)   
+        live_treasure = st.expander("🐢 **TURTLES RACE**", expanded=True) 
+        live_minted2 = st.expander("⚡ **TURTLES RACE MINTS**", expanded=True)
         
     with col_rank4:               
         live_mush = st.expander("🍄 **WILD MUSHROOM**", expanded=True)      
@@ -1967,7 +1969,7 @@ with tab6:
     #live_mush.markdown("##### 🍄 **WILD MUSHROOM RANKING**") 
     
     # Iterate over the list of queries and retrieve the owner counts
-    live_minted.info(f"**👨‍🔬 This info is from Dune**")
+    live_minted.info(f"👨‍🔬 **This info is from Dune**")
     for i, query_id in enumerate(queries):
         owner_count = fetch_owner_count(query_id)
         query_name = queries_name[i]
@@ -1975,6 +1977,21 @@ with tab6:
         query_emoji = queries_emoji[i]
         query_ticket = queries_ticket[i] 
         live_minted.write(f"- {query_emoji} **{query_name}: [{owner_count}/{query_quantity}]** - 🎟️ **{query_ticket}**")
+
+    # Iterate over the list of queries and retrieve the owner counts
+    live_odds.info(f"🔵 **With Sand Shovel**")
+    live_odds.write(f"- 🍾 **Old Bottle** are **5.19% (roughly 1 in 19)**")
+    live_odds.write(f"- 🌿 **Seaweed** are **2.60% (roughly 1 in 38)**")
+    live_odds.write(f"- 🧭 **Iron Compasss** are **0.52% (roughly 1 in 192)**")
+    live_odds.info(f"🟤 **With Sand Drill**")
+    live_odds.write(f"- 🍾🌿 You **CAN'T dig a Old Bottle using Sand Drills**, since they guarantee uncommon or rare treasures.")
+    live_odds.write(f"- 🧭 **Iron Compasss** are **9.50% (roughly 1 in 10**)")
+    live_odds.markdown(f"🟤 *Note: This data was calculated using the weight numbers in the [Treasure Island Docs](https://docs.sunflower-land.com/player-guides/islands/treasure-island) - 06/06/2023*")
+
+        
+    live_minted2.info(f"📜 **Requirements to Mint**")
+    live_minted2.write(f"- 🐢 Emerald Turtle [0/100]: 🍾 80 Old Bottles, 🌿 50 Seaweed, 🧭 30 Iron Compass and 💰 100 SFL")
+    live_minted2.write(f"- 🥫 Tin Turtle [0/3000]: 🍾 50 Old Bottles, 🌿 25 Seaweed, 🧭 15 Iron Compass and 💰 40 SFL")
     
 url_rank1 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking'
 #url_rank2 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking' 
