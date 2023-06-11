@@ -2969,78 +2969,79 @@ with tab8:
 
         return tags_dict
 
-    def display_nft_cards(nft_list):
-        index = 0  # Initialize index outside the loop
+def display_nft_cards(nft_list):
+    index = 0  # Initialize index outside the loop
 
-        for item in nft_list:
-            # Generate type badges with colors
-            type_badges = " ".join([
-                f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
-                if ":" in t
-                else f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;">{t.strip()}</span>'
-                for t in item["type"]
-            ])
-            
+    sorted_nft_list = sorted(nft_list, key=lambda item: item["current_price_html"])
 
-            if item["collection"] == "Sunflower Land Collectibles":
-                current_price = nft_price(item["name"], return_type='nft_list')
-                current_price_html = f'💰 Avg Price: ${current_price}'
+    for item in sorted_nft_list:
+        # Generate type badges with colors
+        type_badges = " ".join([
+            f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
+            if ":" in t
+            else f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;">{t.strip()}</span>'
+            for t in item["type"]
+        ])
+
+        if item["collection"] == "Sunflower Land Collectibles":
+            current_price = nft_price(item["name"], return_type='nft_list')
+            current_price_html = f'💰 Avg Price: ${current_price}'
+        else:
+            current_price = wearable_price(item["name"], return_type='nft_list')
+            current_price_html = f'💰 Last Sale: ${current_price}'
+
+        if current_price is None:
+            if item["isSelling"] is False:
+                current_price_html = '❌ Not For Sale'
             else:
-                current_price = wearable_price(item["name"], return_type='nft_list')
-                current_price_html = f'💰 Last Sale: ${current_price}'
+                current_price_html = '❌ Still Not Tradable'
 
-            if current_price is None:
-                if item["isSelling"] is False:
-                    current_price_html = '❌ Not For Sale'
-                else:
-                    current_price_html = '❌ Still Not Tradable'
-            
-            info_alert = item.get("info")
-            if info_alert is None:
-                info_alert_html = f"&nbsp;"
-            else:
-                info_alert_html = f'<span class="card-text" style="color:#ffc107;">🚨 <b>{info_alert}</b></span>'
+        info_alert = item.get("info")
+        if info_alert is None:
+            info_alert_html = f"&nbsp;"
+        else:
+            info_alert_html = f'<span class="card-text" style="color:#ffc107;">🚨 <b>{info_alert}</b></span>'
 
-            markdown_content = """
-            <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">            
-                <a href="{}{}" style="display: inline-block" target="_blank">
-                    <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
-                <button type="button" class="position-absolute top-0 start-0 mt-2 ml-2 btn btn-sm btn-secondary d-none d-md-block" style="width: 3rem; height:2.2rem;opacity:0.75;"><h6><b>#{}</b></h6></button>
-                <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
-                    {}
-                </div>                 
-                <div class="card-body" style="min-height:8rem">
-                    <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
-                    <span class="card-text">📖 <b>Description: </b>{}</span></span>
-                    {}
-                </div>
-                <div class="card-footer">
-                    <span class="card-text"><b>{}</b></span>                     
-                </div>
+        markdown_content = """
+        <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">            
+            <a href="{}{}" style="display: inline-block" target="_blank">
+                <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
+            <button type="button" class="position-absolute top-0 start-0 mt-2 ml-2 btn btn-sm btn-secondary d-none d-md-block" style="width: 3rem; height:2.2rem;opacity:0.75;"><h6><b>#{}</b></h6></button>
+            <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
+                {}
+            </div>                 
+            <div class="card-body" style="min-height:8rem">
+                <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
+                <span class="card-text">📖 <b>Description: </b>{}</span></span>
+                {}
             </div>
-            """.format(
-                opensea_url_base,
-                item["url"],
-                item["urlImg"],
-                index +1,
-                type_badges,
-                item["name"],
-                item["description"][0],
-                info_alert_html,
-                current_price_html,
-                item["collection"],
-            )
+            <div class="card-footer">
+                <span class="card-text"><b>{}</b></span>                     
+            </div>
+        </div>
+        """.format(
+            opensea_url_base,
+            item["url"],
+            item["urlImg"],
+            index + 1,
+            type_badges,
+            item["name"],
+            item["description"][0],
+            info_alert_html,
+            current_price_html,
+            item["collection"],
+        )
 
-            if index % 4 == 0:
-                column1.markdown(markdown_content, unsafe_allow_html=True)
-            elif index % 4 == 1:
-                column2.markdown(markdown_content, unsafe_allow_html=True)
-            elif index % 4 == 2:
-                column3.markdown(markdown_content, unsafe_allow_html=True)
-            else:
-                column4.markdown(markdown_content, unsafe_allow_html=True)
+        if index % 4 == 0:
+            column1.markdown(markdown_content, unsafe_allow_html=True)
+        elif index % 4 == 1:
+            column2.markdown(markdown_content, unsafe_allow_html=True)
+        elif index % 4 == 2:
+            column3.markdown(markdown_content, unsafe_allow_html=True)
+        else:
+            column4.markdown(markdown_content, unsafe_allow_html=True)
 
-            index += 1  # Increment index inside the loop
+        index += 1  # Increment index inside the loop
     
     col_nft, buff_nft = st.columns([2,2])
     with col_nft:        
