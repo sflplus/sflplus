@@ -1995,9 +1995,9 @@ with tab6:
 
     # Iterate over the list of queries and retrieve the owner counts
     live_odds.info(f"📝 *Note: This data was calculated using the weight numbers in the Treasure Island Docs 06/06/2023 and the 1 in X are approximations.*")
-    live_odds.write(f"- 🍾 Old Bottle: **5.19%** (1 in 19 with Shovel)")
-    live_odds.write(f"- 🌿 Seaweed: **2.60%** (1 in 38 with Shovel)")
-    live_odds.write(f"- 🧭 Iron Compasss: **0.52%** (1 in 192 with Shovel)")
+    live_odds.write(f"- 🍾 Old Bottle: **5.19%** (1 in 19 with Shovels)")
+    live_odds.write(f"- 🌿 Seaweed: **2.60%** (1 in 38 with Shovels)")
+    live_odds.write(f"- 🧭 Iron Compasss: **0.52%** (1 in 192 with Shovels)")
     live_odds.write(f"- 🍾🌿 You **CAN'T** dig a Old Bottle/Seaweed with Drills")
     live_odds.write(f"- 🧭 Iron Compasss: **9.50%** (1 in 10 with Drills)")
 
