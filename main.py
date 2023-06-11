@@ -2981,16 +2981,16 @@ with tab8:
 
             if item["collection"] == "Sunflower Land Collectibles":
                 current_price = nft_price(item["name"], return_type='nft_list')
-                current_price_html = f'<span class="card-text"><b>💰 Avg Price: ${current_price}</b></span><div class="position-relative bottom-0 end-0 float-end">#{}</div>  '
+                current_price_html = f'💰 Avg Price: ${current_price}'
             else:
                 current_price = wearable_price(item["name"], return_type='nft_list')
-                current_price_html = f'<span class="card-text"><b>💰 Last Sale: ${current_price}</b></span><div class="position-relative bottom-0 end-0 float-end">#{}</div>  '
+                current_price_html = f'💰 Last Sale: ${current_price}'
 
             if current_price is None:
                 if item["isSelling"] is False:
-                    current_price_html = '<span class="card-text"><b>❌ Not For Sale</b></span><div class="position-relative bottom-0 end-0 float-end">#{}</div>  '
+                    current_price_html = '❌ Not For Sale'
                 else:
-                    current_price_html = '<span class="card-text"><b>❌ Still Not Tradable</b></span><div class="position-relative bottom-0 end-0 float-end">#{}</div>  '
+                    current_price_html = '❌ Still Not Tradable'
             
             markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
@@ -3004,7 +3004,8 @@ with tab8:
                     <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
                 </div>
                 <div class="card-footer">
-                    {}                                  
+                    <span class="card-text"><b>{}</b></span>   
+                    <div class="position-relative bottom-0 end-0 float-end">#{}</div>  
                 </div>
             </div>
             """.format(
