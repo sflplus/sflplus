@@ -2311,7 +2311,7 @@ with tab8:
                 "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c"],
                 "description": ["+0.25 Cabbage Yield (+0.40 with Cabbage Girl)"],
                 "combos": [{"name": "Cabbage Girl", "effect": "+0.15 cabbage", "buffs": True}],
-                "alerts": ["Karkinos has no effect with Cabbage Boy"],
+                "info": ["Karkinos has no effect with Cabbage Boy"],
                 "currentPrice": 0,
                 "url": "434",
                 "urlImg": "https://i.seadn.io/gcs/files/584ee361c4adf52ffc6264b057fe3639.png?auto=format&dpr=1&w=384",
@@ -2393,7 +2393,7 @@ with tab8:
                 "name": "Karkinos",
                 "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c"],
                 "description": ["+0.1 Cabbage Yield"],
-                "alerts": ["Karkinos has no effect with Cabbage Boy"],
+                "info": ["Karkinos has no effect with Cabbage Boy"],
                 "currentPrice": 0,
                 "url": "455",
                 "urlImg": "https://i.seadn.io/gcs/files/a2b12106880045dedf1bebcbf642a0f4.png?auto=format&w=384",
@@ -2444,6 +2444,7 @@ with tab8:
                 "name": "Nancy",
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
                 "description": ["+15% Crops Grow Speed"],
+                "info": ["Nancy has no effect with Scarecrow and Kuebiko"],
                 "currentPrice": 0,
                 "url": "420",
                 "urlImg": "https://i.seadn.io/gcs/files/359e6d7eddd907318e1a9acfae922c80.png?auto=format&dpr=1&w=384",
@@ -2454,6 +2455,7 @@ with tab8:
                 "name": "Scarecrow",
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
                 "description": ["+15% Crops Grow Speed | +20% Crop Yield"],
+                "info": ["Nancy has no effect with Scarecrow"],
                 "currentPrice": 0,
                 "url": "404",
                 "urlImg": "https://i.seadn.io/gcs/files/5e507ea7b873600fbd7c94f25ebfdc4a.png?auto=format&dpr=1&w=384",
@@ -2464,6 +2466,7 @@ with tab8:
                 "name": "Kuebiko",
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
                 "description": ["+15% Crops Grow Speed | +20% Crop Yield | Seeds are Free"],
+                "info": ["Nancy and Scarecrow have no effect with Kuebiko"],
                 "currentPrice": 0,
                 "url": "421",
                 "urlImg": "https://i.seadn.io/gcs/files/50f0a2d783ddd177ab7fb616703b9107.gif?auto=format&dpr=1&w=384",
@@ -2636,6 +2639,7 @@ with tab8:
                 "name": "Woody the Beaver",
                 "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400"],
                 "description": ["+20% Increase Wood Drops"],
+                "info": ["Woody has no effect with Apprentice and Foreman"],
                 "currentPrice": 0,
                 "url": "415",
                 "urlImg": "https://i.seadn.io/gcs/files/8ec73be04115ac40bd984bc7542828da.gif?auto=format&dpr=1&w=384",
@@ -2646,6 +2650,7 @@ with tab8:
                 "name": "Apprentice Beaver",
                 "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400", "⌛ Time: #dc3545"],
                 "description": ["+20% Increase Wood Drops | -50% Tree Recovery Time"],
+                "info": ["Woody has no effect with Apprentice"],
                 "currentPrice": 0,
                 "url": "416",
                 "urlImg": "https://i.seadn.io/gcs/files/5101c63b5fc2afd06fe89838c31e902f.gif?auto=format&dpr=1&w=384",
@@ -2656,6 +2661,7 @@ with tab8:
                 "name": "Foreman Beaver",
                 "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400", "⌛ Time: #dc3545"],
                 "description": ["+20% Increase Wood Drops | -50% Tree Recovery Time | Chop Trees without Axes"],
+                "info": ["Woody and Apprentice have no effect with with Foreman"],                              
                 "currentPrice": 0,
                 "url": "417",
                 "urlImg": "https://i.seadn.io/gcs/files/6784705d2180eaa375b4f4e5f85da2fb.gif?auto=format&dpr=1&w=384",
@@ -2991,7 +2997,13 @@ with tab8:
                     current_price_html = '❌ Not For Sale'
                 else:
                     current_price_html = '❌ Still Not Tradable'
-            #<div class="position-relative bottom-0 end-0 float-end">#{}</div>
+            
+            if item["info"] is None:
+                info_alert_html = None
+            else:
+                info_alert = item["info"]
+                info_alert_html = f'<span class="alert alert-warning" role="alert">🚨 <b>Note: </b>{info_alert}</span></span>'
+
             markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">            
                 <a href="{}{}" style="display: inline-block" target="_blank">
@@ -3016,6 +3028,7 @@ with tab8:
                 type_badges,
                 item["name"],
                 item["description"][0],
+                info_alert_html,
                 current_price_html,
                 item["collection"],
             )
