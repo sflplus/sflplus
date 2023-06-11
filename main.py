@@ -2603,51 +2603,51 @@ with tab8:
             else:
                 column4.markdown(markdown_content, unsafe_allow_html=True)
 
-     keywords = st_tags(
-        label='🔻 **SEARCH FOR TAGS:** 🔻',
-        text='Press enter to add more',
-        value=['Crop', 'Potato'],
-        suggestions=['crop', 'potato', 'cabbage'],
-        maxtags=4,
-        key="tags"
-    )
-    # st.write((keywords))
+         keywords = st_tags(
+            label='🔻 **SEARCH FOR TAGS:** 🔻',
+            text='Press enter to add more',
+            value=['Crop', 'Potato'],
+            suggestions=['crop', 'potato', 'cabbage'],
+            maxtags=4,
+            key="tags"
+        )
+        # st.write((keywords))
 
-    # Create a dictionary for the tags using the tag name as the key
-    tags_dict = populate_tags_dict(crops + resources)
+        # Create a dictionary for the tags using the tag name as the key
+        tags_dict = populate_tags_dict(crops + resources)
 
-    selected_tags = set(tag.lower() for tag in keywords)  # Convert selected_tags to lowercase
+        selected_tags = set(tag.lower() for tag in keywords)  # Convert selected_tags to lowercase
 
-    # Filter items based on selected tags
-    filtered_items = []
-    if not selected_tags:  # If no tags are selected, display all items
-        filtered_items = crops + resources
-    else:
-        for item in crops + resources:
-            types = item.get("type", [])
-            for tag in selected_tags:
-                if any(tag.lower() in type.lower() for type in types):
-                    filtered_items.append(item)
-                    break
-            else:
-                # Check similarity between tag and item name
-                name = item.get("name", "").lower()
+        # Filter items based on selected tags
+        filtered_items = []
+        if not selected_tags:  # If no tags are selected, display all items
+            filtered_items = crops + resources
+        else:
+            for item in crops + resources:
+                types = item.get("type", [])
                 for tag in selected_tags:
-                    similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
-                    if similarity_ratio >= 70:  # Adjust the threshold as needed
+                    if any(tag.lower() in type.lower() for type in types):
                         filtered_items.append(item)
                         break
+                else:
+                    # Check similarity between tag and item name
+                    name = item.get("name", "").lower()
+                    for tag in selected_tags:
+                        similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
+                        if similarity_ratio >= 70:  # Adjust the threshold as needed
+                            filtered_items.append(item)
+                            break
 
-    # Create the layout grid for the item cards
-    colA, colB, colC, colD = tab8.columns([3, 3, 3, 3])
-    with colA:
-        column1 = st.container()
-    with colB:
-        column2 = st.container()
-    with colC:
-        column3 = st.container()
-    with colD:
-        column4 = st.container()
+        # Create the layout grid for the item cards
+        colA, colB, colC, colD = tab8.columns([3, 3, 3, 3])
+        with colA:
+            column1 = st.container()
+        with colB:
+            column2 = st.container()
+        with colC:
+            column3 = st.container()
+        with colD:
+            column4 = st.container()
 
-    # Call the function with filtered_items
-    display_crop_cards(filtered_items)
+        # Call the function with filtered_items
+        display_crop_cards(filtered_items)
