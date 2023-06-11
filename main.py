@@ -2978,13 +2978,16 @@ with tab8:
                 for t in item["type"]
             ])
             
-            if item["isSelling"] False:
+            if item["isSelling"] is False:
                 current_price = "Not for Sale"
             else:
-                if item["collection"] == Sunflower Land Collectibles:
-                    current_price = nft_price(item["name"],return_type='nft_list')
+                if item["collection"] == "Sunflower Land Collectibles":
+                    current_price = nft_price(item["name"], return_type='nft_list')
                 else:
-                    current_price = wearable_price(item["name"],return_type='nft_list')
+                    current_price = wearable_price(item["name"], return_type='nft_list')
+
+            if current_price is None:
+                current_price = "Price not available"
             
             markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
