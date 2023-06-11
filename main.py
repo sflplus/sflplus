@@ -1979,17 +1979,20 @@ with tab6:
         live_minted.write(f"- {query_emoji} **{query_name}: [{owner_count}/{query_quantity}]** - 🎟️ **{query_ticket}**")
 
     # Iterate over the list of queries and retrieve the owner counts
-    live_odds.write(f"- 🍾 Old Bottle: **5.19% (roughly 1 in 19 with Sand Shovel)**")
-    live_odds.write(f"- 🌿 Seaweed: **2.60% (roughly 1 in 38 with Sand Shovel)**")
-    live_odds.write(f"- 🧭 Iron Compasss: **0.52% (roughly 1 in 192 with Sand Shovel)**")
+    live_odds.write(f"- 🍾 Old Bottle: **5.19%** (roughly 1 in 19 with Sand Shovel)")
+    live_odds.write(f"- 🌿 Seaweed: **2.60%** (roughly 1 in 38 with Sand Shovel)")
+    live_odds.write(f"- 🧭 Iron Compasss: **0.52%** (roughly 1 in 192 with Sand Shovel)")
     live_odds.write(f"- 🍾🌿 You **CAN'T** dig a Old Bottle/Seaweed with Sand Drills")
-    live_odds.write(f"- 🧭 Iron Compasss: **9.50% (roughly 1 in 10** with Sand Drills)")
+    live_odds.write(f"- 🧭 Iron Compasss: **9.50%** (roughly 1 in 10 with Sand Drills)")
     live_odds.info(f"🟤 *Note: This data was calculated using the weight numbers in the Treasure Island Docs - 06/06/2023*")
 
         
-    live_minted2.info(f"📜 **Requirements to Mint**")
-    live_minted2.write(f"- 🐢 **Emerald Turtle [0/100]:** 🍾 80 Old Bottles, 🌿 50 Seaweed, 🧭 30 Iron Compass and 💰 100 SFL")
-    live_minted2.write(f"- 🥫 **Tin Turtle [0/3000]:** 🍾 50 Old Bottles, 🌿 25 Seaweed, 🧭 15 Iron Compass and 💰 40 SFL")
+    live_minted2.info(f" 🐢 **Emerald Turtle [0/100]**")
+    live_minted2.write(f"- 🍾 **80** Old Bottles, 🌿 **50** Seaweed")
+    live_minted2.write(f"- 🧭 **30** Iron Compass and 💰 **100** SFL")
+    live_minted2.info(f" 🥫 **Tin Turtle [0/3000]**")
+    live_minted2.write(f"- 🍾 **50** Old Bottles, 🌿 **25** Seaweed")
+    live_minted2.write(f"- 🧭 **15** Iron Compass and 💰 **40** SFL")
     
 url_rank1 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking'
 #url_rank2 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking' 
