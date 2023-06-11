@@ -2434,6 +2434,129 @@ with tab8:
             "isSelling": True,
         },
     ]
+    resources = [
+        {
+            "name": "Tiki Totem",
+            "type": ["⚒️ Resource: #343a40", "🌲 Wood: #9e6400"],
+            "description": ["+0.1 Wood"],
+            "currentPrice": 0,
+            "url": "447",
+            "urlImg": "https://i.seadn.io/gcs/files/98850f52a5b332a61fec3513117596af.png?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
+        {
+            "name": "Wood Nymph Wendy",
+            "type": ["⚒️ Resource: #343a40", "🌲 Wood: #9e6400"],
+            "description": ["20% Wood Drop"],
+            "currentPrice": 0,
+            "url": "436",
+            "urlImg": "https://i.seadn.io/gcs/files/46bc4e07fbe6172e0be04836ec370e3a.png?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
+        {
+            "name": "Rock Golem",
+            "type": ["⚒️ Resource: #343a40", "🌲 Wood: #9e6400"],
+            "description": ["10% to get 3x stone"],
+            "currentPrice": 0,
+            "url": "427",
+            "urlImg": "https://i.seadn.io/gcs/files/b973bd890a88f216477829e484e9d2d2.gif?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
+        {
+            "name": "Iron Idol",
+            "type": ["⚒️ Resource: #343a40", "🌲 Wood: #9e6400"],
+            "description": ["+1 iron"],
+            "currentPrice": 0,
+            "url": "454",
+            "urlImg": "https://i.seadn.io/gcs/files/cc4bedce9673c21f78d1a635c025f07a.png?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
+        {
+            "name": "Woody the Beaver",
+            "type": ["⚒️ Resource: #343a40", "🌲 Wood: #9e6400"],
+            "description": ["+20% wood"],
+            "currentPrice": 0,
+            "url": "415",
+            "urlImg": "https://i.seadn.io/gcs/files/a2ec46780fef483cb4f5ecb10f9ba532.gif?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
+        {
+            "name": "Apprentice Beaver",
+            "type": ["⚒️ Resource: #343a40", "🌲 Wood: #9e6400"],
+            "description": ["+20% wood", "-50% tree recovery time"],
+            "currentPrice": 0,
+            "url": "416",
+            "urlImg": "https://i.seadn.io/gcs/files/e6cab0fafdb214f7adf0da6b12a856a7.gif?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
+        {
+            "name": "Foreman Beaver",
+            "type": ["⚒️ Resource: #343a40", "🌲 Wood: #9e6400"],
+            "description": ["+20% wood", "-50% tree recovery time", "cut trees without axe"],
+            "currentPrice": 0,
+            "url": "417",
+            "urlImg": "https://i.seadn.io/gcs/files/70f6c4e86553901297e4190b1a3b22f0.gif?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
+        {
+            "name": "Tunnel Mole",
+            "type": ["⚒️ Resource: #343a40", "🌲 Wood: #9e6400"],
+            "description": ["+25% stone"],
+            "currentPrice": 0,
+            "url": "428",
+            "urlImg": "https://i.seadn.io/gcs/files/c343b23545122aacc48abc95a1058e87.gif?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
+        {
+            "name": "Rocky the Mole",
+            "type": ["⚒️ Resource: #343a40", "🌲 Wood: #9e6400"],
+            "description": ["+25% iron"],
+            "currentPrice": 0,
+            "url": "429",
+            "urlImg": "https://i.seadn.io/gcs/files/66016e65cfeaf23b1418f56aedb7d25b.gif?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
+        {
+            "name": "Nugget",
+            "type": ["⚒️ Resource: #343a40", "🌲 Wood: #9e6400"],
+            "description": ["+25% gold"],
+            "currentPrice": 0,
+            "url": "430",
+            "urlImg": "https://i.seadn.io/gcs/files/0d42db9656d796cde7f85a3e4fb84f06.gif?auto=format&w=384",
+            "collection": "Sunflower Land Collectibles",
+            "isSelling": True,
+        },
+    ]
+
+    def populate_tags_dict(data):
+        tags_dict = {}
+
+        for item in data:
+            types = item.get("type", [])  # Get the type list for the item
+
+            for type_str in types:
+                type_name = (
+                    type_str.split(":")[0].strip()
+                    if ":" in type_str
+                    else type_str.strip()
+                )  # Extract the type name
+
+                # Add the type name to the tags_dict
+                if type_name not in tags_dict:
+                    tags_dict[type_name] = []
+
+                tags_dict[type_name].append(item["name"])
+
+        return tags_dict
 
     def display_crop_cards(crops):
         for index, crop in enumerate(crops):
@@ -2480,60 +2603,51 @@ with tab8:
             else:
                 column4.markdown(markdown_content, unsafe_allow_html=True)
 
-    keywords = st_tags(
-        label= ' 🔻 **SEARCH FOR TAGS:** 🔻',
+     keywords = st_tags(
+        label='🔻 **SEARCH FOR TAGS:** 🔻',
         text='Press enter to add more',
         value=['Crop', 'Potato'],
         suggestions=['crop', 'potato', 'cabbage'],
-        maxtags= 4,
-        key="tags")
-    #st.write((keywords))
-        
+        maxtags=4,
+        key="tags"
+    )
+    # st.write((keywords))
+
     # Create a dictionary for the tags using the tag name as the key
-    tags_dict = {}
-
-    for crop in crops:
-        types = crop.get("type", [])  # Get the type list for the crop
-
-        for type_str in types:
-            type_name = type_str.split(":")[0].strip() if ":" in type_str else type_str.strip()  # Extract the type name
-
-            # Add the type name to the tags_dict
-            if type_name not in tags_dict:
-                tags_dict[type_name] = []
-
-            tags_dict[type_name].append(crop["name"])
+    tags_dict = populate_tags_dict(crops + resources)
 
     selected_tags = set(tag.lower() for tag in keywords)  # Convert selected_tags to lowercase
 
-    filtered_crops = []
-    if not selected_tags:  # If no tags are selected, display all crops
-        filtered_crops = crops
+    # Filter items based on selected tags
+    filtered_items = []
+    if not selected_tags:  # If no tags are selected, display all items
+        filtered_items = crops + resources
     else:
-        for crop in crops:
-            types = crop.get("type", [])
+        for item in crops + resources:
+            types = item.get("type", [])
             for tag in selected_tags:
                 if any(tag.lower() in type.lower() for type in types):
-                    filtered_crops.append(crop)
+                    filtered_items.append(item)
                     break
             else:
-                # Check similarity between tag and crop name
-                name = crop.get("name", "").lower()
+                # Check similarity between tag and item name
+                name = item.get("name", "").lower()
                 for tag in selected_tags:
                     similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
                     if similarity_ratio >= 70:  # Adjust the threshold as needed
-                        filtered_crops.append(crop)
+                        filtered_items.append(item)
                         break
-    # Create the layout grid for the crop cards
-    colA, colB, colC, colD = tab8.columns([3,3,3,3])
+
+    # Create the layout grid for the item cards
+    colA, colB, colC, colD = tab8.columns([3, 3, 3, 3])
     with colA:
         column1 = st.container()
     with colB:
-        column2 = st.container()               
+        column2 = st.container()
     with colC:
-        column3 = st.container()    
+        column3 = st.container()
     with colD:
         column4 = st.container()
 
-    # Call the function with filtered_crops
-    display_crop_cards(filtered_crops)
+    # Call the function with filtered_items
+    display_crop_cards(filtered_items)
