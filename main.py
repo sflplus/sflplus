@@ -180,7 +180,7 @@ queries_quantity = ["350", "2500", "10000"]
 queries_emoji = ["💜", "🍆", "🐌"]
 queries_ticket = ["3200", "1200", "500"]
 
-#@st.cache_resource(ttl=1800, show_spinner="Updating the NFT Minted") # cache for 30 MIN
+@st.cache_resource(ttl=1800, show_spinner="Updating the NFT Minted") # cache for 30 MIN
 def fetch_owner_count(query_id):
     dune_api_url = f"https://api.dune.com/api/v1/query/{query_id}/results?api_key={API_KEY_DUNE}"
     response = requests.get(dune_api_url)
@@ -240,6 +240,7 @@ def nft_price_read():
         pass
     return dfs
 
+@st.cache_resource(ttl=300, show_spinner="Updating the Wearables Prices")
 def nft_price(item_name=None, return_type='result_df'):
     dfs = nft_price_read()
     df = pd.concat(dfs, axis=0)
@@ -386,6 +387,7 @@ def wearable_price_read():
         pass
     return dfs
 
+@st.cache_resource(ttl=300, show_spinner="Updating the Wearables Prices")
 def wearable_price(item_name=None, return_type='result_df'):
     dfs = wearable_price_read()
     df = pd.concat(dfs, axis=0)
