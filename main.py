@@ -2661,7 +2661,7 @@ with tab8:
                 "isSelling": True,
             },
         ],
-        "fruits": [🍒
+        "fruits": [
             {
                 "name": "Lady Bug",
                 "type": ["🍒 Fruit: #bbff6d", "🍎 Apple: #e80000"],
