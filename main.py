@@ -2978,7 +2978,7 @@ with tab8:
                 for t in item["type"]
             ])
             
-            if isSelling False:
+            if item["isSelling"] False:
                 current_price = "Not for Sale"
             else:
                 if item["collection"] == Sunflower Land Collectibles:
