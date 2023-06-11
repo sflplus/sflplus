@@ -2855,7 +2855,7 @@ with tab8:
         label='🔻 **SEARCH FOR TAGS:** 🔻',
         text='Press enter to add more',
         value=['Crop', 'Potato'],
-        suggestions=['crop', 'potato', 'cabbage'],
+        suggestions=['Crop', 'potato', 'cabbage'],
         maxtags=4,
         key="tags"
     )
@@ -2900,3 +2900,14 @@ with tab8:
 
     # Call the function with filtered_items
     display_nft_cards(filtered_items)
+    type_words = []
+
+    for item in nft_list:
+        for t in item["type"]:
+            if ":" in t:
+                word = t.split(":")[0].strip()
+                type_words.append(word)
+
+    # Remove duplicates and sort the list
+    type_words = sorted(list(set(type_words)))
+    st.write(type_words)
