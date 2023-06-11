@@ -3004,7 +3004,7 @@ with tab8:
                     <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
                 </div>
                 <div class="card-footer">
-                    <span class="card-text"><b>{}</b></span>   
+                    <span class="card-text"><b>{} &nbsp;</b></span>   
                     <div class="position-relative bottom-0 end-0 float-end">#{}</div>  
                 </div>
             </div>
