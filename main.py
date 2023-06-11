@@ -2258,7 +2258,7 @@ with tab7:
                     status_ok2.error("Invalid response or error occurred.") 
 with tab8:
     opensea_url_base = 'https://opensea.io/assets/matic/0x22d5f9b75c524fec1d6619787e582644cd4d7422/'
-    opensea_url_bump = 'https://opensea.io/assets/matic/0x22d5f9b75c524fec1d6619787e582644cd4d7422/'
+    opensea_url_bump = 'https://opensea.io/assets/matic/0x4bb5b2461e9ef782152c3a96698b2a4cf55b6162/'
     nft_list = {
         "crops": [
             {
@@ -2302,7 +2302,57 @@ with tab8:
                 "urlImg": "https://i.seadn.io/gcs/files/f08eb724b62fed23fa962031e194e496.gif?auto=format&dpr=1&w=384",
                 "collection": "Sunflower Land Collectibles",
                 "isSelling": True,
-            },        
+            },
+             {
+                "name": "Carrot Amulet",
+                "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🥕 Carrot: #ffc32d", "⌛ Time: #dc3545"],
+                "description": ["+20% Carrot Grow Speed"]
+                "currentPrice": 0,
+                "url": "28",
+                "urlImg": "https://i.seadn.io/gcs/files/cbf74b26df2f03e2faf5bb39c15edb9d.png?auto=format&dpr=1&w=384",
+                "collection": "Bumpkin",
+                "isSelling": True,
+            },
+            {
+                "name": "Sunflower Amulet",
+                "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🌻 Sunflower: #ffc107"],
+                "description": ["+10% Sunflower Yield"]
+                "currentPrice": 0,
+                "url": "27",
+                "urlImg": "https://i.seadn.io/gcs/files/f38c9c14b77c846acaeddfb6ba34f485.png?auto=format&dpr=1&w=384",
+                "collection": "Bumpkin",
+                "isSelling": True,
+            },  
+            {
+                "name": "Beetroot Amulet",
+                "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "💜 Beetroot: #6610f2"],
+                "description": ["+20% Beetroot Yield"]
+                "currentPrice": 0,
+                "url": "29",
+                "urlImg": "https://i.seadn.io/gcs/files/7e1a158e384cfd723076e9210ad638b4.png?auto=format&dpr=1&w=384",
+                "collection": "Bumpkin",
+                "isSelling": True,
+            }, 
+            {
+                "name": "Green Amulet",
+                "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🎲 Chance: #007bff"],
+                "description": ["10% Chance of 10x Crops Yield"]
+                "currentPrice": 0,
+                "url": "30",
+                "urlImg": "https://i.seadn.io/gcs/files/990e5aed14b88d868e42ec7b437bd450.png?auto=format&dpr=1&w=384",
+                "collection": "Bumpkin",
+                "isSelling": True,
+            }, 
+            {
+                "name": "Sunflower Shield",
+                "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🌻 Sunflower: #ffc107"],
+                "description": ["Free Sunflower Seeds"]
+                "currentPrice": 0,
+                "url": "31",
+                "urlImg": "https://i.seadn.io/gcs/files/86dfc0cbc0d928526112529871a80643.png?auto=format&dpr=1&w=384",
+                "collection": "Bumpkin",
+                "isSelling": True,
+            },              
             {
                 "name": "Victoria Sisters",
                 "type": ["🌱 Crop: #28a745", "🎃 Pumpkin: #fd7e14"],
@@ -2326,7 +2376,7 @@ with tab8:
             {
                 "name": "Obie",
                 "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1", "⌛ Time: #dc3545"],
-                "description": ["-25% Eggplant Grow Time"],
+                "description": ["+25% Eggplant Grow Speed"],
                 "currentPrice": 0,
                 "url": "458",
                 "urlImg": "https://i.seadn.io/gcs/files/d5a907b4f308788b3e1ef0dfa63ece74.png?auto=format&dpr=1&w=384",
@@ -2342,11 +2392,21 @@ with tab8:
                 "urlImg": "https://i.seadn.io/gcs/files/0fc9d7e55c80b72b1c252b88dc18b957.png?auto=format&dpr=1&w=384",
                 "collection": "Sunflower Land Collectibles",
                 "isSelling": False,
-            },         
+            },   
+            {
+                "name": "Eggplant Onesie",
+                "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1"],
+                "description": ["+20% Parsnip Yield"]
+                "currentPrice": 0,
+                "url": "124",
+                "urlImg": "https://i.seadn.io/gcs/files/fd74bc39605ed34dfb3d40fe5fd5681e.png?auto=format&dpr=1&w=384",
+                "collection": "Bumpkin",
+                "isSelling": True,
+            },                 
             {
                 "name": "Cabbage Girl",
                 "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c", "⌛ Time: #dc3545"],
-                "description": ["-50% Cabbage Grow Time"],
+                "description": ["+50% Cabbage Grow Speed"],
                 "combos": [{"name": "Cabbage Boy", "effect": "+0.15 cabbage"}],
                 "currentPrice": 0,
                 "url": "435",
@@ -2367,14 +2427,24 @@ with tab8:
             },
             {
                 "name": "Mysterious Parsnip",
-                "type": ["🌱 Crop: #28a745", "💛 Parsnip: #ffc107", "⌛ Time: #dc3545"],
-                "description": ["-50% Parsnip Grow Time"],
+                "type": ["🌱 Crop: #28a745", "🤎 Parsnip: #c4914a", "⌛ Time: #dc3545"],
+                "description": ["+50% Parsnip Grow Speed"],
                 "currentPrice": 0,
                 "url": "418",
                 "urlImg": "https://i.seadn.io/gcs/files/a3807b9481c9549ab4c8b037f336cc48.png?auto=format&dpr=1&w=384",
                 "collection": "Sunflower Land Collectibles",
                 "isSelling": True,
             },
+            {
+                "name": "Parsnip",
+                "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🤎 Parsnip: #c4914a"],
+                "description": ["+20% Parsnip Yield"]
+                "currentPrice": 0,
+                "url": "59",
+                "urlImg": "https://i.seadn.io/gcs/files/dd7d9ab5e04626e1fabc9ecaf7387871.png?auto=format&dpr=1&w=384",
+                "collection": "Bumpkin",
+                "isSelling": True,
+            },              
             {
                 "name": "Golden Cauliflower",
                 "type": ["🌱 Crop: #28a745", "🤍 Cauliflower: #20c997"],
@@ -2398,7 +2468,7 @@ with tab8:
             {
                 "name": "Lunar Calendar",
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
-                "description": ["-10% Crops Grow Time"],
+                "description": ["+10% Crops Grow Speed"],
                 "currentPrice": 0,
                 "url": "448",
                 "urlImg": "https://i.seadn.io/gcs/files/b34ac337570367c010db967d594acd9d.png?auto=format&dpr=1&w=384",
@@ -2408,7 +2478,7 @@ with tab8:
             {
                 "name": "Nancy",
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
-                "description": ["-15% Crops Grow Time"],
+                "description": ["+15% Crops Grow Speed"],
                 "currentPrice": 0,
                 "url": "420",
                 "urlImg": "https://i.seadn.io/gcs/files/359e6d7eddd907318e1a9acfae922c80.png?auto=format&dpr=1&w=384",
@@ -2418,7 +2488,7 @@ with tab8:
             {
                 "name": "Scarecrow",
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
-                "description": ["-15% Crops Grow Time - +20% Crop Yield"],
+                "description": ["+15% Crops Grow Speed - +20% Crop Yield"],
                 "currentPrice": 0,
                 "url": "404",
                 "urlImg": "https://i.seadn.io/gcs/files/5e507ea7b873600fbd7c94f25ebfdc4a.png?auto=format&dpr=1&w=384",
@@ -2428,13 +2498,33 @@ with tab8:
             {
                 "name": "Kuebiko",
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
-                "description": ["-15% Crops Grow Time - +20% Crop Yield - Seeds are Free"],
+                "description": ["+15% Crops Grow Speed - +20% Crop Yield - Seeds are Free"],
                 "currentPrice": 0,
                 "url": "421",
                 "urlImg": "https://i.seadn.io/gcs/files/50f0a2d783ddd177ab7fb616703b9107.gif?auto=format&dpr=1&w=384",
                 "collection": "Sunflower Land Collectibles",
                 "isSelling": True,
             },
+            {
+                "name": "Devil Wings",
+                "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🎲 Chance: #007bff"],
+                "description": ["30% Chance of Harvesting Crops instantly"]
+                "currentPrice": 0,
+                "url": "74",
+                "urlImg": "https://i.seadn.io/gcs/files/21de9ee9836f4b990857b0c65a0e3544.png?auto=format&dpr=1&w=384",
+                "collection": "Bumpkin",
+                "isSelling": True,
+            },        
+            {
+                "name": "Angel Wings",
+                "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🎲 Chance: #007bff"],
+                "description": ["30% Chance of Harvesting Crops instantly"]
+                "currentPrice": 0,
+                "url": "73",
+                "urlImg": "https://i.seadn.io/gcs/files/c0e113852eb306dbfbf0243de79c5e4b.png?auto=format&dpr=1&w=384",
+                "collection": "Bumpkin",
+                "isSelling": True,
+            },             
             {
                 "name": "Hoot",
                 "type": ["🌱 Crop: #28a745"],
@@ -2458,7 +2548,7 @@ with tab8:
             {
                 "name": "Basic Scarecrow",
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
-                "description": ["-20% Crops Grow Time for Sunflowers, Potatos and Pumpkins"],
+                "description": ["+20% Grow Speed for Sunflowers, Potatos and Pumpkins"],
                 "currentPrice": 0,
                 "url": "420",
                 "urlImg": "https://i.seadn.io/gcs/files/5a954084d82c27b8fdd6fa2cff9973c2.png?auto=format&dpr=1&w=384",
@@ -2849,16 +2939,23 @@ with tab8:
                 column4.markdown(markdown_content, unsafe_allow_html=True)
 
             index += 1  # Increment index inside the loop
-
-    keywords = st_tags(
-        label='🔻 **SEARCH FOR TAGS:** 🔻',
-        text='Press enter to add more',
-        #value=['Crop'],
-        suggestions=['Peeled','Potato','Crop','Cabbage','Boy','Girl','Easter','Bunny','Carrot','Pablo','Victoria','Sisters','Pumpkin','Maximus','Eggplant','Obie','Purple','Trail','Karkinos','Mysterious','Parsnip','Golden','Cauliflower','Sword','Lunar','Calendar','Nancy','Scarecrow','Kuebiko','Hoot','Foliant','Basic','Tiki','Totem','Wood','Nymph','Wendy','Rock','Golem','Stone','Chance'],
-        maxtags=4,
-        key="tags"
-    )
-
+    
+    col_nft, col_nft2 = st.columns([2,2])
+    with col_nft:        
+        keywords = st_tags(
+            label='🔻 **SEARCH FOR TAGS:** 🔻',
+            text='Press enter to add more',
+            #value=['Crop'],
+            suggestions=['Peeled','Potato','Crop','Cabbage','Boy','Girl','Easter','Bunny','Carrot','Pablo','Victoria','Sisters','Pumpkin','Maximus','Eggplant','Obie','Purple','Trail','Karkinos','Mysterious','Parsnip','Golden','Cauliflower','Sword','Lunar','Calendar','Nancy','Scarecrow','Kuebiko','Hoot','Foliant','Basic','Tiki','Totem','Wood','Nymph','Wendy','Rock','Golem','Stone','Chance'],
+            maxtags=4,
+            key="tags"
+        )
+    with col_nft2:
+        nft_collec = st.multiselect(
+            'From witch Collections?',
+            ['Sunflower Land', 'Bumpkins Wearables'],
+            ['Sunflower Land', 'Bumpkins Wearables'])
+        
     # Create a dictionary for the tags using the tag name as the key
     tags_dict = populate_tags_dict(nft_list)
 
