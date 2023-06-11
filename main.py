@@ -2454,7 +2454,7 @@ with tab8:
                 "name": "Scarecrow",
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
                 "description": ["+15% Crops Grow Speed | +20% Crop Yield"],
-                "info": "Has no effect with Kuebiko"],
+                "info": "Has no effect with Kuebiko",
                 "currentPrice": 0,
                 "url": "404",
                 "urlImg": "https://i.seadn.io/gcs/files/5e507ea7b873600fbd7c94f25ebfdc4a.png?auto=format&dpr=1&w=384",
