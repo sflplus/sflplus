@@ -2356,7 +2356,7 @@ with tab8:
                 "url": "459",
                 "urlImg": "https://i.seadn.io/gcs/files/222ef7e2b8595b68e3c84a01c15eaece.png?auto=format&dpr=1&w=384",
                 "collection": "Sunflower Land Collectibles",
-                "isSelling": False,
+                "isSelling": True,
             },   
             {
                 "name": "Obie",
@@ -2366,7 +2366,7 @@ with tab8:
                 "url": "458",
                 "urlImg": "https://i.seadn.io/gcs/files/d5a907b4f308788b3e1ef0dfa63ece74.png?auto=format&dpr=1&w=384",
                 "collection": "Sunflower Land Collectibles",
-                "isSelling": False,
+                "isSelling": True,
             }, 
             {
                 "name": "Purple Trail",
@@ -2376,7 +2376,7 @@ with tab8:
                 "url": "457",
                 "urlImg": "https://i.seadn.io/gcs/files/0fc9d7e55c80b72b1c252b88dc18b957.png?auto=format&dpr=1&w=384",
                 "collection": "Sunflower Land Collectibles",
-                "isSelling": False,
+                "isSelling": True,
             },                 
             {
                 "name": "Cabbage Girl",
@@ -2488,7 +2488,7 @@ with tab8:
                 "url": "1227",
                 "urlImg": "https://i.seadn.io/gcs/files/f015f8235b5eca9a734624473858058d.png?auto=format&dpr=1&w=384",
                 "collection": "Sunflower Land Collectibles",
-                "isSelling": False,
+                "isSelling": True,
             },            
             {
                 "name": "Basic Scarecrow",
@@ -2700,7 +2700,7 @@ with tab8:
                 "url": "464",
                 "urlImg": "https://raw.githubusercontent.com/sunflower-land/sunflower-land/ad9b557b2eea7715feeac10f19f643119842058b/public/erc1155/images/464.png",
                 "collection": "Sunflower Land Collectibles",
-                "isSelling": False,
+                "isSelling": True,
             },
             {
                 "name": "Emerald Turtle",
@@ -2710,7 +2710,7 @@ with tab8:
                 "url": "463",
                 "urlImg": "https://raw.githubusercontent.com/sunflower-land/sunflower-land/ad9b557b2eea7715feeac10f19f643119842058b/public/erc1155/images/463.png",
                 "collection": "Sunflower Land Collectibles",
-                "isSelling": False,
+                "isSelling": True,
             },        
         ],
         
@@ -2929,7 +2929,7 @@ with tab8:
                 "url": "460",
                 "urlImg": "https://i.seadn.io/gcs/files/e34f1abb9f095d8511551389d37062af.png?auto=format&dpr=1&w=384",
                 "collection": "Sunflower Land Collectibles",
-                "isSelling": False,
+                "isSelling": True,
             },
             {
                 "name": "Treasure Map",
@@ -2979,7 +2979,7 @@ with tab8:
             ])
             
             if item["isSelling"] is False:
-                current_price_html = '<span class="card-text"><b>Not for Sale</b></span>'
+                current_price_html = '<span class="card-text"><b>❌ Not For Sale</b></span>'
             else:
                 if item["collection"] == "Sunflower Land Collectibles":
                     current_price = nft_price(item["name"], return_type='nft_list')
@@ -2989,7 +2989,7 @@ with tab8:
                     current_price_html = f'<span class="card-text"><b>💰 Last Sale: ${current_price}</b></span>'
 
             if current_price is None:
-                current_price_html = '<span class="card-text"><b>Still not Tradable</b></span>'
+                current_price_html = '<span class="card-text"><b>❌ Still Not Tradable</b></span>'
             
             markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
