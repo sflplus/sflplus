@@ -2488,7 +2488,7 @@ with tab8:
                 "url": "1227",
                 "urlImg": "https://i.seadn.io/gcs/files/f015f8235b5eca9a734624473858058d.png?auto=format&dpr=1&w=384",
                 "collection": "Sunflower Land Collectibles",
-                "isSelling": True,
+                "isSelling": False,
             },            
             {
                 "name": "Basic Scarecrow",
@@ -2498,7 +2498,7 @@ with tab8:
                 "url": "462",
                 "urlImg": "https://i.seadn.io/gcs/files/5a954084d82c27b8fdd6fa2cff9973c2.png?auto=format&dpr=1&w=384",
                 "collection": "Sunflower Land Collectibles",
-                "isSelling": True,
+                "isSelling": False,
             },
             {
                 "name": "Sunflower Amulet",
@@ -2700,7 +2700,7 @@ with tab8:
                 "url": "464",
                 "urlImg": "https://raw.githubusercontent.com/sunflower-land/sunflower-land/ad9b557b2eea7715feeac10f19f643119842058b/public/erc1155/images/464.png",
                 "collection": "Sunflower Land Collectibles",
-                "isSelling": True,
+                "isSelling": False,
             },
             {
                 "name": "Emerald Turtle",
@@ -2710,7 +2710,7 @@ with tab8:
                 "url": "463",
                 "urlImg": "https://raw.githubusercontent.com/sunflower-land/sunflower-land/ad9b557b2eea7715feeac10f19f643119842058b/public/erc1155/images/463.png",
                 "collection": "Sunflower Land Collectibles",
-                "isSelling": True,
+                "isSelling": False,
             },        
         ],
         
@@ -2979,15 +2979,17 @@ with tab8:
             ])
             
             if item["isSelling"] is False:
-                current_price = "Not for Sale"
+                current_price_html = '<span class="card-text"><b>Not for Sale</b></span>'
             else:
                 if item["collection"] == "Sunflower Land Collectibles":
                     current_price = nft_price(item["name"], return_type='nft_list')
+                    current_price_html = f'<span class="card-text"><b>💰 Avg Price: ${current_price}</b></span>'
                 else:
                     current_price = wearable_price(item["name"], return_type='nft_list')
+                    current_price_html = f'<span class="card-text"><b>💰 Last Sale: ${current_price}</b></span>'
 
             if current_price is None:
-                current_price = "Price not available"
+                current_price_html = '<span class="card-text"><b>Still not Tradable</b></span>'
             
             markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
@@ -3001,7 +3003,7 @@ with tab8:
                     <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
                 </div>
                 <div class="card-footer">
-                    <span class="card-text">💰 <b>Avg Price: ${}</b></span>
+                    {}
                     <div class="position-relative bottom-0 end-0 float-end">#{}</div>                
                 </div>
             </div>
@@ -3012,7 +3014,7 @@ with tab8:
                 type_badges,
                 item["name"],
                 item["description"][0],
-                current_price,
+                current_price_html,
                 index +1,
                 item["collection"],
             )
