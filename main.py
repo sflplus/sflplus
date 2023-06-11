@@ -14,7 +14,6 @@ import asyncio
 import aiohttp
 from datetime import datetime, timedelta
 import sys
-import emoji
 
 favicon = Image.open('favicon.png')
 
@@ -2486,8 +2485,8 @@ with tab8:
     for crop in crops:
         types = crop.get("type", [])
 
-        # Remove emojis from types
-        types = [tag[2:] if len(tag) > 2 and tag[0] in emoji.UNICODE_EMOJI["en"] else tag for tag in types]
+        # Remove the first two characters from types
+        types = [tag[2:] if len(tag) >= 2 else tag for tag in types]
 
         # Check if any tag in selected_tags matches any type in types
         if any(tag.lower() in types for tag in selected_tags):
