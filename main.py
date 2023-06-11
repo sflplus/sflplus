@@ -2495,12 +2495,7 @@ with tab8:
     st.write(tags_dict)
     filtered_crops = []
 
-    for crop in crops:
-        types = crop.get("type", [])
 
-        # Check if any tag in selected_tags matches any type in types
-        if any(tag in types for tag in selected_tags):
-            filtered_crops.append(crop)
     st.write(filtered_crops)
     # Create the layout grid for the crop cards
     colA, colB, colC, colD = tab8.columns([3,3,3,3])
