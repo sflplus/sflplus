@@ -2546,7 +2546,7 @@ with tab8:
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🎲 Chance: #007bff"],
                 "description": ["30% Chance of Harvesting Crops instantly"],
                 "currentPrice": 0,
-                "url": "74",
+                "url": "72",
                 "urlImg": "https://i.seadn.io/gcs/files/21de9ee9836f4b990857b0c65a0e3544.png?auto=format&dpr=1&w=384",
                 "collection": "Bumpkin",
                 "isSelling": True,
