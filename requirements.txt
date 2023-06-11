@@ -4,3 +4,4 @@ streamlit-extras
 streamlit-tags
 pandas
 aiohttp
+fuzzywuzzy
