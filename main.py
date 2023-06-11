@@ -2972,8 +2972,6 @@ with tab8:
     def display_nft_cards(nft_list):
         index = 0  # Initialize index outside the loop
 
-        sorted_nft_list = sorted(nft_list, key=lambda item: item["current_price_html"])
-
         for item in sorted_nft_list:
             # Generate type badges with colors
             type_badges = " ".join([
@@ -3031,7 +3029,7 @@ with tab8:
                 current_price_html,
                 item["collection"],
             )
-
+            sorted_nft_list = sorted(nft_list, key=lambda item: item["current_price_html"])
             if index % 4 == 0:
                 column1.markdown(markdown_content, unsafe_allow_html=True)
             elif index % 4 == 1:
