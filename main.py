@@ -376,7 +376,7 @@ def nft_buffs(inventory, return_type='result_df'):
     else:
         return result_df    
     
-#@st.cache_resource(ttl=3600, show_spinner="Updating the Wearables Prices") # cache for 1 hour
+@st.cache_resource(ttl=3600, show_spinner="Updating the Wearables Prices") # cache for 1 hour
 def wearable_price_read():
     url = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRcGDBOuVgP9v-sklfUIy40DMVO3IfLId62cokp0ABYeNEWQZkVZf3qLHweSR4DXQ/pubhtml'
     try:
@@ -477,8 +477,8 @@ def wearable_price(item_name=None, return_type='result_df'):
         else:
             return None
     else:
-        return df
-   
+        return df   
+    
 def wearable_list(equipped_dict, return_type='filtered_df'):
     df = wearable_price(return_type=return_type)
     wearables = list(equipped_dict.values())
