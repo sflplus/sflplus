@@ -1990,7 +1990,7 @@ with tab6:
     live_minted2.info(f" 🐢 **Emerald Turtle [0/100]**")
     live_minted2.write(f"- 🍾 **80** Old Bottles - 🌿 **50** Seaweed")
     live_minted2.write(f"- 🧭 **30** Iron Compass - 💰 **100** SFL")
-    live_minted2.write.write("\n")
+    live_minted2.write("\n")
     live_minted2.info(f" 🥫 **Tin Turtle [0/3000]**")
     live_minted2.write(f"- 🍾 **50** Old Bottles - 🌿 **25** Seaweed")
     live_minted2.write(f"- 🧭 **15** Iron Compass - 💰 **40** SFL")
