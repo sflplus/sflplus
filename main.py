@@ -2464,7 +2464,7 @@ with tab8:
             {
                 "name": "Kuebiko",
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
-                "description": ["+15% Crops Grow Speed | +20% Crop Yield | Seeds are Free",
+                "description": ["+15% Crops Grow Speed | +20% Crop Yield | Seeds are Free"],
                 "currentPrice": 0,
                 "url": "421",
                 "urlImg": "https://i.seadn.io/gcs/files/50f0a2d783ddd177ab7fb616703b9107.gif?auto=format&dpr=1&w=384",
