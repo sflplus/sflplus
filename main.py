@@ -2853,8 +2853,8 @@ with tab8:
     keywords = st_tags(
         label='🔻 **SEARCH FOR TAGS:** 🔻',
         text='Press enter to add more',
-        value=['Crop'],
-        suggestions=['Peeled','Potato'],
+        #value=['Crop'],
+        suggestions=['Peeled','Potato','Crop','Cabbage','Boy','Girl','Easter','Bunny','Carrot','Pablo','Victoria','Sisters','Pumpkin','Maximus','Eggplant','Obie','Purple','Trail','Karkinos','Mysterious','Parsnip','Golden','Cauliflower','Sword','Lunar','Calendar','Nancy','Scarecrow','Kuebiko','Hoot','Foliant','Basic','Tiki','Totem','Wood','Nymph','Wendy','Rock','Golem','Stone','Chance'],
         maxtags=4,
         key="tags"
     )
@@ -2896,3 +2896,6 @@ with tab8:
         column3 = st.container()
     with colD:
         column4 = st.container()
+
+    # Call the function with filtered_items
+    display_nft_cards(filtered_items)
