@@ -2257,18 +2257,6 @@ with tab7:
                 else:
                     status_ok2.error("Invalid response or error occurred.") 
 with tab8:
-
-    # Create the layout grid for the crop cards
-    colA, colB, colC, colD = tab8.columns([3,3,3,3])
-    with colA:
-        column1 = st.container()
-    with colB:
-        column2 = st.container()               
-    with colC:
-        column3 = st.container()    
-    with colD:
-        column4 = st.container()
-        
     opensea_url_base = 'https://opensea.io/assets/matic/0x22d5f9b75c524fec1d6619787e582644cd4d7422/'
     crops = [
         {
@@ -2513,5 +2501,16 @@ with tab8:
         if any(tag in types for tag in selected_tags):
             filtered_crops.append(crop)
 
+    # Create the layout grid for the crop cards
+    colA, colB, colC, colD = tab8.columns([3,3,3,3])
+    with colA:
+        column1 = st.container()
+    with colB:
+        column2 = st.container()               
+    with colC:
+        column3 = st.container()    
+    with colD:
+        column4 = st.container()
+        
     # Call the function with filtered_crops
     display_crop_cards(filtered_crops)
