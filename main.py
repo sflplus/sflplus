@@ -178,7 +178,7 @@ queries_quantity = ["350", "2500", "10000"]
 queries_emoji = ["💜", "🍆", "🐌"]
 queries_ticket = ["3200", "1200", "500"]
 
-@st.cache_data(ttl=1800, show_spinner="Updating the NFT Minted") # cache for 30 MIN
+@st.cache(ttl=1800, show_spinner="Updating the NFT Minted") # cache for 30 MIN
 def fetch_owner_count(query_id):
     dune_api_url = f"https://api.dune.com/api/v1/query/{query_id}/results?api_key={API_KEY_DUNE}"
     response = requests.get(dune_api_url)
