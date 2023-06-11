@@ -2845,6 +2845,16 @@ with tab8:
                 "isSelling": True,
             },
             {
+                "name": "Christmas Tree",
+                "type": ["🎲 Chance: #007bff"],
+                "description": ["+1 Mysterious drop at Christmas Eve (Last drop: Devil/Angel Wings)"],
+                "currentPrice": 0,
+                "url": "403",
+                "urlImg": "https://i.seadn.io/gcs/files/036e41b320664fb3d6e6502b30ff3ca8.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
                 "name": "Golden Spatula",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🔼 Expirience: #3B88C3"],
                 "description": ["+10% Experience Boost"],
