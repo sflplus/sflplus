@@ -1979,12 +1979,13 @@ with tab6:
         live_minted.write(f"- {query_emoji} **{query_name}: [{owner_count}/{query_quantity}]** - 🎟️ **{query_ticket}**")
 
     # Iterate over the list of queries and retrieve the owner counts
-    live_odds.write(f"- 🍾 Old Bottle: **5.19%** (roughly 1 in 19 with Sand Shovel)")
-    live_odds.write(f"- 🌿 Seaweed: **2.60%** (roughly 1 in 38 with Sand Shovel)")
-    live_odds.write(f"- 🧭 Iron Compasss: **0.52%** (roughly 1 in 192 with Sand Shovel)")
+    live_odds.info(f"🟤 *Note: This data was calculated using the weight numbers in the Treasure Island Docs 06/06/2023 and the 1 in X are approximations*")
+    live_odds.write(f"- 🍾 Old Bottle: **5.19%** (1 in 19 with Sand Shovel)")
+    live_odds.write(f"- 🌿 Seaweed: **2.60%** (1 in 38 with Sand Shovel)")
+    live_odds.write(f"- 🧭 Iron Compasss: **0.52%** (1 in 192 with Sand Shovel)")
     live_odds.write(f"- 🍾🌿 You **CAN'T** dig a Old Bottle/Seaweed with Sand Drills")
-    live_odds.write(f"- 🧭 Iron Compasss: **9.50%** (roughly 1 in 10 with Sand Drills)")
-    live_odds.info(f"🟤 *Note: This data was calculated using the weight numbers in the Treasure Island Docs - 06/06/2023*")
+    live_odds.write(f"- 🧭 Iron Compasss: **9.50%** (1 in 10 with Sand Drills)")
+
 
         
     live_minted2.info(f" 🐢 **Emerald Turtle [0/100]**")
