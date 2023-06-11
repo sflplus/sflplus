@@ -2446,6 +2446,16 @@ with tab8:
                 "isSelling": True,
             },
             {
+                "name": "Foliant",
+                "type": ["🌱 Crop: #28a745", "🥦 Kale: #016b18"],
+                "description": ["+0.2 Kale Harvest"],
+                "currentPrice": 0,
+                "url": "1227",
+                "urlImg": "https://i.seadn.io/gcs/files/f015f8235b5eca9a734624473858058d.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },            
+            {
                 "name": "Basic Scarecrow",
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
                 "description": ["-20% Crops Grow Time for Sunflowers, Potatos and Pumpkins"],
@@ -2664,7 +2674,7 @@ with tab8:
         "fruits": [
             {
                 "name": "Lady Bug",
-                "type": ["🍒 Fruit: #bbff6d", "🍎 Apple: #e80000"],
+                "type": ["🍒 Fruit: #e83e8c", "🍎 Apple: #e80000"],
                 "description": ["+0.25 Apple Drop"],
                 "currentPrice": 0,
                 "url": "442",
@@ -2674,7 +2684,7 @@ with tab8:
             },
             {
                 "name": "Squirrel Monkey",
-                "type": ["🍒 Fruit: #bbff6d", "🍊 Orange: #ffa719"],
+                "type": ["🍒 Fruit: #e83e8c", "🍊 Orange: #ffa719"],
                 "description": ["-50% Orange Production Time"],
                 "currentPrice": 0,
                 "url": "443",
@@ -2684,7 +2694,7 @@ with tab8:
             },
             {
                 "name": "Black Bearry",
-                "type": ["🍒 Fruit: #bbff6d", "🍇 Blueberry: #2d05b2"],
+                "type": ["🍒 Fruit: #e83e8c", "🍇 Blueberry: #2d05b2"],
                 "description": ["+1 Blueberry Drop"],
                 "currentPrice": 0,
                 "url": "444",
@@ -2694,7 +2704,7 @@ with tab8:
             },
             {
                 "name": "Immortal Pear",
-                "type": ["🍒 Fruit: #bbff6d"],
+                "type": ["🍒 Fruit: #e83e8c"],
                 "description": ["+1 Bonus Harvest"],
                 "currentPrice": 0,
                 "url": "441",
@@ -2724,6 +2734,48 @@ with tab8:
                 "collection": "Sunflower Land Collectibles",
                 "isSelling": True,
             },
+            {
+                "name": "Mushroom House",
+                "type": ["🍄 Mushroom: #c13c6a"],
+                "description": ["+0.2 Wild Mushrooms Drop"],
+                "currentPrice": 0,
+                "url": "456",
+                "urlImg": "https://i.seadn.io/gcs/files/cbf74b26df2f03e2faf5bb39c15edb9d.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+        ],
+        "treasure": [
+            {
+                "name": "Heart of Davy Jones",
+                "type": ["🏝️ Treasure Island: #c19a2e"],
+                "description": ["+20 Digs Amount in Treasure Island (Total 50)"],
+                "currentPrice": 0,
+                "url": "450",
+                "urlImg": "https://i.seadn.io/gcs/files/eeadfc4c1c768af13739b4b3e9943ce8.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Genie Lamp",
+                "type": ["🏝️ Treasure Island: #c19a2e", "🎲 Chance: #007bff"],
+                "description": ["Grants 3 Random Wishes"],
+                "currentPrice": 0,
+                "url": "460",
+                "urlImg": "https://i.seadn.io/gcs/files/e34f1abb9f095d8511551389d37062af.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": False,
+            },
+            {
+                "name": "Treasure Map",
+                "type": ["🏝️ Treasure Island: #c19a2e"],
+                "description": ["+20% Profit from Beach Bounty Items"],
+                "currentPrice": 0,
+                "url": "449",
+                "urlImg": "https://i.seadn.io/gcs/files/ed79724f8711e7a1f4db4cf2a4deddba.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": False,
+            },            
         ],
     }
 
