@@ -14,6 +14,7 @@ import asyncio
 import aiohttp
 from datetime import datetime, timedelta
 import sys
+import fuzzywuzzy.fuzz as fuzz
 
 favicon = Image.open('favicon.png')
 
@@ -2488,6 +2489,14 @@ with tab8:
             if any(tag.lower() in type.lower() for type in types):
                 filtered_crops.append(crop)
                 break
+        else:
+            # Check similarity between tag and crop name
+            name = crop.get("name", "").lower()
+            for tag in selected_tags:
+                similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
+                if similarity_ratio >= 70:  # Adjust the threshold as needed
+                    filtered_crops.append(crop)
+                    break
 
     st.write(filtered_crops)
 
