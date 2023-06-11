@@ -2513,6 +2513,5 @@ with tab8:
         if any(tag in types for tag in selected_tags):
             filtered_crops.append(crop)
 
-
     # Call the function with filtered_crops
     display_crop_cards(filtered_crops)
