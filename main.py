@@ -1998,7 +1998,7 @@ with tab6:
             data.append([query_emoji, query_name, owner_count, query_quantity, query_ticket])
 
         # Create a dataframe from the data list
-        df = pd.DataFrame(data, columns=["Emoji", "Name", "Owner Count", "Quantity", "Ticket"])
+        df_dune = pd.DataFrame(data, columns=["Emoji", "Name", "Owner Count", "Quantity", "Ticket"])
         return df_dune
 
     live_minted.info(f"👨‍🔬 **This info is from Dune**")
