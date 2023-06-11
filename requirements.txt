@@ -4,4 +4,3 @@ streamlit-extras
 streamlit-tags
 pandas
 aiohttp
-emoji
