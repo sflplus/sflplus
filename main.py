@@ -2485,9 +2485,6 @@ with tab8:
     for crop in crops:
         types = crop.get("type", [])
 
-        # Remove the first two characters from types
-        types = [tag[2:] if len(tag) >= 2 else tag for tag in types]
-
         # Check if any tag in selected_tags matches any type in types
         if any(tag.lower() in types for tag in selected_tags):
             filtered_crops.append(crop)
