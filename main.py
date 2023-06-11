@@ -2461,19 +2461,6 @@ with tab8:
         maxtags= 4,
         key="tags")
     #st.write((keywords))
-
-    if any(tag in selected_tags for tag in types):
-        filtered_crops.append(crop)
-    # Create the layout grid for the crop cards
-    colA, colB, colC, colD = st.columns([3,3,3,3])
-    with colA:
-        column1 = st.container()
-    with colB:
-        column2 = st.container()               
-    with colC:
-        column3 = st.container()   
-    with colD:
-        column4 = st.container() 
         
     # Create a dictionary for the tags using the tag name as the key
     tags_dict = {}
@@ -2494,7 +2481,12 @@ with tab8:
     st.write((keywords))
     st.write(tags_dict)
     filtered_crops = []
+    for crop in crops:
+        types = crop.get("type", [])
 
+        # Check if any tag in selected_tags matches any type in types
+        if any(tag in types for tag in selected_tags):
+            filtered_crops.append(crop)
 
     st.write(filtered_crops)
     # Create the layout grid for the crop cards
