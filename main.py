@@ -2911,11 +2911,12 @@ with tab8:
                     {}
                 </div>                 
                 <div class="card-body" style="min-height:8rem">
-                    <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b> .{}</h5>
+                    <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
                     <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
                 </div>
                 <div class="card-footer">
-                    <span class="card-text">💰 <b>Avg Price: {}</b></span>                    
+                    <span class="card-text">💰 <b>Avg Price: {}</b></span>
+                    <span class="text-muted position-relative end-0">{}.</span>                    
                 </div>
             </div>
             """.format(
@@ -2924,9 +2925,9 @@ with tab8:
                 item["urlImg"],
                 type_badges,
                 item["name"],
-                index +1,
                 item["description"][0],
                 item["currentPrice"],
+                index +1,
                 item["collection"],
             )
 
