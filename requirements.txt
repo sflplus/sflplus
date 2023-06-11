@@ -4,4 +4,5 @@ streamlit-extras
 streamlit-tags
 pandas
 aiohttp
+python-Levenshtein
 fuzzywuzzy
