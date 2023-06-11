@@ -1,3 +1,6 @@
+[browser]
+gatherUsageStats = false
+
 [theme]
 base = "dark"
 primaryColor="rgb(28, 131, 225)"
