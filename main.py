@@ -40,8 +40,6 @@ def local_css(file_name):
 local_css("style.css")
 
 
-
-
 @st.cache_resource(ttl=604800, show_spinner="Updating Lantern Ingredients")
 def retrieve_lantern_ingredients():
     url = "https://api.sunflower-land.com/visit/1"
@@ -240,7 +238,7 @@ def nft_price_read():
         pass
     return dfs
 
-@st.cache_resource(ttl=300, show_spinner="Updating the Wearables Prices")
+@st.cache_resource(ttl=300, show_spinner="Updating the NFT Prices")
 def nft_price(item_name=None, return_type='result_df'):
     dfs = nft_price_read()
     df = pd.concat(dfs, axis=0)
