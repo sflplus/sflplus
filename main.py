@@ -1988,6 +1988,7 @@ with tab6:
     def create_dataframe():
         # Create a list to store the data
         data = []
+
         for i, query_id in enumerate(queries):
             owner_count = fetch_owner_count(query_id)
             query_name = queries_name[i]
@@ -1998,7 +1999,7 @@ with tab6:
             data.append([nft, owner_count, query_quantity, query_ticket])
 
         # Create a dataframe from the data list
-        df_dune = pd.DataFrame(data, columns=["NFT", "Minted", "Supply", "Tickets"])
+        df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply", "Tickets"])
         return df_dune
 
     live_minted.info(f"👨‍🔬 **This info is from Dune**")
