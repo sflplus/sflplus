@@ -2321,7 +2321,7 @@ with tab8:
                 "isSelling": True,
             },
             {
-                "name": "Pablo the Bunny",
+                "name": "Pablo The Bunny",
                 "type": ["🌱 Crop: #28a745", "🥕 Carrot: #ff731c"],
                 "description": ["+0.1 Carrot Harvest"],
                 "currentPrice": 0,
@@ -2982,7 +2982,7 @@ with tab8:
                     <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
                 </div>
                 <div class="card-footer">
-                    <span class="card-text">💰 <b>Avg Price: {}</b></span>
+                    <span class="card-text">💰 <b>Avg Price: ${}</b></span>
                     <div class="position-relative bottom-0 end-0 float-end">#{}</div>                
                 </div>
             </div>
