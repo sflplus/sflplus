@@ -2854,12 +2854,7 @@ with tab8:
         label='🔻 **SEARCH FOR TAGS:** 🔻',
         text='Press enter to add more',
         value=['Crop'],
-        suggestions=['Peeled','Potato','Crop','Cabbage','Boy','Girl','Easter',
-                     'Bunny','Carrot','Pablo','the','Victoria','Sisters','Pumpkin',
-                     'Maximus','Eggplant','Obie','Purple','Trail','Karkinos',
-                     'Mysterious','Parsnip','Golden','Cauliflower','Sword','Lunar',
-                     'Calendar','Nancy','Scarecrow','Kuebiko','Hoot','Foliant',
-                     'Basic','Tiki','Totem','Wood','Nymph','Wendy','Rock','Golem','Stone','Chance'],
+        suggestions=['Peeled','Potato'],
         maxtags=4,
         key="tags"
     )
