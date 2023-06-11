@@ -1984,24 +1984,21 @@ with tab6:
     #live_mush.markdown("##### 🍄 **WILD MUSHROOM RANKING**") 
     
     # Iterate over the list of queries and retrieve the owner counts
-    @st.cache_resource(ttl=1800, show_spinner="Updating NFT Mints")  # Cache for 30 minutes
+    @st.cache_resource(ttl=1800)  # Cache for 30 minutes
     def create_dataframe():
         # Create a list to store the data
         data = []
-
         for i, query_id in enumerate(queries):
             owner_count = fetch_owner_count(query_id)
             query_name = queries_name[i]
-            query_emoji = queries_emoji[i]
             query_quantity = queries_quantity[i]
+            query_emoji = queries_emoji[i]
             query_ticket = queries_ticket[i]
-            nft = f"{query_emoji} {query_name}"
-            data.append([nft, owner_count, query_quantity, query_ticket])
-
+            data.append([query_emoji, query_name, owner_count, query_quantity, query_ticket])
         # Create a dataframe from the data list
-        df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply", "Tickets"])
+        df_dune = pd.DataFrame(data, columns=["Emoji", "Name", "Owner Count", "Quantity", "Ticket"])
         return df_dune
-
+    
     live_minted.info(f"👨‍🔬 **This info is from Dune**")
     # Create or fetch the cached dataframe
     df_dune = create_dataframe()
