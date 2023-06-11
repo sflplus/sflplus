@@ -2978,18 +2978,19 @@ with tab8:
                 for t in item["type"]
             ])
             
-            if item["isSelling"] is False:
-                current_price_html = '<span class="card-text"><b>❌ Not For Sale</b></span>'
+
+            if item["collection"] == "Sunflower Land Collectibles":
+                current_price = nft_price(item["name"], return_type='nft_list')
+                current_price_html = f'<span class="card-text"><b>💰 Avg Price: ${current_price}</b></span>'
             else:
-                if item["collection"] == "Sunflower Land Collectibles":
-                    current_price = nft_price(item["name"], return_type='nft_list')
-                    current_price_html = f'<span class="card-text"><b>💰 Avg Price: ${current_price}</b></span>'
-                else:
-                    current_price = wearable_price(item["name"], return_type='nft_list')
-                    current_price_html = f'<span class="card-text"><b>💰 Last Sale: ${current_price}</b></span>'
+                current_price = wearable_price(item["name"], return_type='nft_list')
+                current_price_html = f'<span class="card-text"><b>💰 Last Sale: ${current_price}</b></span>'
 
             if current_price is None:
-                current_price_html = '<span class="card-text"><b>❌ Still Not Tradable</b></span>'
+                if item["isSelling"] is False:
+                    current_price_html = '<span class="card-text"><b>❌ Not For Sale</b></span>'
+                else:
+                    current_price_html = '<span class="card-text"><b>❌ Still Not Tradable</b></span>'
             
             markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
