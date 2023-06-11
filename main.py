@@ -2853,7 +2853,7 @@ with tab8:
     keywords = st_tags(
         label='🔻 **SEARCH FOR TAGS:** 🔻',
         text='Press enter to add more',
-        value=[''],
+        value=['Crop'],
         suggestions=['Peeled','Potato','Crop','Cabbage','Boy','Girl','Easter',
                      'Bunny','Carrot','Pablo','the','Victoria','Sisters','Pumpkin',
                      'Maximus','Eggplant','Obie','Purple','Trail','Karkinos',
