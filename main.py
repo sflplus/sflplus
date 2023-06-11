@@ -2984,14 +2984,14 @@ with tab8:
     
     col_nft, buff_nft = st.columns([2,2])
     with col_nft:        
-    keywords = st_tags(
-        label='🔻 **SEARCH WITH TAGS:** 🔻',
-        text='Press enter to add more',
-        #value=['Crop'],
-        suggestions=['Peeled','Potato','Crop','Cabbage','Boy','Girl','Easter','Bunny','Carrot','Pablo','Victoria','Sisters','Pumpkin','Maximus','Eggplant','Obie','Purple','Trail','Karkinos','Mysterious','Parsnip','Golden','Cauliflower','Sword','Lunar','Calendar','Nancy','Scarecrow','Kuebiko','Hoot','Foliant','Basic','Tiki','Totem','Wood','Nymph','Wendy','Rock','Golem','Stone','Chance'],
-        maxtags=4,
-        key="tags"
-    )
+        keywords = st_tags(
+            label='🔻 **SEARCH WITH TAGS:** 🔻',
+            text='Press enter to add more',
+            #value=['Crop'],
+            suggestions=['Peeled','Potato','Crop','Cabbage','Boy','Girl','Easter','Bunny','Carrot','Pablo','Victoria','Sisters','Pumpkin','Maximus','Eggplant','Obie','Purple','Trail','Karkinos','Mysterious','Parsnip','Golden','Cauliflower','Sword','Lunar','Calendar','Nancy','Scarecrow','Kuebiko','Hoot','Foliant','Basic','Tiki','Totem','Wood','Nymph','Wendy','Rock','Golem','Stone','Chance'],
+            maxtags=4,
+            key="tags"
+        )
     #with col_nft2:
     #    nft_collec = st.multiselect(
     #        'From witch Collections?',
