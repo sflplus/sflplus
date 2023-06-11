@@ -3037,7 +3037,7 @@ with tab8:
             label='🔻 **SEARCH WITH TAGS:** 🔻',
             text='Press enter to add more',
             #value=['Crop'],
-            suggestions=['Peeled','Potato','Crop','Cabbage','Boy','Girl','Easter','Bunny','Carrot','Pablo','Victoria','Sisters','Pumpkin','Maximus','Eggplant','Obie','Purple','Trail','Karkinos','Mysterious','Parsnip','Golden','Cauliflower','Sword','Lunar','Calendar','Nancy','Scarecrow','Kuebiko','Hoot','Foliant','Basic','Tiki','Totem','Wood','Nymph','Wendy','Rock','Golem','Stone','Chance'],
+            suggestions=['Peeled','Potato','Treasure','Fruit','Mushroom','SFL','Sunflower','Bumpkin','Egg','Chicken','Expirience','Apple','Orange','Blueberry','Crop','Cabbage','Boy','Girl','Easter','Bunny','Carrot','Pablo','Victoria','Sisters','Pumpkin','Maximus','Eggplant','Obie','Purple','Trail','Karkinos','Mysterious','Parsnip','Golden','Cauliflower','Sword','Lunar','Calendar','Nancy','Scarecrow','Kuebiko','Hoot','Foliant','Basic','Tiki','Totem','Wood','Nymph','Wendy','Rock','Golem','Stone','Chance'],
             maxtags=4,
             key="tags"
         )
