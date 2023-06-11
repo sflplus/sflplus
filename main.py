@@ -2916,7 +2916,7 @@ with tab8:
                 </div>
                 <div class="card-footer">
                     <span class="card-text">💰 <b>Avg Price: {}</b></span>
-                    <div class="position-relative bottom-0 end-0 float-end">{}.</div>                
+                    <div class="position-relative bottom-0 end-0 float-end">#{}</div>                
                 </div>
             </div>
             """.format(
