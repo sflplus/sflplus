@@ -2972,7 +2972,7 @@ with tab8:
     def display_nft_cards(nft_list):
         index = 0  # Initialize index outside the loop
 
-        for item in sorted_nft_list:
+        for item in nft_list:
             # Generate type badges with colors
             type_badges = " ".join([
                 f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
@@ -2980,6 +2980,7 @@ with tab8:
                 else f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;">{t.strip()}</span>'
                 for t in item["type"]
             ])
+            
 
             if item["collection"] == "Sunflower Land Collectibles":
                 current_price = nft_price(item["name"], return_type='nft_list')
@@ -2993,7 +2994,7 @@ with tab8:
                     current_price_html = '❌ Not For Sale'
                 else:
                     current_price_html = '❌ Still Not Tradable'
-
+            
             info_alert = item.get("info")
             if info_alert is None:
                 info_alert_html = f"&nbsp;"
@@ -3021,7 +3022,7 @@ with tab8:
                 opensea_url_base,
                 item["url"],
                 item["urlImg"],
-                index + 1,
+                index +1,
                 type_badges,
                 item["name"],
                 item["description"][0],
@@ -3029,7 +3030,7 @@ with tab8:
                 current_price_html,
                 item["collection"],
             )
-            sorted_nft_list = sorted(nft_list, key=lambda item: item["current_price_html"])
+
             if index % 4 == 0:
                 column1.markdown(markdown_content, unsafe_allow_html=True)
             elif index % 4 == 1:
@@ -3039,7 +3040,7 @@ with tab8:
             else:
                 column4.markdown(markdown_content, unsafe_allow_html=True)
 
-            index += 1  # Increment index inside the loop
+            index += 1  # Increment index inside the loop 
     
     col_nft, buff_nft = st.columns([2,2])
     with col_nft:        
