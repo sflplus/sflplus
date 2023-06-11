@@ -2752,8 +2752,8 @@ with tab8:
     def display_nft_cards(nft_list):
         index = 0  # Initialize index outside the loop
 
-        for item_category in nft_list.values():
-            for item in item_category:
+        for item_category in nft_list:
+            for item in nft_list[item_category]:
                 # Generate type badges with colors
                 type_badges = " ".join([
                     f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
@@ -2818,11 +2818,11 @@ with tab8:
     # Filter items based on selected tags
     filtered_items = []
     if not selected_tags:  # If no tags are selected, display all items
-        for item_category in nft_list.values():
-            filtered_items.extend(item_category)
+        for item_category in nft_list:
+            filtered_items.extend(nft_list[item_category])
     else:
-        for item_category in nft_list.values():
-            for item in item_category:
+        for item_category in nft_list:
+            for item in nft_list[item_category]:
                 types = item.get("type", [])
                 for tag in selected_tags:
                     if any(tag.lower() in type.lower() for type in types):
