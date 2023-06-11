@@ -2258,370 +2258,543 @@ with tab7:
                     status_ok2.error("Invalid response or error occurred.") 
 with tab8:
     opensea_url_base = 'https://opensea.io/assets/matic/0x22d5f9b75c524fec1d6619787e582644cd4d7422/'
-    crops = [
-        {
-            "name": "Peeled Potato",
-            "type": ["🌱 Crop: #28a745","🥔 Potato: #c28669",],
-            "description": ["+20% chances of getting +1 Potato"],
-            "currentPrice": 0,
-            "url": "433",
-            "urlImg": "https://i.seadn.io/gcs/files/15cba60fc1107e97163c09ce11af2aa7.gif?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Cabbage Boy",
-            "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c"],
-            "description": ["+0.25 Cabbage Yield (+0.40 with Cabbage Girl)"],
-            "combos": [{"name": "Cabbage Girl", "effect": "+0.15 cabbage", "buffs": True}],
-            "alerts": ["Karkinos has no effect with Cabbage Boy"],
-            "currentPrice": 0,
-            "url": "434",
-            "urlImg": "https://i.seadn.io/gcs/files/584ee361c4adf52ffc6264b057fe3639.png?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Easter Bunny",
-            "type": ["🌱 Crop: #28a745", "🥕 Carrot: #ffc32d"],
-            "description": ["+20% Carrot Yield"],
-            "currentPrice": 0,
-            "url": "909",
-            "urlImg": "https://i.seadn.io/gcs/files/384aae3e5afad4cf5de9ff8f248f375c.gif?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Pablo the Bunny",
-            "type": ["🌱 Crop: #28a745", "🥕 Carrot: #ffc32d"],
-            "description": ["+0.1 Carrot Harvest"],
-            "currentPrice": 0,
-            "url": "926",
-            "urlImg": "https://i.seadn.io/gcs/files/f08eb724b62fed23fa962031e194e496.gif?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },        
-        {
-            "name": "Victoria Sisters",
-            "type": ["🌱 Crop: #28a745", "🎃 Pumpkin: #fd7e14"],
-            "description": ["+20% Pumpkin Yield"],
-            "currentPrice": 0,
-            "url": "432",
-            "urlImg": "https://i.seadn.io/gcs/files/1b594853ab0b5dee81c5c19fbaed79ab.gif?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Maximus",
-            "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1"],
-            "description": ["+1 Eggplant Harvest"],
-            "currentPrice": 0,
-            "url": "459",
-            "urlImg": "https://i.seadn.io/gcs/files/222ef7e2b8595b68e3c84a01c15eaece.png?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": False,
-        },   
-        {
-            "name": "Obie",
-            "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1", "⌛ Time: #dc3545"],
-            "description": ["-25% Eggplant Grow Time"],
-            "currentPrice": 0,
-            "url": "458",
-            "urlImg": "https://i.seadn.io/gcs/files/d5a907b4f308788b3e1ef0dfa63ece74.png?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": False,
-        }, 
-        {
-            "name": "Purple Trail",
-            "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1"],
-            "description": ["+0.2 Eggplant Harvest"],
-            "currentPrice": 0,
-            "url": "457",
-            "urlImg": "https://i.seadn.io/gcs/files/0fc9d7e55c80b72b1c252b88dc18b957.png?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": False,
-        },         
-        {
-            "name": "Cabbage Girl",
-            "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c", "⌛ Time: #dc3545"],
-            "description": ["-50% Cabbage Grow Time"],
-            "combos": [{"name": "Cabbage Boy", "effect": "+0.15 cabbage"}],
-            "currentPrice": 0,
-            "url": "435",
-            "urlImg": "https://i.seadn.io/gcs/files/c654499326ad0ef87512eccc2275120b.png?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Karkinos",
-            "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c"],
-            "description": ["+0.1 Cabbage Yield"],
-            "alerts": ["Karkinos has no effect with Cabbage Boy"],
-            "currentPrice": 0,
-            "url": "455",
-            "urlImg": "https://i.seadn.io/gcs/files/a2b12106880045dedf1bebcbf642a0f4.png?auto=format&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Mysterious Parsnip",
-            "type": ["🌱 Crop: #28a745", "💛 Parsnip: #ffc107", "⌛ Time: #dc3545"],
-            "description": ["-50% Parsnip Grow Time"],
-            "currentPrice": 0,
-            "url": "418",
-            "urlImg": "https://i.seadn.io/gcs/files/a3807b9481c9549ab4c8b037f336cc48.png?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Golden Cauliflower",
-            "type": ["🌱 Crop: #28a745", "🤍 Cauliflower: #20c997"],
-            "description": ["+200% Cauliflower Yield"],
-            "currentPrice": 0,
-            "url": "410",
-            "urlImg": "https://i.seadn.io/gcs/files/b1940ac19227f809718204c092c6f1d8.png?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Carrot Sword",
-            "type": ["🌱 Crop: #28a745", "🎲 Chance: #007bff"],
-            "description": ["+300% Chances of Finding a Mutant Crop"],
-            "currentPrice": 0,
-            "url": "419",
-            "urlImg": "https://i.seadn.io/gcs/files/ebe4db438955db4881651c2472c454f1.png?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Lunar Calendar",
-            "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
-            "description": ["-10% Crops Grow Time"],
-            "currentPrice": 0,
-            "url": "448",
-            "urlImg": "https://i.seadn.io/gcs/files/b34ac337570367c010db967d594acd9d.png?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Nancy",
-            "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
-            "description": ["-15% Crops Grow Time"],
-            "currentPrice": 0,
-            "url": "420",
-            "urlImg": "https://i.seadn.io/gcs/files/359e6d7eddd907318e1a9acfae922c80.png?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Scarecrow",
-            "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
-            "description": ["-15% Crops Grow Time - +20% Crop Yield"],
-            "currentPrice": 0,
-            "url": "404",
-            "urlImg": "https://i.seadn.io/gcs/files/5e507ea7b873600fbd7c94f25ebfdc4a.png?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Kuebiko",
-            "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
-            "description": ["-15% Crops Grow Time - +20% Crop Yield - Seeds are Free"],
-            "currentPrice": 0,
-            "url": "421",
-            "urlImg": "https://i.seadn.io/gcs/files/50f0a2d783ddd177ab7fb616703b9107.gif?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-    ]
-    resources = [
-        {
-            "name": "Tiki Totem",
-            "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400"],
-            "description": ["+0.1 Wood Drop"],
-            "currentPrice": 0,
-            "url": "447",
-            "urlImg": "https://i.seadn.io/gcs/files/6d09b2a640a58f7f2669f0130c61e8ed.png?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Wood Nymph Wendy",
-            "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400"],
-            "description": ["+0.2 Wood Drops"],
-            "currentPrice": 0,
-            "url": "436",
-            "urlImg": "https://i.seadn.io/gcs/files/7eb82194c6db9590c91376a9822c257f.gif?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Rock Golem",
-            "type": ["⚒️ Resources: #111111", "⚪ Stone: #a5a5a5"],
-            "description": ["10% Chance to get +2 Stones"],
-            "currentPrice": 0,
-            "url": "427",
-            "urlImg": "https://i.seadn.io/gcs/files/003cc83d6dae7a7526724ff33e2fd34f.gif?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Iron Idol",
-            "type": ["⚒️ Resources: #111111", "🟠 Iron: #d67c00"],
-            "description": ["+1 Iron Drop"],
-            "currentPrice": 0,
-            "url": "454",
-            "urlImg": "https://i.seadn.io/gcs/files/21292f5b71d879aa7f4359b2d0491b61.png?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Woody the Beaver",
-            "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400"],
-            "description": ["+20% Increase Wood Drops"],
-            "currentPrice": 0,
-            "url": "415",
-            "urlImg": "https://i.seadn.io/gcs/files/8ec73be04115ac40bd984bc7542828da.gif?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Apprentice Beaver",
-            "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400", "⌛ Time: #dc3545"],
-            "description": ["+20% Increase Wood Drops", "-50% Tree Recovery Time"],
-            "currentPrice": 0,
-            "url": "416",
-            "urlImg": "https://i.seadn.io/gcs/files/5101c63b5fc2afd06fe89838c31e902f.gif?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Foreman Beaver",
-            "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400", "⌛ Time: #dc3545"],
-            "description": ["+20% Increase Wood Drops", "-50% Tree Recovery Time", "Chop Trees without Axes"],
-            "currentPrice": 0,
-            "url": "417",
-            "urlImg": "https://i.seadn.io/gcs/files/6784705d2180eaa375b4f4e5f85da2fb.gif?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Tunnel Mole",
-            "type": ["⚒️ Resources: #111111", "⚪ Stone: #a5a5a5"],
-            "description": ["+25% Increase Stone Drops"],
-            "currentPrice": 0,
-            "url": "428",
-            "urlImg": "https://i.seadn.io/gcs/files/81db80f91c6fa6e5e1cf1b88f0298a5d.gif?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Rocky the Mole",
-            "type": ["⚒️ Resources: #111111", "🟠 Iron: #d67c00"],
-            "description": ["+25% Increase Iron Drops"],
-            "currentPrice": 0,
-            "url": "429",
-            "urlImg": "https://i.seadn.io/gcs/files/a7a3bc576e532e98e698ee420103d43a.gif?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Nugget",
-            "type": ["⚒️ Resources: #111111", "🟡 Gold: #FFCC32"],
-            "description": ["+25% Increase Gold Drops"],
-            "currentPrice": 0,
-            "url": "430",
-            "urlImg": "https://i.seadn.io/gcs/files/a976a48605f56cdfec8fd5c682405a1d.gif?auto=format&dpr=1&w=384",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Tin Turtle",
-            "type": ["⚒️ Resources: #111111", "⚪ Stone: #a5a5a5"],
-            "description": ["+0.1 Stone in the Area of Effect (max 8 nodes)"],
-            "currentPrice": 0,
-            "url": "464",
-            "urlImg": "https://raw.githubusercontent.com/sunflower-land/sunflower-land/ad9b557b2eea7715feeac10f19f643119842058b/public/erc1155/images/464.png",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },
-        {
-            "name": "Emerald Turtle",
-            "type": ["⚒️ Resources: #111111", "⚪ Stone: #a5a5a5", "🟠 Iron: #d67c00", "🟡 Gold: #FFCC32"],
-            "description": ["+0.25 Minerals in the Area of Effect (max 8 nodes)"],
-            "currentPrice": 0,
-            "url": "463",
-            "urlImg": "https://raw.githubusercontent.com/sunflower-land/sunflower-land/ad9b557b2eea7715feeac10f19f643119842058b/public/erc1155/images/463.png",
-            "collection": "Sunflower Land Collectibles",
-            "isSelling": True,
-        },        
-    ]
+    opensea_url_bump = 'https://opensea.io/assets/matic/0x22d5f9b75c524fec1d6619787e582644cd4d7422/'
+    nft_list = {
+        "crops": [
+            {
+                "name": "Peeled Potato",
+                "type": ["🌱 Crop: #28a745","🥔 Potato: #c28669","🎲 Chance: #007bff"],
+                "description": ["+20% chances of getting +1 Potato"],
+                "currentPrice": 0,
+                "url": "433",
+                "urlImg": "https://i.seadn.io/gcs/files/15cba60fc1107e97163c09ce11af2aa7.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Cabbage Boy",
+                "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c"],
+                "description": ["+0.25 Cabbage Yield (+0.40 with Cabbage Girl)"],
+                "combos": [{"name": "Cabbage Girl", "effect": "+0.15 cabbage", "buffs": True}],
+                "alerts": ["Karkinos has no effect with Cabbage Boy"],
+                "currentPrice": 0,
+                "url": "434",
+                "urlImg": "https://i.seadn.io/gcs/files/584ee361c4adf52ffc6264b057fe3639.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Easter Bunny",
+                "type": ["🌱 Crop: #28a745", "🥕 Carrot: #ffc32d"],
+                "description": ["+20% Carrot Yield"],
+                "currentPrice": 0,
+                "url": "909",
+                "urlImg": "https://i.seadn.io/gcs/files/384aae3e5afad4cf5de9ff8f248f375c.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Pablo the Bunny",
+                "type": ["🌱 Crop: #28a745", "🥕 Carrot: #ffc32d"],
+                "description": ["+0.1 Carrot Harvest"],
+                "currentPrice": 0,
+                "url": "926",
+                "urlImg": "https://i.seadn.io/gcs/files/f08eb724b62fed23fa962031e194e496.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },        
+            {
+                "name": "Victoria Sisters",
+                "type": ["🌱 Crop: #28a745", "🎃 Pumpkin: #fd7e14"],
+                "description": ["+20% Pumpkin Yield"],
+                "currentPrice": 0,
+                "url": "432",
+                "urlImg": "https://i.seadn.io/gcs/files/1b594853ab0b5dee81c5c19fbaed79ab.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Maximus",
+                "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1"],
+                "description": ["+1 Eggplant Harvest"],
+                "currentPrice": 0,
+                "url": "459",
+                "urlImg": "https://i.seadn.io/gcs/files/222ef7e2b8595b68e3c84a01c15eaece.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": False,
+            },   
+            {
+                "name": "Obie",
+                "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1", "⌛ Time: #dc3545"],
+                "description": ["-25% Eggplant Grow Time"],
+                "currentPrice": 0,
+                "url": "458",
+                "urlImg": "https://i.seadn.io/gcs/files/d5a907b4f308788b3e1ef0dfa63ece74.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": False,
+            }, 
+            {
+                "name": "Purple Trail",
+                "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1"],
+                "description": ["+0.2 Eggplant Harvest"],
+                "currentPrice": 0,
+                "url": "457",
+                "urlImg": "https://i.seadn.io/gcs/files/0fc9d7e55c80b72b1c252b88dc18b957.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": False,
+            },         
+            {
+                "name": "Cabbage Girl",
+                "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c", "⌛ Time: #dc3545"],
+                "description": ["-50% Cabbage Grow Time"],
+                "combos": [{"name": "Cabbage Boy", "effect": "+0.15 cabbage"}],
+                "currentPrice": 0,
+                "url": "435",
+                "urlImg": "https://i.seadn.io/gcs/files/c654499326ad0ef87512eccc2275120b.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Karkinos",
+                "type": ["🌱 Crop: #28a745", "🌷 Cabbage: #e83e8c"],
+                "description": ["+0.1 Cabbage Yield"],
+                "alerts": ["Karkinos has no effect with Cabbage Boy"],
+                "currentPrice": 0,
+                "url": "455",
+                "urlImg": "https://i.seadn.io/gcs/files/a2b12106880045dedf1bebcbf642a0f4.png?auto=format&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Mysterious Parsnip",
+                "type": ["🌱 Crop: #28a745", "💛 Parsnip: #ffc107", "⌛ Time: #dc3545"],
+                "description": ["-50% Parsnip Grow Time"],
+                "currentPrice": 0,
+                "url": "418",
+                "urlImg": "https://i.seadn.io/gcs/files/a3807b9481c9549ab4c8b037f336cc48.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Golden Cauliflower",
+                "type": ["🌱 Crop: #28a745", "🤍 Cauliflower: #20c997"],
+                "description": ["+200% Cauliflower Yield"],
+                "currentPrice": 0,
+                "url": "410",
+                "urlImg": "https://i.seadn.io/gcs/files/b1940ac19227f809718204c092c6f1d8.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Carrot Sword",
+                "type": ["🌱 Crop: #28a745", "🎲 Chance: #007bff"],
+                "description": ["+300% Chances of Finding a Mutant Crop"],
+                "currentPrice": 0,
+                "url": "419",
+                "urlImg": "https://i.seadn.io/gcs/files/ebe4db438955db4881651c2472c454f1.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Lunar Calendar",
+                "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
+                "description": ["-10% Crops Grow Time"],
+                "currentPrice": 0,
+                "url": "448",
+                "urlImg": "https://i.seadn.io/gcs/files/b34ac337570367c010db967d594acd9d.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Nancy",
+                "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
+                "description": ["-15% Crops Grow Time"],
+                "currentPrice": 0,
+                "url": "420",
+                "urlImg": "https://i.seadn.io/gcs/files/359e6d7eddd907318e1a9acfae922c80.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Scarecrow",
+                "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
+                "description": ["-15% Crops Grow Time - +20% Crop Yield"],
+                "currentPrice": 0,
+                "url": "404",
+                "urlImg": "https://i.seadn.io/gcs/files/5e507ea7b873600fbd7c94f25ebfdc4a.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Kuebiko",
+                "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
+                "description": ["-15% Crops Grow Time - +20% Crop Yield - Seeds are Free"],
+                "currentPrice": 0,
+                "url": "421",
+                "urlImg": "https://i.seadn.io/gcs/files/50f0a2d783ddd177ab7fb616703b9107.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Hoot",
+                "type": ["🌱 Crop: #28a745"],
+                "description": ["???"],
+                "currentPrice": 0,
+                "url": "461",
+                "urlImg": "https://i.seadn.io/gcs/files/526bb0ee4538efb1842cb5efe3d844b2.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Basic Scarecrow",
+                "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
+                "description": ["-20% Crops Grow Time for Sunflowers, Potatos and Pumpkins"],
+                "currentPrice": 0,
+                "url": "420",
+                "urlImg": "https://i.seadn.io/gcs/files/5a954084d82c27b8fdd6fa2cff9973c2.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+        ]
+        "resources": [
+            {
+                "name": "Tiki Totem",
+                "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400"],
+                "description": ["+0.1 Wood Drop"],
+                "currentPrice": 0,
+                "url": "447",
+                "urlImg": "https://i.seadn.io/gcs/files/6d09b2a640a58f7f2669f0130c61e8ed.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Wood Nymph Wendy",
+                "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400"],
+                "description": ["+0.2 Wood Drops"],
+                "currentPrice": 0,
+                "url": "436",
+                "urlImg": "https://i.seadn.io/gcs/files/7eb82194c6db9590c91376a9822c257f.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Rock Golem",
+                "type": ["⚒️ Resources: #111111", "⚪ Stone: #a5a5a5","🎲 Chance: #007bff"],
+                "description": ["10% Chance to get +2 Stones"],
+                "currentPrice": 0,
+                "url": "427",
+                "urlImg": "https://i.seadn.io/gcs/files/003cc83d6dae7a7526724ff33e2fd34f.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Iron Idol",
+                "type": ["⚒️ Resources: #111111", "🟠 Iron: #d67c00"],
+                "description": ["+1 Iron Drop"],
+                "currentPrice": 0,
+                "url": "454",
+                "urlImg": "https://i.seadn.io/gcs/files/21292f5b71d879aa7f4359b2d0491b61.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Woody the Beaver",
+                "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400"],
+                "description": ["+20% Increase Wood Drops"],
+                "currentPrice": 0,
+                "url": "415",
+                "urlImg": "https://i.seadn.io/gcs/files/8ec73be04115ac40bd984bc7542828da.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Apprentice Beaver",
+                "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400", "⌛ Time: #dc3545"],
+                "description": ["+20% Increase Wood Drops", "-50% Tree Recovery Time"],
+                "currentPrice": 0,
+                "url": "416",
+                "urlImg": "https://i.seadn.io/gcs/files/5101c63b5fc2afd06fe89838c31e902f.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Foreman Beaver",
+                "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400", "⌛ Time: #dc3545"],
+                "description": ["+20% Increase Wood Drops", "-50% Tree Recovery Time", "Chop Trees without Axes"],
+                "currentPrice": 0,
+                "url": "417",
+                "urlImg": "https://i.seadn.io/gcs/files/6784705d2180eaa375b4f4e5f85da2fb.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Tunnel Mole",
+                "type": ["⚒️ Resources: #111111", "⚪ Stone: #a5a5a5"],
+                "description": ["+25% Increase Stone Drops"],
+                "currentPrice": 0,
+                "url": "428",
+                "urlImg": "https://i.seadn.io/gcs/files/81db80f91c6fa6e5e1cf1b88f0298a5d.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Rocky the Mole",
+                "type": ["⚒️ Resources: #111111", "🟠 Iron: #d67c00"],
+                "description": ["+25% Increase Iron Drops"],
+                "currentPrice": 0,
+                "url": "429",
+                "urlImg": "https://i.seadn.io/gcs/files/a7a3bc576e532e98e698ee420103d43a.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Nugget",
+                "type": ["⚒️ Resources: #111111", "🟡 Gold: #FFCC32"],
+                "description": ["+25% Increase Gold Drops"],
+                "currentPrice": 0,
+                "url": "430",
+                "urlImg": "https://i.seadn.io/gcs/files/a976a48605f56cdfec8fd5c682405a1d.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Tin Turtle",
+                "type": ["⚒️ Resources: #111111", "⚪ Stone: #a5a5a5"],
+                "description": ["+0.1 Stone in the Area of Effect (max 8 nodes)"],
+                "currentPrice": 0,
+                "url": "464",
+                "urlImg": "https://raw.githubusercontent.com/sunflower-land/sunflower-land/ad9b557b2eea7715feeac10f19f643119842058b/public/erc1155/images/464.png",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Emerald Turtle",
+                "type": ["⚒️ Resources: #111111", "⚪ Stone: #a5a5a5", "🟠 Iron: #d67c00", "🟡 Gold: #FFCC32"],
+                "description": ["+0.25 Minerals in the Area of Effect (max 8 nodes)"],
+                "currentPrice": 0,
+                "url": "463",
+                "urlImg": "https://raw.githubusercontent.com/sunflower-land/sunflower-land/ad9b557b2eea7715feeac10f19f643119842058b/public/erc1155/images/463.png",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },        
+        ]
+        
+        "animals": [
+            {
+                "name": "Fat Chicken",
+                "type": ["🐔 Chicken: #bc2500", "🥚 Egg: #ffc054"],
+                "description": ["-10% Wheat requirement to feed Chickens"],
+                "currentPrice": 0,
+                "url": "611",
+                "urlImg": "https://i.seadn.io/gcs/files/ce71d2650e1fb75d8adbf98f67472206.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Speed Chicken",
+                "type": ["🐔 Chicken: #bc2500", "🥚 Egg: #ffc054"],
+                "description": ["-10% Egg Production Time"],
+                "currentPrice": 0,
+                "url": "610",
+                "urlImg": "https://i.seadn.io/gcs/files/41852d601b75e5b35eca2dc7c6bce57a.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Rich Chicken",
+                "type": ["🐔 Chicken: #bc2500", "🥚 Egg: #ffc054"],
+                "description": ["+0.1 Egg Yield"],
+                "currentPrice": 0,
+                "url": "612",
+                "urlImg": "https://i.seadn.io/gcs/files/3695d80fbff44ea58a6f5d177774dc3d.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Ayam Cemani",
+                "type": ["🐔 Chicken: #bc2500", "🥚 Egg: #ffc054"],
+                "description": ["+0.2 Egg Yield"],
+                "currentPrice": 0,
+                "url": "445",
+                "urlImg": "https://i.seadn.io/gcs/files/40e874b881858f943111a61fbbf41cbd.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Rooster",
+                "type": ["🐔 Chicken: #bc2500", "🥚 Egg: #ffc054", "🎲 Chance: #007bff"],
+                "description": ["2x Chances to get Mutant Chicken"],
+                "currentPrice": 0,
+                "url": "613",
+                "urlImg": "https://i.seadn.io/gcs/files/e9affb424198c13fd1d5ec6a641ca12f.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Undead Rooster",
+                "type": ["🐔 Chicken: #bc2500", "🥚 Egg: #ffc054"],
+                "description": ["+0.1 Egg Yield"],
+                "currentPrice": 0,
+                "url": "1114",
+                "urlImg": "https://i.seadn.io/gcs/files/6e935a1a2fc51b0ee7ffe69baeab6ae2.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Chicken Coop",
+                "type": ["🐔 Chicken: #bc2500", "🥚 Egg: #ffc054"],
+                "description": ["+1 Egg and +5 Chicken per Hen House"],
+                "currentPrice": 0,
+                "url": "408",
+                "urlImg": "https://i.seadn.io/gcs/files/40135862a83c712a18b5fe35dec4a9c3.png?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Gold Egg",
+                "type": ["🐔 Chicken: #bc2500", "🥚 Egg: #ffc054"],
+                "description": ["Feed Chickens Without Wheat"],
+                "currentPrice": 0,
+                "url": "409",
+                "urlImg": "https://i.seadn.io/gcs/files/5a9aff4a77cf16f8f2abee21e758c458.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+        ],
+        "fruits": [🍒
+            {
+                "name": "Lady Bug",
+                "type": ["🍒 Fruit: #bbff6d", "🍎 Apple: #e80000"],
+                "description": ["+0.25 Apple Drop"],
+                "currentPrice": 0,
+                "url": "442",
+                "urlImg": "https://i.seadn.io/gcs/files/9efa739328da7f9bbb5f3b6f3826fe33.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Squirrel Monkey",
+                "type": ["🍒 Fruit: #bbff6d", "🍊 Orange: #ffa719"],
+                "description": ["-50% Orange Production Time"],
+                "currentPrice": 0,
+                "url": "443",
+                "urlImg": "https://i.seadn.io/gcs/files/a9dad9cb12eb96261980d08b97249377.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Black Bearry",
+                "type": ["🍒 Fruit: #bbff6d", "🍇 Blueberry: #2d05b2"],
+                "description": ["+1 Blueberry Drop"],
+                "currentPrice": 0,
+                "url": "444",
+                "urlImg": "https://i.seadn.io/gcs/files/8a22891f79abaf836310dc398b599d97.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Immortal Pear",
+                "type": ["🍒 Fruit: #bbff6d"],
+                "description": ["+1 Bonus Harvest"],
+                "currentPrice": 0,
+                "url": "441",
+                "urlImg": "https://i.seadn.io/gcs/files/e62d63edf572779c4928034e983dc3ea.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": False,
+            },
+        ],
+        "xp": [
+            {
+                "name": "Maneki Neko",
+                "type": ["🔼 Expirience: #3B88C3", "🎲 Chance: #007bff"],
+                "description": ["+1 Random Food each 24 hours"],
+                "currentPrice": 0,
+                "url": "446",
+                "urlImg": "https://i.seadn.io/gcs/files/eeadfc4c1c768af13739b4b3e9943ce8.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+            {
+                "name": "Observatory",
+                "type": ["🔼 Expirience: #3B88C3"],
+                "description": ["+5% Experience Boost"],
+                "currentPrice": 0,
+                "url": "911",
+                "urlImg": "https://i.seadn.io/gcs/files/db470a7faa4948dad5d23ead2f2034bf.gif?auto=format&dpr=1&w=384",
+                "collection": "Sunflower Land Collectibles",
+                "isSelling": True,
+            },
+        ],
+    }
 
     def populate_tags_dict(data):
         tags_dict = {}
 
-        for item in data:
-            types = item.get("type", [])  # Get the type list for the item
+        for item_category in data.values():
+            for item in item_category:
+                types = item.get("type", [])  # Get the type list for the item
 
-            for type_str in types:
-                type_name = (
-                    type_str.split(":")[0].strip()
-                    if ":" in type_str
-                    else type_str.strip()
-                )  # Extract the type name
+                for type_str in types:
+                    type_name = (
+                        type_str.split(":")[0].strip()
+                        if ":" in type_str
+                        else type_str.strip()
+                    )  # Extract the type name
 
-                # Add the type name to the tags_dict
-                if type_name not in tags_dict:
-                    tags_dict[type_name] = []
+                    # Add the type name to the tags_dict
+                    if type_name not in tags_dict:
+                        tags_dict[type_name] = []
 
-                tags_dict[type_name].append(item["name"])
+                    tags_dict[type_name].append(item["name"])
 
         return tags_dict
 
-    def display_crop_cards(crops):
-        for index, crop in enumerate(crops):
-            # Generate type badges with colors
-            type_badges = " ".join([
-                f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
-                if ":" in t
-                else f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;">{t.strip()}</span>'
-                for t in crop["type"]
-            ])
+    def display_nft_cards(nft_list):
+        for index, item_category in enumerate(nft_list.values()):
+            for item in item_category:
+                # Generate type badges with colors
+                type_badges = " ".join([
+                    f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
+                    if ":" in t
+                    else f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;">{t.strip()}</span>'
+                    for t in item["type"]
+                ])
 
-            markdown_content = """
-            <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
-                <a href="{}{}" style="display: inline-block" target="_blank">
-                    <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
-                <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
-                    {}
-                </div>                 
-                <div class="card-body" style="min-height:8rem">
-                    <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
-                    <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
+                markdown_content = """
+                <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
+                    <a href="{}{}" style="display: inline-block" target="_blank">
+                        <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
+                    <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
+                        {}
+                    </div>                 
+                    <div class="card-body" style="min-height:8rem">
+                        <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
+                        <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
+                    </div>
+                    <div class="card-footer">
+                        <span class="card-text">💰 <b>Avg Price: {}</b></span>                    
+                    </div>
                 </div>
-                <div class="card-footer">
-                    <span class="card-text">💰 <b>Avg Price: {}</b></span>                    
-                </div>
-            </div>
-            """.format(
-                opensea_url_base,
-                crop["url"],
-                crop["urlImg"],
-                type_badges,
-                crop["name"],
-                crop["description"][0],
-                crop["currentPrice"],
-                crop["collection"],
-            )
+                """.format(
+                    opensea_url_base,
+                    item["url"],
+                    item["urlImg"],
+                    type_badges,
+                    item["name"],
+                    item["description"][0],
+                    item["currentPrice"],
+                    item["collection"],
+                )
 
-            if index % 4 == 0:
-                column1.markdown(markdown_content, unsafe_allow_html=True)
-            elif index % 4 == 1:
-                column2.markdown(markdown_content, unsafe_allow_html=True)
-            elif index % 4 == 2:
-                column3.markdown(markdown_content, unsafe_allow_html=True)
-            else:
-                column4.markdown(markdown_content, unsafe_allow_html=True)
+                if index % 4 == 0:
+                    column1.markdown(markdown_content, unsafe_allow_html=True)
+                elif index % 4 == 1:
+                    column2.markdown(markdown_content, unsafe_allow_html=True)
+                elif index % 4 == 2:
+                    column3.markdown(markdown_content, unsafe_allow_html=True)
+                else:
+                    column4.markdown(markdown_content, unsafe_allow_html=True)
+
 
     keywords = st_tags(
         label='🔻 **SEARCH FOR TAGS:** 🔻',
@@ -2634,29 +2807,31 @@ with tab8:
     # st.write((keywords))
 
     # Create a dictionary for the tags using the tag name as the key
-    tags_dict = populate_tags_dict(crops + resources)
+    tags_dict = populate_tags_dict(nft_list)
 
     selected_tags = set(tag.lower() for tag in keywords)  # Convert selected_tags to lowercase
 
     # Filter items based on selected tags
     filtered_items = []
     if not selected_tags:  # If no tags are selected, display all items
-        filtered_items = crops + resources
+        for item_category in nft_list.values():
+            filtered_items.extend(item_category)
     else:
-        for item in crops + resources:
-            types = item.get("type", [])
-            for tag in selected_tags:
-                if any(tag.lower() in type.lower() for type in types):
-                    filtered_items.append(item)
-                    break
-            else:
-                # Check similarity between tag and item name
-                name = item.get("name", "").lower()
+        for item_category in nft_list.values():
+            for item in item_category:
+                types = item.get("type", [])
                 for tag in selected_tags:
-                    similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
-                    if similarity_ratio >= 70:  # Adjust the threshold as needed
+                    if any(tag.lower() in type.lower() for type in types):
                         filtered_items.append(item)
                         break
+                else:
+                    # Check similarity between tag and item name
+                    name = item.get("name", "").lower()
+                    for tag in selected_tags:
+                        similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
+                        if similarity_ratio >= 70:  # Adjust the threshold as needed
+                            filtered_items.append(item)
+                            break
 
     # Create the layout grid for the item cards
     colA, colB, colC, colD = tab8.columns([3, 3, 3, 3])
@@ -2670,4 +2845,4 @@ with tab8:
         column4 = st.container()
 
     # Call the function with filtered_items
-    display_crop_cards(filtered_items)
+    display_nft_cards(filtered_items)
