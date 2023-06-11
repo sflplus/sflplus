@@ -2479,9 +2479,6 @@ with tab8:
 
     selected_tags = set(tag.lower() for tag in keywords)  # Convert selected_tags to lowercase
 
-    st.write((keywords))
-    st.write(tags_dict)
-
     filtered_crops = []
     for crop in crops:
         types = crop.get("type", [])
@@ -2497,8 +2494,6 @@ with tab8:
                 if similarity_ratio >= 70:  # Adjust the threshold as needed
                     filtered_crops.append(crop)
                     break
-
-    st.write(filtered_crops)
 
     # Create the layout grid for the crop cards
     colA, colB, colC, colD = tab8.columns([3,3,3,3])
