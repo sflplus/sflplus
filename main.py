@@ -178,7 +178,7 @@ queries_quantity = ["350", "2500", "10000"]
 queries_emoji = ["💜", "🍆", "🐌"]
 queries_ticket = ["3200", "1200", "500"]
 
-@st.cache_resource(ttl=1800, show_spinner="Updating the NFT Minted", allow_output_mutation=True) # cache for 30 MIN
+@st.cache_resource(ttl=1800, show_spinner="Updating the NFT Minted") # cache for 30 MIN
 def fetch_owner_count_cached(query_id):
     return fetch_owner_count(query_id)
 
