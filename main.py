@@ -2752,52 +2752,51 @@ with tab8:
     def display_nft_cards(nft_list):
         index = 0  # Initialize index outside the loop
 
-        for category, items in nft_list.items():
-            for item in items:
-                # Generate type badges with colors
-                type_badges = " ".join([
-                    f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
-                    if ":" in t
-                    else f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;">{t.strip()}</span>'
-                    for t in item["type"]
-                ])
+        for item in nft_list:
+            # Generate type badges with colors
+            type_badges = " ".join([
+                f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;background-color:{t.split(":")[1].strip()}">{t.split(":")[0].strip()}</span>'
+                if ":" in t
+                else f'<span class="badge text-center rounded-pill start-50" style="font-size:1rem;">{t.strip()}</span>'
+                for t in item["type"]
+            ])
 
-                markdown_content = """
-                <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
-                    <a href="{}{}" style="display: inline-block" target="_blank">
-                        <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
-                    <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
-                        {}
-                    </div>                 
-                    <div class="card-body" style="min-height:8rem">
-                        <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
-                        <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
-                    </div>
-                    <div class="card-footer">
-                        <span class="card-text">💰 <b>Avg Price: {}</b></span>                    
-                    </div>
+            markdown_content = """
+            <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">
+                <a href="{}{}" style="display: inline-block" target="_blank">
+                    <img src="{}" alt="NFT Image" class="card-img-top rounded-top rounded-3"></a>
+                <div class="w-100 p-2 bg-secondary position-relative bottom-0 text-center">
+                    {}
+                </div>                 
+                <div class="card-body" style="min-height:8rem">
+                    <h5 class="card-title" style="padding-bottom:0rem;">🏷️ <b>{}</b></h5>
+                    <span class="card-text">📖 <b>Description: </b>{}</span></span>                                      
                 </div>
-                """.format(
-                    opensea_url_base,
-                    item["url"],
-                    item["urlImg"],
-                    type_badges,
-                    item["name"],
-                    item["description"][0],
-                    item["currentPrice"],
-                    item["collection"],
-                )
+                <div class="card-footer">
+                    <span class="card-text">💰 <b>Avg Price: {}</b></span>                    
+                </div>
+            </div>
+            """.format(
+                opensea_url_base,
+                item["url"],
+                item["urlImg"],
+                type_badges,
+                item["name"],
+                item["description"][0],
+                item["currentPrice"],
+                item["collection"],
+            )
 
-                if index % 4 == 0:
-                    column1.markdown(markdown_content, unsafe_allow_html=True)
-                elif index % 4 == 1:
-                    column2.markdown(markdown_content, unsafe_allow_html=True)
-                elif index % 4 == 2:
-                    column3.markdown(markdown_content, unsafe_allow_html=True)
-                else:
-                    column4.markdown(markdown_content, unsafe_allow_html=True)
+            if index % 4 == 0:
+                column1.markdown(markdown_content, unsafe_allow_html=True)
+            elif index % 4 == 1:
+                column2.markdown(markdown_content, unsafe_allow_html=True)
+            elif index % 4 == 2:
+                column3.markdown(markdown_content, unsafe_allow_html=True)
+            else:
+                column4.markdown(markdown_content, unsafe_allow_html=True)
 
-                index += 1  # Increment index inside the loop
+            index += 1  # Increment index inside the loop
 
 
     keywords = st_tags(
