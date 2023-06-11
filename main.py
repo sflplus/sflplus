@@ -2453,7 +2453,7 @@ with tab8:
             {
                 "name": "Scarecrow",
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
-                "description": ["+15% Crops Grow Speed - +20% Crop Yield"],
+                "description": ["+15% Crops Grow Speed | +20% Crop Yield"],
                 "currentPrice": 0,
                 "url": "404",
                 "urlImg": "https://i.seadn.io/gcs/files/5e507ea7b873600fbd7c94f25ebfdc4a.png?auto=format&dpr=1&w=384",
@@ -2463,7 +2463,7 @@ with tab8:
             {
                 "name": "Kuebiko",
                 "type": ["🌱 Crop: #28a745", "⌛ Time: #dc3545"],
-                "description": ["+15% Crops Grow Speed - +20% Crop Yield - Seeds are Free"],
+                "description": ["+15% Crops Grow Speed | +20% Crop Yield | Seeds are Free"],
                 "currentPrice": 0,
                 "url": "421",
                 "urlImg": "https://i.seadn.io/gcs/files/50f0a2d783ddd177ab7fb616703b9107.gif?auto=format&dpr=1&w=384",
@@ -2645,7 +2645,7 @@ with tab8:
             {
                 "name": "Apprentice Beaver",
                 "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400", "⌛ Time: #dc3545"],
-                "description": ["+20% Increase Wood Drops", "-50% Tree Recovery Time"],
+                "description": ["+20% Increase Wood Drops | -50% Tree Recovery Time"],
                 "currentPrice": 0,
                 "url": "416",
                 "urlImg": "https://i.seadn.io/gcs/files/5101c63b5fc2afd06fe89838c31e902f.gif?auto=format&dpr=1&w=384",
@@ -2655,7 +2655,7 @@ with tab8:
             {
                 "name": "Foreman Beaver",
                 "type": ["⚒️ Resources: #111111", "🌲 Wood: #9e6400", "⌛ Time: #dc3545"],
-                "description": ["+20% Increase Wood Drops", "-50% Tree Recovery Time", "Chop Trees without Axes"],
+                "description": ["+20% Increase Wood Drops | -50% Tree Recovery Time | Chop Trees without Axes"],
                 "currentPrice": 0,
                 "url": "417",
                 "urlImg": "https://i.seadn.io/gcs/files/6784705d2180eaa375b4f4e5f85da2fb.gif?auto=format&dpr=1&w=384",
@@ -2838,7 +2838,7 @@ with tab8:
                 "isSelling": False,
             },
             {
-                "name": "Fruit Apron",
+                "name": "Fruit Picker Apron",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🍒 Fruit: #e83e8c"],
                 "description": ["+0.1 Fruits Drop"],
                 "currentPrice": 0,
