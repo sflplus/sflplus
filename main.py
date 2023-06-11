@@ -2998,10 +2998,10 @@ with tab8:
                 else:
                     current_price_html = '❌ Still Not Tradable'
             
-            if item["info"] is None:
+            info_alert = item.get("info")
+            if info_alert is None:
                 info_alert_html = ""
             else:
-                info_alert = item["info"]
                 info_alert_html = f'<span class="alert alert-warning" role="alert">🚨 <b>Note: </b>{info_alert}</span>'
 
             markdown_content = """
