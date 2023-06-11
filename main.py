@@ -3000,9 +3000,9 @@ with tab8:
             
             info_alert = item.get("info")
             if info_alert is None:
-                info_alert_html = f"&nnsp;"
+                info_alert_html = f"&nbsp;"
             else:
-                info_alert_html = f'<span class="card-text" style:"color:red">🚨 <b>Note: </b>{info_alert}</span>'
+                info_alert_html = f'<span class="card-text" style:"color:red;">🚨 <b>Note: </b>{info_alert}</span>'
 
             markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">            
