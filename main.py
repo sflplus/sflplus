@@ -2584,7 +2584,7 @@ with tab8:
             {
                 "name": "Eggplant Onesie",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1"],
-                "description": ["+20% Parsnip Yield"],
+                "description": ["+0.1 Eggplant Harvest"],
                 "currentPrice": 0,
                 "url": "124",
                 "urlImg": "https://i.seadn.io/gcs/files/fd74bc39605ed34dfb3d40fe5fd5681e.png?auto=format&dpr=1&w=384",
