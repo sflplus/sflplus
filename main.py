@@ -2001,7 +2001,7 @@ with tab6:
         return df_dune
 
     # Create or fetch the cached dataframe
-    @st.cache_data(ttl=30)
+    #@st.cache_data(ttl=30)
     def get_cached_dataframe():
         try:
             return create_dataframe()
@@ -2990,7 +2990,8 @@ with tab8:
                     tags_dict[type_name].append(item["name"])
 
         return tags_dict
-
+    
+    @st.cache_data(ttl=300)
     def display_nft_cards(nft_list):
         index = 0  # Initialize index outside the loop
 
