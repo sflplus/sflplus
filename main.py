@@ -188,7 +188,7 @@ def fetch_owner_count(query_id):
         owner_count = data["result"]["rows"][0]["_col0"]
         return owner_count
     else:
-        live_minted.error(f"Error fetching NFT owners for query {query_id}")
+        live_minted_error.error(f"Error fetching NFT owners") #for query {query_id}
 
 @st.cache_resource(ttl=7200, show_spinner="Updating Top10 ID") # cache for 2 hour
 def fetch_top_ten_ids():
@@ -1984,6 +1984,10 @@ with tab6:
     #live_mush.markdown("##### 🍄 **WILD MUSHROOM RANKING**") 
     
     # Iterate over the list of queries and retrieve the owner counts
+    live_minted_error = st.container() 
+    
+    live_minted.container(live_minted_error)
+    
     def create_dataframe():
         data = []
         for i, query_id in enumerate(queries):
