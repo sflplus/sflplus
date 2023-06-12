@@ -40,7 +40,7 @@ def local_css(file_name):
 local_css("style.css")
 
 
-@st.cache_resource(ttl=604800, show_spinner="Updating Lantern Ingredients")
+@st.cache_resource(ttl=60, show_spinner="Updating Lantern Ingredients")
 def retrieve_lantern_ingredients():
     url = "https://api.sunflower-land.com/visit/1"
     response = requests.get(url)
