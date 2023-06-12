@@ -15,7 +15,6 @@ import aiohttp
 from datetime import datetime, timedelta
 import sys
 import fuzzywuzzy.fuzz as fuzz
-from cachetools import TTLCache
 
 favicon = Image.open('favicon.png')
 
@@ -2993,18 +2992,8 @@ with tab8:
         return tags_dict
     
 
-    # Create a cache with a TTL of 300 seconds (5 minutes)
-    cache = TTLCache(maxsize=1, ttl=300)
-
     def display_nft_cards(nft_list):
-        # Convert the list of dictionaries to a JSON string
-        key = json.dumps(nft_list, sort_keys=True)
-
-        # Check if the cache already contains the result
-        if key in cache:
-            return cache[key]  # Return the cached result
-
-        index = 0
+        index = 0  # Initialize index outside the loop
 
         for item in nft_list:
             # Generate type badges with colors
@@ -3076,12 +3065,7 @@ with tab8:
             else:
                 column4.markdown(markdown_content, unsafe_allow_html=True)
 
-            index += 1
-
-            # Cache the result
-            cache[key] = None
-
-            return None
+            index += 1  # Increment index inside the loop 
 
     col_nft, buff_nft = st.columns([2,2])
     with col_nft:        
