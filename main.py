@@ -1988,20 +1988,22 @@ with tab6:
     def create_dataframe():
         # Create a list to store the data
         data = []
+        try:
+            for i, query_id in enumerate(queries):
+                owner_count = fetch_owner_count(query_id)
+                query_name = queries_name[i]
+                query_emoji = queries_emoji[i]
+                query_quantity = queries_quantity[i]
+                query_ticket = queries_ticket[i]
+                nft = f"{query_emoji} {query_name}"
+                data.append([nft, owner_count, query_quantity, query_ticket])
 
-        for i, query_id in enumerate(queries):
-            owner_count = fetch_owner_count(query_id)
-            query_name = queries_name[i]
-            query_emoji = queries_emoji[i]
-            query_quantity = queries_quantity[i]
-            query_ticket = queries_ticket[i]
-            nft = f"{query_emoji} {query_name}"
-            data.append([nft, owner_count, query_quantity, query_ticket])
-
-        # Create a dataframe from the data list
-        df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply", "Tickets"])
+            # Create a dataframe from the data list
+            df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply", "Tickets"])
         return df_dune
-
+        except Exception as e:
+            print(f"Failed to fetch NFT mints. Error: {e}")
+        return []    
 
     # Create or fetch the cached dataframe
     df_dune = create_dataframe()
