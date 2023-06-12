@@ -2352,7 +2352,7 @@ with tab8:
             {
                 "name": "Pablo The Bunny",
                 "type": ["🌱 Crop: #28a745", "🥕 Carrot: #ff731c"],
-                "description": ["+0.1 Carrot Harvest"],
+                "description": ["+0.1 Carrot Yield"],
                 "currentPrice": 0,
                 "url": "926",
                 "urlImg": "https://i.seadn.io/gcs/files/f08eb724b62fed23fa962031e194e496.gif?auto=format&dpr=1&w=384",
@@ -2372,7 +2372,7 @@ with tab8:
             {
                 "name": "Maximus",
                 "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1"],
-                "description": ["+1 Eggplant Harvest"],
+                "description": ["+1 Eggplant Yield"],
                 "currentPrice": 0,
                 "url": "459",
                 "urlImg": "https://i.seadn.io/gcs/files/222ef7e2b8595b68e3c84a01c15eaece.png?auto=format&dpr=1&w=384",
@@ -2392,7 +2392,7 @@ with tab8:
             {
                 "name": "Purple Trail",
                 "type": ["🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1"],
-                "description": ["+0.2 Eggplant Harvest"],
+                "description": ["+0.2 Eggplant Yield"],
                 "currentPrice": 0,
                 "url": "457",
                 "urlImg": "https://i.seadn.io/gcs/files/0fc9d7e55c80b72b1c252b88dc18b957.png?auto=format&dpr=1&w=384",
@@ -2506,7 +2506,7 @@ with tab8:
             {
                 "name": "Foliant",
                 "type": ["🌱 Crop: #28a745", "🥦 Kale: #016b18"],
-                "description": ["+0.2 Kale Harvest"],
+                "description": ["+0.2 Kale Yield"],
                 "currentPrice": 0,
                 "url": "1227",
                 "urlImg": "https://i.seadn.io/gcs/files/f015f8235b5eca9a734624473858058d.png?auto=format&dpr=1&w=384",
@@ -2606,7 +2606,7 @@ with tab8:
             {
                 "name": "Eggplant Onesie",
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🍆 Eggplant: #6f42c1"],
-                "description": ["+0.1 Eggplant Harvest"],
+                "description": ["+0.1 Eggplant Yield"],
                 "currentPrice": 0,
                 "url": "124",
                 "urlImg": "https://i.seadn.io/gcs/files/fd74bc39605ed34dfb3d40fe5fd5681e.png?auto=format&dpr=1&w=384",
