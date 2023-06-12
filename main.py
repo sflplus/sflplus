@@ -2985,8 +2985,9 @@ with tab8:
     #        ['Sunflower Land', 'Bumpkins Wearables'],
     #        ['Sunflower Land', 'Bumpkins Wearables'])
     with how_nft:
+        st.write("\n")  
         how_nft = st.expander("📝 **HOW IT WORKS?**", expanded=False) 
-        
+     
     how_nft.info(f"The value of **NFTs of the Land Collection**, it calculated using the **average between the last sold price and the current lowest listing price on Opensea**, which is updated 1-2 times per day (semi-manually).")
     how_nft.success(f"For **Bumpkins wearables**, it using a similar method with only difference that is not the average price, it is just the **last sold price in OpenSea**")
     how_nft.info(f"About the NFT's that say **Still Not Tradable** it means that they are going to be tradable in the future but at the moment you can withdraw them and the **Not for Sale** ones they are never going to be tradable.")
