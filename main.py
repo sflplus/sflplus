@@ -40,7 +40,7 @@ def local_css(file_name):
 local_css("style.css")
 
 
-@st.cache_resource(ttl=60, show_spinner="Updating Lantern Ingredients")
+@st.cache_resource(ttl=604800, show_spinner="Updating Lantern Ingredients")
 def retrieve_lantern_ingredients():
     url = "https://api.sunflower-land.com/visit/1"
     response = requests.get(url)
@@ -1235,7 +1235,7 @@ with tab5:
                     4: "Radiance",
                     5: "Aurora",
                     6: "Luminous",
-                    7: "Radiance",
+                    7: "Ocean",
                     8: "Aurora"
                 }
 
@@ -2058,7 +2058,7 @@ async def main():
                 'Week 10': [farm['LanternsCraftedByWeek']['10'] if 'LanternsCraftedByWeek' in farm and '10' in farm['LanternsCraftedByWeek'] else None for farm in data1['farms']],
                 'Week 9': [farm['LanternsCraftedByWeek']['9'] if 'LanternsCraftedByWeek' in farm and '9' in farm['LanternsCraftedByWeek'] else None for farm in data1['farms']],       
                 'Week 8': [farm['LanternsCraftedByWeek']['8'] if 'LanternsCraftedByWeek' in farm and '8' in farm['LanternsCraftedByWeek'] else None for farm in data1['farms']],
-                'Week 7': [farm['LanternsCraftedByWeek']['7'] if 'LanternsCraftedByWeek' in farm and '7' in farm['LanternsCraftedByWeek'] else None for farm in data1['farms']],        
+                'Week 7': [farm['LanternsCraftedByWeek']['7'] if 'LanternsCraftedByWeek' in farm and '7' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],        
                 'Week 6': [farm['LanternsCraftedByWeek']['6'] if 'LanternsCraftedByWeek' in farm and '6' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
                 'Week 5': [farm['LanternsCraftedByWeek']['5'] if 'LanternsCraftedByWeek' in farm and '5' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],        
                 'Week 4': [farm['LanternsCraftedByWeek']['4'] if 'LanternsCraftedByWeek' in farm and '4' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
@@ -2094,7 +2094,7 @@ async def main():
                     new_row = {
                         'Farm': farm_id,
                         'Week 8': lantern_data.get('8', None),
-                        'Week 7': lantern_data.get('7', None),
+                        'Week 7': lantern_data.get('7', 0),
                         'Week 6': lantern_data.get('6', 0),
                         'Week 5': lantern_data.get('5', 0),
                         'Week 4': lantern_data.get('4', 0),
@@ -2109,18 +2109,18 @@ async def main():
 
             # Convert Total Ticket column to numeric values
             df1['Tickets'] = pd.to_numeric(df1['Tickets'])
-            df2['Week 6'] = pd.to_numeric(df2['Week 6'])
+            df2['Week 7'] = pd.to_numeric(df2['Week 7'])
             df3['Old Bottle'] = pd.to_numeric(df3['Old Bottle'])
             df3['Seaweed'] = pd.to_numeric(df3['Seaweed'])
             df3['Iron Compass'] = pd.to_numeric(df3['Iron Compass'])
 
             # Sort by Total Ticket in descending order
             df1 = df1.sort_values(by='Tickets', ascending=False)
-            df2 = df2.sort_values(by='Week 6', ascending=False)
+            df2 = df2.sort_values(by='Week 7', ascending=False)
             df3 = df3.sort_values(by=['Old Bottle', 'Iron Compass', 'Seaweed'], ascending=[False, False, False], kind='mergesort')
 
 
-            df2 = df2.rename(columns={"Week 6": "Week 6 🔻"})   
+            df2 = df2.rename(columns={"Week 7": "Week 7 🔻"})   
 
             # Reset index and set the "Ranking" column as the new index
             df1 = df1.reset_index(drop=True)
