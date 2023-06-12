@@ -2000,9 +2000,12 @@ with tab6:
         return df_dune
 
     # Create or fetch the cached dataframe
-    @st.cache_resource(ttl=30)
     def get_cached_dataframe():
-        return create_dataframe()
+        try:
+            return create_dataframe()
+        except Exception as e:
+            st.error(f"Failed to fetch NFT mints. Error: {e}")
+            return pd.DataFrame()
 
     df_dune = get_cached_dataframe()
     
