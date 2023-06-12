@@ -2495,8 +2495,8 @@ with tab8:
             },           
             {
                 "name": "Hoot",
-                "type": ["🌱 Crop: #28a745"],
-                "description": ["???"],
+                "type": ["🌱 Crop: #28a745", "🌾 Wheat: #eab412", "🥦 Kale: #016b18", "❤️ Radish: #c40000"],
+                "description": ["+0.5 Yield for Wheat, Kale and Radish"],
                 "currentPrice": 0,
                 "url": "461",
                 "urlImg": "https://i.seadn.io/gcs/files/526bb0ee4538efb1842cb5efe3d844b2.png?auto=format&dpr=1&w=384",
