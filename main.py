@@ -1984,7 +1984,7 @@ with tab6:
     #live_mush.markdown("##### 🍄 **WILD MUSHROOM RANKING**") 
     
     # Iterate over the list of queries and retrieve the owner counts
-    @st.cache_resource(ttl=1800)  # Cache for 30 minutes
+    @st.cache_resource(ttl=60)  # Cache for 30 minutes
     def create_dataframe():
         try:
             data = []
