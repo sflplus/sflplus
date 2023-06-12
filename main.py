@@ -2986,6 +2986,7 @@ with tab8:
     #        ['Sunflower Land', 'Bumpkins Wearables'])
     with how_nft:
         st.write("\n")  
+        st.write("\n") 
         how_nft = st.expander("📝 **HOW IT WORKS?**", expanded=False) 
      
     how_nft.info(f"The value of **NFTs of the Land Collection**, it calculated using the **average between the last sold price and the current lowest listing price on Opensea**, which is updated 1-2 times per day (semi-manually).")
