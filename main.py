@@ -2997,8 +2997,8 @@ with tab8:
     cache = TTLCache(maxsize=1, ttl=300)
 
     def display_nft_cards(nft_list):
-        # Convert the list to a tuple
-        key = tuple(nft_list)
+        # Convert the dictionary to a tuple of sorted key-value pairs
+        key = tuple(sorted(nft_list.items()))
 
         # Check if the cache already contains the result
         if key in cache:
