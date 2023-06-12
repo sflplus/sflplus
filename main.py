@@ -2726,7 +2726,7 @@ with tab8:
             {
                 "name": "Emerald Turtle",
                 "type": ["⚒️ Resources: #111111", "⚪ Stone: #a5a5a5", "🟠 Iron: #d67c00", "🟡 Gold: #FFCC32"],
-                "description": ["+0.25 Minerals in the Area of Effect (max 8 nodes)"],
+                "description": ["+0.5 Minerals in the Area of Effect (max 8 nodes)"],
                 "currentPrice": 0,
                 "url": "463",
                 "urlImg": "https://raw.githubusercontent.com/sunflower-land/sunflower-land/ad9b557b2eea7715feeac10f19f643119842058b/public/erc1155/images/463.png",
