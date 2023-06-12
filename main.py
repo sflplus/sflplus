@@ -1984,28 +1984,27 @@ with tab6:
     #live_mush.markdown("##### 🍄 **WILD MUSHROOM RANKING**") 
     
     # Iterate over the list of queries and retrieve the owner counts
-    @st.cache_resource(ttl=60)  # Cache for 30 minutes
     def create_dataframe():
-        try:
-            data = []
-            for i, query_id in enumerate(queries):
-                owner_count = fetch_owner_count(query_id)
-                query_name = queries_name[i]
-                query_emoji = queries_emoji[i]
-                query_quantity = queries_quantity[i]
-                query_ticket = queries_ticket[i]
-                nft = f"{query_emoji} {query_name}"
-                data.append([nft, owner_count, query_quantity, query_ticket])
+        data = []
+        for i, query_id in enumerate(queries):
+            owner_count = fetch_owner_count(query_id)
+            query_name = queries_name[i]
+            query_emoji = queries_emoji[i]
+            query_quantity = queries_quantity[i]
+            query_ticket = queries_ticket[i]
+            nft = f"{query_emoji} {query_name}"
+            data.append([nft, owner_count, query_quantity, query_ticket])
 
-            # Create a dataframe from the data list
-            df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply", "Tickets"])
-            return df_dune
-        except Exception as e:
-            live_minted.error(f"Failed to fetch NFT mints. Error: {e}")
-            return pd.DataFrame(columns=["NFT", "Owners", "Supply", "Tickets"])
+        # Create a dataframe from the data list
+        df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply", "Tickets"])
+        return df_dune
 
     # Create or fetch the cached dataframe
-    df_dune = create_dataframe()
+    @st.cache(ttl=1800)
+    def get_cached_dataframe():
+        return create_dataframe()
+
+    df_dune = get_cached_dataframe()
     
     live_minted.info(f"👨‍🔬 **This info is from Dune**")
     # Display the dataframe
