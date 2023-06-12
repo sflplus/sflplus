@@ -2992,15 +2992,19 @@ with tab8:
 
         return tags_dict
     
+
     # Create a cache with a TTL of 300 seconds (5 minutes)
     cache = TTLCache(maxsize=1, ttl=300)
 
     def display_nft_cards(nft_list):
-        # Check if the cache already contains the result
-        if nft_list in cache:
-            return cache[nft_list]  # Return the cached result
+        # Convert the list to a tuple
+        key = tuple(nft_list)
 
-        index = 0  # Initialize index outside the loop
+        # Check if the cache already contains the result
+        if key in cache:
+            return cache[key]  # Return the cached result
+
+        index = 0
 
         for item in nft_list:
             # Generate type badges with colors
@@ -3072,12 +3076,13 @@ with tab8:
             else:
                 column4.markdown(markdown_content, unsafe_allow_html=True)
 
-            index += 1  # Increment index inside the loop 
-            # Cache the result
-            cache[nft_list] = None
+            index += 1
 
-            return None    
-        
+            # Cache the result
+            cache[key] = None
+
+            return None
+
     col_nft, buff_nft = st.columns([2,2])
     with col_nft:        
         keywords = st_tags(
