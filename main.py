@@ -1986,9 +1986,8 @@ with tab6:
     # Iterate over the list of queries and retrieve the owner counts
     @st.cache_resource(ttl=1800)  # Cache for 30 minutes
     def create_dataframe():
-        # Create a list to store the data
-        data = []
         try:
+            data = []
             for i, query_id in enumerate(queries):
                 owner_count = fetch_owner_count(query_id)
                 query_name = queries_name[i]
@@ -2000,10 +1999,10 @@ with tab6:
 
             # Create a dataframe from the data list
             df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply", "Tickets"])
-        return df_dune
+            return df_dune
         except Exception as e:
-            print(f"Failed to fetch NFT mints. Error: {e}")
-        return []    
+            live_minted.error(f"Failed to fetch NFT mints. Error: {e}")
+            return pd.DataFrame(columns=["NFT", "Owners", "Supply", "Tickets"])
 
     # Create or fetch the cached dataframe
     df_dune = create_dataframe()
