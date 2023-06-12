@@ -1880,6 +1880,7 @@ with tab6:
         live_how = st.expander("📝 **HOW IT WORKS?**", expanded=False)
         live_ranking = st.expander("🎟️ **DAWN BREAKER TICKETS**", expanded=True)
         live_minted = st.expander("⚡ **DAWN BREAKER MINTS**", expanded=True)
+        live_minted_error = st.container()   
         
     with col_rank2:
         live_update = st.container()        
@@ -1983,11 +1984,7 @@ with tab6:
     #live_mush.warning("🚨 **50th Respawn in: {}**".format(formatted_time_remaining))
     #live_mush.markdown("##### 🍄 **WILD MUSHROOM RANKING**") 
     
-    # Iterate over the list of queries and retrieve the owner counts
-    live_minted_error = st.container() 
-    
-    live_minted.container(live_minted_error)
-    
+    # Iterate over the list of queries and retrieve the owner counts     
     def create_dataframe():
         data = []
         for i, query_id in enumerate(queries):
