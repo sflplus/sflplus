@@ -2598,7 +2598,7 @@ with tab8:
                 "type": ["👨‍🌾 Bumpkin: #e04a83","🌱 Crop: #28a745", "🤎 Parsnip: #c4914a"],
                 "description": ["+20% Parsnip Yield"],
                 "currentPrice": 0,
-                "url": "59",
+                "url": "56",
                 "urlImg": "https://i.seadn.io/gcs/files/dd7d9ab5e04626e1fabc9ecaf7387871.png?auto=format&dpr=1&w=384",
                 "collection": "Bumpkin",
                 "isSelling": True,
