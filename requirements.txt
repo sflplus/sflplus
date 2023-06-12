@@ -6,3 +6,4 @@ pandas
 aiohttp
 python-Levenshtein
 fuzzywuzzy
+cachetools
