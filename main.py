@@ -2969,6 +2969,29 @@ with tab8:
         ],
     }
 
+    col_nft, how_nft = st.columns([2,2])
+    with col_nft:        
+        keywords = st_tags(
+            label='🔻 **SEARCH WITH TAGS:** 🔻',
+            text='Press enter to add more',
+            #value=['Crop'],
+            suggestions=['Peeled','Potato','Treasure','Fruit','Mushroom','SFL','Sunflower','Bumpkin','Egg','Chicken','Expirience','Apple','Orange','Blueberry','Crop','Cabbage','Boy','Girl','Easter','Bunny','Carrot','Pablo','Victoria','Sisters','Pumpkin','Maximus','Eggplant','Obie','Purple','Trail','Karkinos','Mysterious','Parsnip','Golden','Cauliflower','Sword','Lunar','Calendar','Nancy','Scarecrow','Kuebiko','Hoot','Foliant','Basic','Tiki','Totem','Wood','Nymph','Wendy','Rock','Golem','Stone','Chance'],
+            maxtags=4,
+            key="tags"
+        )
+    #with col_nft2:
+    #    nft_collec = st.multiselect(
+    #        'From witch Collections?',
+    #        ['Sunflower Land', 'Bumpkins Wearables'],
+    #        ['Sunflower Land', 'Bumpkins Wearables'])
+    with how_nft:
+        how_nft = st.expander("📝 **HOW IT WORKS?**", expanded=False) 
+        
+    how_nft.info(f"The value of **NFTs of the Land Collection**, it calculated using the **average between the last sold price and the current lowest listing price on Opensea**, which is updated 1-2 times per day (semi-manually).")
+    how_nft.success(f"For **Bumpkins wearables**, it using a similar method with only difference that is not the average price, it is just the **last sold price in OpenSea**")
+    how_nft.info(f"About the NFT's that say **Still Not Tradable** it means that they are going to be tradable in the future but at the moment you can withdraw them and the **Not for Sale** ones they are never going to be tradable.")
+
+
     def populate_tags_dict(data):
         tags_dict = {}
 
@@ -3066,29 +3089,6 @@ with tab8:
                 column4.markdown(markdown_content, unsafe_allow_html=True)
 
             index += 1  # Increment index inside the loop 
-
-    col_nft, how_nft = st.columns([2,2])
-    with col_nft:        
-        keywords = st_tags(
-            label='🔻 **SEARCH WITH TAGS:** 🔻',
-            text='Press enter to add more',
-            #value=['Crop'],
-            suggestions=['Peeled','Potato','Treasure','Fruit','Mushroom','SFL','Sunflower','Bumpkin','Egg','Chicken','Expirience','Apple','Orange','Blueberry','Crop','Cabbage','Boy','Girl','Easter','Bunny','Carrot','Pablo','Victoria','Sisters','Pumpkin','Maximus','Eggplant','Obie','Purple','Trail','Karkinos','Mysterious','Parsnip','Golden','Cauliflower','Sword','Lunar','Calendar','Nancy','Scarecrow','Kuebiko','Hoot','Foliant','Basic','Tiki','Totem','Wood','Nymph','Wendy','Rock','Golem','Stone','Chance'],
-            maxtags=4,
-            key="tags"
-        )
-    #with col_nft2:
-    #    nft_collec = st.multiselect(
-    #        'From witch Collections?',
-    #        ['Sunflower Land', 'Bumpkins Wearables'],
-    #        ['Sunflower Land', 'Bumpkins Wearables'])
-    with col_nft2:
-        how_nft = st.expander("📝 **HOW IT WORKS?**", expanded=False) 
-        
-    how_nft.info(f"The value of **NFTs of the Land Collection**, it calculated using the **average between the last sold price and the current lowest listing price on Opensea**, which is updated 1-2 times per day (semi-manually).")
-    how_nft.success(f"For **Bumpkins wearables**, it using a similar method with only difference that is not the average price, it is just the **last sold price in OpenSea**")
-    how_nft.info(f"About the NFT's that say **Still Not Tradable** it means that they are going to be tradable in the future but at the moment you can withdraw them and the **Not for Sale** ones they are never going to be tradable.")
-
     
     tags_dict = populate_tags_dict(nft_list)
 
