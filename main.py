@@ -2001,7 +2001,7 @@ with tab6:
         return df_dune
 
     # Create or fetch the cached dataframe
-    @st.cache(ttl=30)
+    @st.cache_data(ttl=30)
     def get_cached_dataframe():
         try:
             return create_dataframe()
