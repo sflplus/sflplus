@@ -509,7 +509,7 @@ app_state = {k: v[0] if isinstance(v, list) else v for k, v in app_state.items()
 
 
 
-col00, col11x, col0x, col10x = st.columns([1.85,1.75,1.75,3])
+col00, col11x, col0x, col10x = st.columns([1.85,1.75,1.75,3.5])
 with col00:
     st.markdown('[![Foo](https://raw.githubusercontent.com/vitt0/sunflower-land/main/sflplus.png)](https://sflplus.info)  <span style="vertical-align:bottom;color:rgb(0, 221, 66);font-weight:bold;">v3.2</span>', unsafe_allow_html=True)
 with col11x:
@@ -3067,7 +3067,7 @@ with tab8:
 
             index += 1  # Increment index inside the loop 
 
-    col_nft, buff_nft = st.columns([2,2])
+    col_nft, how_nft = st.columns([2,2])
     with col_nft:        
         keywords = st_tags(
             label='🔻 **SEARCH WITH TAGS:** 🔻',
@@ -3082,8 +3082,14 @@ with tab8:
     #        'From witch Collections?',
     #        ['Sunflower Land', 'Bumpkins Wearables'],
     #        ['Sunflower Land', 'Bumpkins Wearables'])
+    with col_nft2:
+        how_nft = st.expander("📝 **HOW IT WORKS?**", expanded=False) 
         
-    # Create a dictionary for the tags using the tag name as the key
+    how_nft.info(f"The value of **NFTs of the Land Collection**, it calculated using the **average between the last sold price and the current lowest listing price on Opensea**, which is updated 1-2 times per day (semi-manually).")
+    how_nft.success(f"For **Bumpkins wearables**, it using a similar method with only difference that is not the average price, it is just the **last sold price in OpenSea**")
+    how_nft.info(f"About the NFT's that say **Still Not Tradable** it means that they are going to be tradable in the future but at the moment you can withdraw them and the **Not for Sale** ones they are never going to be tradable.")
+
+    
     tags_dict = populate_tags_dict(nft_list)
 
     selected_tags = set(tag.lower() for tag in keywords)  # Convert selected_tags to lowercase
