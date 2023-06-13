@@ -3040,6 +3040,7 @@ with tab8:
             else:
                 opensea_link = opensea_url_bump
                 current_price = wearable_price(item["name"], return_type='nft_list')
+                
                 if isinstance(current_price, float):
                     current_price_html = f'💰 Average Price: ${current_price}'
                 else:
