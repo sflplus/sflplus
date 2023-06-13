@@ -1460,13 +1460,13 @@ with tab5:
                             fruit_harvest_left_container = st.container()
                             h_fruit.write(f"{fruit_harvest_left_container}")
                             with fruit_harvest_left_container:
-                                st.write("\n")
-                                st.info(f"\n{fruit_emojis.get(name)} **{name} Harvest Left: {total_harvests_left}**")
+                                h_fruit.write("\n")
+                                h_fruit.info(f"\n{fruit_emojis.get(name)} **{name} Harvest Left: {total_harvests_left}**")
 
                                 for tree_id, tree_data in fruit_patches_dict.items():
                                     if tree_data.get("fruit") and tree_data["fruit"].get("name") == name:
                                         harvests_left = tree_data["fruit"].get("harvestsLeft")
-                                        st.write(f" - 🌳 **{harvests_left} Harvests Left**")
+                                        h_fruit.write(f" - 🌳 **{harvests_left} Harvests Left**")
                 else:
                     h_fruit.error("\n **There aren't Fruit trees.**")
 
