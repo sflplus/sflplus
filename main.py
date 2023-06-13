@@ -386,7 +386,7 @@ def wearable_price_read():
     return dfs
 
 #@st.cache_resource(ttl=300, show_spinner="Updating the Wearables Prices")
-def wearable_price(item_name=None, return_type='result_df'):
+def wearable_price(item_name=None, return_type=None):
     dfs = wearable_price_read()
     df = pd.concat(dfs, axis=0)
     # drop the first columns
