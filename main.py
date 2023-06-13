@@ -1456,9 +1456,10 @@ with tab5:
                                 if tree_data.get("fruit") and tree_data["fruit"].get("name") == name:
                                     harvests_left = tree_data["fruit"].get("harvestsLeft")
                                     total_harvests_left += harvests_left
-                            st.session_state[f"{name}_total_harvests_left"] = total_harvests_left
+                            #st.session_state[f"{name}_total_harvests_left"] = total_harvests_left
+                            fruit_harvest_left = st.container(total_harvests_left, key={name})                           
                             h_fruit.write("\n")  
-                            h_fruit.info(f"\n{fruit_emojis.get(name)} **{name} Harvest Left:** {st.session_state[f'{name}_total_harvests_left']}**")
+                            h_fruit.info(f"\n{fruit_emojis.get(name)} **{name} Harvest Left:** {fruit_harvest_left}") #{st.session_state[f'{name}_total_harvests_left']}**")
                             for tree_id, tree_data in fruit_patches_dict.items():
                                 if tree_data.get("fruit") and tree_data["fruit"].get("name") == name:
                                     harvests_left = tree_data["fruit"].get("harvestsLeft")
