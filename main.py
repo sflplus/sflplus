@@ -460,6 +460,7 @@ def wearable_price(item_name=None, return_type='result_df'):
    
     # Return the result based on the specified 'return_type'
     if return_type == 'nft_list':
+        
         # calculate the average price for each NFT
         df['Average Price'] = df[['Last Sale', 'Current Price']].apply(lambda x: x.sum() / 2 if (not pd.isnull(x['Last Sale'])) and (not pd.isnull(x['Current Price'])) else x.max(), axis=1)
 
@@ -467,9 +468,9 @@ def wearable_price(item_name=None, return_type='result_df'):
         df['Average Price'] = df['Average Price'].round(2)
 
         df.rename(columns={'Last Sale': 'Average Price'}, inplace=True)
-
         # create a new DataFrame with only the "NFT" and "Average Price" columns
         df = df[['Wearable', 'Average Price']]
+        
         if item_name is not None and item_name in df['Wearable'].values:
             current_price = df.loc[df['Wearable'] == item_name, 'Average Price'].values[0]
             return current_price
