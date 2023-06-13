@@ -1467,8 +1467,7 @@ with tab5:
                                         harvests_left = tree_data["fruit"].get("harvestsLeft")
                                         st.write(f" - 🌳 **{harvests_left} Harvests Left**")
 
-                            with h_fruit:
-                                fruit_harvest_left_container.write()
+                            h_fruit.container(fruit_harvest_left_container)
                 else:
                     h_fruit.error("\n **There aren't Fruit trees.**")
 
