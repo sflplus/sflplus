@@ -385,8 +385,8 @@ def wearable_price_read():
         pass
     return dfs
 
-#@st.cache_resource(ttl=300, show_spinner="Updating the Wearables Prices")
-def wearable_price(item_name=None, return_type='nft_list'):
+@st.cache_resource(ttl=300, show_spinner="Updating the Wearables Prices")
+def wearable_price(item_name=None, return_type='result_df'):
     dfs = wearable_price_read()
     df = pd.concat(dfs, axis=0)
     # drop the first columns
@@ -457,29 +457,27 @@ def wearable_price(item_name=None, return_type='nft_list'):
     df['Current Price'] = df['Current Price'].str.extract(r'([\d.]+)').astype(float)
 
     df.dropna(subset=['Last Sale', 'Current Price'], how='all', inplace=True)
-   
+
+    # calculate the average price for each NFT
+    #df['Average Price'] = df[['Last Sale', 'Current Price']].apply(lambda x: x.sum() / 2 if (not pd.isnull(x['Last Sale'])) and (not pd.isnull(x['Current Price'])) else x.max(), axis=1)
+
+    # round the average price to 2 decimals
+    #df['Average Price'] = df['Average Price'].round(2)
+
+    df.rename(columns={'Last Sale': 'Average Price'}, inplace=True)
+    
+    # create a new DataFrame with only the "NFT" and "Average Price" columns
+    df = df[['Wearable', 'Average Price']]
+    
+    # Return the result based on the specified 'return_type'
     if return_type == 'nft_list':
-        # Calculate the average price for each NFT
-        df['Average Price'] = df[['Last Sale', 'Current Price']].mean(axis=1)
-
-        # Round the average price to 2 decimals
-        df['Average Price'] = df['Average Price'].round(2)
-
-        # Create a new DataFrame with only the "Wearable" and "Average Price" columns
-        df_result = df[['Wearable', 'Average Price']]
-    elif return_type == 'last_sale':
-        # Create a new DataFrame with only the "Wearable" and "Last Sale" columns
-        df_result = df[['Wearable', 'Last Sale']]
+        if item_name is not None and item_name in df['Wearable'].values:
+            current_price = df.loc[df['Wearable'] == item_name, 'Average Price'].values[0]
+            return current_price
+        else:
+            return None
     else:
-        raise ValueError(f"Invalid return_type: {return_type}")
-
-    if item_name is not None and item_name in df_result['Wearable'].values:
-        current_price = df_result.loc[df_result['Wearable'] == item_name, 'Average Price' if return_type == 'nft_list' else 'Last Sale'].values[0]
-        df_result = pd.DataFrame({'Wearable': [item_name], 'Price': [current_price]})
-    else:
-        df_result = pd.DataFrame({'Wearable': [], 'Price': []})
-
-    return df_result
+        return df
     
 def wearable_list(equipped_dict, return_type='filtered_df'):
     df = wearable_price(return_type=return_type)
