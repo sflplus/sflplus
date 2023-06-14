@@ -3019,7 +3019,7 @@ with tab8:
         return tags_dict
     
 
-    async def display_nft_cards_async(nft_list):
+    async def display_nft_cards_async(nft_list, column1, column2, column3, column4):
         index = 0  # Initialize index outside the loop
 
         for item in nft_list:
