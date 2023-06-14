@@ -2136,7 +2136,7 @@ async def main():  # Convert main() to an async function
             df2.index = df2.index.astype(int)
             df3.index = df3.index.astype(int)
 
-          if df1.empty:
+            if df1.empty:
                 live_update.error("The ranking is currently not working, it will be fixed soon™ ")
             else:
                 live_update.success(f"🕘Updated at: **{datetime.strptime(data1['updatedAt'], '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%Y-%m-%d %H:%M')} UTC**")
