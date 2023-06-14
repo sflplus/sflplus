@@ -2041,7 +2041,7 @@ url_rank1 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking'
 @st.cache_resource(ttl=600, show_spinner="Updating Live rankings") 
 async def fetch(url, _session):
     try:
-        async with session.get(url, timeout=10) as response:
+        async with _session.get(url, timeout=10) as response:
             return await response.json()
     except Exception as e:
         live_update.error("The ranking is currently not working, it will be fixed soon™ ")
