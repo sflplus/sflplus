@@ -2971,6 +2971,7 @@ with tab8:
         ],
     }
 
+
     col_nft, how_nft = st.columns([2,2])
     with col_nft:        
         keywords = st_tags(
@@ -2996,30 +2997,8 @@ with tab8:
     how_nft.info(f"About the NFT's that say **Still Not Tradable** it means that they are going to be tradable in the future but at the moment you can't withdraw them and the **Not for Sale** ones they are never going to be tradable.")
 
 
-    def populate_tags_dict(data):
-        tags_dict = {}
 
-        for item_category in data.values():
-            for item in item_category:
-                types = item.get("type", [])  # Get the type list for the item
-
-                for type_str in types:
-                    type_name = (
-                        type_str.split(":")[0].strip()
-                        if ":" in type_str
-                        else type_str.strip()
-                    )  # Extract the type name
-
-                    # Add the type name to the tags_dict
-                    if type_name not in tags_dict:
-                        tags_dict[type_name] = []
-
-                    tags_dict[type_name].append(item["name"])
-
-        return tags_dict
-    
-
-    async def display_nft_cards_async(nft_list, column1, column2, column3, column4):
+    def display_nft_cards(nft_list):
         index = 0  # Initialize index outside the loop
 
         for item in nft_list:
@@ -3031,14 +3010,13 @@ with tab8:
                 for t in item["type"]
             ])
             
-
             if item["collection"] == "Sunflower Land Collectibles":
                 opensea_link = opensea_url_base
                 current_price = nft_price(item["name"], return_type='nft_list')
                 current_price_html = f'💰 Avg Price: ${current_price}'
             else:
                 opensea_link = opensea_url_bump
-                current_price = wearable_price(item["name"], return_type='nft_list')       
+                current_price = wearable_price(item["name"], return_type='nft_list')
                 current_price_html = f'💰 Last Sale: ${current_price}'
 
             if current_price is None:
@@ -3052,7 +3030,6 @@ with tab8:
                 info_alert_html = f"&nbsp;"
             else:
                 info_alert_html = f'<span class="card-text" style="color:#ffc107;">🚨 <b>{info_alert}</b></span>'
-
             markdown_content = """
             <div class="card rounded border-top border-5 border-dark text-white bg-dark mb-5 h-100" style="max-width: 25rem;">            
                 <a href="{}{}" style="display: inline-block" target="_blank">
@@ -3082,7 +3059,6 @@ with tab8:
                 current_price_html,
                 item["collection"],
             )
-
             if index % 4 == 0:
                 column1.markdown(markdown_content, unsafe_allow_html=True)
             elif index % 4 == 1:
@@ -3093,48 +3069,44 @@ with tab8:
                 column4.markdown(markdown_content, unsafe_allow_html=True)
 
             index += 1  # Increment index inside the loop 
-    
+
+
     tags_dict = populate_tags_dict(nft_list)
 
     selected_tags = set(tag.lower() for tag in keywords)  # Convert selected_tags to lowercase
-    
-    async def main2():
-        # Filter items based on selected tags
-        filtered_items = []
-        if not selected_tags:  # If no tags are selected, display all items
-            for item_category in nft_list.values():
-                filtered_items.extend(item_category)
-        else:
-            for item_category in nft_list.values():
-                for item in item_category:
-                    types = item.get("type", [])
+
+    # Filter items based on selected tags
+    filtered_items = []
+    if not selected_tags:  # If no tags are selected, display all items
+        for item_category in nft_list.values():
+            filtered_items.extend(item_category)
+    else:
+        for item_category in nft_list.values():
+            for item in item_category:
+                types = item.get("type", [])
+                for tag in selected_tags:
+                    if any(tag.lower() in type.lower() for type in types):
+                        filtered_items.append(item)
+                        break
+                else:
+                    # Check similarity between tag and item name
+                    name = item.get("name", "").lower()
                     for tag in selected_tags:
-                        if any(tag.lower() in type.lower() for type in types):
+                        similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
+                        if similarity_ratio >= 85:  # Adjust the threshold as needed
                             filtered_items.append(item)
-                            break
-                    else:
-                        # Check similarity between tag and item name
-                        name = item.get("name", "").lower()
-                        for tag in selected_tags:
-                            similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
-                            if similarity_ratio >= 85:  # Adjust the threshold as needed
-                                filtered_items.append(item)
-                                break
-        # Create the layout grid for the item cards
-        colA, colB, colC, colD = tab8.columns([3, 3, 3, 3])
-        with colA:
-            column1 = st.container()
-        with colB:
-            column2 = st.container()
-        with colC:
-            column3 = st.container()
-        with colD:
-            column4 = st.container()
+                            break                       
 
-        await display_nft_cards_async(filtered_items, column1, column2, column3, column4)
+    # Create the layout grid for the item cards
+    colA, colB, colC, colD = tab8.columns([3, 3, 3, 3])
+    with colA:
+        column1 = st.container()
+    with colB:
+        column2 = st.container()
+    with colC:
+        column3 = st.container()
+    with colD:
+        column4 = st.container()
 
-# Run the async function
-    if __name__ == "__main__":
-        asyncio.run(main2())
-# Call the function with filtered_items
-#    display_nft_cards(filtered_items)
+    # Call the function with filtered_items
+    display_nft_cards(filtered_items)
