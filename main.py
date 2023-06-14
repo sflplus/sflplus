@@ -2170,7 +2170,7 @@ async def main():
         live_update.error(f"The ranking is currently not working, it will be fixed soon™, Error: {str(e)}") 
     
 if __name__ == "__main__":
-    asyncio.run(main())   
+    asyncio.run(main())
 
 with tab7:     
         status_ok2 = st.container() 
