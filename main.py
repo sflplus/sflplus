@@ -1458,7 +1458,7 @@ with tab5:
                                     total_harvests_left += harvests_left
                             #st.session_state[f"{name}_total_harvests_left"] = total_harvests_left
                             fruit_harvest_left_container = st.container()
-                            h_fruit.write(fruit_harvest_left_containe)
+                            h_fruit.write(fruit_harvest_left_container)
                             with h_fruit:
                                 fruit_harvest_left_container.write("\n")
                                 fruit_harvest_left_container.info(f"\n{fruit_emojis.get(name)} **{name} Harvest Left: {total_harvests_left}**")
