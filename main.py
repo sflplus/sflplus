@@ -12,6 +12,7 @@ import pandas as pd
 import urllib.request
 import asyncio
 import aiohttp
+from asyncstdlib import asyncit
 from datetime import datetime, timedelta
 import sys
 import fuzzywuzzy.fuzz as fuzz
