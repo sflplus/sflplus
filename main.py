@@ -1452,21 +1452,19 @@ with tab5:
                     else:
                         for name, trees in fruits.items():
                             total_harvests_left = 0
+                            fruit_harvest_left_container = st.container()
                             for tree_id, tree_data in fruit_patches_dict.items():
                                 if tree_data.get("fruit") and tree_data["fruit"].get("name") == name:
                                     harvests_left = tree_data["fruit"].get("harvestsLeft")
                                     total_harvests_left += harvests_left
-                            #st.session_state[f"{name}_total_harvests_left"] = total_harvests_left
-                            fruit_harvest_left_container = st.container()
-                            h_fruit.write(fruit_harvest_left_container)
-                            with h_fruit:
-                                fruit_harvest_left_container.write("\n")
-                                fruit_harvest_left_container.info(f"\n{fruit_emojis.get(name)} **{name} Harvest Left: {total_harvests_left}**")
 
+                            with fruit_harvest_left_container:
+                                h_fruit.write("\n")
+                                h_fruit.info(f"\n{fruit_emojis.get(name)} **{name} Harvest Left:** {total_harvests_left}**")
                                 for tree_id, tree_data in fruit_patches_dict.items():
                                     if tree_data.get("fruit") and tree_data["fruit"].get("name") == name:
                                         harvests_left = tree_data["fruit"].get("harvestsLeft")
-                                        fruit_harvest_left_container.write(f" - 🌳 **{harvests_left} Harvests Left**")
+                                        h_fruit.write(f" - 🌳 **{harvests_left} Harvests Left** ")
                 else:
                     h_fruit.error("\n **There aren't Fruit trees.**")
 
