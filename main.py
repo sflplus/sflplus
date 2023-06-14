@@ -3134,6 +3134,7 @@ with tab8:
             column4 = st.container()
 
 # Run the async function
-    asyncio.get_event_loop().run_until_complete(main2())
+    if __name__ == "__main__":
+        main2()
 # Call the function with filtered_items
 #    display_nft_cards(filtered_items)
