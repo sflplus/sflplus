@@ -2038,6 +2038,7 @@ with tab6:
 url_rank1 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking'
 #url_rank2 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking' 
 
+@st.cache_resource(ttl=600, show_spinner=False)
 async def fetch(url, session):
     try:
         async with session.get(url, timeout=5) as response:
@@ -2169,7 +2170,7 @@ async def main():
         live_update.error(f"The ranking is currently not working, it will be fixed soon™, Error: {str(e)}") 
     
 if __name__ == "__main__":
-    asyncio.run(main())   
+    main()   
 
 with tab7:     
         status_ok2 = st.container() 
