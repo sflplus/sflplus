@@ -2972,6 +2972,28 @@ with tab8:
     }
 
 
+    def populate_tags_dict(data):
+        tags_dict = {}
+
+        for item_category in data.values():
+            for item in item_category:
+                types = item.get("type", [])  # Get the type list for the item
+
+                for type_str in types:
+                    type_name = (
+                        type_str.split(":")[0].strip()
+                        if ":" in type_str
+                        else type_str.strip()
+                    )  # Extract the type name
+
+                    # Add the type name to the tags_dict
+                    if type_name not in tags_dict:
+                        tags_dict[type_name] = []
+
+                    tags_dict[type_name].append(item["name"])
+
+        return tags_dict
+
     col_nft, how_nft = st.columns([2,2])
     with col_nft:        
         keywords = st_tags(
