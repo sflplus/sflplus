@@ -2038,7 +2038,7 @@ with tab6:
 url_rank1 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking'
 #url_rank2 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking' 
 
-@st.cache_data(ttl=600, show_spinner="Updating Live rankings") 
+@st.cache_resource(ttl=600, show_spinner="Updating Live rankings") 
 async def fetch(url, session):
     try:
         async with session.get(url, timeout=10) as response:
