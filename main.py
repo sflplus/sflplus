@@ -3119,8 +3119,8 @@ with tab8:
                             similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
                             if similarity_ratio >= 85:  # Adjust the threshold as needed
                                 filtered_items.append(item)
-                                break                       
-            await display_nft_cards_async(filtered_items)
+                                break
+        await display_nft_cards_async(filtered_items)
     # Create the layout grid for the item cards
     colA, colB, colC, colD = tab8.columns([3, 3, 3, 3])
     with colA:
@@ -3133,7 +3133,6 @@ with tab8:
         column4 = st.container()
 
 # Run the async function
-loop = asyncio.get_event_loop()
-loop.run_until_complete(main2())
+asyncio.run(main2())
 # Call the function with filtered_items
 #    display_nft_cards(filtered_items)
