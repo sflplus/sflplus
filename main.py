@@ -2039,7 +2039,7 @@ url_rank1 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking'
 #url_rank2 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking' 
 
 @st.cache_resource(ttl=600, show_spinner="Updating Live rankings") 
-async def fetch(url, session):
+async def fetch(url, _session):
     try:
         async with session.get(url, timeout=10) as response:
             return await response.json()
@@ -2049,8 +2049,8 @@ async def fetch(url, session):
 
 async def main():
     try:
-        async with aiohttp.ClientSession() as session:
-            data1 = await fetch(url_rank1, session)        
+        async with aiohttp.ClientSession() as _session:
+            data1 = await fetch(url_rank1, _session)        
             #data2 = await fetch(url_rank2, session)
 
         if data1 is not None:
