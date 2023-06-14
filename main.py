@@ -2140,7 +2140,7 @@ def main():
                 live_update.error("The ranking is currently not working, it will be fixed soon™ ")
             else:
                 live_update.success(f"🕘Updated at: **{datetime.strptime(data1['updatedAt'], '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%Y-%m-%d %H:%M')} UTC**")
-
+                
                 if buttonok2:
                     df1 = df1.loc[df1['Farm'].str.contains(text_search)]
                     live_ranking.write(df1)
@@ -2152,11 +2152,12 @@ def main():
                     live_ranking.write(df1) 
                     live_lantern.write(df2)
                     live_treasure.write(df3)
+            pass
     except Exception as e:
         live_update.error(f"The ranking is currently not working, it will be fixed soon™, Error: {str(e)}") 
 
 if __name__ == "__main__":
-    asyncio.run(main()) 
+    main()
 
 with tab7:     
         status_ok2 = st.container() 
