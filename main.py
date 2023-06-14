@@ -3099,28 +3099,28 @@ with tab8:
     selected_tags = set(tag.lower() for tag in keywords)  # Convert selected_tags to lowercase
     
     async def main2():
-    # Filter items based on selected tags
-    filtered_items = []
-    if not selected_tags:  # If no tags are selected, display all items
-        for item_category in nft_list.values():
-            filtered_items.extend(item_category)
-    else:
-        for item_category in nft_list.values():
-            for item in item_category:
-                types = item.get("type", [])
-                for tag in selected_tags:
-                    if any(tag.lower() in type.lower() for type in types):
-                        filtered_items.append(item)
-                        break
-                else:
-                    # Check similarity between tag and item name
-                    name = item.get("name", "").lower()
+        # Filter items based on selected tags
+        filtered_items = []
+        if not selected_tags:  # If no tags are selected, display all items
+            for item_category in nft_list.values():
+                filtered_items.extend(item_category)
+        else:
+            for item_category in nft_list.values():
+                for item in item_category:
+                    types = item.get("type", [])
                     for tag in selected_tags:
-                        similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
-                        if similarity_ratio >= 85:  # Adjust the threshold as needed
+                        if any(tag.lower() in type.lower() for type in types):
                             filtered_items.append(item)
-                            break                       
-        await display_nft_cards_async(filtered_items)
+                            break
+                    else:
+                        # Check similarity between tag and item name
+                        name = item.get("name", "").lower()
+                        for tag in selected_tags:
+                            similarity_ratio = fuzz.partial_ratio(tag.lower(), name)
+                            if similarity_ratio >= 85:  # Adjust the threshold as needed
+                                filtered_items.append(item)
+                                break                       
+            await display_nft_cards_async(filtered_items)
     # Create the layout grid for the item cards
     colA, colB, colC, colD = tab8.columns([3, 3, 3, 3])
     with colA:
