@@ -2039,20 +2039,18 @@ url_rank1 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking'
 #url_rank2 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking' 
 
 @st.cache_resource(ttl=600, show_spinner="Updating Live rankings") 
-async def fetch(url, _session):
+def fetch(url):
     try:
-        async with _session.get(url, timeout=10) as response:
-            return await response.json()
+        response = requests.get(url, timeout=10)
+        return response.json()
     except Exception as e:
         live_update.error("The ranking is currently not working, it will be fixed soon™ ")
         return None
 
-async def main():
+def main():
     try:
-        async with aiohttp.ClientSession() as _session:
-            data1 = await fetch(url_rank1, _session)        
-            #data2 = await fetch(url_rank2, session)
-
+        data1 = fetch(url_rank1)
+        
         if data1 is not None:
             df1 = pd.DataFrame({
                 'Farm': [farm['FarmID'] for farm in data1['farms']],
@@ -2083,12 +2081,8 @@ async def main():
                 'Davy Jones': ['YES' if int(farm.get('DavyJones', 0)) >= 1 else 'NO' for farm in data1['farms']]     
             })        
 
-
-            # Remove rows with missing ticket counts
             df1 = df1.dropna(subset=['Tickets'])
-            #df3 = df3.dropna(subset=['Wild Mushroom'])
 
-            # MAKE SURE TOP 10 SHOWS
             top_ten_ids = fetch_top_ten_ids()
             lanterns_data = retrieve_lanterns_data(top_ten_ids)
 
@@ -2111,26 +2105,21 @@ async def main():
                         'Week 1': lantern_data.get('1', 0)
                     }
                     df2 = pd.concat([df2, pd.DataFrame(new_row, index=[0])], ignore_index=True)
-            # Remove emphy columns
+
             df2 = df2.dropna(axis=1, how='all')
 
-
-            # Convert Total Ticket column to numeric values
             df1['Tickets'] = pd.to_numeric(df1['Tickets'])
             df2['Week 7'] = pd.to_numeric(df2['Week 7'])
             df3['Old Bottle'] = pd.to_numeric(df3['Old Bottle'])
             df3['Seaweed'] = pd.to_numeric(df3['Seaweed'])
             df3['Iron Compass'] = pd.to_numeric(df3['Iron Compass'])
 
-            # Sort by Total Ticket in descending order
             df1 = df1.sort_values(by='Tickets', ascending=False)
             df2 = df2.sort_values(by='Week 7', ascending=False)
             df3 = df3.sort_values(by=['Old Bottle', 'Iron Compass', 'Seaweed'], ascending=[False, False, False], kind='mergesort')
 
-
             df2 = df2.rename(columns={"Week 7": "Week 7 🔻"})   
 
-            # Reset index and set the "Ranking" column as the new index
             df1 = df1.reset_index(drop=True)
             df2 = df2.reset_index(drop=True)
             df3 = df3.reset_index(drop=True)
@@ -2139,12 +2128,10 @@ async def main():
             df2.index = df2.index + 1
             df3.index = df3.index + 1        
 
-            # Rename the index to "Ranking"
             df1.index.name = "Rank"
             df2.index.name = "Rank"
             df3.index.name = "Rank"
 
-            # Convert index to integer values
             df1.index = df1.index.astype(int)
             df2.index = df2.index.astype(int)
             df3.index = df3.index.astype(int)
@@ -2165,12 +2152,11 @@ async def main():
                     live_ranking.write(df1) 
                     live_lantern.write(df2)
                     live_treasure.write(df3)
-            pass
     except Exception as e:
         live_update.error(f"The ranking is currently not working, it will be fixed soon™, Error: {str(e)}") 
-    
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    asyncio.run(main()) 
 
 with tab7:     
         status_ok2 = st.container() 
