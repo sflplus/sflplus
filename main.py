@@ -3120,8 +3120,6 @@ with tab8:
                             if similarity_ratio >= 85:  # Adjust the threshold as needed
                                 filtered_items.append(item)
                                 break
-        await display_nft_cards_async(filtered_items)
-
         # Create the layout grid for the item cards
         colA, colB, colC, colD = tab8.columns([3, 3, 3, 3])
         with colA:
@@ -3132,6 +3130,8 @@ with tab8:
             column3 = st.container()
         with colD:
             column4 = st.container()
+
+        await display_nft_cards_async(filtered_items, column1, column2, column3, column4)
 
 # Run the async function
     if __name__ == "__main__":
