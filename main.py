@@ -3135,6 +3135,6 @@ with tab8:
 
 # Run the async function
     if __name__ == "__main__":
-        main2()
+        asyncio.run(main2())
 # Call the function with filtered_items
 #    display_nft_cards(filtered_items)
