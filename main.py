@@ -12,7 +12,6 @@ import pandas as pd
 import urllib.request
 import asyncio
 import aiohttp
-from asyncstdlib import asyncit
 from datetime import datetime, timedelta
 import sys
 import fuzzywuzzy.fuzz as fuzz
@@ -3122,18 +3121,19 @@ with tab8:
                                 filtered_items.append(item)
                                 break
         await display_nft_cards_async(filtered_items)
-    # Create the layout grid for the item cards
-    colA, colB, colC, colD = tab8.columns([3, 3, 3, 3])
-    with colA:
-        column1 = st.container()
-    with colB:
-        column2 = st.container()
-    with colC:
-        column3 = st.container()
-    with colD:
-        column4 = st.container()
+
+        # Create the layout grid for the item cards
+        colA, colB, colC, colD = tab8.columns([3, 3, 3, 3])
+        with colA:
+            column1 = st.container()
+        with colB:
+            column2 = st.container()
+        with colC:
+            column3 = st.container()
+        with colD:
+            column4 = st.container()
 
 # Run the async function
-asyncio.run(main2())
+    asyncio.get_event_loop().run_until_complete(main2())
 # Call the function with filtered_items
 #    display_nft_cards(filtered_items)
