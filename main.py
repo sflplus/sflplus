@@ -3019,7 +3019,7 @@ with tab8:
         return tags_dict
     
 
-    def display_nft_cards(nft_list):
+    async def display_nft_cards_async(nft_list):
         index = 0  # Initialize index outside the loop
 
         for item in nft_list:
@@ -3097,7 +3097,8 @@ with tab8:
     tags_dict = populate_tags_dict(nft_list)
 
     selected_tags = set(tag.lower() for tag in keywords)  # Convert selected_tags to lowercase
-
+    
+    async def main2():
     # Filter items based on selected tags
     filtered_items = []
     if not selected_tags:  # If no tags are selected, display all items
@@ -3119,7 +3120,7 @@ with tab8:
                         if similarity_ratio >= 85:  # Adjust the threshold as needed
                             filtered_items.append(item)
                             break                       
-
+        await display_nft_cards_async(filtered_items)
     # Create the layout grid for the item cards
     colA, colB, colC, colD = tab8.columns([3, 3, 3, 3])
     with colA:
@@ -3131,5 +3132,8 @@ with tab8:
     with colD:
         column4 = st.container()
 
-    # Call the function with filtered_items
-    display_nft_cards(filtered_items)
+# Run the async function
+loop = asyncio.get_event_loop()
+loop.run_until_complete(main2())
+# Call the function with filtered_items
+#    display_nft_cards(filtered_items)
