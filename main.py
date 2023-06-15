@@ -2319,4 +2319,4 @@ with tab7:
 with tab8:
     col_nft, buff11 = st.columns([2,2])
     with col_nft:        
-        notice_update.error(f"The NFT List is momentarely disable, it will be enable back soon™") 
+        st.error(f"The NFT List is momentarely disable, it will be enable back soon™") 
