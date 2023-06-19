@@ -2116,6 +2116,9 @@ async def main():
             # Count the number of farms that have crafted at least 5 lanterns in all the weeks
             count_farms = ((df2[['Week 8', 'Week 7', 'Week 6', 'Week 5', 'Week 4', 'Week 3', 'Week 2', 'Week 1']] >= 5).all(axis=1)).sum()
 
+            # Count the number of farms that have crafted at least 5 lanterns in all the weeks
+            count_farms2 = ((df2[['Week 8', 'Week 7', 'Week 6', 'Week 5', 'Week 4', 'Week 3', 'Week 2', 'Week 1']] >= 1).all(axis=1)).sum()
+
             # Convert Total Ticket column to numeric values
             df1['Tickets'] = pd.to_numeric(df1['Tickets'])
             df2['Week 8'] = pd.to_numeric(df2['Week 8'])
@@ -2165,6 +2168,7 @@ async def main():
                 else: 
                     live_ranking.write(df1) 
                     live_lantern.write(count_farms)
+                    live_lantern.write(count_farms2)
                     live_lantern.write(df2)
                     live_treasure.write(df3)
             pass
