@@ -2113,7 +2113,9 @@ async def main():
             # Remove emphy columns
             df2 = df2.dropna(axis=1, how='all')
         
-        
+            # Count the number of farms that have crafted at least 5 lanterns in all the weeks
+            count_farms = ((df2[['Week 8', 'Week 7', 'Week 6', 'Week 5', 'Week 4', 'Week 3', 'Week 2', 'Week 1']] >= 5).all(axis=1)).sum()
+
             # Convert Total Ticket column to numeric values
             df1['Tickets'] = pd.to_numeric(df1['Tickets'])
             df2['Week 8'] = pd.to_numeric(df2['Week 8'])
@@ -2162,6 +2164,7 @@ async def main():
                     live_treasure.write(df3)   
                 else: 
                     live_ranking.write(df1) 
+                    live_lantern.write(count_farms)
                     live_lantern.write(df2)
                     live_treasure.write(df3)
             pass
