@@ -2047,126 +2047,126 @@ async def fetch(url, session):
         return None
 
 async def main():
-    try:
-        async with aiohttp.ClientSession() as session:
-            data1 = await fetch(url_rank1, session)        
-            #data2 = await fetch(url_rank2, session)
+    #try:
+    async with aiohttp.ClientSession() as session:
+        data1 = await fetch(url_rank1, session)        
+        #data2 = await fetch(url_rank2, session)
 
-        if data1 is not None:
-            df1 = pd.DataFrame({
-                'Farm': [farm['FarmID'] for farm in data1['farms']],
-                'Tickets': [farm['DawnBreakerTicket'] if 'DawnBreakerTicket' in farm and farm['DawnBreakerTicket'] != '' else None for farm in data1['farms']],
-                'Quest Done': [farm['Quest']['Completed'] if 'Completed' in farm['Quest'] else 0 for farm in data1['farms']],
-                'Current Quest': [farm['Quest']['Description'] for farm in data1['farms']]
-            })
+    if data1 is not None:
+        df1 = pd.DataFrame({
+            'Farm': [farm['FarmID'] for farm in data1['farms']],
+            'Tickets': [farm['DawnBreakerTicket'] if 'DawnBreakerTicket' in farm and farm['DawnBreakerTicket'] != '' else None for farm in data1['farms']],
+            'Quest Done': [farm['Quest']['Completed'] if 'Completed' in farm['Quest'] else 0 for farm in data1['farms']],
+            'Current Quest': [farm['Quest']['Description'] for farm in data1['farms']]
+        })
 
-            df2 = pd.DataFrame({
-                'Farm': [farm['FarmID'] for farm in data1['farms']],
-                'Week 10': [farm['LanternsCraftedByWeek']['10'] if 'LanternsCraftedByWeek' in farm and '10' in farm['LanternsCraftedByWeek'] else None for farm in data1['farms']],
-                'Week 9': [farm['LanternsCraftedByWeek']['9'] if 'LanternsCraftedByWeek' in farm and '9' in farm['LanternsCraftedByWeek'] else None for farm in data1['farms']],       
-                'Week 8': [farm['LanternsCraftedByWeek']['8'] if 'LanternsCraftedByWeek' in farm and '8' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
-                'Week 7': [farm['LanternsCraftedByWeek']['7'] if 'LanternsCraftedByWeek' in farm and '7' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],        
-                'Week 6': [farm['LanternsCraftedByWeek']['6'] if 'LanternsCraftedByWeek' in farm and '6' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
-                'Week 5': [farm['LanternsCraftedByWeek']['5'] if 'LanternsCraftedByWeek' in farm and '5' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],        
-                'Week 4': [farm['LanternsCraftedByWeek']['4'] if 'LanternsCraftedByWeek' in farm and '4' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
-                'Week 3': [farm['LanternsCraftedByWeek']['3'] if 'LanternsCraftedByWeek' in farm and '3' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
-                'Week 2': [farm['LanternsCraftedByWeek']['2'] if 'LanternsCraftedByWeek' in farm and '2' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
-                'Week 1': [farm['LanternsCraftedByWeek']['1'] if 'LanternsCraftedByWeek' in farm and '1' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']]
-            })
+        df2 = pd.DataFrame({
+            'Farm': [farm['FarmID'] for farm in data1['farms']],
+            'Week 10': [farm['LanternsCraftedByWeek']['10'] if 'LanternsCraftedByWeek' in farm and '10' in farm['LanternsCraftedByWeek'] else None for farm in data1['farms']],
+            'Week 9': [farm['LanternsCraftedByWeek']['9'] if 'LanternsCraftedByWeek' in farm and '9' in farm['LanternsCraftedByWeek'] else None for farm in data1['farms']],       
+            'Week 8': [farm['LanternsCraftedByWeek']['8'] if 'LanternsCraftedByWeek' in farm and '8' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
+            'Week 7': [farm['LanternsCraftedByWeek']['7'] if 'LanternsCraftedByWeek' in farm and '7' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],        
+            'Week 6': [farm['LanternsCraftedByWeek']['6'] if 'LanternsCraftedByWeek' in farm and '6' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
+            'Week 5': [farm['LanternsCraftedByWeek']['5'] if 'LanternsCraftedByWeek' in farm and '5' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],        
+            'Week 4': [farm['LanternsCraftedByWeek']['4'] if 'LanternsCraftedByWeek' in farm and '4' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
+            'Week 3': [farm['LanternsCraftedByWeek']['3'] if 'LanternsCraftedByWeek' in farm and '3' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
+            'Week 2': [farm['LanternsCraftedByWeek']['2'] if 'LanternsCraftedByWeek' in farm and '2' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
+            'Week 1': [farm['LanternsCraftedByWeek']['1'] if 'LanternsCraftedByWeek' in farm and '1' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']]
+        })
 
-            df3 = pd.DataFrame({
-                'Farm': [farm['FarmID'] for farm in data1['farms']],
-                'Old Bottle': [farm['OldBottle'] if 'OldBottle' in farm and farm['OldBottle'] != '' else 0 for farm in data1['farms']],
-                'Seaweed': [farm['Seaweed'] if 'Seaweed' in farm and farm['Seaweed'] != '' else 0 for farm in data1['farms']],
-                'Iron Compass': [farm['IronCompass'] if 'IronCompass' in farm and farm['IronCompass'] != '' else 0 for farm in data1['farms']],
-                'Davy Jones': ['YES' if int(farm.get('DavyJones', 0)) >= 1 else 'NO' for farm in data1['farms']]     
-            })        
-
-
-            # Remove rows with missing ticket counts
-            df1 = df1.dropna(subset=['Tickets'])
-            #df3 = df3.dropna(subset=['Wild Mushroom'])
-
-            # MAKE SURE TOP 10 SHOWS
-            top_ten_ids = fetch_top_ten_ids()
-            lanterns_data = retrieve_lanterns_data(top_ten_ids)
-
-            existing_ids = df2['Farm'].tolist()
-            new_ids = []
-
-            for farm_id in lanterns_data.keys():
-                if farm_id not in existing_ids:
-                    new_ids.append(farm_id)
-                    lantern_data = lanterns_data[farm_id]
-                    new_row = {
-                        'Farm': farm_id,
-                        'Week 8': lantern_data.get('8', 0),
-                        'Week 7': lantern_data.get('7', 0),
-                        'Week 6': lantern_data.get('6', 0),
-                        'Week 5': lantern_data.get('5', 0),
-                        'Week 4': lantern_data.get('4', 0),
-                        'Week 3': lantern_data.get('3', 0),
-                        'Week 2': lantern_data.get('2', 0),
-                        'Week 1': lantern_data.get('1', 0)
-                    }
-                    df2 = pd.concat([df2, pd.DataFrame(new_row, index=[0])], ignore_index=True)
-            # Remove emphy columns
-            df2 = df2.dropna(axis=1, how='all')
+        df3 = pd.DataFrame({
+            'Farm': [farm['FarmID'] for farm in data1['farms']],
+            'Old Bottle': [farm['OldBottle'] if 'OldBottle' in farm and farm['OldBottle'] != '' else 0 for farm in data1['farms']],
+            'Seaweed': [farm['Seaweed'] if 'Seaweed' in farm and farm['Seaweed'] != '' else 0 for farm in data1['farms']],
+            'Iron Compass': [farm['IronCompass'] if 'IronCompass' in farm and farm['IronCompass'] != '' else 0 for farm in data1['farms']],
+            'Davy Jones': ['YES' if int(farm.get('DavyJones', 0)) >= 1 else 'NO' for farm in data1['farms']]     
+        })        
 
 
-            # Convert Total Ticket column to numeric values
-            df1['Tickets'] = pd.to_numeric(df1['Tickets'])
-            df2['Week 8'] = pd.to_numeric(df2['Week 8'])
-            df3['Old Bottle'] = pd.to_numeric(df3['Old Bottle'])
-            df3['Seaweed'] = pd.to_numeric(df3['Seaweed'])
-            df3['Iron Compass'] = pd.to_numeric(df3['Iron Compass'])
+        # Remove rows with missing ticket counts
+        df1 = df1.dropna(subset=['Tickets'])
+        #df3 = df3.dropna(subset=['Wild Mushroom'])
 
-            # Sort by Total Ticket in descending order
-            df1 = df1.sort_values(by='Tickets', ascending=False)
-            df2 = df2.sort_values(by='Week 8', ascending=False)
-            df3 = df3.sort_values(by=['Old Bottle', 'Iron Compass', 'Seaweed'], ascending=[False, False, False], kind='mergesort')
+        # MAKE SURE TOP 10 SHOWS
+        top_ten_ids = fetch_top_ten_ids()
+        lanterns_data = retrieve_lanterns_data(top_ten_ids)
+
+        existing_ids = df2['Farm'].tolist()
+        new_ids = []
+
+        for farm_id in lanterns_data.keys():
+            if farm_id not in existing_ids:
+                new_ids.append(farm_id)
+                lantern_data = lanterns_data[farm_id]
+                new_row = {
+                    'Farm': farm_id,
+                    'Week 8': lantern_data.get('8', 0),
+                    'Week 7': lantern_data.get('7', 0),
+                    'Week 6': lantern_data.get('6', 0),
+                    'Week 5': lantern_data.get('5', 0),
+                    'Week 4': lantern_data.get('4', 0),
+                    'Week 3': lantern_data.get('3', 0),
+                    'Week 2': lantern_data.get('2', 0),
+                    'Week 1': lantern_data.get('1', 0)
+                }
+                df2 = pd.concat([df2, pd.DataFrame(new_row, index=[0])], ignore_index=True)
+        # Remove emphy columns
+        df2 = df2.dropna(axis=1, how='all')
 
 
-            df2 = df2.rename(columns={"Week 8": "Week 8 🔻"})   
+        # Convert Total Ticket column to numeric values
+        df1['Tickets'] = pd.to_numeric(df1['Tickets'])
+        df2['Week 8'] = pd.to_numeric(df2['Week 8'])
+        df3['Old Bottle'] = pd.to_numeric(df3['Old Bottle'])
+        df3['Seaweed'] = pd.to_numeric(df3['Seaweed'])
+        df3['Iron Compass'] = pd.to_numeric(df3['Iron Compass'])
 
-            # Reset index and set the "Ranking" column as the new index
-            df1 = df1.reset_index(drop=True)
-            df2 = df2.reset_index(drop=True)
-            df3 = df3.reset_index(drop=True)
+        # Sort by Total Ticket in descending order
+        df1 = df1.sort_values(by='Tickets', ascending=False)
+        df2 = df2.sort_values(by='Week 8', ascending=False)
+        df3 = df3.sort_values(by=['Old Bottle', 'Iron Compass', 'Seaweed'], ascending=[False, False, False], kind='mergesort')
 
-            df1.index = df1.index + 1
-            df2.index = df2.index + 1
-            df3.index = df3.index + 1        
 
-            # Rename the index to "Ranking"
-            df1.index.name = "Rank"
-            df2.index.name = "Rank"
-            df3.index.name = "Rank"
+        df2 = df2.rename(columns={"Week 8": "Week 8 🔻"})   
 
-            # Convert index to integer values
-            df1.index = df1.index.astype(int)
-            df2.index = df2.index.astype(int)
-            df3.index = df3.index.astype(int)
+        # Reset index and set the "Ranking" column as the new index
+        df1 = df1.reset_index(drop=True)
+        df2 = df2.reset_index(drop=True)
+        df3 = df3.reset_index(drop=True)
 
-            if df1.empty:
-                live_update.error("The ranking is currently not working, it will be fixed soon™ ")
-            else:
-                live_update.success(f"🕘Updated at: **{datetime.strptime(data1['updatedAt'], '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%Y-%m-%d %H:%M')} UTC**")
+        df1.index = df1.index + 1
+        df2.index = df2.index + 1
+        df3.index = df3.index + 1        
 
-                if buttonok2:
-                    df1 = df1.loc[df1['Farm'].str.contains(text_search)]
-                    live_ranking.write(df1)
-                    df2 = df2.loc[df2['Farm'].str.contains(text_search)]
-                    live_lantern.write(df2)
-                    df3 = df3.loc[df3['Farm'].str.contains(text_search)]
-                    live_treasure.write(df3)   
-                else: 
-                    live_ranking.write(df1) 
-                    live_lantern.write(df2)
-                    live_treasure.write(df3)
-            pass
-    except Exception as e:
-        live_update.error(f"The ranking is currently not working, it will be fixed soon™, Error: {str(e)}") 
+        # Rename the index to "Ranking"
+        df1.index.name = "Rank"
+        df2.index.name = "Rank"
+        df3.index.name = "Rank"
+
+        # Convert index to integer values
+        df1.index = df1.index.astype(int)
+        df2.index = df2.index.astype(int)
+        df3.index = df3.index.astype(int)
+
+        if df1.empty:
+            live_update.error("The ranking is currently not working, it will be fixed soon™ ")
+        else:
+            live_update.success(f"🕘Updated at: **{datetime.strptime(data1['updatedAt'], '%Y-%m-%dT%H:%M:%S.%fZ').strftime('%Y-%m-%d %H:%M')} UTC**")
+
+            if buttonok2:
+                df1 = df1.loc[df1['Farm'].str.contains(text_search)]
+                live_ranking.write(df1)
+                df2 = df2.loc[df2['Farm'].str.contains(text_search)]
+                live_lantern.write(df2)
+                df3 = df3.loc[df3['Farm'].str.contains(text_search)]
+                live_treasure.write(df3)   
+            else: 
+                live_ranking.write(df1) 
+                live_lantern.write(df2)
+                live_treasure.write(df3)
+        pass
+#    except Exception as e:
+#        live_update.error(f"The ranking is currently not working, it will be fixed soon™, Error: {str(e)}") 
     
 if __name__ == "__main__":
     asyncio.run(main())   
