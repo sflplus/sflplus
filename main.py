@@ -173,6 +173,7 @@ sfl_supply = get_token_supply()
 API_KEY_DUNE = "xEB9BjuGBc5SbpVABb2VHcVV5DQ1g3K2"
 
 queries = ["2427513", "2427509", "2427499"]
+queries_owners = ["", "2500", ""]
 queries_name = ["Maximus", "Obie", "Purple Trail"]
 queries_quantity = ["350", "2500", "10000"]
 queries_emoji = ["💜", "🍆", "🐌"]
