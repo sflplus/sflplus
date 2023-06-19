@@ -190,7 +190,7 @@ def fetch_owner_count(query_id):
     else:
         live_minted_error.error(f"Error fetching NFT owners") #for query {query_id}
 
-@st.cache_resource(ttl=7200, show_spinner="Updating Top10 ID") # cache for 2 hour
+#@st.cache_resource(ttl=7200, show_spinner="Updating Top10 ID") # cache for 2 hour
 def fetch_top_ten_ids():
     try:
         # Sending the request to the second API
@@ -220,7 +220,7 @@ def retrieve_lanterns_data(top_ten_ids):
             farm_data = farm.get('dawnBreaker', {}).get('lanternsCraftedByWeek', {})
             week_data = {
                 str(week): farm_data.get(str(week), 0)
-                for week in range(1, 10)
+                for week in range(1, 9)
             }
             lanterns_data[str(farm_id)] = week_data
         except Exception as e:
