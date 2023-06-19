@@ -1999,10 +1999,6 @@ with tab6:
             nft = f"{query_emoji} {query_name}"
             data.append([nft, owner_count, query_quantity, query_ticket])
 
-    # Create a dataframe from the data list
-    df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply", "Tickets"])
-    return df_dune
-
         # Create a dataframe from the data list
         df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply", "Tickets"])
         return df_dune
