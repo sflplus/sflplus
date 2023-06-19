@@ -1236,7 +1236,7 @@ with tab5:
                     5: "Aurora",
                     6: "Luminous",
                     7: "Ocean",
-                    8: "Aurora"
+                    8: "Solar"
                 }
 
                 riddle_reward = {
