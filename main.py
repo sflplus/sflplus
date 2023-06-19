@@ -220,7 +220,7 @@ def retrieve_lanterns_data(top_ten_ids):
             farm_data = farm.get('dawnBreaker', {}).get('lanternsCraftedByWeek', {})
             week_data = {
                 str(week): farm_data.get(str(week), 0)
-                for week in range(1, 7)
+                for week in range(1, 8)
             }
             lanterns_data[str(farm_id)] = week_data
         except Exception as e:
@@ -2064,7 +2064,7 @@ async def main():
                 'Farm': [farm['FarmID'] for farm in data1['farms']],
                 'Week 10': [farm['LanternsCraftedByWeek']['10'] if 'LanternsCraftedByWeek' in farm and '10' in farm['LanternsCraftedByWeek'] else None for farm in data1['farms']],
                 'Week 9': [farm['LanternsCraftedByWeek']['9'] if 'LanternsCraftedByWeek' in farm and '9' in farm['LanternsCraftedByWeek'] else None for farm in data1['farms']],       
-                'Week 8': [farm['LanternsCraftedByWeek']['8'] if 'LanternsCraftedByWeek' in farm and '8' in farm['LanternsCraftedByWeek'] else None for farm in data1['farms']],
+                'Week 8': [farm['LanternsCraftedByWeek']['8'] if 'LanternsCraftedByWeek' in farm and '8' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
                 'Week 7': [farm['LanternsCraftedByWeek']['7'] if 'LanternsCraftedByWeek' in farm and '7' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],        
                 'Week 6': [farm['LanternsCraftedByWeek']['6'] if 'LanternsCraftedByWeek' in farm and '6' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
                 'Week 5': [farm['LanternsCraftedByWeek']['5'] if 'LanternsCraftedByWeek' in farm and '5' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],        
@@ -2100,7 +2100,7 @@ async def main():
                     lantern_data = lanterns_data[farm_id]
                     new_row = {
                         'Farm': farm_id,
-                        'Week 8': lantern_data.get('8', None),
+                        'Week 8': lantern_data.get('8', 0),
                         'Week 7': lantern_data.get('7', 0),
                         'Week 6': lantern_data.get('6', 0),
                         'Week 5': lantern_data.get('5', 0),
@@ -2116,18 +2116,18 @@ async def main():
 
             # Convert Total Ticket column to numeric values
             df1['Tickets'] = pd.to_numeric(df1['Tickets'])
-            df2['Week 7'] = pd.to_numeric(df2['Week 7'])
+            df2['Week 8'] = pd.to_numeric(df2['Week 8'])
             df3['Old Bottle'] = pd.to_numeric(df3['Old Bottle'])
             df3['Seaweed'] = pd.to_numeric(df3['Seaweed'])
             df3['Iron Compass'] = pd.to_numeric(df3['Iron Compass'])
 
             # Sort by Total Ticket in descending order
             df1 = df1.sort_values(by='Tickets', ascending=False)
-            df2 = df2.sort_values(by='Week 7', ascending=False)
+            df2 = df2.sort_values(by='Week 8', ascending=False)
             df3 = df3.sort_values(by=['Old Bottle', 'Iron Compass', 'Seaweed'], ascending=[False, False, False], kind='mergesort')
 
 
-            df2 = df2.rename(columns={"Week 7": "Week 7 🔻"})   
+            df2 = df2.rename(columns={"Week 8": "Week 8 🔻"})   
 
             # Reset index and set the "Ranking" column as the new index
             df1 = df1.reset_index(drop=True)
