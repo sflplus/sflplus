@@ -172,8 +172,8 @@ sfl_supply = get_token_supply()
 
 API_KEY_DUNE = "xEB9BjuGBc5SbpVABb2VHcVV5DQ1g3K2"
 
-queries = ["2427513", "2427509", "2427499"]
 queries_owners = ["", "2500", ""]
+queries = ["2427513", "2427509", "2427499"]
 queries_name = ["Maximus", "Obie", "Purple Trail"]
 queries_quantity = ["350", "2500", "10000"]
 queries_emoji = ["💜", "🍆", "🐌"]
@@ -1991,13 +1991,17 @@ with tab6:
     def create_dataframe():
         data = []
         for i, query_id in enumerate(queries):
-            owner_count = fetch_owner_count(query_id)
+            owner_count = queries_owners[i] if i < len(queries_owners) else fetch_owner_count(query_id)
             query_name = queries_name[i]
             query_emoji = queries_emoji[i]
             query_quantity = queries_quantity[i]
             query_ticket = queries_ticket[i]
             nft = f"{query_emoji} {query_name}"
             data.append([nft, owner_count, query_quantity, query_ticket])
+
+    # Create a dataframe from the data list
+    df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply", "Tickets"])
+    return df_dune
 
         # Create a dataframe from the data list
         df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply", "Tickets"])
