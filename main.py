@@ -220,7 +220,7 @@ def retrieve_lanterns_data(top_ten_ids):
             farm_data = farm.get('dawnBreaker', {}).get('lanternsCraftedByWeek', {})
             week_data = {
                 str(week): farm_data.get(str(week), 0)
-                for week in range(1, 8)
+                for week in range(1, 9)
             }
             lanterns_data[str(farm_id)] = week_data
         except Exception as e:
