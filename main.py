@@ -1992,7 +1992,7 @@ with tab6:
         data = []
         for i, query_id in enumerate(queries):
             if queries_owners[i] is not None:
-                owner_count = queries_owners[i]
+                owner_count = int(queries_owners[i])  # Convert owner count to integer
             else:
                 owner_count = fetch_owner_count(query_id)
             query_name = queries_name[i]
