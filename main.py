@@ -2090,7 +2090,7 @@ async def main():
             # MAKE SURE TOP 10 SHOWS
             #top_ten_ids = fetch_top_ten_ids()
             #lanterns_data = retrieve_lanterns_data(top_ten_ids)
-        
+            lanterns_data = {}
             existing_ids = df2['Farm'].tolist()
             new_ids = []
         
