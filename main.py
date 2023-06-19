@@ -1991,7 +1991,10 @@ with tab6:
     def create_dataframe():
         data = []
         for i, query_id in enumerate(queries):
-            owner_count = queries_owners[i] if i < len(queries_owners) else fetch_owner_count(query_id)
+            if queries_owners[i] is not None:
+                owner_count = queries_owners[i]
+            else:
+                owner_count = fetch_owner_count(query_id)
             query_name = queries_name[i]
             query_emoji = queries_emoji[i]
             query_quantity = queries_quantity[i]
