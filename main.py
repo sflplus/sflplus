@@ -2163,13 +2163,15 @@ async def main():
                     live_ranking.write(df1)
                     df2 = df2.loc[df2['Farm'].str.contains(text_search)]
                     live_lantern.write(df2)
+                    live_lantern.info(f"Farms with 1 Lanters each week: {count_farms2}")
+                    live_lantern.success(f"Farms with 5 Lanters each week: {count_farms}")
                     df3 = df3.loc[df3['Farm'].str.contains(text_search)]
                     live_treasure.write(df3)   
                 else: 
                     live_ranking.write(df1) 
-                    live_lantern.write(count_farms)
-                    live_lantern.write(count_farms2)
                     live_lantern.write(df2)
+                    live_lantern.info(f"Farms with 1 Lanters each week: {count_farms2}")
+                    live_lantern.success(f"Farms with 5 Lanters each week: {count_farms}")
                     live_treasure.write(df3)
             pass
     except Exception as e:
