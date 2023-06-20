@@ -1248,7 +1248,7 @@ with tab5:
                     5: "50",
                     6: "50",
                     7: "50",
-                    8: "50"
+                    8: "100"
                 }
 
                 #dawn_breaker.write("\n")
@@ -2035,7 +2035,7 @@ with tab6:
     live_minted2.write(f"- 🍾 **80** Old Bottles - 🌿 **50** Seaweed")
     live_minted2.write(f"- 🧭 **30** Iron Compass - 💰 **100** SFL")
     live_minted2.write("\n")
-    live_minted2.success(f" 🥫 **Tin Turtle [0/3000]**")
+    live_minted2.success(f" 🥫 **Tin Turtle [1/3000]**")
     live_minted2.write(f"- 🍾 **50** Old Bottles - 🌿 **25** Seaweed")
     live_minted2.write(f"- 🧭 **15** Iron Compass - 💰 **40** SFL")
     
