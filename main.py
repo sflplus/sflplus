@@ -174,10 +174,10 @@ API_KEY_DUNE = "xEB9BjuGBc5SbpVABb2VHcVV5DQ1g3K2"
 
 queries_owners = ["350", "2500", None]
 queries = ["2427513", "2427509", "2427499"]
-queries_name = ["Maximus", "Obie", "Purple Trail"]
+queries_name = ["Maximus (SOLD OUT)", "Obie (SOLD OUT)", "Purple Trail"]
 queries_quantity = ["350", "2500", "10000"]
 queries_emoji = ["💜", "🍆", "🐌"]
-queries_ticket = ["3200 (SOLD OUT)", "1200 (SOLD OUT)", "500"]
+queries_ticket = ["3200", "1200", "500"]
 
 #@st.cache_resource(ttl=1800, show_spinner="Updating the NFT Minted") # cache for 30 MIN
 def fetch_owner_count(query_id):
