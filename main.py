@@ -784,10 +784,10 @@ with tab5:
 
             mutant_items = {"Rich Chicken", "Fat Chicken", "Speed Chicken", "Ayam Cemani"}
 
-            crop_items = {"Sunflower", "Potato", "Pumpkin", "Carrot", "Cabbage", "Beetroot", "Cauliflower", "Parsnip", "Radish", "Wheat", "Kale"}
-            crop_price = {"Sunflower": 0.000250, "Potato": 0.00175, "Pumpkin": 0.0050, "Carrot": 0.0100, "Cabbage": 0.0188, "Beetroot": 0.0350, "Cauliflower": 0.053, "Parsnip": 0.081, "Radish": 0.119, "Wheat": 0.088, "Kale": 0.125}
-            bounty_items = {"Crab", "Sea Cucumber", "Seaweed", "Starfish", "Wooden Compass", "Pipi","Clam Shell", "Coral", "Pearl", "Pirate Bounty"}
-            bounty_price = {"Crab": 0.1875, "Sea Cucumber": 0.28125, "Seaweed": 0.9375, "Starfish": 1.40625, "Wooden Compass": 1.64062, "Pipi": 2.34375, "Clam Shell": 4.6875, "Coral": 18.75, "Pearl": 46.875, "Pirate Bounty": 93.75}
+            crop_items = {"Sunflower", "Potato", "Pumpkin", "Carrot", "Cabbage", "Beetroot", "Cauliflower", "Parsnip", "Eggplant", "Radish", "Wheat", "Kale"}
+            crop_price = {"Sunflower": 0.000250, "Potato": 0.00175, "Pumpkin": 0.0050, "Carrot": 0.0100, "Cabbage": 0.0188, "Beetroot": 0.0350, "Cauliflower": 0.053, "Parsnip": 0.081, "Eggplant": 0.1, "Radish": 0.119, "Wheat": 0.088, "Kale": 0.125}
+            bounty_items = {"Crab", "Old Bottle", "Sea Cucumber", "Seaweed", "Starfish", "Wooden Compass", "Iron Compass", "Pipi", "Clam Shell", "Coral", "Pearl", "Pirate Bounty"}
+            bounty_price = {"Crab": 0.1875, "Old Bottle": 0.28125, "Sea Cucumber": 0.28125, "Seaweed": 0.9375, "Starfish": 1.40625, "Wooden Compass": 1.64062, "Iron Compass": 2.34375, "Pipi": 2.34375, "Clam Shell": 4.6875, "Coral": 18.75, "Pearl": 46.875, "Pirate Bounty": 93.75}
             tool_items = {"Axe","Pickaxe","Stone Pickaxe","Iron Pickaxe","Rusty Shovel","Sand Shovel","Sand Drill"}
             tool_price ={"Axe": 0.0625, "Pickaxe": 0.0625, "Stone Pickaxe": 0.0625, "Iron Pickaxe": 0.25, "Rusty Shovel": 0.0625, "Sand Shovel": 0.0625, "Sand Drill": 0.125}
             food_items = {"Mashed Potato","Pumpkin Soup","Bumpkin Broth","Boiled Eggs","Kale Stew","Mushroom Soup","Reindeer Carrot","Kale Omelette","Cabbers n Mash","Roast Veggies","Bumpkin Salad","Goblin's Treat","Cauliflower Burger","Pancakes","Club Sandwich","Mushroom Jacket Potatoes","Sunflower Crunch","Bumpkin Roast","Goblin Brunch","Fruit Salad","Sunflower Cake","Potato Cake","Pumpkin Cake","Carrot Cake","Cabbage Cake","Beetroot Cake","Cauliflower Cake","Parsnip Cake","Radish Cake","Wheat Cake","Apple Pie","Honey Cake","Orange Cake","Apple Juice","Orange Juice","Purple Smoothie","Power Smoothie","Bumpkin Detox","Pirate Cake"}
