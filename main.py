@@ -1877,13 +1877,12 @@ with tab6:
         text_search = col_search.text_input("🔻 SEARCH FARM ID  🔻", label_visibility="collapsed", max_chars=6, value= FarmID)
     with col_ok:
         buttonok2 = col_ok.button('OK', key="OK2")        
-        #st.error("The ranking is currently not working, it will be fixed soon™ ")
+
     col_rank, col_rank2, col_rank3, col_rank4 = st.columns([2,2,2,1.5])
     with col_rank:
         live_how = st.expander("📝 **HOW IT WORKS?**", expanded=False)
-        live_ranking = st.expander("🎟️ **DAWN BREAKER TICKETS**", expanded=True)
-        live_minted = st.expander("⚡ **DAWN BREAKER MINTS**", expanded=True)
-        live_minted_error = st.container()   
+        live_treasure = st.expander("🐢 **TURTLES RACE**", expanded=True) 
+        live_minted2 = st.expander("⚡ **TURTLES RACE MINTS**", expanded=True)
         
     with col_rank2:
         live_update = st.container()        
@@ -1892,14 +1891,13 @@ with tab6:
         
     with col_rank3:
         st.info(f"❤️ **Shoutout to Victor Gianvechio for providing the data.** ")
-        live_treasure = st.expander("🐢 **TURTLES RACE**", expanded=True) 
-        live_minted2 = st.expander("⚡ **TURTLES RACE MINTS**", expanded=True)
+        live_ranking = st.expander("🎟️ **DAWN BREAKER TICKETS**", expanded=True)
+        live_minted = st.expander("⚡ **DAWN BREAKER MINTS**", expanded=True)
+        live_minted_error = st.container()   
         
     with col_rank4:               
         live_mush = st.expander("🍄 **WILD MUSHROOM**", expanded=True)      
-        live_calculator = st.expander("🤖 **LANTERNS CALCULATOR**", expanded=True)         
-
-        
+        live_calculator = st.expander("🤖 **LANTERNS CALCULATOR**", expanded=True)                 
 
        
     from_lanterns = live_calculator.number_input("🔺 From How Many Lanters?", min_value=0, max_value=999, step=1)
