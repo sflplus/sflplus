@@ -1882,7 +1882,7 @@ with tab6:
     with col_rank:
         live_how = st.expander("📝 **HOW IT WORKS?**", expanded=False)
         live_treasure = st.expander("🐢 **TURTLES RACE**", expanded=True) 
-        live_minted2 = st.expander("⚡ **TURTLES RACE MINTS**", expanded=True)
+        live_minted = st.expander("⚡ **CURRENT MINTS**", expanded=True)
         
     with col_rank2:
         live_update = st.container()        
@@ -1892,7 +1892,7 @@ with tab6:
     with col_rank3:
         st.info(f"❤️ **Shoutout to Victor Gianvechio for providing the data.** ")
         live_ranking = st.expander("🎟️ **DAWN BREAKER TICKETS**", expanded=True)
-        live_minted = st.expander("⚡ **CURRENT MINTS**", expanded=True)
+        live_minted2 = st.expander("🐢 **TURTLES REQUIREMENTS**", expanded=True)
         live_minted_error = st.container()   
         
     with col_rank4:               
@@ -2029,11 +2029,11 @@ with tab6:
 
 
         
-    live_minted2.info(f" 🐢 **Emerald Turtle [0/100]**")
+    live_minted2.info(f" 🐢 **Emerald Turtle: Supply 100**")
     live_minted2.write(f"- 🍾 **80** Old Bottles - 🌿 **50** Seaweed")
     live_minted2.write(f"- 🧭 **30** Iron Compass - 💰 **100** SFL")
     live_minted2.write("\n")
-    live_minted2.success(f" 🥫 **Tin Turtle [1/3000]**")
+    live_minted2.success(f" 🥫 **Tin Turtle: Supply 3000**")
     live_minted2.write(f"- 🍾 **50** Old Bottles - 🌿 **25** Seaweed")
     live_minted2.write(f"- 🧭 **15** Iron Compass - 💰 **40** SFL")
     
