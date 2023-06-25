@@ -172,12 +172,12 @@ sfl_supply = get_token_supply()
 
 API_KEY_DUNE = "xEB9BjuGBc5SbpVABb2VHcVV5DQ1g3K2"
 
-queries_owners = ["350", "2500", None]
-queries = ["2427513", "2427509", "2427499"]
-queries_name = ["Maximus (SOLD OUT)", "Obie (SOLD OUT)", "Purple Trail"]
-queries_quantity = ["350", "2500", "10000"]
-queries_emoji = ["💜", "🍆", "🐌"]
-queries_ticket = ["3200", "1200", "500"]
+queries_owners = [None, None, None]
+queries = ["2649121", "2649118", "2427499"]
+queries_name = ["Emerald Turtle", "Tin Turtle", "Purple Trail"]
+queries_quantity = ["100", "3000", "10000"]
+queries_emoji = ["🐢", "🥫", "🐌"]
+#queries_ticket = ["3200", "1200", "500"]
 
 #@st.cache_resource(ttl=1800, show_spinner="Updating the NFT Minted") # cache for 30 MIN
 def fetch_owner_count(query_id):
@@ -1892,7 +1892,7 @@ with tab6:
     with col_rank3:
         st.info(f"❤️ **Shoutout to Victor Gianvechio for providing the data.** ")
         live_ranking = st.expander("🎟️ **DAWN BREAKER TICKETS**", expanded=True)
-        live_minted = st.expander("⚡ **DAWN BREAKER MINTS**", expanded=True)
+        live_minted = st.expander("⚡ **CURRENT MINTS**", expanded=True)
         live_minted_error = st.container()   
         
     with col_rank4:               
@@ -1996,12 +1996,12 @@ with tab6:
             query_name = queries_name[i]
             query_emoji = queries_emoji[i]
             query_quantity = queries_quantity[i]
-            query_ticket = queries_ticket[i]
+            #query_ticket = queries_ticket[i]
             nft = f"{query_emoji} {query_name}"
-            data.append([nft, owner_count, query_quantity, query_ticket])
+            data.append([nft, owner_count, query_quantity]) #query_ticket
 
         # Create a dataframe from the data list
-        df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply", "Tickets"])
+        df_dune = pd.DataFrame(data, columns=["NFT", "Owners", "Supply"]) #"Tickets"
         return df_dune
 
     # Create or fetch the cached dataframe
