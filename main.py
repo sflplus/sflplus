@@ -2175,7 +2175,7 @@ async def main():
                     live_lantern.write(df2)
                     live_minted.info(f"🕯️ **Farms with 1 Lantern each week: {count_farms2}**")
                     live_minted.success(f"🏮 **Farms with 5 Lanterns each week: {count_farms}**")
-                    live_minted.success(f"🏮 **Farms with 5 Lanterns each week: {count_farms3}**")
+                    live_minted.success(f"🏮 **Farms with 10 Lanterns each week: {count_farms3}**")
                     live_treasure.write(df3)
             pass
     except Exception as e:
