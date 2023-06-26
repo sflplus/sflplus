@@ -1897,64 +1897,64 @@ with tab6:
         
     with col_rank4:               
         live_mush = st.expander("🍄 **WILD MUSHROOM**", expanded=True)      
-        live_calculator = st.expander("🤖 **LANTERNS CALCULATOR**", expanded=True)                 
+        #live_calculator = st.expander("🤖 **LANTERNS CALCULATOR**", expanded=True)                 
 
        
-    from_lanterns = live_calculator.number_input("🔺 From How Many Lanters?", min_value=0, max_value=999, step=1)
-    to_lanterns = live_calculator.number_input("🔻To How Many?", min_value=0, max_value=999, step=1, value=5)
-    check_banner = live_calculator.checkbox("You have the Dawn Breaker Banner?", value=True, on_change=None,label_visibility="visible")
-    buttonok4 = live_calculator.button('OK', key="OK4")  
-    emojis_resources = emojis
-    if buttonok4:
-        try:
-            lanterns_ing, lanterns_sfl = retrieve_lantern_ingredients()
+    # from_lanterns = live_calculator.number_input("🔺 From How Many Lanters?", min_value=0, max_value=999, step=1)
+    # to_lanterns = live_calculator.number_input("🔻To How Many?", min_value=0, max_value=999, step=1, value=5)
+    # check_banner = live_calculator.checkbox("You have the Dawn Breaker Banner?", value=True, on_change=None,label_visibility="visible")
+    #buttonok4 = live_calculator.button('OK', key="OK4")  
+    #emojis_resources = emojis
+    # if buttonok4:
+    #     try:
+    #         lanterns_ing, lanterns_sfl = retrieve_lantern_ingredients()
 
-            accumulated_lanterns_ing = {}
-            accumulated_lanterns_sfl = 0.0
+    #         accumulated_lanterns_ing = {}
+    #         accumulated_lanterns_sfl = 0.0
 
-            if lanterns_sfl is not None:
-                accumulated_lanterns_sfl = lanterns_sfl * (to_lanterns * (to_lanterns + 1) / 2)
+    #         if lanterns_sfl is not None:
+    #             accumulated_lanterns_sfl = lanterns_sfl * (to_lanterns * (to_lanterns + 1) / 2)
 
-            if from_lanterns > 0:
-                from_lanterns_ing = {}
-                from_lanterns_sfl = 0.0
+    #         if from_lanterns > 0:
+    #             from_lanterns_ing = {}
+    #             from_lanterns_sfl = 0.0
 
-                if lanterns_sfl is not None:
-                    from_lanterns_sfl = lanterns_sfl * (from_lanterns * (from_lanterns + 1) / 2)
+    #             if lanterns_sfl is not None:
+    #                 from_lanterns_sfl = lanterns_sfl * (from_lanterns * (from_lanterns + 1) / 2)
 
-                for lantern_count in range(from_lanterns + 1):
-                    for ingredient, quantity in lanterns_ing.items():
-                        if ingredient not in from_lanterns_ing:
-                            from_lanterns_ing[ingredient] = 0
-                        from_lanterns_ing[ingredient] += int(quantity) * lantern_count
+    #             for lantern_count in range(from_lanterns + 1):
+    #                 for ingredient, quantity in lanterns_ing.items():
+    #                     if ingredient not in from_lanterns_ing:
+    #                         from_lanterns_ing[ingredient] = 0
+    #                     from_lanterns_ing[ingredient] += int(quantity) * lantern_count
 
-                accumulated_lanterns_ing = from_lanterns_ing
-                extra_lanterns_sfl = accumulated_lanterns_sfl - from_lanterns_sfl
-            else:
-                extra_lanterns_sfl = accumulated_lanterns_sfl
+    #             accumulated_lanterns_ing = from_lanterns_ing
+    #             extra_lanterns_sfl = accumulated_lanterns_sfl - from_lanterns_sfl
+    #         else:
+    #             extra_lanterns_sfl = accumulated_lanterns_sfl
 
-            extra_lanterns_sfl_banner = extra_lanterns_sfl * 0.75
-            extra_lanterns_ing = {}
+    #         extra_lanterns_sfl_banner = extra_lanterns_sfl * 0.75
+    #         extra_lanterns_ing = {}
 
-            for ingredient, quantity in lanterns_ing.items():
-                if ingredient == "Block Buck":
-                    extra_quantity = to_lanterns - from_lanterns  # Fixed 1 per lantern
-                else:
-                    extra_quantity = int(quantity) * (to_lanterns * (to_lanterns + 1) / 2) - accumulated_lanterns_ing.get(ingredient, 0)
-                extra_lanterns_ing[ingredient] = extra_quantity
+    #         for ingredient, quantity in lanterns_ing.items():
+    #             if ingredient == "Block Buck":
+    #                 extra_quantity = to_lanterns - from_lanterns  # Fixed 1 per lantern
+    #             else:
+    #                 extra_quantity = int(quantity) * (to_lanterns * (to_lanterns + 1) / 2) - accumulated_lanterns_ing.get(ingredient, 0)
+    #             extra_lanterns_ing[ingredient] = extra_quantity
 
 
-            live_calculator.info(f"\n👨‍🏫 **Resources From {from_lanterns} to {to_lanterns} Lanterns:**")
-            #live_calculator.write(f"- 💰 SFL: **{lanterns_ing}**")
-            for ingredient, quantity in extra_lanterns_ing.items():
-                live_calculator.write(f" - {emojis.get(ingredient)} {ingredient}: **{quantity:.0f}**")
-            if lanterns_sfl is not None:
-                if check_banner:                
-                    live_calculator.write(f"- 💰 SFL: **{extra_lanterns_sfl_banner:.2f}**")
-                else:
-                    live_calculator.write(f"- 💰 SFL: **{extra_lanterns_sfl:.2f}**")
-        except Exception as e:
-            live_calculator.error(f"Error: {str(e)}")            
+    #         live_calculator.info(f"\n👨‍🏫 **Resources From {from_lanterns} to {to_lanterns} Lanterns:**")
+    #         #live_calculator.write(f"- 💰 SFL: **{lanterns_ing}**")
+    #         for ingredient, quantity in extra_lanterns_ing.items():
+    #             live_calculator.write(f" - {emojis.get(ingredient)} {ingredient}: **{quantity:.0f}**")
+    #         if lanterns_sfl is not None:
+    #             if check_banner:                
+    #                 live_calculator.write(f"- 💰 SFL: **{extra_lanterns_sfl_banner:.2f}**")
+    #             else:
+    #                 live_calculator.write(f"- 💰 SFL: **{extra_lanterns_sfl:.2f}**")
+    #     except Exception as e:
+    #         live_calculator.error(f"Error: {str(e)}")            
     
     live_how.info(f"📌 **This is using Dawn Breaker Tickets Dune query to get the TOP 10000 farms and then using the SFL API every 30~ min to refresh the info of the farms.**")
     live_how.info(f"⚠️ **Note that if your farm isn't in the TOP 10000 of the Dawn Breaker Tickets Dune query, is not going to show up in this Live Rankings.**") 
@@ -2089,29 +2089,29 @@ async def main():
             df1 = df1.dropna(subset=['Tickets'])
             #df3 = df3.dropna(subset=['Wild Mushroom'])
         
-            # MAKE SURE TOP 10 SHOWS
-            top_ten_ids = fetch_top_ten_ids()
-            lanterns_data = retrieve_lanterns_data(top_ten_ids)
-            #lanterns_data = {}
-            existing_ids = df2['Farm'].tolist()
-            new_ids = []
+            # # MAKE SURE TOP 10 SHOWS
+            # top_ten_ids = fetch_top_ten_ids()
+            # lanterns_data = retrieve_lanterns_data(top_ten_ids)
+            # #lanterns_data = {}
+            # existing_ids = df2['Farm'].tolist()
+            # new_ids = []
         
-            for farm_id in lanterns_data.keys():
-                if farm_id not in existing_ids:
-                    new_ids.append(farm_id)
-                    lantern_data = lanterns_data[farm_id]
-                    new_row = {
-                        'Farm': farm_id,
-                        'Week 8': lantern_data.get('8', 0),
-                        'Week 7': lantern_data.get('7', 0),
-                        'Week 6': lantern_data.get('6', 0),
-                        'Week 5': lantern_data.get('5', 0),
-                        'Week 4': lantern_data.get('4', 0),
-                        'Week 3': lantern_data.get('3', 0),
-                        'Week 2': lantern_data.get('2', 0),
-                        'Week 1': lantern_data.get('1', 0)
-                    }
-                    df2 = pd.concat([df2, pd.DataFrame(new_row, index=[0])], ignore_index=True)
+            # for farm_id in lanterns_data.keys():
+            #     if farm_id not in existing_ids:
+            #         new_ids.append(farm_id)
+            #         lantern_data = lanterns_data[farm_id]
+            #         new_row = {
+            #             'Farm': farm_id,
+            #             'Week 8': lantern_data.get('8', 0),
+            #             'Week 7': lantern_data.get('7', 0),
+            #             'Week 6': lantern_data.get('6', 0),
+            #             'Week 5': lantern_data.get('5', 0),
+            #             'Week 4': lantern_data.get('4', 0),
+            #             'Week 3': lantern_data.get('3', 0),
+            #             'Week 2': lantern_data.get('2', 0),
+            #             'Week 1': lantern_data.get('1', 0)
+            #         }
+            #         df2 = pd.concat([df2, pd.DataFrame(new_row, index=[0])], ignore_index=True)
             # Remove emphy columns
             df2 = df2.dropna(axis=1, how='all')
         
