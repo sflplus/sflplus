@@ -2142,7 +2142,7 @@ async def main():
             df3['Seaweed'] = pd.to_numeric(df3['Seaweed'])
             df3['Iron Compass'] = pd.to_numeric(df3['Iron Compass'])
         
-            df3['Points'] = (df3['Old Bottle'].clip(upper=80) * 0.65 +
+            df3['Points'] = (df3['Old Bottle'].clip(upper=80) * 0.75 +
                              df3['Seaweed'].clip(upper=50) * 0.2 +
                              df3['Iron Compass'].clip(upper=30) * 1)
 
