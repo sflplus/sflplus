@@ -1878,7 +1878,7 @@ with tab6:
     with col_ok:
         buttonok2 = col_ok.button('OK', key="OK2")        
 
-    col_rank, col_rank2, col_rank3 = st.columns([2.25,2.25,2])
+    col_rank, col_rank2, col_rank3 = st.columns([3,3,3])
     with col_rank:
         live_how = st.expander("📝 **HOW IT WORKS?**", expanded=False)
         live_treasure = st.expander("🐢 **TURTLES RACE**", expanded=True) 
