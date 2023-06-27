@@ -2100,18 +2100,7 @@ async def main():
                 'Iron Compass': [farm['IronCompass'] if 'IronCompass' in farm and farm['IronCompass'] != '' else 0 for farm in data1['farms']]
                 #'Davy Jones': ['YES' if int(farm.get('DavyJones', 0)) >= 1 else 'NO' for farm in data1['farms']]     
             })        
-            st.data_editor(
-                df3,
-                column_config={
-                    "point": st.column_config.ProgressColumn(
-                        "Points",
-                        help="The ranking based in Points",
-                        format="$%f",
-                        min_value=0,
-                        max_value=100,
-                    ),
-                },        
-            )
+
             # Remove rows with missing ticket counts
             df1 = df1.dropna(subset=['Tickets'])
             #df3 = df3.dropna(subset=['Wild Mushroom'])
@@ -2158,7 +2147,18 @@ async def main():
             df3['Points'] = (df3['Old Bottle'].clip(upper=80) * 0.75 +
                              df3['Seaweed'].clip(upper=50) * 0.2 +
                              df3['Iron Compass'].clip(upper=30) * 1)
-
+            st.data_editor(
+                df3,
+                column_config={
+                    "Points": st.column_config.ProgressColumn(
+                        "Points",
+                        help="The ranking based in Points",
+                        format="%.2f",
+                        min_value=0,
+                        max_value=100,
+                    ),
+                },        
+            )
             # Reorder the columns
             df3 = df3.reindex(columns=['Farm', 'Points', 'Old Bottle', 'Seaweed', 'Iron Compass'])
 
