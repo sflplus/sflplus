@@ -2147,18 +2147,7 @@ async def main():
             df3['Points'] = (df3['Old Bottle'].clip(upper=80) * 0.75 +
                              df3['Seaweed'].clip(upper=50) * 0.2 +
                              df3['Iron Compass'].clip(upper=30) * 1)
-            st.data_editor(
-                df3,
-                column_config={
-                    "Points": st.column_config.ProgressColumn(
-                        "Points",
-                        help="The ranking based in Points",
-                        format="%.2f",
-                        min_value=0,
-                        max_value=100,
-                    ),
-                },        
-            )
+
             # Reorder the columns
             df3 = df3.reindex(columns=['Farm', 'Points', 'Old Bottle', 'Seaweed', 'Iron Compass'])
 
@@ -2209,7 +2198,20 @@ async def main():
                     live_lantern.write(df2)
                     live_minted.info(f"🕯️ **Farms with 1 Lantern each week: {count_farms2}**")
                     live_minted.success(f"🏮 **Farms with 5 Lanterns each week: {count_farms}**")
-                    live_treasure.write(df3)
+                    live_treasure.data_editor(
+                        df3,
+                        column_config={
+                            "Points": st.column_config.ProgressColumn(
+                                "Points",
+                                help="The ranking based in Points",
+                                format="%.2f",
+                                min_value=0,
+                                max_value=100,
+                            ),
+                        },        
+                    )
+                    
+                    #live_treasure.write(df3)
             pass
     except Exception as e:
         live_update.error(f"The ranking is currently not working, it will be fixed soon™, Error: {str(e)}") 
