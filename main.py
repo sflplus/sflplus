@@ -2150,6 +2150,8 @@ async def main():
 
             # Reorder the columns
             df3 = df3.reindex(columns=['Farm', 'Points', 'Old Bottle', 'Seaweed', 'Iron Compass'])
+            # Format the Points column
+            df3['Points'] = df3['Points'].apply(lambda x: f'{x:.2f}%')
 
             # Sort by Total Ticket in descending order
             df1 = df1.sort_values(by='Tickets', ascending=False)
@@ -2158,7 +2160,7 @@ async def main():
         
         
             df2 = df2.rename(columns={"Week 8": "Week 8 🔻"})
-            #df3= df3.rename(columns={"Points": "Points 🔻"})
+            df3= df3.rename(columns={"Points": "Points 🔻"})
         
             # Reset index and set the "Ranking" column as the new index
             df1 = df1.reset_index(drop=True)
@@ -2197,21 +2199,8 @@ async def main():
                     live_ranking.write(df1) 
                     live_lantern.write(df2)
                     live_minted.info(f"🕯️ **Farms with 1 Lantern each week: {count_farms2}**")
-                    live_minted.success(f"🏮 **Farms with 5 Lanterns each week: {count_farms}**")
-                    live_treasure.data_editor(
-                        df3,
-                        column_config={
-                            "Points": st.column_config.ProgressColumn(
-                                "Points 🔻",
-                                help="The ranking based in Points",
-                                format="%.2f",
-                                min_value=0,
-                                max_value=100,                                
-                            ),
-                        },        
-                    )
-                    
-                    #live_treasure.write(df3)
+                    live_minted.success(f"🏮 **Farms with 5 Lanterns each week: {count_farms}**")                  
+                    live_treasure.write(df3)
             pass
     except Exception as e:
         live_update.error(f"The ranking is currently not working, it will be fixed soon™, Error: {str(e)}") 
