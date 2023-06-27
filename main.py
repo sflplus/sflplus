@@ -588,7 +588,7 @@ fruits_price = {"Apple": 0.3125, "Orange": 0.225, "Blueberry": 0.15}
 fruit_emojis = {"Apple": " \U0001F34E ", "Orange": " \U0001f34a ", "Blueberry": " \U0001f347 "}
 
 
-tab5, tab6, tab7, tab8 = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKIN", "📜NFT LIST"]) #"👨‍🔬CALCULATOR", "💸TRADER"
+tab5, tab6, tab7 = st.tabs(["💾HOME", "🏆RANKING", "👥BUMPKIN"]) #"📜NFT LIST", "👨‍🔬CALCULATOR", "💸TRADER"
 
 with tab5:
     # Define default farm ID
@@ -2327,7 +2327,7 @@ with tab7:
                 else:
                     status_ok2.error("Invalid response or error occurred.") 
 
-with tab8:
-    col_nft, buff11 = st.columns([2,2])
-    with col_nft:        
-        st.error(f"The NFT List is momentarely disable, it will be enable back soon™") 
+# with tab8:
+#     col_nft, buff11 = st.columns([2,2])
+#     with col_nft:        
+#         st.error(f"The NFT List is momentarely disable, it will be enable back soon™") 
