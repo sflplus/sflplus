@@ -2100,7 +2100,17 @@ async def main():
                 'Iron Compass': [farm['IronCompass'] if 'IronCompass' in farm and farm['IronCompass'] != '' else 0 for farm in data1['farms']]
                 #'Davy Jones': ['YES' if int(farm.get('DavyJones', 0)) >= 1 else 'NO' for farm in data1['farms']]     
             })        
-        
+            st.data_editor(
+                df3,
+                column_config={
+                    "point": st.column_config.ProgressColumn(
+                        "Points",
+                        help="The ranking based in Points",
+                        format="$%f",
+                        min_value=0,
+                        max_value=100,
+                    ),
+                },        
         
             # Remove rows with missing ticket counts
             df1 = df1.dropna(subset=['Tickets'])
