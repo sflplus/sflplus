@@ -2151,7 +2151,7 @@ async def main():
             # Reorder the columns
             df3 = df3.reindex(columns=['Farm', 'Points', 'Old Bottle', 'Seaweed', 'Iron Compass'])
             # Format the Points column
-            df3['Points'] = df3['Points'].round(2).astype(str) + '.00'
+            df3['Points'] = df3['Points'].round(2)
             #df3['Points'] = df3['Points'].apply(lambda x: f'{x:.2f}')
 
             
