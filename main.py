@@ -2158,7 +2158,7 @@ async def main():
         
         
             df2 = df2.rename(columns={"Week 8": "Week 8 🔻"})
-            df3= df3.rename(columns={"Points": "Points 🔻"})
+            #df3= df3.rename(columns={"Points": "Points 🔻"})
         
             # Reset index and set the "Ranking" column as the new index
             df1 = df1.reset_index(drop=True)
@@ -2202,11 +2202,12 @@ async def main():
                         df3,
                         column_config={
                             "Points": st.column_config.ProgressColumn(
-                                "Points",
+                                "Points 🔻",
                                 help="The ranking based in Points",
                                 format="%.2f",
                                 min_value=0,
                                 max_value=100,
+                                disabled=True,
                             ),
                         },        
                     )
