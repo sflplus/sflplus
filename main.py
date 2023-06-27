@@ -2203,7 +2203,7 @@ async def main():
                     live_lantern.write(df2)
                     live_minted.info(f"🕯️ **Farms with 1 Lantern each week: {count_farms2}**")
                     live_minted.success(f"🏮 **Farms with 5 Lanterns each week: {count_farms}**")                  
-                    live_treasure.write(df3)
+                    live_treasure.dataframe(df3)
             pass
     except Exception as e:
         live_update.error(f"The ranking is currently not working, it will be fixed soon™, Error: {str(e)}") 
