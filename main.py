@@ -2146,6 +2146,9 @@ async def main():
                              df3['Seaweed'].clip(upper=50) * 0.2 +
                              df3['Iron Compass'].clip(upper=30) * 1)
 
+            # Reorder the columns
+            df3 = df3.reindex(columns=['Farm', 'Points', 'Old Bottle', 'Seaweed', 'Iron Compass'])
+
             # Sort by Total Ticket in descending order
             df1 = df1.sort_values(by='Tickets', ascending=False)
             df2 = df2.sort_values(by='Week 8', ascending=False)
@@ -2153,7 +2156,7 @@ async def main():
         
         
             df2 = df2.rename(columns={"Week 8": "Week 8 🔻"})
-            df23= df3.rename(columns={"Points": "Points 🔻"})
+            df3= df3.rename(columns={"Points": "Points 🔻"})
         
             # Reset index and set the "Ranking" column as the new index
             df1 = df1.reset_index(drop=True)
