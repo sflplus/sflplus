@@ -2206,8 +2206,7 @@ async def main():
                                 help="The ranking based in Points",
                                 format="%.2f",
                                 min_value=0,
-                                max_value=100,
-                                disabled=True,
+                                max_value=100,                                
                             ),
                         },        
                     )
