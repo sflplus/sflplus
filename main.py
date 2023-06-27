@@ -2076,12 +2076,26 @@ async def main():
                 'Week 1': [farm['LanternsCraftedByWeek']['1'] if 'LanternsCraftedByWeek' in farm and '1' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']]
             })
         
+            df2 = pd.DataFrame({
+                'Farm': [farm['FarmID'] for farm in data1['farms']],
+                'Week 10': [farm['LanternsCraftedByWeek']['10'] if 'LanternsCraftedByWeek' in farm and '10' in farm['LanternsCraftedByWeek'] else None for farm in data1['farms']],
+                'Week 9': [farm['LanternsCraftedByWeek']['9'] if 'LanternsCraftedByWeek' in farm and '9' in farm['LanternsCraftedByWeek'] else None for farm in data1['farms']],       
+                'Week 8': [farm['LanternsCraftedByWeek']['8'] if 'LanternsCraftedByWeek' in farm and '8' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
+                'Week 7': [farm['LanternsCraftedByWeek']['7'] if 'LanternsCraftedByWeek' in farm and '7' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],        
+                'Week 6': [farm['LanternsCraftedByWeek']['6'] if 'LanternsCraftedByWeek' in farm and '6' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
+                'Week 5': [farm['LanternsCraftedByWeek']['5'] if 'LanternsCraftedByWeek' in farm and '5' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],        
+                'Week 4': [farm['LanternsCraftedByWeek']['4'] if 'LanternsCraftedByWeek' in farm and '4' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
+                'Week 3': [farm['LanternsCraftedByWeek']['3'] if 'LanternsCraftedByWeek' in farm and '3' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
+                'Week 2': [farm['LanternsCraftedByWeek']['2'] if 'LanternsCraftedByWeek' in farm and '2' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']],
+                'Week 1': [farm['LanternsCraftedByWeek']['1'] if 'LanternsCraftedByWeek' in farm and '1' in farm['LanternsCraftedByWeek'] else 0 for farm in data1['farms']]
+            })
+        
             df3 = pd.DataFrame({
                 'Farm': [farm['FarmID'] for farm in data1['farms']],
                 'Old Bottle': [farm['OldBottle'] if 'OldBottle' in farm and farm['OldBottle'] != '' else 0 for farm in data1['farms']],
                 'Seaweed': [farm['Seaweed'] if 'Seaweed' in farm and farm['Seaweed'] != '' else 0 for farm in data1['farms']],
-                'Iron Compass': [farm['IronCompass'] if 'IronCompass' in farm and farm['IronCompass'] != '' else 0 for farm in data1['farms']],
-                'Davy Jones': ['YES' if int(farm.get('DavyJones', 0)) >= 1 else 'NO' for farm in data1['farms']]     
+                'Iron Compass': [farm['IronCompass'] if 'IronCompass' in farm and farm['IronCompass'] != '' else 0 for farm in data1['farms']]
+                #'Davy Jones': ['YES' if int(farm.get('DavyJones', 0)) >= 1 else 'NO' for farm in data1['farms']]     
             })        
         
         
@@ -2128,13 +2142,18 @@ async def main():
             df3['Seaweed'] = pd.to_numeric(df3['Seaweed'])
             df3['Iron Compass'] = pd.to_numeric(df3['Iron Compass'])
         
+            df3['Points'] = (df3['Old Bottle'].clip(upper=80) * 0.65 +
+                             df3['Seaweed'].clip(upper=50) * 0.2 +
+                             df3['Iron Compass'].clip(upper=30) * 1)
+
             # Sort by Total Ticket in descending order
             df1 = df1.sort_values(by='Tickets', ascending=False)
             df2 = df2.sort_values(by='Week 8', ascending=False)
-            df3 = df3.sort_values(by=['Old Bottle', 'Iron Compass', 'Seaweed'], ascending=[False, False, False], kind='mergesort')
+            df3 = df3.sort_values(by='Points', ascending=False)   #       ['Old Bottle', 'Iron Compass', 'Seaweed'], ascending=[False, False, False], kind='mergesort')
         
         
-            df2 = df2.rename(columns={"Week 8": "Week 8 🔻"})   
+            df2 = df2.rename(columns={"Week 8": "Week 8 🔻"})
+            df23= df3.rename(columns={"Points": "Points 🔻"})
         
             # Reset index and set the "Ranking" column as the new index
             df1 = df1.reset_index(drop=True)
