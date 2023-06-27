@@ -1878,25 +1878,26 @@ with tab6:
     with col_ok:
         buttonok2 = col_ok.button('OK', key="OK2")        
 
-    col_rank, col_rank2, col_rank3, col_rank4 = st.columns([2,2,2,1.5])
+    col_rank, col_rank2, col_rank3 = st.columns([2.5,2.5,2])
     with col_rank:
         live_how = st.expander("📝 **HOW IT WORKS?**", expanded=False)
         live_treasure = st.expander("🐢 **TURTLES RACE**", expanded=True) 
+        live_point = st.expander("🥇 **POINTS SYSTEM**", expanded=False)
         live_minted = st.expander("⚡ **CURRENT MINTS**", expanded=True)
         
     with col_rank2:
         live_update = st.container()        
         live_lantern = st.expander("🏮 **LANTERNS RANKING**", expanded=True) 
         live_odds = st.expander("🎲 **ODDS OF DIGGING**", expanded=True)
+        live_mush = st.expander("🍄 **WILD MUSHROOM**", expanded=True) 
         
     with col_rank3:
         st.info(f"❤️ **Shoutout to Victor Gianvechio for providing the data.** ")
         live_ranking = st.expander("🎟️ **DAWN BREAKER TICKETS**", expanded=True)
         live_minted2 = st.expander("🐢 **TURTLES REQUIREMENTS**", expanded=True)
-        live_minted_error = st.container()   
-        
-    with col_rank4:               
-        live_mush = st.expander("🍄 **WILD MUSHROOM**", expanded=True)      
+        live_minted_error = st.container()          
+           
+             
         #live_calculator = st.expander("🤖 **LANTERNS CALCULATOR**", expanded=True)                 
 
        
@@ -1958,6 +1959,8 @@ with tab6:
     
     live_how.info(f"📌 **This is using Dawn Breaker Tickets Dune query to get the TOP 10000 farms and then using the SFL API every 30~ min to refresh the info of the farms.**")
     live_how.info(f"⚠️ **Note that if your farm isn't in the TOP 10000 of the Dawn Breaker Tickets Dune query, is not going to show up in this Live Rankings.**") 
+
+    live_point.info(f"💯 **The Point system is using Old Bottles as 0.75 , Seaweed as 0.25 and Iron Compass as 1, all of them are capped to only count until the quantity needed (80, 50 and 30) giving a score of 100 points if you have enought to mint the Emerald Turtle.**")
 
     first_respawn = 1682899200
     respawn_interval = timedelta(hours=16)
