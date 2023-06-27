@@ -2111,7 +2111,7 @@ async def main():
                         max_value=100,
                     ),
                 },        
-        
+            )
             # Remove rows with missing ticket counts
             df1 = df1.dropna(subset=['Tickets'])
             #df3 = df3.dropna(subset=['Wild Mushroom'])
