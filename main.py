@@ -2209,12 +2209,12 @@ async def main():
                             "Points": st.column_config.ProgressColumn(
                                 "Points 🔻",
                                 help="Click here to change the ranking based in Points",
-                                width="medium",
+                                #width="medium",
                                 format="%.2f",
                                 min_value=0,
                                 max_value=100,                                
                             ),
-                            "Rank": st.column_config.ProgressColumn(
+                            "Rank": st.column_config.NumberColumn(
                                 "Rank",
                                 help=None,
                                 width="small",                              
