@@ -2152,21 +2152,11 @@ async def main():
             #df3 = df3.reindex(columns=['Farm', 'Points', 'Old Bottle', 'Seaweed', 'Iron Compass'])
             # Format the Points column
             df3['Points'] = df3['Points'].round(2)
-            #df3['Points'] = df3['Points'].apply(lambda x: f'{x:.2f}')
-
-            
+            #df3['Points'] = df3['Points'].apply(lambda x: f'{x:.2f}')            
 
             # Sort by Total Ticket in descending order
             df1 = df1.sort_values(by='Tickets', ascending=False)
             df2 = df2.sort_values(by='Week 8', ascending=False)      
-            
-            # Reorder the columns and cap the values for sorting
-            df3 = df3[['Farm', 'Old Bottle', 'Seaweed', 'Iron Compass', 'Points']]
-            df3['Old Bottle'] = df3['Old Bottle'].clip(upper=80)
-            df3['Seaweed'] = df3['Seaweed'].clip(upper=50)
-            df3['Iron Compass'] = df3['Iron Compass'].clip(upper=30)
-            
-            # Sort the DataFrame with capped values
             df3 = df3.sort_values(by=['Old Bottle', 'Iron Compass', 'Seaweed'],
                                   ascending=[False, False, False],
                                   kind='mergesort')
