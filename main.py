@@ -2208,7 +2208,7 @@ async def main():
                         column_config={
                             "Points": st.column_config.ProgressColumn(
                                 "Points 🔻",
-                                help="The ranking based in Points",
+                                help="Click here to change the ranking based in Points",
                                 format="%.2f",
                                 min_value=0,
                                 max_value=100,                                
