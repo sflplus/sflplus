@@ -2169,7 +2169,7 @@ async def main():
             # Reset index and set the "Ranking" column as the new index
             df1 = df1.reset_index(drop=True)
             df2 = df2.reset_index(drop=True)
-            #df3 = df3.reset_index(drop=True)
+            df3 = df3.reset_index(drop=True)
         
             df1.index = df1.index + 1
             df2.index = df2.index + 1
