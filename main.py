@@ -2095,9 +2095,9 @@ async def main():
         
             df3 = pd.DataFrame({
                 'Farm': [farm['FarmID'] for farm in data1['farms']],
-                'Old Bottle': [farm['OldBottle'] if 'OldBottle' in farm and farm['OldBottle'] != '' else 0 for farm in data1['farms']],
+                'Bottles': [farm['OldBottle'] if 'OldBottle' in farm and farm['OldBottle'] != '' else 0 for farm in data1['farms']],
                 'Seaweed': [farm['Seaweed'] if 'Seaweed' in farm and farm['Seaweed'] != '' else 0 for farm in data1['farms']],
-                'Iron Compass': [farm['IronCompass'] if 'IronCompass' in farm and farm['IronCompass'] != '' else 0 for farm in data1['farms']]
+                'Iron C.': [farm['IronCompass'] if 'IronCompass' in farm and farm['IronCompass'] != '' else 0 for farm in data1['farms']]
                 #'Davy Jones': ['YES' if int(farm.get('DavyJones', 0)) >= 1 else 'NO' for farm in data1['farms']]     
             })        
 
@@ -2140,13 +2140,13 @@ async def main():
             # Convert Total Ticket column to numeric values
             df1['Tickets'] = pd.to_numeric(df1['Tickets'])
             df2['Week 8'] = pd.to_numeric(df2['Week 8'])
-            df3['Old Bottle'] = pd.to_numeric(df3['Old Bottle'])
+            df3['Bottles'] = pd.to_numeric(df3['Old Bottle'])
             df3['Seaweed'] = pd.to_numeric(df3['Seaweed'])
-            df3['Iron Compass'] = pd.to_numeric(df3['Iron Compass'])
+            df3['Iron C.'] = pd.to_numeric(df3['Iron Compass'])
        
-            df3['Points'] = (df3['Old Bottle'].clip(upper=80) * 0.75 +
+            df3['Points'] = (df3['Bottles'].clip(upper=80) * 0.75 +
                              df3['Seaweed'].clip(upper=50) * 0.2 +
-                             df3['Iron Compass'].clip(upper=30) * 1)
+                             df3['Iron C.'].clip(upper=30) * 1)
 
             # Reorder the columns
             #df3 = df3.reindex(columns=['Farm', 'Points', 'Old Bottle', 'Seaweed', 'Iron Compass'])
@@ -2157,7 +2157,7 @@ async def main():
             # Sort by Total Ticket in descending order
             df1 = df1.sort_values(by='Tickets', ascending=False)
             df2 = df2.sort_values(by='Week 8', ascending=False)      
-            df3 = df3.sort_values(by=['Old Bottle', 'Iron Compass', 'Seaweed'],
+            df3 = df3.sort_values(by=['Bottles', 'Iron C.', 'Seaweed'],
                                   ascending=[False, False, False],
                                   kind='mergesort')
      
