@@ -2213,12 +2213,7 @@ async def main():
                                 format="%.2f",
                                 min_value=0,
                                 max_value=100,                                
-                            ),
-                            "Rank": st.column_config.NumberColumn(
-                                "Rank",
-                                help=None,
-                                width="small",                              
-                            ),                            
+                            ),                        
                         },
                         hide_index=False,
                         disabled=True,
