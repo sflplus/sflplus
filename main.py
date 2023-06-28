@@ -2149,7 +2149,7 @@ async def main():
                              df3['Iron Compass'].clip(upper=30) * 1)
 
             # Reorder the columns
-            df3 = df3.reindex(columns=['Farm', 'Points', 'Old Bottle', 'Seaweed', 'Iron Compass'])
+            #df3 = df3.reindex(columns=['Farm', 'Points', 'Old Bottle', 'Seaweed', 'Iron Compass'])
             # Format the Points column
             df3['Points'] = df3['Points'].round(2)
             #df3['Points'] = df3['Points'].apply(lambda x: f'{x:.2f}')
@@ -2159,7 +2159,7 @@ async def main():
             # Sort by Total Ticket in descending order
             df1 = df1.sort_values(by='Tickets', ascending=False)
             df2 = df2.sort_values(by='Week 8', ascending=False)
-            df3 = df3.sort_values(by='Points', ascending=False)   #       ['Old Bottle', 'Iron Compass', 'Seaweed'], ascending=[False, False, False], kind='mergesort')
+            df3 = df3.sort_values(by=['Old Bottle', 'Iron Compass', 'Seaweed'], ascending=[False, False, False], kind='mergesort') #'Points', ascending=False)   #       
         
         
             df2 = df2.rename(columns={"Week 8": "Week 8 🔻"})
@@ -2213,7 +2213,9 @@ async def main():
                                 min_value=0,
                                 max_value=100,                                
                             ),
-                        },        
+                        },
+                        hide_index=True,
+                        disabled=True,
                     )
             pass
     except Exception as e:
