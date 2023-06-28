@@ -2166,21 +2166,21 @@ async def main():
             # Reset index and set the "Ranking" column as the new index
             df1 = df1.reset_index(drop=True)
             df2 = df2.reset_index(drop=True)
-            df3 = df3.reset_index(drop=True)
+            #df3 = df3.reset_index(drop=True)
         
             df1.index = df1.index + 1
             df2.index = df2.index + 1
-            df3.index = df3.index + 1        
+            #df3.index = df3.index + 1        
         
             # Rename the index to "Ranking"
             df1.index.name = "Rank"
             df2.index.name = "Rank"
-            df3.index.name = "Rank"
+            #df3.index.name = "Rank"
         
             # Convert index to integer values
             df1.index = df1.index.astype(int)
             df2.index = df2.index.astype(int)
-            df3.index = df3.index.astype(int)
+            #df3.index = df3.index.astype(int)
         
             if df1.empty:
                 live_update.error("The ranking is currently not working, it will be fixed soon™ ")
