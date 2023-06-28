@@ -2203,7 +2203,18 @@ async def main():
                     live_lantern.write(df2)
                     live_minted.info(f"🕯️ **Farms with 1 Lantern each week: {count_farms2}**")
                     live_minted.success(f"🏮 **Farms with 5 Lanterns each week: {count_farms}**")                  
-                    live_treasure.dataframe(df3)
+                    live_treasure.data_editor(
+                        df3,
+                        column_config={
+                            "Points": st.column_config.ProgressColumn(
+                                "Points 🔻",
+                                help="The ranking based in Points",
+                                format="%.2f",
+                                min_value=0,
+                                max_value=100,                                
+                            ),
+                        },        
+                    )
             pass
     except Exception as e:
         live_update.error(f"The ranking is currently not working, it will be fixed soon™, Error: {str(e)}") 
