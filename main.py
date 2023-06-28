@@ -2157,9 +2157,7 @@ async def main():
             # Sort by Total Ticket in descending order
             df1 = df1.sort_values(by='Tickets', ascending=False)
             df2 = df2.sort_values(by='Week 8', ascending=False)      
-            df3 = df3.sort_values(by=['Bottles', 'Iron C.', 'Seaweed'],
-                                  ascending=[False, False, False],
-                                  kind='mergesort')
+            df3 = df3.sort_values(by='Points', ascending=False)    #['Bottles', 'Iron C.', 'Seaweed'], ascending=[False, False, False], kind='mergesort')
      
         
             df2 = df2.rename(columns={"Week 8": "Week 8 🔻"})
