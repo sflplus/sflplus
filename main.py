@@ -2215,7 +2215,7 @@ async def main():
                                 max_value=100,                                
                             ),
                         },
-                        hide_index=True,
+                        hide_index=False,
                         disabled=True,
                     )
             pass
