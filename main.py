@@ -2140,9 +2140,9 @@ async def main():
             # Convert Total Ticket column to numeric values
             df1['Tickets'] = pd.to_numeric(df1['Tickets'])
             df2['Week 8'] = pd.to_numeric(df2['Week 8'])
-            df3['Bottles'] = pd.to_numeric(df3['Old Bottle'])
+            df3['Bottles'] = pd.to_numeric(df3['Bottles'])
             df3['Seaweed'] = pd.to_numeric(df3['Seaweed'])
-            df3['Iron C.'] = pd.to_numeric(df3['Iron Compass'])
+            df3['Iron C.'] = pd.to_numeric(df3['Iron C.'])
        
             df3['Points'] = (df3['Bottles'].clip(upper=80) * 0.75 +
                              df3['Seaweed'].clip(upper=50) * 0.2 +
