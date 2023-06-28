@@ -2143,6 +2143,12 @@ async def main():
             df3['Old Bottle'] = pd.to_numeric(df3['Old Bottle'])
             df3['Seaweed'] = pd.to_numeric(df3['Seaweed'])
             df3['Iron Compass'] = pd.to_numeric(df3['Iron Compass'])
+
+            df3 = df3.sort_values(by=[df3['Old Bottle'].clip(upper=80),
+                                      df3['Iron Compass'].clip(upper=30),
+                                      df3['Seaweed'].clip(upper=50)],
+                                  ascending=[False, False, False],
+                                  kind='mergesort')#'Points', ascending=False)   # 
         
             df3['Points'] = (df3['Old Bottle'].clip(upper=80) * 0.75 +
                              df3['Seaweed'].clip(upper=50) * 0.2 +
@@ -2158,10 +2164,7 @@ async def main():
 
             # Sort by Total Ticket in descending order
             df1 = df1.sort_values(by='Tickets', ascending=False)
-            df2 = df2.sort_values(by='Week 8', ascending=False)
-            df3 = df3.sort_values(by=['Old Bottle', 'Iron Compass', 'Seaweed'],
-                                  ascending=[False, False, False],
-                                  key=lambda col: col.clip(upper=[80, 30, 50])) #'Points', ascending=False)   #       
+            df2 = df2.sort_values(by='Week 8', ascending=False)      
         
         
             df2 = df2.rename(columns={"Week 8": "Week 8 🔻"})
@@ -2170,7 +2173,7 @@ async def main():
             # Reset index and set the "Ranking" column as the new index
             df1 = df1.reset_index(drop=True)
             df2 = df2.reset_index(drop=True)
-            df3 = df3.reset_index(drop=True)
+            #df3 = df3.reset_index(drop=True)
         
             df1.index = df1.index + 1
             df2.index = df2.index + 1
