@@ -172,11 +172,11 @@ sfl_supply = get_token_supply()
 
 API_KEY_DUNE = "xEB9BjuGBc5SbpVABb2VHcVV5DQ1g3K2"
 
-queries_owners = [100, None]
-queries = ["2649121", "2649118"] #, "2427499"
-queries_name = ["Emerald Turtle", "Tin Turtle"] #, "Purple Trail"
-queries_quantity = ["100 (SOLD OUT)", "3000"] #, "10000"
-queries_emoji = ["🐢", "🥫", ] #"🐌"
+queries_owners = [100, None, None]
+queries = ["2649121", "2649118", "2427499"] #
+queries_name = ["Emerald Turtle", "Tin Turtle", "Purple Trail"] #
+queries_quantity = ["100 (SOLD OUT)", "3000", "10000"] #
+queries_emoji = ["🐢", "🥫", "🐌" ] #
 #queries_ticket = ["3200", "1200", "500"]
 
 #@st.cache_resource(ttl=1800, show_spinner="Updating the NFT Minted") # cache for 30 MIN
