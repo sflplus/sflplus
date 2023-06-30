@@ -1882,7 +1882,7 @@ with tab6:
     with col_rank:
         live_how = st.expander("📝 **HOW IT WORKS?**", expanded=False)
         live_treasure = st.expander("🐢 **TURTLES RACE**", expanded=True) 
-        live_point = st.expander("🥇 **POINTS SYSTEM**", expanded=True)
+        live_point = st.expander("🥇 **POINTS SYSTEM**", expanded=False)
         live_minted = st.expander("⚡ **CURRENT MINTS**", expanded=True)
         
     with col_rank2:
