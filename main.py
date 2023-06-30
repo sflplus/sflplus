@@ -1140,7 +1140,7 @@ with tab5:
                 
                 
                 hoarder.info("\n \U0001F4B0  **SFL Hoarder Limit: [{:.2f} / 255]**".format(daily_limit))
-                hoarder.warning("\n **Have in mind that apart of the SFL Hoarder limit, there is also the SFL Daily Limit of 250, that is not going to let you sync again if you go over it, this daily limit restarts everyday at 00:00 UTC**")
+                hoarder.warning("\n **Have in mind that apart of the SFL Hoarder Limit, there is also the SFL Daily Limit of 250, that is not going to let you sync again if you go over it, this daily limit restarts everyday at 00:00 UTC.**")
                 spend_info_written = False     
 
                 for item in inventory_items:
