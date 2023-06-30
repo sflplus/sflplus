@@ -62,15 +62,15 @@ def retrieve_lantern_ingredients():
         raise Exception(f"Failed to retrieve lantern ingredients. Error: {response.status_code}")
 
 
-@st.cache_resource(ttl=600, show_spinner="Updating the Resouces Prices") # cache for 10 min
+@st.cache_resource(ttl=600, show_spinner="Updating the Resources Prices") # cache for 10 min
 def get_resource_price(resource_id):
-    url = f'https://sfl.tools/api/listings?resourceId={resource_id}&page=1&pageSize=1&sortColumn=pricePerUnit&sortDirection=asc'
-    response2 = requests.get(url).json()
-    if len(response2) > 0:
-        price = response2[0]['calculations']['pricePerUnit']
-        return Decimal(price) / Decimal(10**18)
+    url = 'https://sfl.tools/api/listings/prices'
+    response = requests.get(url).json()
+    if str(resource_id) in response:
+        price = response[str(resource_id)]['pricePerUnitTaxed']
+        return Decimal(price)
     else:
-        raise Exception("Failed to get resouces prices.")
+        raise Exception("Failed to get resource price.")
 
 @st.cache_resource(ttl=3600, show_spinner="Updating the SFL Supply") # cache for 1 hour
 def get_token_supply():
