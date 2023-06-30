@@ -1137,8 +1137,10 @@ with tab5:
                 balance_check.write(f" - 💸 SFL After Withdraw: **:red[{withdraw:.2f}]**")
                 balance_check.write("\n")
                 balance_check.success(f"\n💱 Withdraw in Dolars: **${withdraw_usd_str}**")
-
-                hoarder.info("\n \U0001F4B0  **SFL Daily Limit: [{:.2f} / 250]**".format(daily_limit))
+                
+                
+                hoarder.info("\n \U0001F4B0  **SFL Sync Limit: [{:.2f} / 255]**".format(daily_limit))
+                hoarder.alert("\n Have in mind that apart of the SFL Sync limit, there is also the SFL Daily Limit of 250, that is not going to let you sync again if you go over it, this daily limit restarts everyday at 00:00 UTC"
                 spend_info_written = False     
 
                 for item in inventory_items:
