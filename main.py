@@ -1962,7 +1962,7 @@ with tab6:
     live_how.info(f"📌 **This is using Dawn Breaker Tickets Dune query to get the TOP 10000 farms and then using the SFL API every 30~ min to refresh the info of the farms.**")
     live_how.info(f"⚠️ **Note that if your farm isn't in the TOP 10000 of the Dawn Breaker Tickets Dune query, is not going to show up in this Live Rankings.**") 
 
-    live_point.info(f"**The Point system is using Old Bottles as 0.75 , Seaweed as 0.25 and Iron Compass as 1, all of them are capped to only count until the quantity needed (80, 50 and 30) giving a score of 100 points if you have enough to mint the Emerald Turtle.**")
+    live_point.info(f"**The Point system is using Old Bottles as 1.2 , Seaweed as 0.4 and Iron Compass as 2, all of them are capped to only count until the quantity needed (50, 25 and 15) giving a score of 100 points if you have enough to mint the Tin Turtle.**")
 
     first_respawn = 1682899200
     respawn_interval = timedelta(hours=16)
@@ -2146,9 +2146,9 @@ async def main():
             df3['Seaweed'] = pd.to_numeric(df3['Seaweed'])
             df3['Iron C.'] = pd.to_numeric(df3['Iron C.'])
        
-            df3['Points'] = (df3['Bottles'].clip(upper=80) * 0.75 +
-                             df3['Seaweed'].clip(upper=50) * 0.2 +
-                             df3['Iron C.'].clip(upper=30) * 1)
+            df3['Points'] = (df3['Bottles'].clip(upper=50) * 1.2 +
+                             df3['Seaweed'].clip(upper=25) * 0.4 +
+                             df3['Iron C.'].clip(upper=15) * 2)
 
             # Reorder the columns
             #df3 = df3.reindex(columns=['Farm', 'Points', 'Old Bottle', 'Seaweed', 'Iron Compass'])
