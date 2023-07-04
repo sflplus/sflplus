@@ -549,7 +549,8 @@ with col10x:
     general_info.write(f" 🟣 Matic: **{matic_price:.2f}** - 🌻 SFL: **{sfl_price:.4f}**")
     general_info.write(f" 📈 Current Supply: **{format_supply}**")
     general_info2.write(f" 🔻 **Halvening Countdown** 🔻")
-    general_info2.write(f" ⏳ {formatted_time_remaining2}")
+    general_info2.write("⏳ **{}**".format(formatted_time_remaining2))
+    #general_info2.write(f" ⏳ {formatted_time_remaining2}")
     #general_info.progress(supply_percentage_inv, text=None)
     #features_info = st.expander("📗 **FEATURES**", expanded=False)
 
