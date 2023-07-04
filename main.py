@@ -535,7 +535,7 @@ with col10x:
     # supply_percentage_final = float(supply_percentage_number) / 100
     # supply_percentage_inv =  1 - supply_percentage_final 
     #In Percentage: **{supply_progress_percentage:.2f}%**"
-
+    current_time = datetime.now().timestamp()
     timestamp3 = 1688904000
     dt3 = datetime.fromtimestamp(timestamp3)
 
@@ -1979,7 +1979,7 @@ with tab6:
     first_respawn = 1682899200
     respawn_interval = timedelta(hours=16)
 
-    current_time = datetime.now().timestamp()
+    
     respawns = (current_time - first_respawn) // respawn_interval.total_seconds()
     next_respawn = datetime.fromtimestamp(first_respawn) + (respawns + 1) * respawn_interval
 
