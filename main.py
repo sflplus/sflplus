@@ -536,7 +536,7 @@ with col10x:
     # supply_percentage_inv =  1 - supply_percentage_final 
     #In Percentage: **{supply_progress_percentage:.2f}%**"
     current_time = datetime.now().timestamp()
-    timestamp3 = 1688904000
+    timestamp3 = 1688947200
     dt3 = datetime.fromtimestamp(timestamp3)
 
     time_remaining3 = dt3 - datetime.fromtimestamp(current_time)
@@ -544,7 +544,7 @@ with col10x:
     hours_remaining3 = time_remaining3.seconds // 3600
     minutes_remaining3 = (time_remaining3.seconds % 3600) // 60
 
-    formatted_time_remaining2 = "{} Days {:02d}:{:02d} hours".format(days_remaining3, hours_remaining3, minutes_remaining3)
+    formatted_time_remaining2 = "{} Days and {:02d}:{:02d} hours".format(days_remaining3, hours_remaining3, minutes_remaining3)
 
     general_info.write(f" 🟣 Matic: **{matic_price:.2f}** - 🌻 SFL: **{sfl_price:.4f}**")
     general_info.write(f" 📈 Current Supply: **{format_supply}**")
