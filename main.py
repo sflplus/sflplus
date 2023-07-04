@@ -1978,7 +1978,7 @@ with tab6:
 
     first_respawn = 1682899200
     respawn_interval = timedelta(hours=16)
-
+    current_time = datetime.now().timestamp()
     
     respawns = (current_time - first_respawn) // respawn_interval.total_seconds()
     next_respawn = datetime.fromtimestamp(first_respawn) + (respawns + 1) * respawn_interval
