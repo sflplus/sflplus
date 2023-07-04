@@ -528,17 +528,28 @@ with col0x:
 with col10x:
     general_info3 = st.container()
 
-    supply_progress_per = (supply_progress / 10000000) * 100
-    supply_percentage_float = float(supply_progress_per)
-    supply_percentage_number = "{:.2f}".format(supply_percentage_float)
-    supply_progress_percentage = 100 - float(supply_percentage_number)
-    supply_percentage_final = float(supply_percentage_number) / 100
-    supply_percentage_inv =  1 - supply_percentage_final 
+    # supply_progress_per = (supply_progress / 10000000) * 100
+    # supply_percentage_float = float(supply_progress_per)
+    # supply_percentage_number = "{:.2f}".format(supply_percentage_float)
+    # supply_progress_percentage = 100 - float(supply_percentage_number)
+    # supply_percentage_final = float(supply_percentage_number) / 100
+    # supply_percentage_inv =  1 - supply_percentage_final 
+    #In Percentage: **{supply_progress_percentage:.2f}%**"
+
+    timestamp3 = 1688904000
+    dt3 = datetime.fromtimestamp(timestamp3)
+
+    time_remaining3 = dt3 - datetime.fromtimestamp(current_time)
+    days_remaining3 = time_remaining3.days
+    hours_remaining3 = time_remaining3.seconds // 3600
+    minutes_remaining3 = (time_remaining3.seconds % 3600) // 60
+
+    formatted_time_remaining2 = "{} Days {:02d}:{:02d} hours".format(days_remaining3, hours_remaining3, minutes_remaining3)
 
     general_info.write(f" 🟣 Matic: **{matic_price:.2f}** - 🌻 SFL: **{sfl_price:.4f}**")
     general_info.write(f" 📈 Current Supply: **{format_supply}**")
-    general_info2.write(f" ⏳ Next Halvening: **30,000,000**")
-    general_info2.write(f" 📊 In Percentage: **{supply_progress_percentage:.2f}%**")
+    general_info2.write(f" 🔻 **Halvening Countdown** 🔻")1688904000
+    general_info2.write(f" ⏳ {formatted_time_remaining2}")
     #general_info.progress(supply_percentage_inv, text=None)
     #features_info = st.expander("📗 **FEATURES**", expanded=False)
 
