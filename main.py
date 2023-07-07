@@ -1605,7 +1605,7 @@ with tab5:
                     bump_achi_total = len(bump_achi)
                     bum_skill.success(f"\n🏅 Total Achivements: **{bump_achi_total}**")               
 
-                    gathe_activity_values = [("Trees Chopped", trees_chopped)] + [(activity, value) for activity, value in mined_activities.items()] + [("Eggs", egg_collected) + [("SFL Earn", sfl_earn) + [("SFL Spent", sfl_spent)]
+                    gathe_activity_values = [("Trees Chopped", trees_chopped)] + [(activity, value) for activity, value in mined_activities.items()] + [("Eggs", egg_collected)] + [("SFL Earn", sfl_earn)] + [("SFL Spent", sfl_spent)]
                     df_gather = pd.DataFrame(gathe_activity_values, columns=["Activity", "Value"])
                     df_gather.set_index("Activity", inplace=True)
                     gather.write(df_gather)
