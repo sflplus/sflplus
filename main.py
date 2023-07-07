@@ -1607,6 +1607,7 @@ with tab5:
 
                     gathe_activity_values = [("Trees Chopped", trees_chopped)] + [(activity, value) for activity, value in mined_activities.items()] + [("Eggs", egg_collected)] + [("SFL Earn", sfl_earn)] + [("SFL Spent", sfl_spent)]
                     df_gather = pd.DataFrame(gathe_activity_values, columns=["Activity", "Value"])
+                    df_gather['Value'] = df_gather['Value'].round(2)
                     df_gather.set_index("Activity", inplace=True)
                     gather.write(df_gather)
 
