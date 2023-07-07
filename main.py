@@ -1101,6 +1101,8 @@ with tab5:
                     activities = bumpkin.get("activity")
                     trees_chopped = activities.get("Tree Chopped")
                     egg_collected = activities.get("Egg Collected")
+                    sfl_earn = activities.get("SFL Earned")
+                    sfl_spent = activities.get("SFL Spent")
                     sandshovel = activities.get("Treasure Dug")
                     drill = activities.get("Treasure Drilled")
                     if sandshovel is not None and drill is not None:
@@ -1603,7 +1605,7 @@ with tab5:
                     bump_achi_total = len(bump_achi)
                     bum_skill.success(f"\n🏅 Total Achivements: **{bump_achi_total}**")               
 
-                    gathe_activity_values = [("Trees Chopped", trees_chopped)] + [(activity, value) for activity, value in mined_activities.items()] + [("Eggs", egg_collected)]
+                    gathe_activity_values = [("Trees Chopped", trees_chopped)] + [(activity, value) for activity, value in mined_activities.items()] + [("Eggs", egg_collected) + [("SFL Earn", sfl_earn) + [("SFL Spent", sfl_spent)]
                     df_gather = pd.DataFrame(gathe_activity_values, columns=["Activity", "Value"])
                     df_gather.set_index("Activity", inplace=True)
                     gather.write(df_gather)
