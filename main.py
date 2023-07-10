@@ -548,8 +548,8 @@ with col10x:
 
     general_info.write(f" 🟣 Matic: **{matic_price:.2f}** - 🌻 SFL: **{sfl_price:.4f}**")
     general_info.write(f" 📈 Current Supply: **{format_supply}**")
-    general_info2.write(f" 🔻 Next Halvening: **40,000,000**")
-    general_info2.write(f" In Percentage: **{supply_progress_percentage:.2f}%**")
+    general_info2.write(f" ⏳ Next Halvening: **40,000,000**")
+    general_info2.write(f" 📊 In Percentage: **{supply_progress_percentage:.2f}%**")
     #general_info2.write("⏳ **{}**".format(formatted_time_remaining2))
     #general_info2.write(f" ⏳ {formatted_time_remaining2}")
     #general_info.progress(supply_percentage_inv, text=None)
