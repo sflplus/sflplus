@@ -534,7 +534,7 @@ with col10x:
     supply_progress_percentage = 100 - float(supply_percentage_number)
     supply_percentage_final = float(supply_percentage_number) / 100
     supply_percentage_inv =  1 - supply_percentage_final 
-    #
+    
     # current_time = datetime.now().timestamp()
     # timestamp3 = 1688947200
     # dt3 = datetime.fromtimestamp(timestamp3)
