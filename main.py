@@ -539,12 +539,12 @@ with col10x:
     # timestamp3 = 1688947200
     # dt3 = datetime.fromtimestamp(timestamp3)
 
-    time_remaining3 = dt3 - datetime.fromtimestamp(current_time)
-    days_remaining3 = time_remaining3.days
-    hours_remaining3 = time_remaining3.seconds // 3600
-    minutes_remaining3 = (time_remaining3.seconds % 3600) // 60
+    # time_remaining3 = dt3 - datetime.fromtimestamp(current_time)
+    # days_remaining3 = time_remaining3.days
+    # hours_remaining3 = time_remaining3.seconds // 3600
+    # minutes_remaining3 = (time_remaining3.seconds % 3600) // 60
 
-    formatted_time_remaining2 = "{} Days and {:02d}:{:02d} hours".format(days_remaining3, hours_remaining3, minutes_remaining3)
+    # formatted_time_remaining2 = "{} Days and {:02d}:{:02d} hours".format(days_remaining3, hours_remaining3, minutes_remaining3)
 
     general_info.write(f" 🟣 Matic: **{matic_price:.2f}** - 🌻 SFL: **{sfl_price:.4f}**")
     general_info.write(f" 📈 Current Supply: **{format_supply}**")
