@@ -517,7 +517,7 @@ with col11x:
     general_info = st.container()
     if sfl_supply is not None:
         format_supply = "{:,.0f}".format(sfl_supply / 1e18)
-        supply_progress = 10000000 - (float(format_supply.replace(',', '')) - 20000000)
+        supply_progress = 10000000 - (float(format_supply.replace(',', '')) - 30000000)
     else:
         general_info.error("Failed to get SFL Supply. Please try again later.")
         format_supply = "N/A"
@@ -528,16 +528,16 @@ with col0x:
 with col10x:
     general_info3 = st.container()
 
-    # supply_progress_per = (supply_progress / 10000000) * 100
-    # supply_percentage_float = float(supply_progress_per)
-    # supply_percentage_number = "{:.2f}".format(supply_percentage_float)
-    # supply_progress_percentage = 100 - float(supply_percentage_number)
-    # supply_percentage_final = float(supply_percentage_number) / 100
-    # supply_percentage_inv =  1 - supply_percentage_final 
-    #In Percentage: **{supply_progress_percentage:.2f}%**"
-    current_time = datetime.now().timestamp()
-    timestamp3 = 1688947200
-    dt3 = datetime.fromtimestamp(timestamp3)
+    supply_progress_per = (supply_progress / 10000000) * 100
+    supply_percentage_float = float(supply_progress_per)
+    supply_percentage_number = "{:.2f}".format(supply_percentage_float)
+    supply_progress_percentage = 100 - float(supply_percentage_number)
+    supply_percentage_final = float(supply_percentage_number) / 100
+    supply_percentage_inv =  1 - supply_percentage_final 
+    #
+    # current_time = datetime.now().timestamp()
+    # timestamp3 = 1688947200
+    # dt3 = datetime.fromtimestamp(timestamp3)
 
     time_remaining3 = dt3 - datetime.fromtimestamp(current_time)
     days_remaining3 = time_remaining3.days
@@ -548,8 +548,9 @@ with col10x:
 
     general_info.write(f" 🟣 Matic: **{matic_price:.2f}** - 🌻 SFL: **{sfl_price:.4f}**")
     general_info.write(f" 📈 Current Supply: **{format_supply}**")
-    general_info2.write(f" 🔻 **Halvening Countdown**")
-    general_info2.write("⏳ **{}**".format(formatted_time_remaining2))
+    general_info2.write(f" 🔻 Next Halvening: **40,000,000**")
+    general_info2.write(f" In Percentage: **{supply_progress_percentage:.2f}%**")
+    #general_info2.write("⏳ **{}**".format(formatted_time_remaining2))
     #general_info2.write(f" ⏳ {formatted_time_remaining2}")
     #general_info.progress(supply_percentage_inv, text=None)
     #features_info = st.expander("📗 **FEATURES**", expanded=False)
@@ -596,7 +597,7 @@ emojis = {"Block Buck": " 🎟️ ", "Dawn Breaker Ticket": " 🎟️ ", "Wood":
 limits = {"Dawn Breaker Ticket": 750, "Wood": 1500, "Stone": 500, "Iron": 400, "Gold": 90, "Egg": 400, "Sunflower": 9000, "Potato": 5000, "Pumpkin": 3000, "Carrot": 2000, "Cabbage": 1500, "Beetroot": 1500, "Cauliflower": 1000, "Parsnip": 850, "Eggplant": 600, "Radish": 500, "Wheat": 500, "Kale": 500, "Apple": 200, "Orange": 200, "Blueberry": 200}
 
 fruits = ["Apple", "Orange", "Blueberry"]
-fruits_price = {"Apple": 0.3125, "Orange": 0.225, "Blueberry": 0.15}
+fruits_price = {"Apple": 0.15625, "Orange": 0.1125, "Blueberry": 0.075}
 fruit_emojis = {"Apple": " \U0001F34E ", "Orange": " \U0001f34a ", "Blueberry": " \U0001f347 "}
 
 
@@ -787,8 +788,8 @@ with tab5:
             helios_sfl = {'Cactus': 0.25, ' Basic Bear': 0.625, 'Potted Potato': 0.625, 'Potted Pumpkin': 2.5, 'Potted Sunflower': 0.25, 'White Tulips': 0.25, 'Dirt Path': 0.625}
 
             nft_resources = {
-            'Immortal Pear': {'SFL': 6.875, 'Gold': 5},
-            'Treasure Map': {'Gold': 5, 'SFL': 3.28},
+            'Immortal Pear': {'SFL': 3.4375, 'Gold': 5},
+            'Treasure Map': {'Gold': 5, 'SFL': 1.64},
             'Fence': {'SFL': 0.125, 'Wood': 5},
             'Bush': {'SFL': 1.25, 'Wood': 5},
             'Shrub': {'SFL': 0.625, 'Wood': 3}
@@ -797,9 +798,9 @@ with tab5:
             mutant_items = {"Rich Chicken", "Fat Chicken", "Speed Chicken", "Ayam Cemani"}
 
             crop_items = {"Sunflower", "Potato", "Pumpkin", "Carrot", "Cabbage", "Beetroot", "Cauliflower", "Parsnip", "Eggplant", "Radish", "Wheat", "Kale"}
-            crop_price = {"Sunflower": 0.000250, "Potato": 0.00175, "Pumpkin": 0.0050, "Carrot": 0.0100, "Cabbage": 0.0188, "Beetroot": 0.0350, "Cauliflower": 0.053, "Parsnip": 0.081, "Eggplant": 0.1, "Radish": 0.119, "Wheat": 0.088, "Kale": 0.125}
+            crop_price = {"Sunflower": 0.000125, "Potato": 0.000875, "Pumpkin": 0.0025, "Carrot": 0.005, "Cabbage": 0.0094, "Beetroot": 0.0175, "Cauliflower": 0.0265, "Parsnip": 0.0405, "Eggplant": 0.05, "Radish": 0.0595, "Wheat": 0.044, "Kale": 0.0625}
             bounty_items = {"Crab", "Old Bottle", "Sea Cucumber", "Seaweed", "Starfish", "Wooden Compass", "Iron Compass", "Pipi", "Clam Shell", "Coral", "Pearl", "Pirate Bounty"}
-            bounty_price = {"Crab": 0.1875, "Old Bottle": 0.28125, "Sea Cucumber": 0.28125, "Seaweed": 0.9375, "Starfish": 1.40625, "Wooden Compass": 1.64062, "Iron Compass": 2.34375, "Pipi": 2.34375, "Clam Shell": 4.6875, "Coral": 18.75, "Pearl": 46.875, "Pirate Bounty": 93.75}
+            bounty_price = {"Crab": 0.09375, "Old Bottle": 0.140625, "Sea Cucumber": 0.140625, "Seaweed": 0.46875, "Starfish": 0.703125, "Wooden Compass": 0.8203125, "Iron Compass": 1.171875, "Pipi": 1.171875, "Clam Shell": 2.34375, "Coral": 9.375, "Pearl": 23.4375, "Pirate Bounty": 46.875}
             tool_items = {"Axe","Pickaxe","Stone Pickaxe","Iron Pickaxe","Rusty Shovel","Sand Shovel","Sand Drill"}
             tool_price ={"Axe": 0.0625, "Pickaxe": 0.0625, "Stone Pickaxe": 0.0625, "Iron Pickaxe": 0.25, "Rusty Shovel": 0.0625, "Sand Shovel": 0.0625, "Sand Drill": 0.125}
             food_items = {"Mashed Potato","Pumpkin Soup","Bumpkin Broth","Boiled Eggs","Kale Stew","Mushroom Soup","Reindeer Carrot","Kale Omelette","Cabbers n Mash","Roast Veggies","Bumpkin Salad","Goblin's Treat","Cauliflower Burger","Pancakes","Club Sandwich","Mushroom Jacket Potatoes","Sunflower Crunch","Bumpkin Roast","Goblin Brunch","Fruit Salad","Sunflower Cake","Potato Cake","Pumpkin Cake","Carrot Cake","Cabbage Cake","Beetroot Cake","Cauliflower Cake","Parsnip Cake","Radish Cake","Wheat Cake","Apple Pie","Honey Cake","Orange Cake","Apple Juice","Orange Juice","Purple Smoothie","Power Smoothie","Bumpkin Detox","Pirate Cake"}
