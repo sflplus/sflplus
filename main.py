@@ -269,8 +269,8 @@ def nft_price(item_name=None, return_type='result_df'):
     # clean the "Last Sale" values
     df['Last Sale'] = df['Last Sale'].str.replace('Last sale: ', '')
     for index, value in df['Last Sale'].items():
-    if '<' in value or '>' in value:
-        df.at[index, 'Last Sale'] = None
+        if '<' in value or '>' in value:
+            df.at[index, 'Last Sale'] = None
 
     # convert prices in Matic and ETH to USD
     for i, row in df.iterrows():
