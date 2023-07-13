@@ -641,8 +641,8 @@ with tab5:
                 col1, col2, col3 = st.columns([3, 3, 3], gap="medium")
                 with col1:
                    hoarder = st.expander("\U0001F69C **HOARDER LIMITS**", expanded=True)
-                   spend = st.expander("🤑 **SPENT CHECKER**", expanded=False)
-                   dawn_breaker =  st.expander("🌄 **Dawn Breaker**", expanded=True)
+                   spend = st.expander("🤑 **SPENT CHECKER**", expanded=True)
+                   dawn_breaker =  st.expander("🌄 **Dawn Breaker**", expanded=False)
                 with col2:
                    farm_info = st.expander("🏝️ **FARM RESOURCES**", expanded=True)
                    farm_delivery = st.expander("🚚 **DELIVERIES**", expanded=True)
