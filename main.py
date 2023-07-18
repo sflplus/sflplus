@@ -1327,18 +1327,7 @@ with tab5:
                     elif completed_chore < (473 - skip_chores):                
                         next_loop = 473 - completed_chore - skip_chores
                     else:
-                        next_loop = None 
-
-                    first_traveller = 1689170400
-                    respawn_interval = timedelta(hours=24)
-                    current_time2 = datetime.now().timestamp()
-                    
-                    traveller_event = (current_time2 - first_traveller) // respawn_interval.total_seconds()
-                    traveller_day = traveller_event + 1
-                    
-                    wanderleaf.info(f" 📆 Days since the Event start: **{traveller_day:.0f}**")
-                    wanderleaf.success(f" 🎟️ Claimed Tickets: **{traveller_count}/14**")
-                    
+                        next_loop = None               
                     
                     dawn_breaker.info(f" 🗂️ Current Quest: **{description_chore}**")
                     dawn_breaker.write(f" - 🎟️ Tickets Reward: **{ticket_chore}**")
@@ -1351,6 +1340,16 @@ with tab5:
                 else:
                     dawn_breaker.error(f" **There aren't Bumpkins in this Farm.**")
 
+                
+                first_traveller = 1689170400
+                respawn_interval = timedelta(hours=24)
+                current_time2 = datetime.now().timestamp()
+                traveller_event = (current_time2 - first_traveller) // respawn_interval.total_seconds()
+                traveller_day = traveller_event + 1
+                
+                wanderleaf.info(f" 📆 Days since the Event start: **{traveller_day:.0f}**")
+                wanderleaf.success(f" 🎟️ Claimed Tickets: **{traveller_count}/14**")     
+                
                 deliveryItemList = []
                 deliveryRewardList = []
                 deliveryTimeList = []
