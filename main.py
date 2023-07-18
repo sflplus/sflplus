@@ -645,7 +645,7 @@ with tab5:
                    dawn_breaker =  st.expander("🌄 **Dawn Breaker**", expanded=False)                   
                 with col2:
                    farm_info = st.expander("🏝️ **FARM RESOURCES**", expanded=True)
-                   wanderleaft =  st.expander("🧙 **WANDERLEAF**", expanded=True)
+                   wanderleaf =  st.expander("🧙 **WANDERLEAF**", expanded=True)
                    farm_delivery = st.expander("🚚 **DELIVERIES**", expanded=True)
                    c_mutant = st.expander("\U0001F414 **MUTANT CHICKENS DROP**", expanded=True)
                    h_fruit = st.expander("\U0001f352 **FRUIT HARVEST LEFT**", expanded=True)   
