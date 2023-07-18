@@ -930,7 +930,8 @@ with tab5:
                 week8 = laternsWeek.get ("8")
                 
                 traveller = dawnBreaker.get("traveller")
-                traveller_count = traveller.get("discoveredCount")
+                if traveller:
+                    traveller_count = traveller.get("discoveredCount")
                 
                 answered_riddle_ids = dawnBreaker.get("answeredRiddleIds")
                 riddle_week_map = {
