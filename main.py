@@ -1336,8 +1336,8 @@ with tab5:
                     traveller_event = (current_time2 - first_traveller) // respawn_interval.total_seconds()
                     traveller_day = traveller_event + 1
                     
-                    wanderleaf.info(f" Day since the Event start: **{traveller_day:.0f}**")
-                    wanderleaf.success(f" - 🎟️ Claimed Tickets: **{traveller_count}/14**")
+                    wanderleaf.info(f" 📆 **Day since the Event start: {traveller_day:.0f}**")
+                    wanderleaf.success(f" 🎟️ Claimed Tickets: **{traveller_count}/14**")
                     
                     
                     dawn_breaker.info(f" 🗂️ Current Quest: **{description_chore}**")
