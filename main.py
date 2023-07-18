@@ -644,12 +644,12 @@ with tab5:
                    spend = st.expander("🤑 **SPENT CHECKER**", expanded=True)
                    dawn_breaker =  st.expander("🌄 **Dawn Breaker**", expanded=False)                   
                 with col2:
-                   farm_info = st.expander("🏝️ **FARM RESOURCES**", expanded=True)
-                   wanderleaf =  st.expander("🧙 **WANDERLEAF**", expanded=True)
+                   farm_info = st.expander("🏝️ **FARM RESOURCES**", expanded=True)                   
                    farm_delivery = st.expander("🚚 **DELIVERIES**", expanded=True)
                    c_mutant = st.expander("\U0001F414 **MUTANT CHICKENS DROP**", expanded=True)
                    h_fruit = st.expander("\U0001f352 **FRUIT HARVEST LEFT**", expanded=True)   
                 with col3:
+                   wanderleaf =  st.expander("🧙 **WANDERLEAF**", expanded=True)
                    farm_ti = st.expander("☠️ **TREASURE ISLAND**", expanded=True) 
                    balance_check = st.expander("💰 **SFL BALANCE**", expanded=True)
                    basket_how = st.expander("📝 **HOW IT WORKS?**", expanded=False)  
@@ -1452,8 +1452,8 @@ with tab5:
                 if dug_total_count > 0:
                     farm_ti.write(df_dugs)
                     farm_ti.success(f"📊 **Total Dugs Today: {dug_total_count}**")
-                else:
-                    farm_ti.error(f" **This farm didn't use Treasure Island today**")
+                # else:
+                #     farm_ti.error(f" **This farm didn't use Treasure Island today**")
 
                 basket_how.info(f"\n **The NPC market sales is using the values of the in game shops, like the seeds shop or the Treasure Island one, to calculate the prices/cost (Includes your boost)**")
                 basket_how.success("\n **The balloon sales is using the lowest listed price at the Balloon and counting the 10% Goblins fee, but it doesn't include the listing fee**")
