@@ -642,10 +642,10 @@ with tab5:
                 with col1:
                    hoarder = st.expander("\U0001F69C **HOARDER LIMITS**", expanded=True)
                    spend = st.expander("🤑 **SPENT CHECKER**", expanded=True)
-                   dawn_breaker =  st.expander("🌄 **Dawn Breaker**", expanded=True)
-                   dawn_breaker2 =  st.expander("🏮 **Lanterns and Riddles**", expanded=False)
+                   dawn_breaker =  st.expander("🌄 **Dawn Breaker**", expanded=False)                   
                 with col2:
                    farm_info = st.expander("🏝️ **FARM RESOURCES**", expanded=True)
+                   wanderleaft =  st.expander("🧙 **WANDERLEAF**", expanded=True)
                    farm_delivery = st.expander("🚚 **DELIVERIES**", expanded=True)
                    c_mutant = st.expander("\U0001F414 **MUTANT CHICKENS DROP**", expanded=True)
                    h_fruit = st.expander("\U0001f352 **FRUIT HARVEST LEFT**", expanded=True)   
@@ -1306,7 +1306,7 @@ with tab5:
                     dfweek = pd.DataFrame(df_weeks)
                     dfweek = dfweek[dfweek["Lanterns Crafted"] != ""]  # Drop rows with empty "Lanterns Crafted" column
                     dfweek.set_index("Week", inplace=True)
-                    dawn_breaker2.write(dfweek)                  
+                    dawn_breaker.write(dfweek)                  
                     if skip_chores is None:
                         skip_chores = 0
                     if completed_chore is None:
@@ -1333,11 +1333,12 @@ with tab5:
                     respawn_interval = timedelta(hours=24)
                     current_time2 = datetime.now().timestamp()
                     
-                    traveller_day = (current_time2 - first_traveller) // respawn_interval.total_seconds()
+                    traveller_event = (current_time2 - first_traveller) // respawn_interval.total_seconds()
+                    traveller_day = traveller_event + 1
                     
-                    dawn_breaker.info(f" 🧙 Wanderleaf Event Day: **{traveller_day}**")
-                    dawn_breaker.write(f" - 🎟️ Claimed Tickets: **{traveller_count}/14**")
-                    dawn_breaker.write("\n")
+                    wanderleaf.info(f" Day since the Event start: **{traveller_day}**")
+                    wanderleaf.write(f" - 🎟️ Claimed Tickets: **{traveller_count:.0f}/14**")
+                    
                     dawn_breaker.info(f" 🗂️ Current Quest: **{description_chore}**")
                     dawn_breaker.write(f" - 🎟️ Tickets Reward: **{ticket_chore}**")
                     dawn_breaker.write(f" - ⏳ Progress: **{progress_count} of {requirement_chore}**")
