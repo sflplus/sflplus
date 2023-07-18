@@ -929,7 +929,8 @@ with tab5:
                 week7 = laternsWeek.get ("7")
                 week8 = laternsWeek.get ("8")
                 
-                traveller = traveller.get("discoveredCount")
+                traveller = dawnBreaker.get("traveller")
+                traveller_count = traveller.get("discoveredCount")
                 
                 answered_riddle_ids = dawnBreaker.get("answeredRiddleIds")
                 riddle_week_map = {
@@ -1328,14 +1329,14 @@ with tab5:
                     else:
                         next_loop = None 
 
-                    first_traveller = 1682899200
+                    first_traveller = 1689170400
                     respawn_interval = timedelta(hours=24)
                     current_time2 = datetime.now().timestamp()
                     
                     traveller_day = (current_time2 - first_traveller) // respawn_interval.total_seconds()
                     
                     dawn_breaker.info(f" 🧙 Wanderleaf Event Day: **{traveller_day}**")
-                    dawn_breaker.write(f" - 🎟️ Claimed Tickets: **{traveller}/14**")
+                    dawn_breaker.write(f" - 🎟️ Claimed Tickets: **{traveller_count}/14**")
                     dawn_breaker.write("\n")
                     dawn_breaker.info(f" 🗂️ Current Quest: **{description_chore}**")
                     dawn_breaker.write(f" - 🎟️ Tickets Reward: **{ticket_chore}**")
