@@ -518,7 +518,7 @@ app_state = {k: v[0] if isinstance(v, list) else v for k, v in app_state.items()
 
 col00, col11x, col0x, col10x = st.columns([1.85,1.75,1.75,3.5])
 with col00:
-    st.markdown('[![Foo](https://raw.githubusercontent.com/vitt0/sunflower-land/main/sflplus.png)](https://sflplus.info)  <span style="vertical-align:bottom;color:rgb(0, 221, 66);font-weight:bold;">v3.2</span>', unsafe_allow_html=True)
+    st.markdown('[![Foo](https://sflplus.info/sflplus.png)](https://sflplus.info)  <span style="vertical-align:bottom;color:rgb(0, 221, 66);font-weight:bold;">v3.2</span>', unsafe_allow_html=True)
 with col11x:
     general_info = st.container()
     if sfl_supply is not None:
