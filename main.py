@@ -1431,7 +1431,7 @@ with tab5:
                                 order_status = "❌"
                                 break                           
 
-                        data.append([{deliveryNpc}, f"{order_status} {deliveryItems_value}", deliveryReward, deliveryTime])
+                        data.append([deliveryNpc, f"{order_status} {deliveryItems_value}", deliveryReward, deliveryTime])
 
                 columns = ["NPC", "Order and Status", "Reward", "Time"]
                 df_order = pd.DataFrame(data, columns=columns)
