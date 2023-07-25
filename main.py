@@ -1434,6 +1434,8 @@ with tab5:
                                     item_quantity = int(float(item_parts[0].strip()))
                                     if item_name in inventory_dict and float(inventory_dict[item_name]) >= item_quantity:
                                         continue
+                                    elif item_name == "sfl" and balance_sfl >= item_quantity:
+                                        continue                                
                                 order_status = "❌"
                                 break                           
 
