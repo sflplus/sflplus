@@ -1389,7 +1389,7 @@ with tab5:
 
                         if npc:
                             npc_name = order["from"]
-                            deliveryNpc = f"{npc_name}"
+                            deliveryNpc = npc_name.capitalize()
                         else:
                             deliveryNpc = ""                        
                         if items:
