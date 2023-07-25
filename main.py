@@ -1377,10 +1377,16 @@ with tab5:
                 data = []
                 if delivery_data:
                     for index, order in enumerate(delivery_data, start=1):
+                        npc = order.get("from")
                         items = order.get("items")
                         reward = order.get("reward")
                         readytime = order.get("readyAt")
 
+                        if npc:
+                            deliveryNpc = ", ".join(items.keys())
+                        else:
+                            deliveryNpc = ""
+                        
                         if items:
                             deliveryItems = ", ".join(items.keys())
                             deliveryItems_value = ", ".join([f"{value}x {key}" for key, value in items.items()])
@@ -1396,7 +1402,7 @@ with tab5:
                                 if any(item in cake_and_pie_items for item in items.keys()) and "Chef Apron" in equipped_dict.values():
                                     extra_boost += 0.20
                             reward_sfl *= extra_boost
-                            deliveryReward = f"{reward_sfl:.2f} SFL"
+                            deliveryReward = f"💰 {reward_sfl:.2f} SFL"
                         else:
                             reward_tickets = reward["tickets"]
                             deliveryReward = f"🎟️ {reward_tickets} tickets"
@@ -1421,11 +1427,11 @@ with tab5:
                                 order_status = "❌"
                                 break                           
 
-                        data.append([f"{index}\uFE0F\u20E3", f"{order_status} {deliveryItems_value}", deliveryReward, deliveryTime])
+                        data.append([{deliverNpc}, f"{order_status} {deliveryItems_value}", deliveryReward, deliveryTime])
 
-                columns = ["N#", "Order and Status", "Reward", "Time"]
+                columns = ["NPC", "Order and Status", "Reward", "Time"]
                 df_order = pd.DataFrame(data, columns=columns)
-                df_order.set_index("N#", inplace=True)
+                df_order.set_index("NPC", inplace=True)
                 farm_delivery.write(df_order)
                 
                 farm_delivery.success(f" 📊 **Total Deliveries Completed: {deliveryTotal}**")
