@@ -1339,7 +1339,7 @@ with tab5:
                     traveller_day = traveller_event + 1
                     
                     wanderleaf.info(f" 📆 Days since the Event start: **{traveller_day:.0f}**")
-                    wanderleaf.success(f" 🎟️ Claimed Tickets: **{traveller_count}/14**")     
+                    wanderleaf.success(f" 🎟️ Claimed Tickets: **{traveller_count}/15**")     
 
                     dawn_breaker.info(f" 🗂️ Current Quest: **{description_chore}**")
                     dawn_breaker.write(f" - 🎟️ Tickets Reward: **{ticket_chore}**")
@@ -1413,9 +1413,9 @@ with tab5:
                             reward_sfl *= extra_boost
                             deliveryReward = f"💰 {reward_sfl:.2f} SFL"
                         else:
-                            continue #Skip until release
-                            # reward_tickets = reward["tickets"]
-                            # deliveryReward = f"🎟️ {reward_tickets} tickets"
+                            #continue #Skip until release
+                            reward_tickets = reward["tickets"]
+                            deliveryReward = f"🎟️ {reward_tickets} tickets"
                         if readytime and readytime > current_time:
                             remaining_time = readytime - current_time
                             hours_remaining = int(remaining_time / (1000 * 60 * 60))  # Convert milliseconds to hours
