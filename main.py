@@ -1388,7 +1388,8 @@ with tab5:
                         readytime = order.get("readyAt")
 
                         if npc:
-                            deliveryNpc = ", ".join(items.keys())
+                            npc_name = order["from"]
+                            deliveryNpc = f"{npc_nam}"
                         else:
                             deliveryNpc = ""                        
                         if items:
