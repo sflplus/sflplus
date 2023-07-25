@@ -1392,9 +1392,9 @@ with tab5:
                             if npc_name and "pumpkin' pete" in npc_name.lower():
                                 npc_name = "Pete"
                             else:
-                                deliveryNpc = npc_name.capitalize()
+                                npc_name = npc_name.capitalize()
                         else:
-                            deliveryNpc = ""                        
+                            npc_name = ""                      
                         if items:
                             deliveryItems = ", ".join(items.keys())
                             deliveryItems_value = ", ".join([f"{value}x {key}" for key, value in items.items()])
