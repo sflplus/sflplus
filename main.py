@@ -1413,8 +1413,9 @@ with tab5:
                             reward_sfl *= extra_boost
                             deliveryReward = f"💰 {reward_sfl:.2f} SFL"
                         else:
-                            reward_tickets = reward["tickets"]
-                            deliveryReward = f"🎟️ {reward_tickets} tickets"
+                            continue #Skip until release
+                            # reward_tickets = reward["tickets"]
+                            # deliveryReward = f"🎟️ {reward_tickets} tickets"
                         if readytime and readytime > current_time:
                             remaining_time = readytime - current_time
                             hours_remaining = int(remaining_time / (1000 * 60 * 60))  # Convert milliseconds to hours
