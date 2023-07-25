@@ -1351,15 +1351,20 @@ with tab5:
                         dawn_breaker.success(f"\n 📊 **Total Quest Completed: {completed_chore}**")                    
                 else:
                     dawn_breaker.error(f" **There aren't Bumpkins in this Farm.**")
-               
+                
+                deliveryNpcList = []
                 deliveryItemList = []
                 deliveryRewardList = []
                 deliveryTimeList = []
 
                 for order in delivery_data:
+                    npc = order["from"]
                     items = order["items"]
                     reward = order["reward"]
                     readytime = order["readyAt"]
+
+                    if npc:
+                        deliveryNpcList.extend(list(items.keys()))
 
                     if items:
                         deliveryItemList.extend(list(items.keys()))
@@ -1385,8 +1390,7 @@ with tab5:
                         if npc:
                             deliveryNpc = ", ".join(items.keys())
                         else:
-                            deliveryNpc = ""
-                        
+                            deliveryNpc = ""                        
                         if items:
                             deliveryItems = ", ".join(items.keys())
                             deliveryItems_value = ", ".join([f"{value}x {key}" for key, value in items.items()])
@@ -1427,7 +1431,7 @@ with tab5:
                                 order_status = "❌"
                                 break                           
 
-                        data.append([{deliverNpc}, f"{order_status} {deliveryItems_value}", deliveryReward, deliveryTime])
+                        data.append([{deliveryNpc}, f"{order_status} {deliveryItems_value}", deliveryReward, deliveryTime])
 
                 columns = ["NPC", "Order and Status", "Reward", "Time"]
                 df_order = pd.DataFrame(data, columns=columns)
