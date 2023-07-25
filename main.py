@@ -1398,7 +1398,8 @@ with tab5:
                             deliveryNpc = ""                   
                         if items:
                             deliveryItems = ", ".join(items.keys())
-                            deliveryItems_value = "\n".join([f"{value}x {key}" for key, value in items.items()])
+                            deliveryItems_values = [f"{value}x {key}" for key, value in items.items()]
+                            deliveryItems_value = "\n".join(deliveryItems_values) 
                         else:
                             deliveryItems = ""
                             deliveryItems_value = ""
