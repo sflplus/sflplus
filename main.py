@@ -1364,7 +1364,7 @@ with tab5:
                     readytime = order["readyAt"]
 
                     if npc:
-                        deliveryNpcList.append(npc)
+                        deliveryNpcList.extend(list(npc.keys()))
 
                     if items:
                         deliveryItemList.extend(list(items.keys()))
