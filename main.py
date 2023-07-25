@@ -1389,12 +1389,12 @@ with tab5:
 
                         if npc:
                             npc_name = order["from"]
-                            if npc_name and "pumpkin' pete" in npc_name.lower():
-                                npc_name = "Pete"
+                            if npc_name and "pumpkin' pete" in npc_name:
+                                npc_name = f"Pete"
                             else:
-                                npc_name = npc_name.capitalize()
+                                deliveryNpc = npc_name.capitalize()
                         else:
-                            npc_name = ""                      
+                            deliveryNpc = ""                   
                         if items:
                             deliveryItems = ", ".join(items.keys())
                             deliveryItems_value = ", ".join([f"{value}x {key}" for key, value in items.items()])
