@@ -1389,7 +1389,7 @@ with tab5:
 
                         if npc:
                             npc_name = order["from"]
-                            deliveryNpc = f"{npc_nam}"
+                            deliveryNpc = f"{npc_name}"
                         else:
                             deliveryNpc = ""                        
                         if items:
