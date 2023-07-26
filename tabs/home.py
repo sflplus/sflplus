@@ -1104,7 +1104,7 @@ class HomeTab:
                 f" 📆 Days since the Event start: **{traveller_day:.0f}**"
             )
             self.ft_cons["wanderleaf"].success(
-                f" 🎟️ Claimed Tickets: **{traveller_count}/14**"
+                f" 🎟️ Claimed Tickets: **{traveller_count}/15**"
             )
 
             self.ft_cons["dawn_breaker"].info(
@@ -1131,6 +1131,7 @@ class HomeTab:
                 f" **There aren't Bumpkins in this Farm.**"
             )
 
+        deliveryNpcList = []
         deliveryItemList: list = []
         deliveryRewardList: list = []
         deliveryTimeList: list = []
@@ -1138,10 +1139,14 @@ class HomeTab:
         ddata: list = []
         if delivery_data:
             for order in delivery_data:
+                npc = order["from"]
                 items = order["items"]
                 reward = order["reward"]
                 readytime = order["readyAt"]
-
+                
+    			if npc:
+    				deliveryNpcList.append(npc) 
+                    
                 if items:
                     deliveryItemList.extend(list(items.keys()))
 
@@ -1158,10 +1163,21 @@ class HomeTab:
             )  # Convert to milliseconds
 
             for index, order in enumerate(delivery_data, start=1):
+                npc = order.get("from")
                 items: dict = order.get("items", {})
                 reward: dict = order.get("reward", {})
                 readytime: int = order.get("readyAt", int)
 
+				if npc:
+					npc_name = order["from"]
+					if npc_name and "pumpkin' pete" in npc_name:
+						npc_name = f"pete"
+						deliveryNpc = npc_name.capitalize()
+					else:
+						deliveryNpc = npc_name.capitalize()
+				else:
+					deliveryNpc = ""  
+                    
                 if items:
                     deliveryItems: str = ", ".join(items.keys())
                     deliveryItems_value: str = ", ".join(
@@ -1186,8 +1202,10 @@ class HomeTab:
                             extra_boost += 0.20
                     reward_sfl *= extra_boost
                     deliveryReward: str = f"{reward_sfl:.2f} SFL"
-                else:
-                    deliveryReward = ""
+				else:
+					#continue #Skip until release
+					reward_tickets = reward["tickets"]
+					deliveryReward = f"🎟️ {reward_tickets} tickets"
                 if readytime and readytime > current_time:
                     remaining_time = readytime - current_time
                     hours_remaining = int(
@@ -1216,21 +1234,26 @@ class HomeTab:
                                 >= item_quantity
                             ):
                                 continue
+                            elif (
+                                item_name == "sfl" and balance_sfl
+                            >= item_quantity
+                            ):
+								continue   
                         order_status = "❌"
                         break
 
                 ddata.append(
                     [
-                        f"{index}\uFE0F\u20E3",
+                        deliveryNpc,
                         f"{order_status} {deliveryItems_value}",
                         deliveryReward,
                         deliveryTime,
                     ]
                 )
 
-        columns: list[str] = ["N#", "Order and Status", "Reward", "Time"]
+        columns: list[str] = ["NPC", "Order and Status", "Reward", "Time"]
         df_order = pd.DataFrame(ddata, columns=columns)
-        df_order.set_index("N#", inplace=True)
+        df_order.set_index("NPC", inplace=True)
         self.ft_cons["farm_delivery"].write(df_order)
 
         self.ft_cons["farm_delivery"].success(
