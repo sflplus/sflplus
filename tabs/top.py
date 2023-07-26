@@ -100,5 +100,5 @@ class TopTab:
         #  - 🐔 Mutant Chickens ")
         general_info3.markdown(
             f"🤖 Looking for automatic notifications on Discord or Telegram?" 
-            + f"try out [Nancy BOT]({self.DC_NANCY_URL}) by `@Maschs`"
+            + f" Try out [Nancy BOT]({self.DC_NANCY_URL}) by `@Maschs`"
         )
