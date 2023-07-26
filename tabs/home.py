@@ -1201,7 +1201,7 @@ class HomeTab:
                         ):
                             extra_boost += 0.20
                     reward_sfl *= extra_boost
-                    deliveryReward: str = f"{reward_sfl:.2f} SFL"
+                    deliveryReward: str = f"💰 {reward_sfl:.2f} SFL"
                 else:
                     #continue #Skip until release
                     reward_tickets = reward["tickets"]
