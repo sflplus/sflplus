@@ -1104,7 +1104,7 @@ class HomeTab:
                 f" 📆 Days since the Event start: **{traveller_day:.0f}**"
             )
             self.ft_cons["wanderleaf"].success(
-                f" 🎟️ Claimed Tickets: **{traveller_count}/13**"
+                f" 🎟️ Claimed Tickets: **{traveller_count}/15**"
             )
 
             self.ft_cons["dawn_breaker"].info(
