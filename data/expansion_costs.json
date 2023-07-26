@@ -1,0 +1,84 @@
+{
+    "expansion_3": {},
+    "expansion_4": {
+        "Stone": 1
+    },
+    "expansion_5": {
+        "Stone": 5,
+        "Iron": 1
+    },
+    "expansion_6": {
+        "Stone": 10,
+        "Iron": 2
+    },
+    "expansion_7": {
+        "Stone": 10,
+        "Iron": 2,
+        "Gold": 1
+    },
+    "expansion_8": {
+        "Stone": 25,
+        "Gold": 3
+    },
+    "expansion_9": {
+        "Wood": 100,
+        "Stone": 40,
+        "Iron": 5
+    },
+    "expansion_10": {
+        "Wood": 100,
+        "Stone": 50,
+        "Iron": 5,
+        "Gold": 2
+    },
+    "expansion_11": {
+        "Gold": 10
+    },
+    "expansion_12": {
+        "Wood": 500,
+        "Stone": 20,
+        "Gold": 2
+    },
+    "expansion_13": {
+        "Wood": 100,
+        "Stone": 150,
+        "Gold": 5
+    },
+    "expansion_14": {
+        "Wood": 40,
+        "Stone": 30,
+        "Iron": 10,
+        "Gold": 10
+    },
+    "expansion_15": {
+        "Wood": 200,
+        "Gold": 15
+    },
+    "expansion_16": {
+        "Stone": 150,
+        "Iron": 30,
+        "Gold": 10
+    },
+    "expansion_17": {
+        "Wood": 200,
+        "Stone": 50,
+        "Gold": 25
+    },
+    "expansion_18": {
+        "Wood": 300,
+        "Stone": 200,
+        "Iron": 30,
+        "Gold": 10
+    },
+    "expansion_19": {
+        "Wood": 100,
+        "Stone": 250,
+        "Gold": 30
+    },
+    "expansion_20": {
+        "Wood": 1000,
+        "Stone": 100,
+        "Iron": 10,
+        "Gold": 25
+    }
+}

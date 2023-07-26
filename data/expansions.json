@@ -1,0 +1,370 @@
+{
+    "expansion_3": {
+        "crops": 13,
+        "trees": 3,
+        "stones": 2,
+        "iron": 0,
+        "gold": 0,
+        "fruitPatches": 0
+    },
+    "expansion_4": {
+        "crops": 17,
+        "trees": 4,
+        "stones": 3,
+        "iron": 1,
+        "gold": 0,
+        "fruitPatches": 0
+    },
+    "expansion_5": {
+        "crops": 21,
+        "trees": 5,
+        "stones": 4,
+        "iron": 2,
+        "gold": 1,
+        "fruitPatches": 0
+    },
+    "expansion_6": {
+        "crops": 25,
+        "trees": 6,
+        "stones": 5,
+        "iron": 2,
+        "gold": 1,
+        "fruitPatches": 0
+    },
+    "expansion_7": {
+        "crops": 27,
+        "trees": 7,
+        "stones": 6,
+        "iron": 3,
+        "gold": 1,
+        "fruitPatches": 0
+    },
+    "expansion_8": {
+        "crops": 29,
+        "trees": 8,
+        "stones": 7,
+        "iron": 3,
+        "gold": 2,
+        "fruitPatches": 0
+    },
+    "expansion_9A": {
+        "crops": 29,
+        "trees": 8,
+        "stones": 7,
+        "iron": 4,
+        "gold": 2,
+        "fruitPatches": 1
+    },
+    "expansion_9B": {
+        "crops": 31,
+        "trees": 9,
+        "stones": 8,
+        "iron": 4,
+        "gold": 3,
+        "fruitPatches": 0
+    },
+    "expansion_9C": {
+        "crops": 31,
+        "trees": 10,
+        "stones": 8,
+        "iron": 3,
+        "gold": 2,
+        "fruitPatches": 1
+    },
+    "expansion_10A": {
+        "crops": 31,
+        "trees": 9,
+        "stones": 8,
+        "iron": 5,
+        "gold": 3,
+        "fruitPatches": 1
+    },
+    "expansion_10B": {
+        "crops": 31,
+        "trees": 10,
+        "stones": 8,
+        "iron": 4,
+        "gold": 2,
+        "fruitPatches": 2
+    },
+    "expansion_10C": {
+        "crops": 31,
+        "trees": 9,
+        "stones": 8,
+        "iron": 5,
+        "gold": 3,
+        "fruitPatches": 1
+    },
+    "expansion_10D": {
+        "crops": 33,
+        "trees": 11,
+        "stones": 9,
+        "iron": 4,
+        "gold": 3,
+        "fruitPatches": 1
+    },
+    "expansion_10E": {
+        "crops": 31,
+        "trees": 10,
+        "stones": 8,
+        "iron": 4,
+        "gold": 2,
+        "fruitPatches": 2
+    },
+    "expansion_10F": {
+        "crops": 33,
+        "trees": 11,
+        "stones": 9,
+        "iron": 4,
+        "gold": 3,
+        "fruitPatches": 1
+    },
+    "expansion_11": {
+        "crops": 33,
+        "trees": 11,
+        "stones": 9,
+        "iron": 5,
+        "gold": 3,
+        "fruitPatches": 2
+    },
+    "expansion_12A": {
+        "crops": 33,
+        "trees": 11,
+        "stones": 10,
+        "iron": 5,
+        "gold": 3,
+        "fruitPatches": 4
+    },
+    "expansion_12B": {
+        "crops": 35,
+        "trees": 11,
+        "stones": 10,
+        "iron": 6,
+        "gold": 4,
+        "fruitPatches": 3
+    },
+    "expansion_12C": {
+        "crops": 35,
+        "trees": 12,
+        "stones": 10,
+        "iron": 5,
+        "gold": 3,
+        "fruitPatches": 2
+    },
+    "expansion_13A": {
+        "crops": 35,
+        "trees": 11,
+        "stones": 11,
+        "iron": 6,
+        "gold": 1,
+        "fruitPatches": 5
+    },
+    "expansion_13B": {
+        "crops": 35,
+        "trees": 12,
+        "stones": 11,
+        "iron": 5,
+        "gold": 3,
+        "fruitPatches": 4
+    },
+    "expansion_13C": {
+        "crops": 35,
+        "trees": 11,
+        "stones": 11,
+        "iron": 6,
+        "gold": 4,
+        "fruitPatches": 5
+    },
+    "expansion_13D": {
+        "crops": 37,
+        "trees": 12,
+        "stones": 11,
+        "iron": 6,
+        "gold": 4,
+        "fruitPatches": 3
+    },
+    "expansion_13E": {
+        "crops": 35,
+        "trees": 12,
+        "stones": 11,
+        "iron": 5,
+        "gold": 3,
+        "fruitPatches": 5
+    },
+    "expansion_13F": {
+        "crops": 37,
+        "trees": 12,
+        "stones": 11,
+        "iron": 6,
+        "gold": 4,
+        "fruitPatches": 3
+    },
+    "expansion_14": {
+        "crops": 37,
+        "trees": 12,
+        "stones": 12,
+        "iron": 6,
+        "gold": 4,
+        "fruitPatches": 5
+    },
+    "expansion_15A": {
+        "crops": 37,
+        "trees": 12,
+        "stones": 12,
+        "iron": 7,
+        "gold": 5,
+        "fruitPatches": 6
+    },
+    "expansion_15B": {
+        "crops": 37,
+        "trees": 13,
+        "stones": 12,
+        "iron": 6,
+        "gold": 4,
+        "fruitPatches": 6
+    },
+    "expansion_15C": {
+        "crops": 39,
+        "trees": 13,
+        "stones": 13,
+        "iron": 6,
+        "gold": 4,
+        "fruitPatches": 6
+    },
+    "expansion_16A": {
+        "crops": 37,
+        "trees": 13,
+        "stones": 12,
+        "iron": 7,
+        "gold": 5,
+        "fruitPatches": 7
+    },
+    "expansion_16B": {
+        "crops": 39,
+        "trees": 13,
+        "stones": 13,
+        "iron": 7,
+        "gold": 5,
+        "fruitPatches": 7
+    },
+    "expansion_16C": {
+        "crops": 37,
+        "trees": 13,
+        "stones": 12,
+        "iron": 7,
+        "gold": 5,
+        "fruitPatches": 7
+    },
+    "expansion_16D": {
+        "crops": 39,
+        "trees": 14,
+        "stones": 13,
+        "iron": 6,
+        "gold": 4,
+        "fruitPatches": 7
+    },
+    "expansion_16E": {
+        "crops": 39,
+        "trees": 13,
+        "stones": 13,
+        "iron": 7,
+        "gold": 5,
+        "fruitPatches": 7
+    },
+    "expansion_16F": {
+        "crops": 39,
+        "trees": 14,
+        "stones": 13,
+        "iron": 6,
+        "gold": 4,
+        "fruitPatches": 7
+    },
+    "expansion_17": {
+        "crops": 39,
+        "trees": 14,
+        "stones": 13,
+        "iron": 7,
+        "gold": 5,
+        "fruitPatches": 8
+    },
+    "expansion_18A": {
+        "crops": 41,
+        "trees": 14,
+        "stones": 13,
+        "iron": 7,
+        "gold": 5,
+        "fruitPatches": 8
+    },
+    "expansion_18B": {
+        "crops": 41,
+        "trees": 14,
+        "stones": 13,
+        "iron": 7,
+        "gold": 5,
+        "fruitPatches": 9
+    },
+    "expansion_18C": {
+        "crops": 39,
+        "trees": 15,
+        "stones": 14,
+        "iron": 8,
+        "gold": 5,
+        "fruitPatches": 9
+    },
+    "expansion_19A": {
+        "crops": 43,
+        "trees": 14,
+        "stones": 13,
+        "iron": 7,
+        "gold": 5,
+        "fruitPatches": 9
+    },
+    "expansion_19B": {
+        "crops": 41,
+        "trees": 15,
+        "stones": 14,
+        "iron": 8,
+        "gold": 5,
+        "fruitPatches": 9
+    },
+    "expansion_19C": {
+        "crops": 43,
+        "trees": 14,
+        "stones": 13,
+        "iron": 7,
+        "gold": 5,
+        "fruitPatches": 9
+    },
+    "expansion_19D": {
+        "crops": 41,
+        "trees": 15,
+        "stones": 14,
+        "iron": 8,
+        "gold": 5,
+        "fruitPatches": 10
+    },
+    "expansion_19E": {
+        "crops": 41,
+        "trees": 15,
+        "stones": 14,
+        "iron": 8,
+        "gold": 5,
+        "fruitPatches": 9
+    },
+    "expansion_19F": {
+        "crops": 41,
+        "trees": 15,
+        "stones": 14,
+        "iron": 8,
+        "gold": 5,
+        "fruitPatches": 10
+    },
+    "expansion_20": {
+        "crops": 43,
+        "trees": 15,
+        "stones": 14,
+        "iron": 8,
+        "gold": 5,
+        "fruitPatches": 10
+    }
+}
