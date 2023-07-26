@@ -1256,10 +1256,10 @@ class HomeTab:
 
         time_deltas = []
         for deliveryTime in df_order["Time"]:
-        try:
-            time_delta = pd.to_timedelta(deliveryTime)
-        except ValueError:
-            time_delta = pd.to_timedelta("0s")  # Set to 0
+            try:
+                time_delta = pd.to_timedelta(deliveryTime)
+            except ValueError:
+                time_delta = pd.to_timedelta("0s")  # Set to 0
         time_deltas.append(time_delta)
 	
         df_order["Time"] = time_deltas	
