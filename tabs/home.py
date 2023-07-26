@@ -1255,9 +1255,9 @@ class HomeTab:
         df_order = pd.DataFrame(ddata, columns=columns)
 
         time_deltas = []
-        for time_val in df_order["Time"]:
+        for deliveryTime in df_order["Time"]:
         try:
-            time_delta = pd.to_timedelta(time_val)
+            time_delta = pd.to_timedelta(deliveryTime)
         except ValueError:
             time_delta = pd.to_timedelta("0s")  # Set to 0
         time_deltas.append(time_delta)
