@@ -1253,9 +1253,9 @@ class HomeTab:
 
         columns: list[str] = ["NPC", "Order and Status", "Reward", "Time"]
         df_order = pd.DataFrame(ddata, columns=columns)
-        df_order.sort_values(
-        by="Time", ascending=False, inplace=True
-        )
+        df_order["Time"] = pd.to_timedelta(df_order["Time"])
+        df_order.sort_values(by="Time", inplace=True)
+        df_order["Time"] = df_order["Time"].astype(str)
         df_order.set_index("NPC", inplace=True)
         self.ft_cons["farm_delivery"].write(df_order)
 
