@@ -1144,8 +1144,8 @@ class HomeTab:
                 reward = order["reward"]
                 readytime = order["readyAt"]
                 
-    			if npc:
-    				deliveryNpcList.append(npc) 
+                if npc:
+                    deliveryNpcList.append(npc) 
                     
                 if items:
                     deliveryItemList.extend(list(items.keys()))
@@ -1168,15 +1168,15 @@ class HomeTab:
                 reward: dict = order.get("reward", {})
                 readytime: int = order.get("readyAt", int)
 
-				if npc:
-					npc_name = order["from"]
-					if npc_name and "pumpkin' pete" in npc_name:
-						npc_name = f"pete"
-						deliveryNpc = npc_name.capitalize()
-					else:
-						deliveryNpc = npc_name.capitalize()
-				else:
-					deliveryNpc = ""  
+                if npc:
+                    npc_name = order["from"]
+                    if npc_name and "pumpkin' pete" in npc_name:
+                        npc_name = f"pete"
+                        deliveryNpc = npc_name.capitalize()
+                    else:
+                        deliveryNpc = npc_name.capitalize()
+                else:
+                    deliveryNpc = ""  
                     
                 if items:
                     deliveryItems: str = ", ".join(items.keys())
@@ -1202,10 +1202,10 @@ class HomeTab:
                             extra_boost += 0.20
                     reward_sfl *= extra_boost
                     deliveryReward: str = f"{reward_sfl:.2f} SFL"
-				else:
-					#continue #Skip until release
-					reward_tickets = reward["tickets"]
-					deliveryReward = f"🎟️ {reward_tickets} tickets"
+                else:
+                    #continue #Skip until release
+                    reward_tickets = reward["tickets"]
+                    deliveryReward = f"🎟️ {reward_tickets} tickets"
                 if readytime and readytime > current_time:
                     remaining_time = readytime - current_time
                     hours_remaining = int(
@@ -1236,9 +1236,9 @@ class HomeTab:
                                 continue
                             elif (
                                 item_name == "sfl" and balance_sfl
-                            >= item_quantity
+                                >= item_quantity
                             ):
-								continue   
+                                continue   
                         order_status = "❌"
                         break
 
