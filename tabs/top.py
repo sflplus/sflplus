@@ -11,6 +11,9 @@ class TopTab:
         "https://discord.com/channels/880987707214544966/"
         + "1087607534967341087/1087607534967341087"
     )
+    DC_NANCY_URL = (
+        "https://discord.gg/faz4EkJVab"
+    )
 
     def __init__(self, main) -> None:
         self.main: Main = main
@@ -95,3 +98,7 @@ class TopTab:
         #  🚜 Hoarder Limit - 🤑 Spent Checker \n - 👜 Basket Checker
         # - 💰 SFL Balance \n - 🍒 Fruits Harvest Left  - 👨‍🌾 Bumpkins Stats \n
         #  - 🐔 Mutant Chickens ")
+        general_info3.markdown(
+            f"🤖 Looking for automatic notifications on Discord or Telegram?" 
+            + f"try out [Nancy BOT]({self.DC_NANCY_URL}) by `@Maschs`"
+        )
