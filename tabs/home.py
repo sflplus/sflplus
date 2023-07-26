@@ -1253,21 +1253,7 @@ class HomeTab:
 
         columns = ["NPC", "Order and Status", "Reward", "Time"]
         df_order = pd.DataFrame(ddata, columns=columns)
-
-        time_deltas = []
-        for deliveryTime in df_order["Time"]:
-            try:
-                time_delta = pd.to_timedelta(deliveryTime)
-            except ValueError:
-                time_delta = pd.to_timedelta("0s")  # Set to 0
-        time_deltas.append(time_delta)
-	
-        df_order["Time"] = time_deltas	
-        df_order.sort_values(by="Time", inplace=True)
-        df_order["Time"] = df_order["Time"].astype(str)
         df_order.set_index("NPC", inplace=True)
-        self.ft_cons["farm_delivery"].write(df_order)
-
         self.ft_cons["farm_delivery"].success(
             f" 📊 **Total Deliveries Completed: {deliveryTotal}**"
         )
