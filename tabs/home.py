@@ -1254,6 +1254,8 @@ class HomeTab:
         columns = ["NPC", "Order and Status", "Reward", "Time"]
         df_order = pd.DataFrame(ddata, columns=columns)
         df_order.set_index("NPC", inplace=True)
+        self.ft_cons["farm_delivery"].write(df_order)
+        
         self.ft_cons["farm_delivery"].success(
             f" 📊 **Total Deliveries Completed: {deliveryTotal}**"
         )
