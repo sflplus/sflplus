@@ -920,7 +920,7 @@ class HomeTab:
         for item in baloon_items:
             inv = state.get("inventory", {})
             assert isinstance(inv, dict)
-            new_inv_baloon: str = inv.get(item, "")
+            new_inv_baloon: str | None = inv.get(item, None)
             if new_inv_baloon is not None:
                 baloon_inv[item] = new_inv_baloon
                 baloon_quantity[item] = Decimal(new_inv_baloon)
