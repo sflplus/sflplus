@@ -920,7 +920,7 @@ class HomeTab:
         for item in baloon_items:
             inv = state.get("inventory", {})
             assert isinstance(inv, dict)
-            new_inv_baloon: str = inv.get(item, "")
+            new_inv_baloon: str | None = inv.get(item, None)
             if new_inv_baloon is not None:
                 baloon_inv[item] = new_inv_baloon
                 baloon_quantity[item] = Decimal(new_inv_baloon)
@@ -1143,10 +1143,10 @@ class HomeTab:
                 items = order["items"]
                 reward = order["reward"]
                 readytime = order["readyAt"]
-                
+
                 if npc:
-                    deliveryNpcList.append(npc) 
-                    
+                    deliveryNpcList.append(npc)
+
                 if items:
                     deliveryItemList.extend(list(items.keys()))
 
@@ -1176,8 +1176,8 @@ class HomeTab:
                     else:
                         deliveryNpc = npc_name.capitalize()
                 else:
-                    deliveryNpc = ""  
-                    
+                    deliveryNpc = ""
+
                 if items:
                     deliveryItems: str = ", ".join(items.keys())
                     deliveryItems_value: str = ", ".join(
@@ -1203,7 +1203,7 @@ class HomeTab:
                     reward_sfl *= extra_boost
                     deliveryReward: str = f"💰 {reward_sfl:.2f} SFL"
                 else:
-                    #continue #Skip until release
+                    # continue #Skip until release
                     reward_tickets = reward["tickets"]
                     deliveryReward = f"🎟️ {reward_tickets} tickets"
                 if readytime and readytime > current_time:
@@ -1235,10 +1235,10 @@ class HomeTab:
                             ):
                                 continue
                             elif (
-                                item_name == "sfl" and balance_sfl
-                                >= item_quantity
+                                item_name == "sfl"
+                                and balance_sfl >= item_quantity
                             ):
-                                continue   
+                                continue
                         order_status = "❌"
                         break
 
@@ -1255,7 +1255,7 @@ class HomeTab:
         df_order = pd.DataFrame(ddata, columns=columns)
         df_order.set_index("NPC", inplace=True)
         self.ft_cons["farm_delivery"].write(df_order)
-        
+
         self.ft_cons["farm_delivery"].success(
             f" 📊 **Total Deliveries Completed: {deliveryTotal}**"
         )
