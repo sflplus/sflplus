@@ -1,8 +1,0 @@
-requests==2.28.2
-streamlit==1.23.1
-streamlit-extras
-streamlit-tags
-pandas
-aiohttp
-python-Levenshtein
-fuzzywuzzy
