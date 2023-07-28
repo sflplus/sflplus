@@ -1092,16 +1092,16 @@ class HomeTab:
             else:
                 next_loop = None
 
-            first_traveller = 1689170400
-            respawn_interval: timedelta = timedelta(hours=24)
-            current_time2: float = datetime.now().timestamp()
-            traveller_event: float = (
-                current_time2 - first_traveller
-            ) / respawn_interval.total_seconds()
-            traveller_day: int = int(traveller_event + 1)
+            # first_traveller = 1689170400
+            # respawn_interval: timedelta = timedelta(hours=24)
+            # current_time2: float = datetime.now().timestamp()
+            # traveller_event: float = (
+            #     current_time2 - first_traveller
+            # ) / respawn_interval.total_seconds()
+            # traveller_day: int = int(traveller_event + 1)
 
             self.ft_cons["wanderleaf"].info(
-                f" 📆 Days since the Event start: **{traveller_day:.0f}**"
+                f" 📆 Days of the Event: **15**"
             )
             self.ft_cons["wanderleaf"].success(
                 f" 🎟️ Claimed Tickets: **{traveller_count}/15**"
