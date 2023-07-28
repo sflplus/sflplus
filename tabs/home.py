@@ -2268,7 +2268,7 @@ class HomeTab:
             "📖 **GENERAL**", expanded=True
         )
         containers["food_list"] = col15.expander(
-            "🍲 **DETAILED FOOD LIST**", expanded=False
+            "📃**DETAILED FOOD LIST**", expanded=False
         )
         containers["bump_wearables"] = col16.expander(
             "👖 **WEARABLES**", expanded=True
