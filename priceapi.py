@@ -21,7 +21,7 @@ DEXSCREENER_ETH_URL: str = (
 )
 
 SFL_CONTRACT = "0xd1f9c58e33933a993a3891f8acfe05a68e1afc05"
-POLYGONSCAN_API_KEY = "QJKGEWQQI8UQSZQDMQQPYJU8Q7D5CCDSQV"
+POLYGONSCAN_API_KEY = st.secrets["api_polygonscan"]
 SUPPLY_URL: str = (
     f"https://api.polygonscan.com/api?module=stats"
     + f"&action=tokensupply&contractaddress={SFL_CONTRACT}"
