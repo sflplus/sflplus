@@ -55,7 +55,7 @@ class Main:
 
         self.sfl_supply: int | None = self.priceAPI.get_token_supply()
 
-        self.API_KEY_DUNE = "xEB9BjuGBc5SbpVABb2VHcVV5DQ1g3K2"
+        self.API_KEY_DUNE = st.secrets["api_dune"]
 
         self.queries_owners: list[Any] = [100, None, None]
         self.queries: list[str] = ["2649121", "2649118", "2427499"]  #
