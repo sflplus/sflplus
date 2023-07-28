@@ -1,3 +1,4 @@
+from collections import defaultdict
 from typing import TYPE_CHECKING, Hashable
 from decimal import Decimal
 import streamlit as st
@@ -581,28 +582,44 @@ class HomeTab:
             taskcount: int | float = activities.get(activitytask, 0)
 
         total_xp = 0
+        xp = 0
+        item_xp = defaultdict(float)
         for item, quantity in inventory_dict.items():
             if item not in food_xp and item not in food_deli_xp:
                 continue
+            if quantity == "0":
+                continue
             if item in food_items:
                 xp = int(food_xp[item])
-                total_xp += xp * int(quantity)
-                # Update the quantity of the food item
-                food_quantity[item] += int(quantity)
             elif item in food_deli_items:
                 xp = int(food_deli_xp[item])
                 if "Curer" in skills_dict:
                     xp *= 1.15
-                total_xp += xp * int(quantity)
-                # Update the quantity of the food deli item
-                food_quantity[item] += int(quantity)
+            if "Kitchen Hand" in skills_dict:
+                xp *= 1.05
+            if "Observatory" in inventory_dict:
+                xp *= 1.05
+            if "Golden Spatula" in equipped_dict.values():
+                xp *= 1.10
+            total_xp += xp * int(quantity)
+            item_xp[item] = xp
 
-        if "Kitchen Hand" in skills_dict:
-            total_xp *= 1.05
-        if "Observatory" in inventory_dict:
-            total_xp *= 1.05
-        if "Golden Spatula" in equipped_dict.values():
-            total_xp *= 1.10
+            # Update the quantity of the food deli item
+            food_quantity[item] += int(quantity)
+
+        food_quantity = {k: v for k, v in food_quantity.items() if v != 0}
+        temp: list[tuple[int, str, float]] = sorted(
+            zip(
+                food_quantity.values(),
+                food_quantity.keys(),
+                [food_quantity[x] * item_xp[x] for x in food_quantity],
+            ),
+            key=lambda x: x[2],
+            reverse=True,
+        )
+        d: list[list[int | str | float]] = [list(x) for x in zip(*(temp))]
+
+        food_df = pd.DataFrame({"Quantity": d[0], "Food": d[1], "XP": d[2]})
 
         crop_sells = 0.0
         for item, quantity in inventory_dict.items():
@@ -1598,6 +1615,7 @@ class HomeTab:
             self.bt_cons["bump_general"].success(
                 f" 📊 New Total XP: **{new_total_xp:.1f}**"
             )
+            self.bt_cons["food_list"].dataframe(food_df, hide_index=True)
 
             self.bt_cons["bump_wearables"].write(filtered_df)
             self.bt_cons["bump_wearables"].success(
@@ -2248,6 +2266,9 @@ class HomeTab:
         )
         containers["bump_general"] = col15.expander(
             "📖 **GENERAL**", expanded=True
+        )
+        containers["food_list"] = col15.expander(
+            "🍲 **DETAILED FOOD LIST**", expanded=False
         )
         containers["bump_wearables"] = col16.expander(
             "👖 **WEARABLES**", expanded=True
