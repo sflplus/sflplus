@@ -1,3 +1,4 @@
+from collections import defaultdict
 from typing import TYPE_CHECKING, Hashable
 from decimal import Decimal
 import streamlit as st
@@ -6,7 +7,7 @@ from streamlit.delta_generator import DeltaGenerator
 from typing import Any
 import json
 import pandas as pd
-from datetime import datetime, timedelta
+from datetime import datetime
 
 from functions import nft_price, nft_buffs, wearable_list
 
@@ -56,7 +57,7 @@ class HomeTab:
         self.worth_cons: dict[str, DeltaGenerator] = {}
 
         status_ok: DeltaGenerator = self.tab.container()
-        # def load_farm(self) -> None:
+
         if not buttonok:
             return
         farm_tab: DeltaGenerator
@@ -73,7 +74,6 @@ class HomeTab:
         app_state: dict[str, list[str]] = st.experimental_get_query_params()
         app_state["farm"] = [self.farm_id]
         url: str = f"https://api.sunflower-land.com/visit/{self.farm_id}"
-        # url: str = f"https://api.sunflower-land.com/visit/137396"
         st.experimental_set_query_params(**app_state)
 
         response: requests.Response = requests.get(url)
@@ -414,15 +414,17 @@ class HomeTab:
             "Wood",
             "Egg",
         }
-        baloon_inv = {}
-        baloon_quantity = {}
+        baloon_inv: dict = {}
+        baloon_quantity: dict = {}
         total_inv_value = 0
-        buildings_farm = {}
-        buildings_farm_price = {}
+        buildings_farm: dict = {}
+        buildings_farm_price: dict = {}
 
         # Define a function to calculate the price of a building
         def get_building_price(building_name) -> Decimal:
-            building = building_items_resources.get(building_name)
+            building: dict[
+                str, int | float
+            ] | None = building_items_resources.get(building_name)
             if not building:
                 return Decimal(0)
             total_price = Decimal(0)
@@ -513,10 +515,8 @@ class HomeTab:
         daily_limit: float = balance_float - prevbalance_float
         inventory_dict: dict | float | None = state.get("inventory")
         assert isinstance(inventory_dict, dict)
-        # inventory_dict = eval(str(inventory))
         buildings_dict: dict | float | None = state.get("buildings")
         assert isinstance(buildings_dict, dict)
-        # buildings_dict = eval(str(buildings_str))
 
         db: dict | float = state.get("dawnBreaker", {})
         assert isinstance(db, dict)
@@ -561,7 +561,7 @@ class HomeTab:
             # skills_dict = eval(str(skills))
             equipped_dict: dict[str, str] = bumpkin.get("equipped", {})
             # equipped_dict = eval(str(equipped))
-            activity: dict[str, int] = bumpkin.get("activity", {})
+            activities = bumpkin.get("activity", {})
 
             hayseed: dict | float = state.get("hayseedHank", {})
             assert isinstance(hayseed, dict)
@@ -579,38 +579,54 @@ class HomeTab:
             requirement_chore: int = chore.get("requirement", 0)
             item_chore: dict = reward_chore.get("items", {})
             ticket_chore: int = item_chore.get("Dawn Breaker Ticket", 0)
-            taskcount: int = activity.get(activitytask, 0)
+            taskcount: int | float = activities.get(activitytask, 0)
 
         total_xp = 0
+        xp = 0
+        item_xp = defaultdict(float)
         for item, quantity in inventory_dict.items():
             if item not in food_xp and item not in food_deli_xp:
                 continue
+            if quantity == "0":
+                continue
             if item in food_items:
                 xp = int(food_xp[item])
-                total_xp += xp * int(quantity)
-                # Update the quantity of the food item
-                food_quantity[item] += int(quantity)
             elif item in food_deli_items:
                 xp = int(food_deli_xp[item])
                 if "Curer" in skills_dict:
                     xp *= 1.15
-                total_xp += xp * int(quantity)
-                # Update the quantity of the food deli item
-                food_quantity[item] += int(quantity)
+            if "Kitchen Hand" in skills_dict:
+                xp *= 1.05
+            if "Observatory" in inventory_dict:
+                xp *= 1.05
+            if "Golden Spatula" in equipped_dict.values():
+                xp *= 1.10
+            total_xp += xp * int(quantity)
+            item_xp[item] = xp
 
-        if "Kitchen Hand" in skills_dict:
-            total_xp *= 1.05
-        if "Observatory" in inventory_dict:
-            total_xp *= 1.05
-        if "Golden Spatula" in equipped_dict.values():
-            total_xp *= 1.10
+            # Update the quantity of the food deli item
+            food_quantity[item] += int(quantity)
+
+        food_quantity = {k: v for k, v in food_quantity.items() if v != 0}
+        temp: list[tuple[int, str, float]] = sorted(
+            zip(
+                food_quantity.values(),
+                food_quantity.keys(),
+                [food_quantity[x] * item_xp[x] for x in food_quantity],
+            ),
+            key=lambda x: x[2],
+            reverse=True,
+        )
+        d: list[list[int | str | float]] = [list(x) for x in zip(*(temp))]
+
+        food_df = pd.DataFrame({"Quantity": d[0], "Food": d[1], "XP": d[2]})
 
         crop_sells = 0.0
         for item, quantity in inventory_dict.items():
             if item not in crop_price:
                 continue
             if item in crop_items:
-                c_price = crop_price[item]
+                c_price: float = crop_price[item]
                 crop_sells += round(float(quantity)) * c_price
                 crop_quantity[item] += round(float(quantity))
 
@@ -667,25 +683,26 @@ class HomeTab:
             "gold",
             "fruitPatches",
         ]
-        totals = {}
-        total_resources = totals
+        totals: dict = {}
+        total_resources: dict[str, int] = totals
 
         for resource in resources:
-            value = state.get(resource)
+            value: dict | float = state.get(resource, {})
             if value is not None:
                 total: int = str(value).count("createdAt")
             else:
                 total = 0
             totals[resource] = total
 
-        crops_str = state.get("crops")
-        crops_dict = eval(str(crops_str))
+        crops_dict: dict | float = state.get("crops", {})
+        if not isinstance(crops_dict, dict):
+            return
 
         dawn_breaker_tickets_count = 0
         for crop_id, crop_info in crops_dict.items():
             if "crop" in crop_info:
-                crop_name = crop_info["crop"]["name"]
-                crop_amount = crop_info["crop"]["amount"]
+                crop_name: str = crop_info["crop"]["name"]
+                crop_amount: float = crop_info["crop"]["amount"]
                 if "reward" in crop_info["crop"]:
                     reward_items = crop_info["crop"]["reward"]["items"]
                     for reward_item in reward_items:
@@ -765,15 +782,15 @@ class HomeTab:
         bump_id: int = bumpkin.get("id", 0)
         bump_achi: dict = bumpkin.get("achievements", {})
         bump_url: str = bumpkin.get("tokenUri", "")
-        activities: dict = bumpkin.get("activity", {})
-        trees_chopped: int = activities.get("Tree Chopped", 0)
-        egg_collected: int = activities.get("Egg Collected", 0)
+        activities: dict[str, int | float] = bumpkin.get("activity", {})
+        trees_chopped: int | float = activities.get("Tree Chopped", 0)
+        egg_collected: int | float = activities.get("Egg Collected", 0)
         sfl_earn: float = activities.get("SFL Earned", 0.0)
         sfl_spent: float = activities.get("SFL Spent", 0.0)
-        sandshovel: int = activities.get("Treasure Dug", 0)
-        drill: int = activities.get("Treasure Drilled", 0)
+        sandshovel: int | float = activities.get("Treasure Dug", 0)
+        drill: int | float = activities.get("Treasure Drilled", 0)
         if sandshovel is not None and drill is not None:
-            dug_holes: int = sandshovel + drill
+            dug_holes: int | float = sandshovel + drill
         else:
             dug_holes = 0
 
@@ -811,7 +828,7 @@ class HomeTab:
                 else:
                     fruit_total += value
 
-        fruit_patches_str = state.get("fruitPatches")
+        fruit_patches_str = state.get("fruitPatches", {})
         if isinstance(fruit_patches_str, str):
             fruit_patches_dict: dict = json.loads(fruit_patches_str)
         else:
@@ -904,7 +921,7 @@ class HomeTab:
                     else:
                         continue
 
-        total_mutant = sum(mutant_quantity.values())
+        total_mutant: int = sum(mutant_quantity.values())
         if total_mutant == 0:
             self.ft_cons["c_mutant"].info("\n 🐣 **Mutants Drop: 0**")
         else:
@@ -941,11 +958,11 @@ class HomeTab:
             baloon_quantity.get("Egg", 0) * egg_price_converted
         )
 
-        total_npc_market = crop_sells + fruit_sells + bounty_sells
+        total_npc_market: float = crop_sells + fruit_sells + bounty_sells
         total_npc_market_usd: Decimal = Decimal(total_npc_market) * Decimal(
             self.main.sfl_price
         )
-        total_baloon_market = (
+        total_baloon_market: Decimal = (
             egg_inv_value
             + wood_inv_value
             + stone_inv_value
@@ -1035,7 +1052,7 @@ class HomeTab:
 
         # Check if taskcount and count_chore are not None
         if taskcount is not None and count_chore is not None:
-            progress_count = taskcount - count_chore
+            progress_count: int | float = taskcount - count_chore
 
         if bumpkin:
             df_weeks: list = []
@@ -1100,9 +1117,7 @@ class HomeTab:
             # ) / respawn_interval.total_seconds()
             # traveller_day: int = int(traveller_event + 1)
 
-            self.ft_cons["wanderleaf"].info(
-                f" 📆 Days of the Event: **15**"
-            )
+            self.ft_cons["wanderleaf"].info(f" 📆 Days of the Event: **15**")
             self.ft_cons["wanderleaf"].success(
                 f" 🎟️ Claimed Tickets: **{traveller_count}/15**"
             )
@@ -1600,6 +1615,7 @@ class HomeTab:
             self.bt_cons["bump_general"].success(
                 f" 📊 New Total XP: **{new_total_xp:.1f}**"
             )
+            self.bt_cons["food_list"].dataframe(food_df, hide_index=True)
 
             self.bt_cons["bump_wearables"].write(filtered_df)
             self.bt_cons["bump_wearables"].success(
@@ -2250,6 +2266,9 @@ class HomeTab:
         )
         containers["bump_general"] = col15.expander(
             "📖 **GENERAL**", expanded=True
+        )
+        containers["food_list"] = col15.expander(
+            "📃**DETAILED FOOD LIST**", expanded=False
         )
         containers["bump_wearables"] = col16.expander(
             "👖 **WEARABLES**", expanded=True
