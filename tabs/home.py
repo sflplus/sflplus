@@ -619,7 +619,8 @@ class HomeTab:
         )
         d: list[list[int | str | float]] = [list(x) for x in zip(*(temp))]
 
-        food_df = pd.DataFrame({"Quantity": d[0], "Food": d[1], "XP": d[2]})
+        if d:
+            food_df = pd.DataFrame({"Quantity": d[0], "Food": d[1], "XP": d[2]})
 
         crop_sells = 0.0
         for item, quantity in inventory_dict.items():
@@ -1615,7 +1616,8 @@ class HomeTab:
             self.bt_cons["bump_general"].success(
                 f" 📊 New Total XP: **{new_total_xp:.1f}**"
             )
-            self.bt_cons["food_list"].dataframe(food_df, hide_index=True)
+            if d:
+                self.bt_cons["food_list"].dataframe(food_df, hide_index=True)
 
             self.bt_cons["bump_wearables"].write(filtered_df)
             self.bt_cons["bump_wearables"].success(
