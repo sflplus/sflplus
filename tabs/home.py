@@ -1028,7 +1028,7 @@ class HomeTab:
                 best_run = max(attempts_list, key=lambda attempt: (attempt["crowsFound"], -attempt["time"], attempt["health"]))
             
                 highestScore = best_run["crowsFound"]
-                highestTime = best_run["time"]
+                highestTime = 180 - best_run["time"]
                 highestLife = "❤️❤️❤️" if best_run["health"] == 3 else "🖤❤️❤️" if best_run["health"] == 2 else "🖤🖤❤️" if best_run["health"] == 1 else "🖤🖤🖤"
             else:
                 # Set default values for the best run if there are no attempts
