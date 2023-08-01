@@ -1007,41 +1007,15 @@ class HomeTab:
             progress_count: int | float = taskcount - count_chore
 
         if bumpkin:
-            # df_weeks: list = []
-            # for week in range(1, 9):
-            #     lanterns: int = laternsWeek.get(str(week), 0)
-            #     if week == 1:
-            #         riddle = "-----"
-            #     else:
-            #         riddle: str = (
-            #             "Yes ✅"
-            #             if f"hoot-dawn-breaker-week-{week}"
-            #             in answered_riddle_ids
-            #             else "No ❌"
-            #         )
-            #     lantern_name_value: str = lantern_name.get(week, "")
-            #     if lanterns > 0:
-            #         lanterns_info: str = f"{lanterns} {lantern_name_value}"
-            #     else:
-            #         lanterns_info = ""
-            #     df_weeks.append(
-            #         {
-            #             "Week": week,
-            #             "Lanterns Crafted": lanterns_info,
-            #             "Riddle Solved": riddle,
-            #             "Reward 🎟️": riddle_reward.get(week, ""),
-            #         }
-            #     )
-
-            # dfweek = pd.DataFrame(df_weeks)
-            # dfweek: DataFrame = dfweek[
-            #     dfweek["Lanterns Crafted"] != ""
-            # ]  # Drop rows with empty "Lanterns Crafted" column
-            # dfweek.set_index("Week", inplace=True)
-            # self.ft_cons["dawn_breaker"].write(dfweek)
-
-            # Get the last week number from the "maze" dictionary
-            last_week_num = max(map(int, we["maze"].keys()))
+            # Get the week numbers from the "maze" dictionary
+            week_numbers = list(map(int, we["maze"].keys()))
+            
+            # Check if 11 is the maximum week number and find the second maximum week number
+            if 11 in week_numbers:
+                week_numbers.remove(11)  # Remove 11 from the list if present
+                last_week_num = max(week_numbers)  # Find the maximum week number
+            else:
+                last_week_num = max(week_numbers)  # Use the maximum week number directly
             
             # Extract the attempts list for the last week
             attempts_list = we["maze"][str(last_week_num)]["attempts"]
@@ -1049,12 +1023,18 @@ class HomeTab:
             # Calculate the total number of attempts
             total_attempts = len(attempts_list)
             
-            # Find the best run based on highest crows found, lowest time, and highest health
-            best_run = max(attempts_list, key=lambda attempt: (attempt["crowsFound"], -attempt["time"], attempt["health"]))
+            if attempts_list:
+                # Find the best run based on highest crows found, lowest time, and highest health
+                best_run = max(attempts_list, key=lambda attempt: (attempt["crowsFound"], -attempt["time"], attempt["health"]))
             
-            highestScore = best_run["crowsFound"]
-            highestTime = 180 - best_run["time"] 
-            highestLife = "❤️❤️❤️" if best_run["health"] == 3 else "🖤❤️❤️" if best_run["health"] == 2 else "🖤🖤❤️" if best_run["health"] == 1 else "🖤🖤🖤"
+                highestScore = best_run["crowsFound"]
+                highestTime = best_run["time"]
+                highestLife = "❤️❤️❤️" if best_run["health"] == 3 else "🖤❤️❤️" if best_run["health"] == 2 else "🖤🖤❤️" if best_run["health"] == 1 else "🖤🖤🖤"
+            else:
+                # Set default values for the best run if there are no attempts
+                highestScore = 0
+                highestTime = 0
+                highestLife = "🖤🖤🖤"
 
             # Limit the number of attempts to show to 5 (or less if there are fewer attempts)
             attempts_list = attempts_list[-5:]           
@@ -1082,10 +1062,6 @@ class HomeTab:
             self.ft_cons["dawn_breaker"].success(
                 f" 🎟️ Weekly Feathers Maze Claim: **{claimedFeathers}**"
             )
-            # self.ft_cons["dawn_breaker"].write(
-            #     f" - ⏳ Progress: **{progress_count} of {requirement_chore}**"
-            # )
-
         else:
             self.ft_cons["dawn_breaker"].error(
                 f" **There aren't Bumpkins in this Farm.**"
