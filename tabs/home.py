@@ -199,6 +199,7 @@ class HomeTab:
             "Fat Chicken",
             "Speed Chicken",
             "Ayam Cemani",
+            "El Pollo Veloz",
         }
 
         crop_items: set[str] = {
@@ -518,34 +519,18 @@ class HomeTab:
         buildings_dict: dict | float | None = state.get("buildings")
         assert isinstance(buildings_dict, dict)
 
-        db: dict | float = state.get("dawnBreaker", {})
+        
+        db = state.get("dawnBreaker", {})
         assert isinstance(db, dict)
-        laternsWeek: dict[str, int] = db.get("lanternsCraftedByWeek", {})
-        week1: int = laternsWeek.get("1", 0)
-        week2: int = laternsWeek.get("2", 0)
-        week3: int = laternsWeek.get("3", 0)
-        week4: int = laternsWeek.get("4", 0)
-        week5: int = laternsWeek.get("5", 0)
-        week6: int = laternsWeek.get("6", 0)
-        week7: int = laternsWeek.get("7", 0)
-        week8: int = laternsWeek.get("8", 0)
-
-        traveller: dict = db.get("traveller", {})
-        traveller_count = 0
-        if traveller:
-            traveller_count: int = traveller.get("discoveredCount", 0)
-
-        answered_riddle_ids: dict[str, str] = db.get("answeredRiddleIds", {})
-        riddle_week_map: dict[str, int] = {
-            "hoot-dawn-breaker-week-1": week1,
-            "hoot-dawn-breaker-week-2": week2,
-            "hoot-dawn-breaker-week-3": week3,
-            "hoot-dawn-breaker-week-4": week4,
-            "hoot-dawn-breaker-week-5": week5,
-            "hoot-dawn-breaker-week-6": week6,
-            "hoot-dawn-breaker-week-7": week7,
-            "hoot-dawn-breaker-week-8": week8,
-        }
+        
+        we = state.get("witchesEve", {})
+        assert isinstance(we, dict)
+        maze = we.get("maze", {})
+        week1 = maze.get("1", {})
+        attempts = week1.get("attempts", [])
+        claimedFeathers = week1.get("claimedFeathers", 0)
+        # highestScore = week1.get("highestScore", 0)
+        weeklyLostCrowCount = we.get("weeklyLostCrowCount", 0)
 
         bumpkin: dict | float | None = state.get("bumpkin", None)
         taskcount = 0
@@ -1014,40 +999,6 @@ class HomeTab:
             + f"{num_chickens}x Chickens"
         )
 
-        # farm_info.write("\n")
-        # farm_info.success(f"\n 📊 **Total Nodes:**")
-        # farm_info.write(f"\n - 🌱 **Plots: {totals['crops']}** -
-        # ⚪ **Stone: {totals['stones']}**")
-        # farm_info.write(f"\n - 🌲 **Trees: {totals['trees']}** -
-        #   🟠 **Iron: {totals['iron']}**")
-        # farm_info.write(f"\n - 🍒 **Fruit: {totals['fruitPatches']}** ---
-        #   🟡 **Gold: {totals['gold']}**")
-
-        lantern_name: dict[int, str] = {
-            1: "Luminous",
-            2: "Radiance",
-            3: "Aurora",
-            4: "Radiance",
-            5: "Aurora",
-            6: "Luminous",
-            7: "Ocean",
-            8: "Solar",
-        }
-
-        riddle_reward: dict[int, str] = {
-            1: "---",
-            2: "50",
-            3: "75",
-            4: "50",
-            5: "50",
-            6: "50",
-            7: "50",
-            8: "100",
-        }
-
-        # dawn_breaker.write("\n")
-        # dawn_breaker.info(f" 👨‍🌾 **HaySeed Hank:**")
-
         # Define progress_count with default value of 0
         progress_count = 0
 
@@ -1056,92 +1007,85 @@ class HomeTab:
             progress_count: int | float = taskcount - count_chore
 
         if bumpkin:
-            df_weeks: list = []
-            for week in range(1, 9):
-                lanterns: int = laternsWeek.get(str(week), 0)
-                if week == 1:
-                    riddle = "-----"
-                else:
-                    riddle: str = (
-                        "Yes ✅"
-                        if f"hoot-dawn-breaker-week-{week}"
-                        in answered_riddle_ids
-                        else "No ❌"
-                    )
-                lantern_name_value: str = lantern_name.get(week, "")
-                if lanterns > 0:
-                    lanterns_info: str = f"{lanterns} {lantern_name_value}"
-                else:
-                    lanterns_info = ""
-                df_weeks.append(
-                    {
-                        "Week": week,
-                        "Lanterns Crafted": lanterns_info,
-                        "Riddle Solved": riddle,
-                        "Reward 🎟️": riddle_reward.get(week, ""),
-                    }
-                )
+            # df_weeks: list = []
+            # for week in range(1, 9):
+            #     lanterns: int = laternsWeek.get(str(week), 0)
+            #     if week == 1:
+            #         riddle = "-----"
+            #     else:
+            #         riddle: str = (
+            #             "Yes ✅"
+            #             if f"hoot-dawn-breaker-week-{week}"
+            #             in answered_riddle_ids
+            #             else "No ❌"
+            #         )
+            #     lantern_name_value: str = lantern_name.get(week, "")
+            #     if lanterns > 0:
+            #         lanterns_info: str = f"{lanterns} {lantern_name_value}"
+            #     else:
+            #         lanterns_info = ""
+            #     df_weeks.append(
+            #         {
+            #             "Week": week,
+            #             "Lanterns Crafted": lanterns_info,
+            #             "Riddle Solved": riddle,
+            #             "Reward 🎟️": riddle_reward.get(week, ""),
+            #         }
+            #     )
 
-            dfweek = pd.DataFrame(df_weeks)
-            dfweek: DataFrame = dfweek[
-                dfweek["Lanterns Crafted"] != ""
-            ]  # Drop rows with empty "Lanterns Crafted" column
-            dfweek.set_index("Week", inplace=True)
-            self.ft_cons["dawn_breaker"].write(dfweek)
-            if skip_chores is None:
-                skip_chores = 0
-            if completed_chore is None:
-                completed_chore = 0
+            # dfweek = pd.DataFrame(df_weeks)
+            # dfweek: DataFrame = dfweek[
+            #     dfweek["Lanterns Crafted"] != ""
+            # ]  # Drop rows with empty "Lanterns Crafted" column
+            # dfweek.set_index("Week", inplace=True)
+            # self.ft_cons["dawn_breaker"].write(dfweek)
 
-            if completed_chore < (125 - skip_chores):
-                next_loop: int | None = 125 - completed_chore - skip_chores
-            elif completed_chore < (183 - skip_chores):
-                next_loop = 183 - completed_chore - skip_chores
-            elif completed_chore < (241 - skip_chores):
-                next_loop = 241 - completed_chore - skip_chores
-            elif completed_chore < (299 - skip_chores):
-                next_loop = 299 - completed_chore - skip_chores
-            elif completed_chore < (357 - skip_chores):
-                next_loop = 357 - completed_chore - skip_chores
-            elif completed_chore < (415 - skip_chores):
-                next_loop = 415 - completed_chore - skip_chores
-            elif completed_chore < (473 - skip_chores):
-                next_loop = 473 - completed_chore - skip_chores
-            else:
-                next_loop = None
+            # Get the last week number from the "maze" dictionary
+            last_week_num = max(map(int, we["maze"].keys()))
+            
+            # Extract the attempts list for the last week
+            attempts_list = we["maze"][str(last_week_num)]["attempts"]
 
-            # first_traveller = 1689170400
-            # respawn_interval: timedelta = timedelta(hours=24)
-            # current_time2: float = datetime.now().timestamp()
-            # traveller_event: float = (
-            #     current_time2 - first_traveller
-            # ) / respawn_interval.total_seconds()
-            # traveller_day: int = int(traveller_event + 1)
+            # Calculate the total number of attempts
+            total_attempts = len(attempts_list)
+            
+            # Find the best run based on highest crows found, lowest time, and highest health
+            best_run = max(attempts_list, key=lambda attempt: (attempt["crowsFound"], -attempt["time"], attempt["health"]))
+            
+            highestScore = best_run["crowsFound"]
+            highestTime = 180 - best_run["time"] 
+            highestLife = "❤️❤️❤️" if best_run["health"] == 3 else "🖤❤️❤️" if best_run["health"] == 2 else "🖤🖤❤️" if best_run["health"] == 1 else "🖤🖤🖤"
 
-            self.ft_cons["wanderleaf"].info(f" 📆 Days of the Event: **15**")
-            self.ft_cons["wanderleaf"].success(
-                f" 🎟️ Claimed Tickets: **{traveller_count}/15**"
-            )
+            # Limit the number of attempts to show to 5 (or less if there are fewer attempts)
+            attempts_list = attempts_list[-5:]           
+          
+            # Create a dictionary to store the extracted data
+            dataMaze = {
+                "Last 5 Runs": [attempt_num + 1 for attempt_num in range(len(attempts_list))],
+                "Health": ["❤️❤️❤️" if attempt["health"] == 3 else "🖤❤️❤️" if attempt["health"] == 2 else "🖤🖤❤️" if attempt["health"] == 1 else "🖤🖤🖤" for attempt in attempts_list],
+                "Crows": [f"{attempt['crowsFound']} 🐦" for attempt in attempts_list],
+                "Time Left": [f"⏳{180 - attempt['time']}secs" for attempt in attempts_list]  # Set the value of Time to 180 minus the original value
+            }
+                         
+            df_maze = pd.DataFrame(dataMaze)
+            df_maze.set_index("Last 5 Runs", inplace=True)
 
             self.ft_cons["dawn_breaker"].info(
-                f" 🗂️ Current Quest: **{description_chore}**"
+                f" 📊 Total Attempts:  **{total_attempts}**"
             )
-            self.ft_cons["dawn_breaker"].write(
-                f" - 🎟️ Tickets Reward: **{ticket_chore}**"
+                   
+            self.ft_cons["dawn_breaker"].write(df_maze)
+           
+            self.ft_cons["dawn_breaker"].info(
+                f" 🏆 Best Run:  **{highestScore}** 🐦 **|** {highestLife} **|** ⏳**{highestTime} Secs Left**"
             )
-            self.ft_cons["dawn_breaker"].write(
-                f" - ⏳ Progress: **{progress_count} of {requirement_chore}**"
+            self.ft_cons["dawn_breaker"].success(
+                f" 🎟️ Weekly Feathers Maze Claim: **{claimedFeathers}**"
             )
-            self.ft_cons["dawn_breaker"].write("\n")
-            if next_loop is not None:
-                self.ft_cons["dawn_breaker"].success(
-                    f"\n 📊 **Total Quest Completed: {completed_chore}** "
-                    + f"(Next Loop in: **{next_loop})**"
-                )
-            else:
-                self.ft_cons["dawn_breaker"].success(
-                    f"\n 📊 **Total Quest Completed: {completed_chore}**"
-                )
+            # self.ft_cons["dawn_breaker"].write(
+            #     f" - ⏳ Progress: **{progress_count} of {requirement_chore}**"
+            # )
+
         else:
             self.ft_cons["dawn_breaker"].error(
                 f" **There aren't Bumpkins in this Farm.**"
@@ -2221,7 +2165,7 @@ class HomeTab:
                 "🤑 **SPENT CHECKER**", expanded=True
             )
             containers["dawn_breaker"] = st.expander(
-                "🌄 **Dawn Breaker**", expanded=False
+                "🧙 **WITCHES' EVE MAZE**", expanded=True
             )
         with middle_col:
             containers["farm_info"] = st.expander(
