@@ -512,7 +512,7 @@ class HomeTab:
 
         balance: dict | float | str = state.get("balance", 0.0)
         prevbalance: dict | float | str = state.get("previousBalance", 0.0)
-        assert isinstance(balance, str)# and isinstance(prevbalance, str)
+        assert isinstance(balance, str) and isinstance(prevbalance, str)
         balance_float = float(balance)
         prevbalance_float = float(prevbalance)
         daily_limit: float = balance_float - prevbalance_float
