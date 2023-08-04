@@ -521,10 +521,9 @@ class HomeTab:
         buildings_dict: dict | float | None = state.get("buildings")
         assert isinstance(buildings_dict, dict)
 
-        
         db = state.get("dawnBreaker", {})
         assert isinstance(db, dict)
-        
+
         we = state.get("witchesEve", {})
         assert isinstance(we, dict)
         maze = we.get("maze", {})
@@ -568,6 +567,38 @@ class HomeTab:
             ticket_chore: int = item_chore.get("Dawn Breaker Ticket", 0)
             taskcount: int | float = activities.get(activitytask, 0)
 
+            chores: dict | float | None = state.get("chores", None)
+            if chores is not None:
+                assert isinstance(chores, dict)
+                chores_completed: int = chores.get("choresCompleted", 0)
+                chores_skipped: int = chores.get("choresSkipped", 0)
+                self.ft_cons["chores"].info(f"Chores skipped: {chores_skipped}")
+                self.ft_cons["chores"].success(
+                    f"Chores completed: {chores_completed}"
+                )
+
+                chore_data: dict = {
+                    "Index": [x for x in range(len(chores["chores"]))],
+                    "Task": [
+                        task["description"]
+                        for task in chores["chores"].values()
+                    ],
+                    "Progress": [
+                        ("✅ " if "completedAt" in task else "❌ ")
+                        + f"{activities[task['activity']] - task['startCount']}"
+                        + f" / {task['requirement']}"
+                        for task in chores["chores"].values()
+                    ],
+                    "Reward": [
+                        f"{task['tickets']} 🎟️"
+                        for task in chores["chores"].values()
+                    ],
+                }
+                df_chores = pd.DataFrame(chore_data)
+                df_chores["Task"] = df_chores["Task"].str.wrap(25)
+                df_chores.set_index("Index", inplace=True)
+                self.ft_cons["chores"].dataframe(df_chores, hide_index=True)
+
         total_xp = 0
         xp = 0
         item_xp = defaultdict(float)
@@ -606,6 +637,7 @@ class HomeTab:
         )
         d: list[list[int | str | float]] = [list(x) for x in zip(*(temp))]
 
+        food_df = None
         if d:
             food_df = pd.DataFrame({"Quantity": d[0], "Food": d[1], "XP": d[2]})
 
@@ -1013,51 +1045,85 @@ class HomeTab:
             timestamp_of_interest = 1690848000
             current_timestamp = int(datetime.now().timestamp())
             difference_in_seconds = current_timestamp - timestamp_of_interest
-            
+
             # Calculate the number of weeks that have passed
-            weeks_passed = difference_in_seconds // (7 * 24 * 60 * 60) + 1  # Add 1 to start counting from 1
-            
+            # Add 1 to start counting from 1
+            weeks_passed = difference_in_seconds // (7 * 24 * 60 * 60) + 1
+
             # Extract the attempts list for the last week
             attempts_list = we["maze"][str(weeks_passed)]["attempts"]
 
             # Calculate the total number of attempts
             total_attempts = len(attempts_list)
-            
+
             if attempts_list:
-                # Find the best run based on highest crows found, lowest time, and highest health
-                best_run = max(attempts_list, key=lambda attempt: (attempt["crowsFound"], -attempt["time"], attempt["health"]))
-            
+                # Find the best run based on highest crows found, lowest time,
+                # and highest health
+                best_run = max(
+                    attempts_list,
+                    key=lambda attempt: (
+                        attempt["crowsFound"],
+                        -attempt["time"],
+                        attempt["health"],
+                    ),
+                )
+
                 highestScore = best_run["crowsFound"]
                 highestTime = 180 - best_run["time"]
-                highestLife = "❤️❤️❤️" if best_run["health"] == 3 else "🖤❤️❤️" if best_run["health"] == 2 else "🖤🖤❤️" if best_run["health"] == 1 else "🖤🖤🖤"
+                highestLife = (
+                    "❤️❤️❤️"
+                    if best_run["health"] == 3
+                    else "🖤❤️❤️"
+                    if best_run["health"] == 2
+                    else "🖤🖤❤️"
+                    if best_run["health"] == 1
+                    else "🖤🖤🖤"
+                )
             else:
                 # Set default values for the best run if there are no attempts
                 highestScore = 0
                 highestTime = 0
                 highestLife = "🖤🖤🖤"
 
-            # Limit the number of attempts to show to 5 (or less if there are fewer attempts)
-            attempts_list = attempts_list[-5:]           
-          
+            # Limit the number of attempts to show to 5
+            # (or less if there are fewer attempts)
+            attempts_list = attempts_list[-5:]
+
             # Create a dictionary to store the extracted data
             dataMaze = {
-                "Last 5 Runs": [attempt_num + 1 for attempt_num in range(len(attempts_list))],
-                "Health": ["❤️❤️❤️" if attempt["health"] == 3 else "🖤❤️❤️" if attempt["health"] == 2 else "🖤🖤❤️" if attempt["health"] == 1 else "🖤🖤🖤" for attempt in attempts_list],
-                "Crows": [f"{attempt['crowsFound']} 🐦" for attempt in attempts_list],
-                "Time Left": [f"⏳{180 - attempt['time']}secs" for attempt in attempts_list]  # Set the value of Time to 180 minus the original value
+                "Last 5 Runs": [
+                    attempt_num + 1 for attempt_num in range(len(attempts_list))
+                ],
+                "Health": [
+                    "❤️❤️❤️"
+                    if attempt["health"] == 3
+                    else "🖤❤️❤️"
+                    if attempt["health"] == 2
+                    else "🖤🖤❤️"
+                    if attempt["health"] == 1
+                    else "🖤🖤🖤"
+                    for attempt in attempts_list
+                ],
+                "Crows": [
+                    f"{attempt['crowsFound']} 🐦" for attempt in attempts_list
+                ],
+                "Time Left": [
+                    f"⏳{180 - attempt['time']}secs" for attempt in attempts_list
+                ],  # Set the value of Time to 180 minus the original value
             }
-                         
+
             df_maze = pd.DataFrame(dataMaze)
             df_maze.set_index("Last 5 Runs", inplace=True)
 
             self.ft_cons["dawn_breaker"].info(
                 f" 📊 Total Attempts:  **{total_attempts}**"
             )
-                   
+
             self.ft_cons["dawn_breaker"].write(df_maze)
-           
+
             self.ft_cons["dawn_breaker"].info(
-                f" 🏆 Best Run:  **{highestScore}** 🐦 **|** {highestLife} **|** ⏳**{highestTime} Secs Left**"
+                f" 🏆 Best Run:  **{highestScore}** 🐦 **|** "
+                + f"{highestLife} **|** ⏳**{highestTime} Secs Left**"
             )
             self.ft_cons["dawn_breaker"].success(
                 f" 🎟️ Weekly Feathers Maze Claim: **{claimedFeathers}**"
@@ -1536,7 +1602,7 @@ class HomeTab:
             self.bt_cons["bump_general"].success(
                 f" 📊 New Total XP: **{new_total_xp:.1f}**"
             )
-            if d:
+            if d and food_df is not None:
                 self.bt_cons["food_list"].dataframe(food_df, hide_index=True)
 
             self.bt_cons["bump_wearables"].write(filtered_df)
@@ -2157,8 +2223,8 @@ class HomeTab:
                 "\U0001f352 **FRUIT HARVEST LEFT**", expanded=True
             )
         with right_col:
-            containers["wanderleaf"] = st.expander(
-                "🧙 **WANDERLEAF**", expanded=True
+            containers["chores"] = st.expander(
+                "🧙 **WITCHES' EVE CHORES**", expanded=True
             )
             containers["farm_ti"] = st.expander(
                 "☠️ **TREASURE ISLAND**", expanded=True
