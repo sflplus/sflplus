@@ -572,9 +572,11 @@ class HomeTab:
                 assert isinstance(chores, dict)
                 chores_completed: int = chores.get("choresCompleted", 0)
                 chores_skipped: int = chores.get("choresSkipped", 0)
-                self.ft_cons["chores"].info(f"Chores skipped: {chores_skipped}")
+                self.ft_cons["chores"].info(
+                f"⏩ **Chores skipped: {chores_skipped}**"
+                )
                 self.ft_cons["chores"].success(
-                    f"Chores completed: {chores_completed}"
+                    f"📊 **Chores completed: {chores_completed}**"
                 )
 
                 chore_data: dict = {
