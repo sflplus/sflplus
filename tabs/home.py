@@ -511,11 +511,11 @@ class HomeTab:
         withdraw_usd_str: str = "{:.2f}".format(round(withdraw_usd, 2))
 
         balance: dict | float | str = state.get("balance", 0.0)
-        #prevbalance: dict | float | str = state.get("previousBalance", 0.0)
+        prevbalance: dict | float | str = state.get("previousBalance", 0.0)
         assert isinstance(balance, str)# and isinstance(prevbalance, str)
         balance_float = float(balance)
-        #prevbalance_float = float(prevbalance)
-        #daily_limit: float = balance_float - prevbalance_float
+        prevbalance_float = float(prevbalance)
+        daily_limit: float = balance_float - prevbalance_float
         inventory_dict: dict | float | None = state.get("inventory")
         assert isinstance(inventory_dict, dict)
         buildings_dict: dict | float | None = state.get("buildings")
@@ -840,74 +840,74 @@ class HomeTab:
             f"\n💱 Withdraw in Dolars: **${withdraw_usd_str}**"
         )
 
-        # self.ft_cons["hoarder"].info(
-        #     "\n \U0001F4B0  **SFL Hoarder Limit: [{:.2f} / 255]**".format(
-        #         daily_limit
-        #     )
-        # )
+        self.ft_cons["hoarder"].info(
+            "\n \U0001F4B0  **SFL Hoarder Limit: [{:.2f} / 255]**".format(
+                daily_limit
+            )
+        )
         # hoarder.warning("\n **Have in mind that apart of the SFL Hoarder
         # Limit, there is also the SFL Daily Limit of 250, that is not going
         # to let you sync again if you go over it, this daily limit restarts
         # everyday at 00:00 UTC.**")
         spend_info_written = False
 
-        # for item in self.main.inventory_items:
-        #     inv: dict[str, str] | float = state.get("inventory", {})
-        #     old_inv: dict[str, str] | float = state.get("previousInventory", {})
-        #     assert isinstance(inv, dict)
-        #     assert isinstance(old_inv, dict)
-        #     new_item: str = inv.get(item, "0")
-        #     old_item: str = old_inv.get(item, "0")
-        #     if new_item is not None:
-        #         if old_inv is None:
-        #             diff = int(round(float(new_item)))
-        #         else:
-        #             diff: int = int(round(float(new_item))) - int(
-        #                 round(float(old_item))
-        #             )
-        #         if diff != 0:
-        #             limit: int = self.main.limits.get(item, 0)
-        #             if isinstance(diff, str) and diff.isnumeric():
-        #                 diff = int(diff)
-        #             if isinstance(limit, str) and limit.isnumeric():
-        #                 limit = int(limit)
-        #             if limit != 0:
-        #                 percentage: float = (diff / limit) * 100
-        #                 if percentage < 0:
-        #                     percentage = 0
-        #                 percentage_float = float(percentage)
-        #                 percentage_number: str = "{:.0f}".format(
-        #                     percentage_float
-        #                 )
-        #                 percentage_final: float = float(percentage_number) / 100
+        for item in self.main.inventory_items:
+            inv: dict[str, str] | float = state.get("inventory", {})
+            old_inv: dict[str, str] | float = state.get("previousInventory", {})
+            assert isinstance(inv, dict)
+            assert isinstance(old_inv, dict)
+            new_item: str = inv.get(item, "0")
+            old_item: str = old_inv.get(item, "0")
+            if new_item is not None:
+                if old_inv is None:
+                    diff = int(round(float(new_item)))
+                else:
+                    diff: int = int(round(float(new_item))) - int(
+                        round(float(old_item))
+                    )
+                if diff != 0:
+                    limit: int = self.main.limits.get(item, 0)
+                    if isinstance(diff, str) and diff.isnumeric():
+                        diff = int(diff)
+                    if isinstance(limit, str) and limit.isnumeric():
+                        limit = int(limit)
+                    if limit != 0:
+                        percentage: float = (diff / limit) * 100
+                        if percentage < 0:
+                            percentage = 0
+                        percentage_float = float(percentage)
+                        percentage_number: str = "{:.0f}".format(
+                            percentage_float
+                        )
+                        percentage_final: float = float(percentage_number) / 100
 
-        #                 if percentage > 0:
-        #                     self.ft_cons["hoarder"].write(
-        #                         f" -{self.main.emojis.get(item)} "
-        #                         + f"{item.capitalize()}: [{diff} / "
-        #                         + f"{self.main.limits.get(item)}] = "
-        #                         + f"**{percentage_number}%**"
-        #                     )
-        #                     if percentage_final > 1:
-        #                         percentage_final = 1.0
-        #                     self.ft_cons["hoarder"].progress(
-        #                         percentage_final, text=None
-        #                     )
-        #                 else:
-        #                     if not spend_info_written:
-        #                         self.ft_cons["spend"].info(
-        #                             "\n ⚠️ **Negative values means that you "
-        #                             + "spent more of that resource of what you "
-        #                             + "gather/harvest since your last SYNC.**"
-        #                         )
-        #                         spend_info_written = True
-        #                     self.ft_cons["spend"].write(
-        #                         f" -{self.main.emojis.get(item)} "
-        #                         + f"{item.capitalize()}: [{diff} / "
-        #                         + f"{self.main.limits.get(item)}]"
-        #                     )
-        #             else:
-        #                 continue
+                        if percentage > 0:
+                            self.ft_cons["hoarder"].write(
+                                f" -{self.main.emojis.get(item)} "
+                                + f"{item.capitalize()}: [{diff} / "
+                                + f"{self.main.limits.get(item)}] = "
+                                + f"**{percentage_number}%**"
+                            )
+                            if percentage_final > 1:
+                                percentage_final = 1.0
+                            self.ft_cons["hoarder"].progress(
+                                percentage_final, text=None
+                            )
+                        else:
+                            if not spend_info_written:
+                                self.ft_cons["spend"].info(
+                                    "\n ⚠️ **Negative values means that you "
+                                    + "spent more of that resource of what you "
+                                    + "gather/harvest since your last SYNC.**"
+                                )
+                                spend_info_written = True
+                            self.ft_cons["spend"].write(
+                                f" -{self.main.emojis.get(item)} "
+                                + f"{item.capitalize()}: [{diff} / "
+                                + f"{self.main.limits.get(item)}]"
+                            )
+                    else:
+                        continue
 
         total_mutant: int = sum(mutant_quantity.values())
         if total_mutant == 0:
@@ -2134,14 +2134,11 @@ class HomeTab:
         left_col, middle_col, right_col = tab.columns([3, 3, 3], gap="medium")
         containers: dict[str, DeltaGenerator] = {}
         with left_col:
-            # containers["hoarder"] = st.expander(
-            #     "\U0001F69C **HOARDER LIMITS**", expanded=True
-            # )
-            # containers["spend"] = st.expander(
-            #     "🤑 **SPENT CHECKER**", expanded=True
-            # )
-            containers["farm_delivery"] = st.expander(
-                "🚚 **DELIVERIES**", expanded=True
+            containers["hoarder"] = st.expander(
+                "\U0001F69C **HOARDER LIMITS**", expanded=True
+            )
+            containers["spend"] = st.expander(
+                "🤑 **SPENT CHECKER**", expanded=True
             )
             containers["dawn_breaker"] = st.expander(
                 "🧙 **WITCHES' EVE MAZE**", expanded=True
@@ -2149,6 +2146,9 @@ class HomeTab:
         with middle_col:
             containers["farm_info"] = st.expander(
                 "🏝️ **FARM RESOURCES**", expanded=True
+            )
+            containers["farm_delivery"] = st.expander(
+                "🚚 **DELIVERIES**", expanded=True
             )
             containers["c_mutant"] = st.expander(
                 "\U0001F414 **MUTANT CHICKENS DROP**", expanded=True
