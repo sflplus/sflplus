@@ -584,16 +584,13 @@ class HomeTab:
                         for task in chores["chores"].values()
                     ],
                     "Progress": [
-                        f"{activities[task['activity']] - task['startCount']} "
-                        + f"/ {task['requirement']}"
+                        ("✅ " if "completedAt" in task else "❌ ")
+                        + f"{activities[task['activity']] - task['startCount']}"
+                        + f" / {task['requirement']}"
                         for task in chores["chores"].values()
                     ],
                     "Reward": [
-                        f"{task['tickets']}"
-                        for task in chores["chores"].values()
-                    ],
-                    "Completed": [
-                        "✅" if "completedAt" in task else "❌"
+                        f"{task['tickets']} 🎟️"
                         for task in chores["chores"].values()
                     ],
                 }
