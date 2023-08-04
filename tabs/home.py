@@ -1009,18 +1009,16 @@ class HomeTab:
             progress_count: int | float = taskcount - count_chore
 
         if bumpkin:
-            # Get the week numbers from the "maze" dictionary
-            week_numbers = list(map(int, we["maze"].keys()))
+            # Start of the Season August 1st
+            timestamp_of_interest = 1690848000
+            current_timestamp = int(datetime.now().timestamp())
+            difference_in_seconds = current_timestamp - timestamp_of_interest
             
-            # Check if 11 is the maximum week number and find the second maximum week number
-            if 11 in week_numbers:
-                week_numbers.remove(11)  # Remove 11 from the list if present
-                last_week_num = max(week_numbers)  # Find the maximum week number
-            else:
-                last_week_num = max(week_numbers)  # Use the maximum week number directly
+            # Calculate the number of weeks that have passed
+            weeks_passed = difference_in_seconds // (7 * 24 * 60 * 60) + 1  # Add 1 to start counting from 1
             
             # Extract the attempts list for the last week
-            attempts_list = we["maze"][str(last_week_num)]["attempts"]
+            attempts_list = we["maze"][str(weeks_passed)]["attempts"]
 
             # Calculate the total number of attempts
             total_attempts = len(attempts_list)
