@@ -587,7 +587,7 @@ class HomeTab:
                     ],
                     "Progress": [
                         ("✅ " if "completedAt" in task else "❌ ")
-                        + f"{activities[task['activity']] - task['startCount']}"
+                        + f"{activities.get(task['activity'], 0) - task['startCount']}"
                         + f" / {task['requirement']}"
                         for task in chores["chores"].values()
                     ],
