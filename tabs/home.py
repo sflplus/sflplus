@@ -309,7 +309,6 @@ class HomeTab:
             "Beetroot Cake",
             "Cauliflower Cake",
             "Parsnip Cake",
-            "Eggplant Cake",
             "Radish Cake",
             "Wheat Cake",
             "Apple Pie",
