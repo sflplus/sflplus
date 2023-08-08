@@ -1136,7 +1136,7 @@ class HomeTab:
                 + f"{highestLife} **|** ⏳**{highestTime} Secs Left**"
             )
             self.ft_cons["dawn_breaker"].success(
-                f" 🎟️ Weekly Feathers Maze Claim: **{}**"
+                f" 🎟️ Weekly Feathers Maze Claim: **{claimedFeathers}**"
             )
         else:
             self.ft_cons["dawn_breaker"].error(
