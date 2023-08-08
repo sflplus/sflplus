@@ -535,11 +535,6 @@ class HomeTab:
         we = state.get("witchesEve", {})
         assert isinstance(we, dict)
         maze = we.get("maze", {})
-        week1 = maze.get("1", {})
-        attempts = week1.get("attempts", [])
-        claimedFeathers = week1.get("claimedFeathers", 0)
-        # highestScore = week1.get("highestScore", 0)
-        weeklyLostCrowCount = we.get("weeklyLostCrowCount", 0)
 
         bumpkin: dict | float | None = state.get("bumpkin", None)
         taskcount = 0
@@ -1060,8 +1055,13 @@ class HomeTab:
             # Add 1 to start counting from 1
             weeks_passed = difference_in_seconds // (7 * 24 * 60 * 60) + 1
 
-            # Extract the attempts list for the last week
-            attempts_list = we["maze"][str(weeks_passed)]["attempts"]
+            try:
+                # Extract the attempts list for the last week
+                attempts_list = we["maze"][str(weeks_passed)]["attempts"]
+                claimedFeathers = we["maze"][str(weeks_passed)]["claimedFeathers"]
+            except KeyError:
+                claimedFeathers = 0
+                attempts_list = []  # Empty list or another default value
 
             # Calculate the total number of attempts
             total_attempts = len(attempts_list)
@@ -1136,7 +1136,7 @@ class HomeTab:
                 + f"{highestLife} **|** ⏳**{highestTime} Secs Left**"
             )
             self.ft_cons["dawn_breaker"].success(
-                f" 🎟️ Weekly Feathers Maze Claim: **{claimedFeathers}**"
+                f" 🎟️ Weekly Feathers Maze Claim: **{}**"
             )
         else:
             self.ft_cons["dawn_breaker"].error(
