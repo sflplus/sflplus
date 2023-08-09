@@ -246,7 +246,82 @@
     },
     "50": {
         "Level": 50,
-        "XP_next": null,
+        "XP_next": 130000,
         "Total XP": 1280500
+    },
+    "51": {
+        "Level": 51,
+        "XP_next": 142000,
+        "Total XP": 1410500
+    },
+    "52": {
+        "Level": 52,
+        "XP_next": 148000,
+        "Total XP": 1552500
+    },
+    "53": {
+        "Level": 53,
+        "XP_next": 155000,
+        "Total XP": 1700500
+    },
+    "54": {
+        "Level": 54,
+        "XP_next": 170000,
+        "Total XP": 1855500
+    },
+    "55": {
+        "Level": 55,
+        "XP_next": 185000,
+        "Total XP": 2025500
+    },
+    "56": {
+        "Level": 56,
+        "XP_next": 205000,
+        "Total XP": 2210500
+    },
+    "57": {
+        "Level": 57,
+        "XP_next": 225000,
+        "Total XP": 2415500
+    },
+    "58": {
+        "Level": 58,
+        "XP_next": 240000,
+        "Total XP": 2640500
+    },
+    "59": {
+        "Level": 59,
+        "XP_next": 260000,
+        "Total XP": 2880500
+    },
+    "60": {
+        "Level": 60,
+        "XP_next": 275000,
+        "Total XP": 3140500
+    },
+    "61": {
+        "Level": 61,
+        "XP_next": 290000,
+        "Total XP": 3415500
+    },
+    "62": {
+        "Level": 62,
+        "XP_next": 310000,
+        "Total XP": 3705500
+    },
+    "63": {
+        "Level": 63,
+        "XP_next": 325000,
+        "Total XP": 4015500
+    },
+    "64": {
+        "Level": 64,
+        "XP_next": 340000,
+        "Total XP": 4340500
+    },
+    "65": {
+        "Level": 65,
+        "XP_next": null,
+        "Total XP": 4680500
     }
 }
