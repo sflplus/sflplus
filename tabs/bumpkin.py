@@ -155,7 +155,7 @@ class BumpkinTab:
                     nextlvl_xp2 = "N/A"
                     extra_xp2 = "N/A"
 
-            level_price2 = (bump_xp2 / 500) * self.main.sfl_price
+            level_price2 = (bump_xp2 / 750) * self.main.sfl_price
             # Check if the values are floats before rounding
 
             filtered_df2 = wearable_list(
@@ -176,7 +176,7 @@ class BumpkinTab:
 
             bump_worth_how2.info(
                 "The value of **Levels Price** are calculated "
-                + "using **500 XP = 1 SFL**, considering "
+                + "using **750 XP = 1 SFL**, considering "
                 + "this kinda as average value cost of the "
                 + "most used meals XP and lowered a little "
                 + 'bit to also **"value the time"**.'
