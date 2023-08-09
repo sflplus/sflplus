@@ -81,4 +81,22 @@
         "Iron": 10,
         "Gold": 25
     }
+    "expansion_21": {
+        "Wood": 1500,
+        "Stone": 100,
+        "Iron": 20,
+        "Gold": 25
+    }
+    "expansion_22": {
+        "Wood": 1500,
+        "Stone": 100,
+        "Iron": 20,
+        "Gold": 25
+    }
+    "expansion_23": {
+        "Wood": 1500,
+        "Stone": 100,
+        "Iron": 20,
+        "Gold": 25
+    }
 }
