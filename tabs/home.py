@@ -1511,7 +1511,7 @@ class HomeTab:
                     new_xp_needed = "N/A"
                     new_nextlvl_xp = "N/A"
                     new_extra_xp = "N/A"
-            level_price = (bump_xp / 500) * self.main.sfl_price
+            level_price = (bump_xp / 750) * self.main.sfl_price
             # Check if the values are floats before rounding
             if isinstance(new_xp_needed, float):
                 new_xp_needed = round(new_xp_needed, 1)
@@ -1554,7 +1554,7 @@ class HomeTab:
             )
             self.bt_cons["bump_worth_how"].info(
                 f"The value of **Levels Price** are calculated using "
-                + "**500 XP = 1 SFL**, considering this kinda as average "
+                + "**750 XP = 1 SFL**, considering this kinda as average "
                 + "value cost of the most used meals XP and lowered a little "
                 + "bit to also **'value the time'**."
             )
