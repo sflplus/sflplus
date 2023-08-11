@@ -338,6 +338,7 @@ async def main() -> None:
 
         # Convert Total Ticket column to numeric values
         df1["Bumpkin XP"] = pd.to_numeric(df1["Bumpkin XP"])
+
         # df2["Week 8"] = pd.to_numeric(df2["Week 8"])
         # df3["Bottles"] = pd.to_numeric(df3["Bottles"])
         # df3["Seaweed"] = pd.to_numeric(df3["Seaweed"])
@@ -399,9 +400,9 @@ async def main() -> None:
                 f"🕘Updated at: **{update} UTC**"
             )
 
-            # if buttonok2:
-            #     df1 = df1.loc[df1["Farm"].str.contains(text_search)]
-            #     main_app.rank_tab_cons["live_ranking"].write(df1)
+            if buttonok2:
+                df1 = df1.loc[df1["Farm"].str.contains(text_search)]
+                main_app.rank_tab_cons["live_xp"].write(df1)
             #     df2 = df2.loc[df2["Farm"].str.contains(text_search)]
             #     main_app.rank_tab_cons["live_lantern"].write(df2)
             #     main_app.rank_tab_cons["live_minted"].info(
@@ -412,8 +413,8 @@ async def main() -> None:
             #     )
             #     df3 = df3.loc[df3["Farm"].str.contains(text_search)]
             #     main_app.rank_tab_cons["live_treasure"].write(df3)
-            # else:
-            main_app.rank_tab_cons["live_xp"].write(df1)
+            else:
+                main_app.rank_tab_cons["live_xp"].write(df1)
             # main_app.rank_tab_cons["live_lantern"].write(df2)
             # main_app.rank_tab_cons["live_minted"].info(
             #     f"🕯️ **Farms with 1 Lantern each week: {count_farms2}**"
@@ -437,7 +438,7 @@ async def main() -> None:
             #     hide_index=False,
             #     disabled=True,
             # )
-        pass
+            pass
     except Exception as e:
         main_app.rank_tab_cons["live_update"].error(
             f"The ranking is currently not working, it will be fixed soon™, "
