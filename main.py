@@ -1,251 +1,477 @@
-import streamlit as st
-from streamlit.delta_generator import DeltaGenerator
-from typing import Any, TYPE_CHECKING
-from datetime import timedelta, datetime
+from typing import TYPE_CHECKING, Any
+import json
+from PIL import Image
 import pandas as pd
 from pandas import DataFrame
+import asyncio
+import aiohttp
+from datetime import datetime
 
-from functions import fetch_owner_count
+import streamlit as st
+from streamlit.delta_generator import DeltaGenerator
 
-if TYPE_CHECKING:
-    from main import Main
+from priceapi import PriceAPI
+from tabs.home import HomeTab
+from tabs.top import TopTab
+from tabs.bumpkin import BumpkinTab
+from tabs.ranking import RankingTab
+
+# if TYPE_CHECKING:
+#     from pandas import Series
+
+favicon: Any = Image.open("favicon.png")
+
+st.set_page_config(
+    page_title="SFL Plus",
+    page_icon=favicon,
+    layout="wide",
+    initial_sidebar_state="expanded",
+    menu_items={"Get Help": None, "Report a bug": None, "About": None},
+)
+
+# st.write(
+#     '<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/
+# bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1a
+# oWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+# crossorigin="anonymous">',
+#     unsafe_allow_html=True,
+# )
 
 
-class RankingTab:
-    def __init__(self, main, tab: DeltaGenerator) -> None:
-        self.main: Main = main
-        tab.markdown("##### 🔻 SEARCH FARM ID 🔻")
+def local_css(file_name) -> None:
+    with open(file_name, "r", encoding="utf-8") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
 
-        col_search: DeltaGenerator
-        col_ok: DeltaGenerator
-        buff: DeltaGenerator
-        col_search, col_ok, buff = tab.columns([2.5, 2, 6])
-        text_search: str = col_search.text_input(
-            "🔻 SEARCH FARM ID  🔻",
-            label_visibility="collapsed",
-            max_chars=6,
-            value=self.main.farm_id,
-        )
-        self.create_tab(tab)
 
-        buttonok2: bool = col_ok.button(
-            "OK", key="rank_ok_btn", on_click=self.load_tab
-        )
-        self.load_tab()
+class Main:
+    def __init__(self) -> None:
+        self.version = "v3.2"
+        self.priceAPI: PriceAPI = PriceAPI()
+        local_css("style.css")
 
-    def create_tab(self, tab: DeltaGenerator) -> None:
-        self.rt_cons: dict[str, DeltaGenerator] = {}
-        col_rank: DeltaGenerator
-        col_rank2: DeltaGenerator
-        col_rank3: DeltaGenerator
-        col_rank, col_rank2, col_rank3 = tab.columns([2.5, 2, 2])
-        self.rt_cons["live_update"] = col_rank.container()
-        self.rt_cons["live_xp"] = col_rank.expander(
-            "🥇 **BUMPKINS XP LEADERBOARD**", expanded=True
-        )
-        # self.rt_cons["live_point"] = col_rank.expander(
-        #     "🥇 **POINTS SYSTEM**", expanded=False
-        # )
-        # self.rt_cons["live_minted"] = col_rank.expander(
-        #     "⚡ **CURRENT MINTS**", expanded=True
-        # )
-        col_rank2.info(
-            f"❤️ **Shoutout to Victor Gianvechio for providing the data.** "
-        )
-        self.rt_cons["live_how"] = col_rank2.expander(
-            "📝 **HOW IT WORKS?**", expanded=True
-        )
-        # self.rt_cons["live_lantern"] = col_rank2.expander(
-        #     "🏮 **LANTERNS RANKING**", expanded=True
-        # )
-        # self.rt_cons["live_odds"] = col_rank2.expander(
-        #     "🎲 **ODDS OF DIGGING**", expanded=True
-        # )
-        self.rt_cons["live_mush"] = col_rank2.expander(
-            "🍄 **WILD MUSHROOM**", expanded=True
-        )
+        self.eth_price: float = self.priceAPI.retrieve_eth_price()
+        self.matic_price: float = self.priceAPI.retrieve_matic_price()
+        self.sfl_price: float = self.priceAPI.retrieve_sfl_price()
 
-        # self.rt_cons["live_ranking"] = col_rank3.expander(
-        #     "🎟️ **DAWN BREAKER TICKETS**", expanded=True
-        # )
-        # self.rt_cons["live_minted2"] = col_rank3.expander(
-        #     "🐢 **TURTLES REQUIREMENTS**", expanded=True
-        # )
-        # self.rt_cons["live_minted_error"] = col_rank3.container()
+        self.sfl_supply: int | None = self.priceAPI.get_token_supply()
 
-        # live_calculator = st.expander("🤖 **LANTERNS CALCULATOR**",
-        # expanded=True)
+        # self.API_KEY_DUNE = st.secrets["api_dune"]
 
-        # from_lanterns = live_calculator.number_input("🔺 From How Many
-        # Lanters?", min_value=0, max_value=999, step=1)
-        # to_lanterns = live_calculator.number_input("🔻To How Many?",
-        # min_value=0, max_value=999, step=1, value=5)
-        # check_banner = live_calculator.checkbox("You have the Dawn Breaker
-        # Banner?", value=True, on_change=None,label_visibility="visible")
-        # buttonok4 = live_calculator.button('OK', key="OK4")
-        # emojis_resources = emojis
-        # if buttonok4:
-        #     try:
-        #         lanterns_ing, lanterns_sfl = retrieve_lantern_ingredients()
+        # self.queries_owners: list[Any] = [100, None, None]
+        # self.queries: list[str] = ["2649121", "2649118", "2427499"]  #
+        # self.queries_name: list[str] = [
+        #     "Emerald Turtle",
+        #     "Tin Turtle",
+        #     "Purple Trail",
+        # ]  #
+        # self.queries_quantity: list[str] = [
+        #     "100 (SOLD OUT)",
+        #     "3000",
+        #     "10000",
+        # ]  #
+        # self.queries_emoji: list[str] = ["🐢", "🥫", "🐌"]  #
+        # queries_ticket = ["3200", "1200", "500"]
 
-        #         accumulated_lanterns_ing = {}
-        #         accumulated_lanterns_sfl = 0.0
+        app_state_temp: dict[
+            str, list[str]
+        ] = st.experimental_get_query_params()
+        # fetch the first item in each query string as we don't have multiple
+        # values for each query string key in this example
+        self.app_state: dict[str, str] = {
+            k: v[0] if isinstance(v, list) else v
+            for k, v in app_state_temp.items()
+        }
 
-        #         if lanterns_sfl is not None:
-        #             accumulated_lanterns_sfl = lanterns_sfl *
-        # (to_lanterns * (to_lanterns + 1) / 2)
+        with open("data/skill_descriptions.json", "r", encoding="utf-8") as f:
+            self.skills_description: dict[str, str] = json.load(f)
+        with open("data/xp_data.json", "r", encoding="utf-8") as f:
+            self.xp_dict: dict[int, dict[str, int | None]] = {
+                int(k): v for k, v in json.load(f).items()
+            }
+        with open("data/wearables_sfl.json", "r", encoding="utf-8") as f:
+            self.wearables_sfl: dict[str, int] = json.load(f)
+        with open("data/inventory_items.json", "r", encoding="utf-8") as f:
+            self.inventory_items: list[str] = json.load(f)
+        with open("data/emojis.json", "r", encoding="utf-8") as f:
+            self.emojis: dict[str, str] = json.load(f)
+        with open("data/limits.json", "r", encoding="utf-8") as f:
+            self.limits: dict[str, int] = json.load(f)
 
-        #         if from_lanterns > 0:
-        #             from_lanterns_ing = {}
-        #             from_lanterns_sfl = 0.0
+        self.fruits: list[str] = ["Apple", "Orange", "Blueberry"]
+        self.fruits_price: dict[str, float] = {
+            "Apple": 0.15625,
+            "Orange": 0.1125,
+            "Blueberry": 0.075,
+        }
+        self.fruit_emojis: dict[str, str] = {
+            "Apple": " 🍎 ",
+            "Orange": " 🍊 ",
+            "Blueberry": " 🍇 ",
+        }
 
-        #             if lanterns_sfl is not None:
-        #                 from_lanterns_sfl = lanterns_sfl *
-        # (from_lanterns * (from_lanterns + 1) / 2)
+        TopTab(self)
+        tab1: DeltaGenerator
+        tab2: DeltaGenerator
+        tab3: DeltaGenerator
+        tab1, tab2, tab3 = st.tabs(
+            ["💾HOME", "🏆RANKING", "👥BUMPKIN"]
+        )  # "📜NFT LIST", "👨‍🔬CALCULATOR", "💸TRADER"
 
-        #             for lantern_count in range(from_lanterns + 1):
-        #                 for ingredient, quantity in lanterns_ing.items():
-        #                     if ingredient not in from_lanterns_ing:
-        #                         from_lanterns_ing[ingredient] = 0
-        #                     from_lanterns_ing[ingredient] += int(quantity)
-        # * lantern_count
+        # Define default farm ID
 
-        #             accumulated_lanterns_ing = from_lanterns_ing
-        #             extra_lanterns_sfl = accumulated_lanterns_sfl -
-        # from_lanterns_sfl
-        #         else:
-        #             extra_lanterns_sfl = accumulated_lanterns_sfl
+        hometab = HomeTab(self, tab1)
+        self.farm_id: str = hometab.get_farm_id()
+        farm_tab_cons: dict[str, DeltaGenerator] = hometab.get_containers()
 
-        #         extra_lanterns_sfl_banner = extra_lanterns_sfl * 0.75
-        #         extra_lanterns_ing = {}
+        ranktab = RankingTab(self, tab2)
+        self.rank_tab_cons: dict[str, DeltaGenerator] = ranktab.get_containers()
+        bumpkintab = BumpkinTab(self, tab3)
 
-        #         for ingredient, quantity in lanterns_ing.items():
-        #             if ingredient == "Block Buck":
-        #                 extra_quantity = to_lanterns - from_lanterns
-        # # Fixed 1 per lantern
-        #             else:
-        #                 extra_quantity = int(quantity) * (to_lanterns
-        # * (to_lanterns + 1) / 2) - accumulated_lanterns_ing.get(ingredient, 0)
-        #             extra_lanterns_ing[ingredient] = extra_quantity
 
-        #         live_calculator.info(f"\n👨‍🏫 **Resources From
-        # {from_lanterns} to {to_lanterns} Lanterns:**")
-        #         #live_calculator.write(f"- 💰 SFL: **{lanterns_ing}**")
-        #         for ingredient, quantity in extra_lanterns_ing.items():
-        #             live_calculator.write(f" - {emojis.get(ingredient)}
-        # {ingredient}: **{quantity:.0f}**")
-        #         if lanterns_sfl is not None:
-        #             if check_banner:
-        #                 live_calculator.write(f"- 💰 SFL:
-        # **{extra_lanterns_sfl_banner:.2f}**")
-        #             else:
-        #                 live_calculator.write(f"- 💰 SFL:
-        # **{extra_lanterns_sfl:.2f}**")
-        #     except Exception as e:
-        #         live_calculator.error(f"Error: {str(e)}")
+url_rank1 = "http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking"
+# url_rank2 = 'http://168.138.141.170:8080/api/v1/DawnBreakerTicket/ranking'
 
-    def load_tab(self) -> None:
-        self.rt_cons["live_how"].info(
-            f"📌 This is using a **fixed list of 10K of farms**, originally used "
-            + "from the Dawn Breaker ranking, and then using the SFL API **every 6 hours** to "
-            + "refresh the info of the farms."
-        )
-        self.rt_cons["live_how"].success(
-            f"⚠️ **Note that if your farm isn't here you can ask in Discord "
-            + "to be manually added, but is only going to be update every couple "
-            + "of days.**"
-        )
 
-        # self.rt_cons["live_point"].info(
-        #     f"**The Point system is using Old Bottles as 1.2 , Seaweed as 0.4 "
-        #     + "and Iron Compass as 2, all of them are capped to only count "
-        #     + "until the quantity needed (50, 25 and 15) giving a score of "
-        #     + "100 points if you have enough to mint the Tin Turtle.**"
-        # )
+async def fetch(url, session: aiohttp.ClientSession) -> dict:
+    async with session.get(url, timeout=5) as response:
+        return await response.json()
 
-        first_respawn = 1682899200
-        respawn_interval = timedelta(hours=16)
-        current_time: float = datetime.now().timestamp()
 
-        respawns: float = (
-            current_time - first_respawn
-        ) // respawn_interval.total_seconds()
-        next_respawn: datetime = (
-            datetime.fromtimestamp(first_respawn)
-            + (respawns + 1) * respawn_interval
-        )
-
-        time_remaining: timedelta = next_respawn - datetime.fromtimestamp(
-            current_time
-        )
-        hours_remaining = int(time_remaining.total_seconds() // 3600)
-        minutes_remaining = int((time_remaining.total_seconds() % 3600) // 60)
-        # Calculate the time and date of the next 50th respawn
-        timestamp2 = 1685779200
-        dt2: datetime = datetime.fromtimestamp(timestamp2)
-
-        time_remaining2: timedelta = dt2 - datetime.fromtimestamp(current_time)
-        days_remaining2: int = time_remaining2.days
-        hours_remaining2: int = time_remaining2.seconds // 3600
-        minutes_remaining2: int = (time_remaining2.seconds % 3600) // 60
-
-        formatted_time_remaining: str = "{} Days {:02d}:{:02d} hours".format(
-            days_remaining2, hours_remaining2, minutes_remaining2
-        )
-
-        self.rt_cons["live_mush"].info(
-            "📊 **Total Respawns: {}**".format(int(respawns))
-        )
-        self.rt_cons["live_mush"].success(
-            "⏭️ **Next Respawn in: {:02d}:{:02d} hours**".format(
-                hours_remaining, minutes_remaining
-            )
-        )
-
-        # live_mush.warning("🚨 **50th Respawn in: {}**".
-        # format(formatted_time_remaining))
-        # live_mush.markdown("##### 🍄 **WILD MUSHROOM RANKING**")
-
-        # Iterate over the list of queries and retrieve the owner counts
-        def create_dataframe() -> DataFrame:
-            data: list = []
-            for i, query_id in enumerate(self.main.queries):
-                if self.main.queries_owners[i] is not None:
-                    owner_count = int(
-                        self.main.queries_owners[i]
-                    )  # Convert owner count to integer
-                else:
-                    owner_count: int | None = fetch_owner_count(
-                        query_id, self.main.API_KEY_DUNE
-                    )
-                query_name: str = self.main.queries_name[i]
-                query_emoji: str = self.main.queries_emoji[i]
-                query_quantity: str = self.main.queries_quantity[i]
-                # query_ticket = queries_ticket[i]
-                nft: str = f"{query_emoji} {query_name}"
-                data.append([nft, owner_count, query_quantity])  # query_ticket
-
-            # Create a dataframe from the data list
-            df_dune = pd.DataFrame(
-                data, columns=["NFT", "Owners", "Supply"]
-            )  # "Tickets"
-            return df_dune
-
-        # Create or fetch the cached dataframe
-        # @st.cache_data(ttl=30)
-        def get_cached_dataframe() -> DataFrame:
+async def main() -> None:
+    main_app = Main()
+    try:
+        async with aiohttp.ClientSession() as session:
             try:
-                return create_dataframe()
+                data1 = await fetch(url_rank1, session)
             except Exception as e:
-                st.error(f"Failed to fetch NFT mints. Error: {e}")
-                return pd.DataFrame()
+                main_app.rank_tab_cons["live_update"].error(
+                    "The ranking is currently not working, will be fixed soon™"
+                )
+                return
+            # data2 = await fetch(url_rank2, session)
 
-        # df_dune: DataFrame = get_cached_dataframe()
+        df1 = pd.DataFrame(
+            {
+                "Farm": [farm["FarmID"] for farm in data1["farms"]],
+                "Bumpkin XP": [
+                    farm["BumpkinXP"]
+                    if "BumpkinXP" in farm
+                    and farm["BumpkinXP"] != ""
+                    else None
+                    for farm in data1["farms"]
+                ],
+            }
+        )
 
-        # live_minted.info(f"👨‍🔬 **This info is from Dune**")
-        # Display the dataframe
-        # self.rt_cons["live_minted"].dataframe(df_dune, hide_index=True)
+        # df2 = pd.DataFrame(
+        #     {
+        #         "Farm": [farm["FarmID"] for farm in data1["farms"]],
+        #         "Week 10": [
+        #             farm["LanternsCraftedByWeek"]["10"]
+        #             if "LanternsCraftedByWeek" in farm
+        #             and "10" in farm["LanternsCraftedByWeek"]
+        #             else None
+        #             for farm in data1["farms"]
+        #         ],
+        #         "Week 9": [
+        #             farm["LanternsCraftedByWeek"]["9"]
+        #             if "LanternsCraftedByWeek" in farm
+        #             and "9" in farm["LanternsCraftedByWeek"]
+        #             else None
+        #             for farm in data1["farms"]
+        #         ],
+        #         "Week 8": [
+        #             farm["LanternsCraftedByWeek"]["8"]
+        #             if "LanternsCraftedByWeek" in farm
+        #             and "8" in farm["LanternsCraftedByWeek"]
+        #             else 0
+        #             for farm in data1["farms"]
+        #         ],
+        #         "Week 7": [
+        #             farm["LanternsCraftedByWeek"]["7"]
+        #             if "LanternsCraftedByWeek" in farm
+        #             and "7" in farm["LanternsCraftedByWeek"]
+        #             else 0
+        #             for farm in data1["farms"]
+        #         ],
+        #         "Week 6": [
+        #             farm["LanternsCraftedByWeek"]["6"]
+        #             if "LanternsCraftedByWeek" in farm
+        #             and "6" in farm["LanternsCraftedByWeek"]
+        #             else 0
+        #             for farm in data1["farms"]
+        #         ],
+        #         "Week 5": [
+        #             farm["LanternsCraftedByWeek"]["5"]
+        #             if "LanternsCraftedByWeek" in farm
+        #             and "5" in farm["LanternsCraftedByWeek"]
+        #             else 0
+        #             for farm in data1["farms"]
+        #         ],
+        #         "Week 4": [
+        #             farm["LanternsCraftedByWeek"]["4"]
+        #             if "LanternsCraftedByWeek" in farm
+        #             and "4" in farm["LanternsCraftedByWeek"]
+        #             else 0
+        #             for farm in data1["farms"]
+        #         ],
+        #         "Week 3": [
+        #             farm["LanternsCraftedByWeek"]["3"]
+        #             if "LanternsCraftedByWeek" in farm
+        #             and "3" in farm["LanternsCraftedByWeek"]
+        #             else 0
+        #             for farm in data1["farms"]
+        #         ],
+        #         "Week 2": [
+        #             farm["LanternsCraftedByWeek"]["2"]
+        #             if "LanternsCraftedByWeek" in farm
+        #             and "2" in farm["LanternsCraftedByWeek"]
+        #             else 0
+        #             for farm in data1["farms"]
+        #         ],
+        #         "Week 1": [
+        #             farm["LanternsCraftedByWeek"]["1"]
+        #             if "LanternsCraftedByWeek" in farm
+        #             and "1" in farm["LanternsCraftedByWeek"]
+        #             else 0
+        #             for farm in data1["farms"]
+        #         ],
+        #     }
+        # )
+
+        # df3 = pd.DataFrame(
+        #     {
+        #         "Farm": [farm["FarmID"] for farm in data1["farms"]],
+        #         "Bottles": [
+        #             farm["OldBottle"]
+        #             if "OldBottle" in farm and farm["OldBottle"] != ""
+        #             else 0
+        #             for farm in data1["farms"]
+        #         ],
+        #         "Seaweed": [
+        #             farm["Seaweed"]
+        #             if "Seaweed" in farm and farm["Seaweed"] != ""
+        #             else 0
+        #             for farm in data1["farms"]
+        #         ],
+        #         "Iron C.": [
+        #             farm["IronCompass"]
+        #             if "IronCompass" in farm and farm["IronCompass"] != ""
+        #             else 0
+        #             for farm in data1["farms"]
+        #         ]
+                # 'Davy Jones': ['YES' if int(farm.get('DavyJones', 0)) >= 1
+                # else 'NO' for farm in data1['farms']]
+        #     }
+        # )
+
+        # Remove rows with missing ticket counts
+        df1: DataFrame = df1.dropna(subset=["Bumpkin XP"])
+        # df3 = df3.dropna(subset=['Wild Mushroom'])
+
+        # # MAKE SURE TOP 10 SHOWS
+        # top_ten_ids = fetch_top_ten_ids()
+        # lanterns_data = retrieve_lanterns_data(top_ten_ids)
+        # #lanterns_data = {}
+        # existing_ids = df2['Farm'].tolist()
+        # new_ids = []
+
+        # for farm_id in lanterns_data.keys():
+        #     if farm_id not in existing_ids:
+        #         new_ids.append(farm_id)
+        #         lantern_data = lanterns_data[farm_id]
+        #         new_row = {
+        #             'Farm': farm_id,
+        #             'Week 8': lantern_data.get('8', 0),
+        #             'Week 7': lantern_data.get('7', 0),
+        #             'Week 6': lantern_data.get('6', 0),
+        #             'Week 5': lantern_data.get('5', 0),
+        #             'Week 4': lantern_data.get('4', 0),
+        #             'Week 3': lantern_data.get('3', 0),
+        #             'Week 2': lantern_data.get('2', 0),
+        #             'Week 1': lantern_data.get('1', 0)
+        #         }
+        #         df2 = pd.concat([df2, pd.DataFrame(new_row, index=[0])],
+        # ignore_index=True)
+        # Remove emphy columns
+        # df2: DataFrame = df2.dropna(axis=1, how="all")
+
+        # Count the number of farms that have crafted at least 5
+        # lanterns in all the weeks
+        # count_farms: int = (
+        #     (
+        #         df2[
+        #             [
+        #                 "Week 8",
+        #                 "Week 7",
+        #                 "Week 6",
+        #                 "Week 5",
+        #                 "Week 4",
+        #                 "Week 3",
+        #                 "Week 2",
+        #                 "Week 1",
+        #             ]
+        #         ]
+        #         >= 5
+        #     ).all(axis=1)
+        # ).sum()
+
+        # Count the number of farms that have crafted at least 5 lanterns
+        # in all the weeks
+        # count_farms2: int = (
+        #     (
+        #         df2[
+        #             [
+        #                 "Week 8",
+        #                 "Week 7",
+        #                 "Week 6",
+        #                 "Week 5",
+        #                 "Week 4",
+        #                 "Week 3",
+        #                 "Week 2",
+        #                 "Week 1",
+        #             ]
+        #         ]
+        #         >= 1
+        #     ).all(axis=1)
+        # ).sum()
+
+        # Convert Total Ticket column to numeric values
+        df1["Bumpkin XP"] = pd.to_numeric(df1["Bumpkin XP"])
+        df1['Bumpkin XP'] = df1['Bumpkin XP'].round(2)
+
+        
+        # Create a new column "Level" in the DataFrame
+        # df1["Level"] = None  # Initialize the "Level" column with None
+        
+        # Iterate through the DataFrame rows and determine the level based on "Bumpkin XP"
+        # for index, row in df1.iterrows():
+        #     bump_xp = row["Bumpkin XP"]
+        #     current_lvl = None
+            
+        #     for level, info in self.xp_dict.items():
+        #         if bump_xp >= info["Total XP"]:
+        #             current_lvl = level
+        
+        #     if current_lvl is None:
+        #         current_lvl = max(self.xp_dict.keys())
+            
+        #     df1.at[index, "Level"] = current_lvl
 
 
-    def get_containers(self) -> dict[str, DeltaGenerator]:
-        return self.rt_cons
+        
+        # df2["Week 8"] = pd.to_numeric(df2["Week 8"])
+        # df3["Bottles"] = pd.to_numeric(df3["Bottles"])
+        # df3["Seaweed"] = pd.to_numeric(df3["Seaweed"])
+        # df3["Iron C."] = pd.to_numeric(df3["Iron C."])
+
+        # df3["Points"] = (
+        #     df3["Bottles"].clip(upper=50) * 1.2
+        #     + df3["Seaweed"].clip(upper=25) * 0.4
+        #     + df3["Iron C."].clip(upper=15) * 2
+        # )
+
+        # Reorder the columns
+        # df3 = df3.reindex(columns=['Farm', 'Points', 'Old Bottle',
+        # 'Seaweed', 'Iron Compass'])
+        # Format the Points column
+        # df3["Points"] = df3["Points"].round(2)
+        # df3['Points'] = df3['Points'].apply(lambda x: f'{x:.2f}')
+
+        # Sort by Total Ticket in descending order
+        df1 = df1.sort_values(by="Bumpkin XP", ascending=False)
+        # df2 = df2.sort_values(by="Week 8", ascending=False)
+        # df3: DataFrame = df3.sort_values(by="Points", ascending=False)
+        # ['Bottles', 'Iron C.', 'Seaweed'],
+        # ascending=[False, False, False], kind='mergesort')
+
+        # df2 = df2.rename(columns={"Week 8": "Week 8 🔻"})
+        # df3= df3.rename(columns={"Points": "Points 🔻"})
+
+        # Reset index and set the "Ranking" column as the new index
+        df1 = df1.reset_index(drop=True)
+        # df2 = df2.reset_index(drop=True)
+        # df3 = df3.reset_index(drop=True)
+
+        df1.index = df1.index + 1
+        # df2.index = df2.index + 1
+        # df3.index = df3.index + 1
+
+        # Rename the index to "Ranking"
+        df1.index.name = "Rank"
+        # df2.index.name = "Rank"
+        # df3.index.name = "Rank"
+
+        # Convert index to integer values
+        df1.index = df1.index.astype(int)
+        # df2.index = df2.index.astype(int)
+        # df3.index = df3.index.astype(int)
+
+        if df1.empty:
+            main_app.rank_tab_cons["live_update"].error(
+                "The ranking is currently not working, it will be fixed soon™ "
+            )
+        else:
+            in_fmt = "%Y-%m-%dT%H:%M:%S.%fZ"
+            out_fmt = "%Y-%m-%d %H:%M"
+            update: str = datetime.strptime(
+                data1["updatedAt"], in_fmt
+            ).strftime(out_fmt)
+            main_app.rank_tab_cons["live_update"].success(
+                f"🕘Updated at: **{update} UTC**"
+            )
+
+            # if buttonok2:
+            #     df1 = df1.loc[df1["Farm"].str.contains(text_search)]
+            #     main_app.rank_tab_cons["live_ranking"].write(df1)
+            #     df2 = df2.loc[df2["Farm"].str.contains(text_search)]
+            #     main_app.rank_tab_cons["live_lantern"].write(df2)
+            #     main_app.rank_tab_cons["live_minted"].info(
+            #         f"🕯️ **Farms with 1 Lantern each week: {count_farms2}**"
+            #     )
+            #     main_app.rank_tab_cons["live_minted"].success(
+            #         f"🏮 **Farms with 5 Lanterns each week: {count_farms}**"
+            #     )
+            #     df3 = df3.loc[df3["Farm"].str.contains(text_search)]
+            #     main_app.rank_tab_cons["live_treasure"].write(df3)
+            # else:
+            main_app.rank_tab_cons["live_xp"].write(df1)
+            # main_app.rank_tab_cons["live_lantern"].write(df2)
+            # main_app.rank_tab_cons["live_minted"].info(
+            #     f"🕯️ **Farms with 1 Lantern each week: {count_farms2}**"
+            # )
+            # main_app.rank_tab_cons["live_minted"].success(
+            #     f"🏮 **Farms with 5 Lanterns each week: {count_farms}**"
+            # )
+            # main_app.rank_tab_cons["live_treasure"].data_editor(
+            #     df3,
+            #     column_config={
+            #         "Points": st.column_config.ProgressColumn(
+            #             "Points 🔻",
+            #             help="Click here to change the ranking based in "
+            #             + "Points",
+            #             # width="medium",
+            #             format="%.2f",
+            #             min_value=0,
+            #             max_value=100,
+            #         ),
+            #     },
+            #     hide_index=False,
+            #     disabled=True,
+            # )
+        pass
+    except Exception as e:
+        main_app.rank_tab_cons["live_update"].error(
+            f"The ranking is currently not working, it will be fixed soon™, "
+            + f"Error: {str(e)}"
+        )
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
+
+# with tab8:
+#     col_nft, buff11 = st.columns([2,2])
+#     with col_nft:
+#         st.error(f"The NFT List is momentarely disable,
+# it will be enable back soon™")
