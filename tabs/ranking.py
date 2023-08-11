@@ -38,41 +38,40 @@ class RankingTab:
         col_rank: DeltaGenerator
         col_rank2: DeltaGenerator
         col_rank3: DeltaGenerator
-        col_rank, col_rank2, col_rank3 = tab.columns([3, 3, 3])
+        col_rank, col_rank2, col_rank3 = tab.columns([2.5, 2, 2])
         self.rt_cons["live_how"] = col_rank.expander(
             "📝 **HOW IT WORKS?**", expanded=False
         )
-        self.rt_cons["live_treasure"] = col_rank.expander(
-            "🐢 **TURTLES RACE**", expanded=True
+        self.rt_cons["live_update"] = col_rank.container()
+        self.rt_cons["live_xp"] = col_rank.expander(
+            "🥇 **BUMPKINS XP LEADERBOARD**", expanded=True
         )
-        self.rt_cons["live_point"] = col_rank.expander(
-            "🥇 **POINTS SYSTEM**", expanded=False
+        # self.rt_cons["live_point"] = col_rank.expander(
+        #     "🥇 **POINTS SYSTEM**", expanded=False
+        # )
+        # self.rt_cons["live_minted"] = col_rank.expander(
+        #     "⚡ **CURRENT MINTS**", expanded=True
+        # )
+        col_rank2.info(
+            f"❤️ **Shoutout to Victor Gianvechio for providing the data.** "
         )
-        self.rt_cons["live_minted"] = col_rank.expander(
-            "⚡ **CURRENT MINTS**", expanded=True
-        )
-
-        self.rt_cons["live_update"] = col_rank2.container()
-        self.rt_cons["live_lantern"] = col_rank2.expander(
-            "🏮 **LANTERNS RANKING**", expanded=True
-        )
-        self.rt_cons["live_odds"] = col_rank2.expander(
-            "🎲 **ODDS OF DIGGING**", expanded=True
-        )
+        # self.rt_cons["live_lantern"] = col_rank2.expander(
+        #     "🏮 **LANTERNS RANKING**", expanded=True
+        # )
+        # self.rt_cons["live_odds"] = col_rank2.expander(
+        #     "🎲 **ODDS OF DIGGING**", expanded=True
+        # )
         self.rt_cons["live_mush"] = col_rank2.expander(
             "🍄 **WILD MUSHROOM**", expanded=True
         )
 
-        col_rank3.info(
-            f"❤️ **Shoutout to Victor Gianvechio for providing the data.** "
-        )
-        self.rt_cons["live_ranking"] = col_rank3.expander(
-            "🎟️ **DAWN BREAKER TICKETS**", expanded=True
-        )
-        self.rt_cons["live_minted2"] = col_rank3.expander(
-            "🐢 **TURTLES REQUIREMENTS**", expanded=True
-        )
-        self.rt_cons["live_minted_error"] = col_rank3.container()
+        # self.rt_cons["live_ranking"] = col_rank3.expander(
+        #     "🎟️ **DAWN BREAKER TICKETS**", expanded=True
+        # )
+        # self.rt_cons["live_minted2"] = col_rank3.expander(
+        #     "🐢 **TURTLES REQUIREMENTS**", expanded=True
+        # )
+        # self.rt_cons["live_minted_error"] = col_rank3.container()
 
         # live_calculator = st.expander("🤖 **LANTERNS CALCULATOR**",
         # expanded=True)
@@ -147,22 +146,22 @@ class RankingTab:
 
     def load_tab(self) -> None:
         self.rt_cons["live_how"].info(
-            f"📌 **This is using Dawn Breaker Tickets Dune query to get the "
-            + "TOP 10000 farms and then using the SFL API every 30~ min to "
+            f"📌 **This is using a fixed list of 10K of farms from the Dawn "
+            + "Breaker Dune Query and then using the SFL API every 6 hours to "
             + "refresh the info of the farms.**"
         )
         self.rt_cons["live_how"].info(
-            f"⚠️ **Note that if your farm isn't in the TOP 10000 of the Dawn "
-            + "Breaker Tickets Dune query, is not going to show up in this "
-            + "Live Rankings.**"
+            f"⚠️ **Note that if your farm isn't here you can ask in Discord "
+            + "to be manually added, but is only going to be update every couple "
+            + "of days.**"
         )
 
-        self.rt_cons["live_point"].info(
-            f"**The Point system is using Old Bottles as 1.2 , Seaweed as 0.4 "
-            + "and Iron Compass as 2, all of them are capped to only count "
-            + "until the quantity needed (50, 25 and 15) giving a score of "
-            + "100 points if you have enough to mint the Tin Turtle.**"
-        )
+        # self.rt_cons["live_point"].info(
+        #     f"**The Point system is using Old Bottles as 1.2 , Seaweed as 0.4 "
+        #     + "and Iron Compass as 2, all of them are capped to only count "
+        #     + "until the quantity needed (50, 25 and 15) giving a score of "
+        #     + "100 points if you have enough to mint the Tin Turtle.**"
+        # )
 
         first_respawn = 1682899200
         respawn_interval = timedelta(hours=16)
@@ -241,48 +240,48 @@ class RankingTab:
                 st.error(f"Failed to fetch NFT mints. Error: {e}")
                 return pd.DataFrame()
 
-        df_dune: DataFrame = get_cached_dataframe()
+        # df_dune: DataFrame = get_cached_dataframe()
 
         # live_minted.info(f"👨‍🔬 **This info is from Dune**")
         # Display the dataframe
-        self.rt_cons["live_minted"].dataframe(df_dune, hide_index=True)
+        # self.rt_cons["live_minted"].dataframe(df_dune, hide_index=True)
 
-        self.rt_cons["live_odds"].info(
-            f"📝 *Note: This data was calculated using the weight numbers in "
-            + f"the Treasure Island Docs 06/06/2023 and the 1 in X are "
-            + f"approximations.*"
-        )
-        self.rt_cons["live_odds"].write(
-            f"- 🍾 Old Bottle: **5.19%** (1 in 19 with Shovels)"
-        )
-        self.rt_cons["live_odds"].write(
-            f"- 🌿 Seaweed: **2.60%** (1 in 38 with Shovels)"
-        )
-        self.rt_cons["live_odds"].write(
-            f"- 🧭 Iron Compasss: **0.52%** (1 in 192 with Shovels)"
-        )
-        self.rt_cons["live_odds"].write(
-            f"- 🍾🌿 You **CAN'T** dig a Old Bottle/Seaweed with Drills"
-        )
-        self.rt_cons["live_odds"].write(
-            f"- 🧭 Iron Compasss: **9.50%** (1 in 10 with Drills)"
-        )
+        # self.rt_cons["live_odds"].info(
+        #     f"📝 *Note: This data was calculated using the weight numbers in "
+        #     + f"the Treasure Island Docs 06/06/2023 and the 1 in X are "
+        #     + f"approximations.*"
+        # )
+        # self.rt_cons["live_odds"].write(
+        #     f"- 🍾 Old Bottle: **5.19%** (1 in 19 with Shovels)"
+        # )
+        # self.rt_cons["live_odds"].write(
+        #     f"- 🌿 Seaweed: **2.60%** (1 in 38 with Shovels)"
+        # )
+        # self.rt_cons["live_odds"].write(
+        #     f"- 🧭 Iron Compasss: **0.52%** (1 in 192 with Shovels)"
+        # )
+        # self.rt_cons["live_odds"].write(
+        #     f"- 🍾🌿 You **CAN'T** dig a Old Bottle/Seaweed with Drills"
+        # )
+        # self.rt_cons["live_odds"].write(
+        #     f"- 🧭 Iron Compasss: **9.50%** (1 in 10 with Drills)"
+        # )
 
-        self.rt_cons["live_minted2"].info(f" 🐢 **Emerald Turtle: Supply 100**")
-        self.rt_cons["live_minted2"].write(
-            f"- 🍾 **80** Old Bottles - 🌿 **50** Seaweed"
-        )
-        self.rt_cons["live_minted2"].write(
-            f"- 🧭 **30** Iron Compass - 💰 **100** SFL"
-        )
-        self.rt_cons["live_minted2"].write("\n")
-        self.rt_cons["live_minted2"].success(f" 🥫 **Tin Turtle: Supply 3000**")
-        self.rt_cons["live_minted2"].write(
-            f"- 🍾 **50** Old Bottles - 🌿 **25** Seaweed"
-        )
-        self.rt_cons["live_minted2"].write(
-            f"- 🧭 **15** Iron Compass - 💰 **40** SFL"
-        )
+        # self.rt_cons["live_minted2"].info(f" 🐢 **Emerald Turtle: Supply 100**")
+        # self.rt_cons["live_minted2"].write(
+        #     f"- 🍾 **80** Old Bottles - 🌿 **50** Seaweed"
+        # )
+        # self.rt_cons["live_minted2"].write(
+        #     f"- 🧭 **30** Iron Compass - 💰 **100** SFL"
+        # )
+        # self.rt_cons["live_minted2"].write("\n")
+        # self.rt_cons["live_minted2"].success(f" 🥫 **Tin Turtle: Supply 3000**")
+        # self.rt_cons["live_minted2"].write(
+        #     f"- 🍾 **50** Old Bottles - 🌿 **25** Seaweed"
+        # )
+        # self.rt_cons["live_minted2"].write(
+        #     f"- 🧭 **15** Iron Compass - 💰 **40** SFL"
+        # )
 
     def get_containers(self) -> dict[str, DeltaGenerator]:
         return self.rt_cons
