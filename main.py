@@ -144,7 +144,7 @@ async def main() -> None:
             try:
                 data1 = await fetch(url_rank1, session)
             except Exception as e:
-                main_app.rank_tab_cons["live_update2"].error(
+                main_app.rank_tab_cons["live_update"].error(
                     "The ranking is currently not working, will be fixed soon™"
                 )
                 return
@@ -408,7 +408,7 @@ async def main() -> None:
         # df3.index = df3.index.astype(int)
 
         if df1.empty:
-            main_app.rank_tab_cons["live_update2"].error(
+            main_app.rank_tab_cons["live_update"].error(
                 "The ranking is currently not working, it will be fixed soon™ "
             )
         else:
@@ -417,7 +417,7 @@ async def main() -> None:
             update: str = datetime.strptime(
                 data1["updatedAt"], in_fmt
             ).strftime(out_fmt)
-            main_app.rank_tab_cons["live_update2"].success(
+            main_app.rank_tab_cons["live_update"].success(
                 f"🕘Updated at: **{update} UTC**"
             )
 
@@ -461,7 +461,7 @@ async def main() -> None:
             # )
         pass
     except Exception as e:
-        main_app.rank_tab_cons["live_update2"].error(
+        main_app.rank_tab_cons["live_update"].error(
             f"The ranking is currently not working, it will be fixed soon™, "
             + f"Error: {str(e)}"
         )
