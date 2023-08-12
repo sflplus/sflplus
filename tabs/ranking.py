@@ -61,7 +61,7 @@ class RankingTab:
             f"❤️ **Shoutout to Victor Gianvechio for providing the data.** "
         )
         self.rt_cons["live_resources"] = col_rank2.expander(
-            "🏅 **RESOURCES LEADERBOARD**", expanded=True
+            "🏅 **ACTIVITIES LEADERBOARD**", expanded=True
         )
     
         self.rt_cons["live_how"] = col_rank3.expander(
