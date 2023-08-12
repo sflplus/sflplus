@@ -366,5 +366,61 @@
         "iron": 8,
         "gold": 5,
         "fruitPatches": 10
-    }
+    },
+    "expansion_21A": {
+        "crops": 44,
+        "trees": 16,
+        "stones": 15,
+        "iron": 9,
+        "gold": 5,
+        "fruitPatches": 11
+    },
+    "expansion_21B": {
+        "crops": 44,
+        "trees": 15,
+        "stones": 15,
+        "iron": 9,
+        "gold": 5,
+        "fruitPatches": 11
+    },
+    "expansion_21C": {
+        "crops": 44,
+        "trees": 16,
+        "stones": 14,
+        "iron": 8,
+        "gold": 6,
+        "fruitPatches": 10
+    },
+    "expansion_22A": {
+        "crops": 45,
+        "trees": 17,
+        "stones": 15,
+        "iron": 9,
+        "gold": 6,
+        "fruitPatches": 11
+    },
+    "expansion_22B": {
+        "crops": 45,
+        "trees": 16,
+        "stones": 15,
+        "iron": 9,
+        "gold": 6,
+        "fruitPatches": 11
+    },
+    "expansion_22C": {
+        "crops": 45,
+        "trees": 16,
+        "stones": 16,
+        "iron": 10,
+        "gold": 5,
+        "fruitPatches": 12
+    },
+    "expansion_23": {
+        "crops": 46,
+        "trees": 17,
+        "stones": 16,
+        "iron": 10,
+        "gold": 6,
+        "fruitPatches": 12
+    }    
 }
