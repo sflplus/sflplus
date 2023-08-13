@@ -95,8 +95,8 @@
     },
     "expansion_23": {
         "Wood": 2000,
-        "Stone": 200,
-        "Iron": 20,
-        "Gold": 40
+        "Stone": 250,
+        "Iron": 50,
+        "Gold": 60
     }
 }
