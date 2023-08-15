@@ -5,31 +5,35 @@ from datetime import timedelta, datetime
 import pandas as pd
 from pandas import DataFrame
 from functions import fetch_owner_count
+
 if TYPE_CHECKING:
     from main import Main
-        # tab.markdown("##### 🔻 SEARCH FARM ID 🔻")
-        # col_search: DeltaGenerator
-        # col_ok: DeltaGenerator
-        # buff: DeltaGenerator
-        # col_search, col_ok, buff = tab.columns([2.5, 2, 6])
-        # text_search: str = col_search.text_input(
-        #     "🔻 SEARCH FARM ID  🔻",
-        #     label_visibility="collapsed",
-        #     max_chars=6,
-        #     value=self.main.farm_id,
-        # )
-        # self.create_tab(tab)
-        # buttonok2: bool = col_ok.button(
-        #     "OK", key="rank_ok_btn", on_click=self.load_tab
-        # )
-        # self.load_tab()
+
+    # tab.markdown("##### 🔻 SEARCH FARM ID 🔻")
+    # col_search: DeltaGenerator
+    # col_ok: DeltaGenerator
+    # buff: DeltaGenerator
+    # col_search, col_ok, buff = tab.columns([2.5, 2, 6])
+    # text_search: str = col_search.text_input(
+    #     "🔻 SEARCH FARM ID  🔻",
+    #     label_visibility="collapsed",
+    #     max_chars=6,
+    #     value=self.main.farm_id,
+    # )
+    # self.create_tab(tab)
+    # buttonok2: bool = col_ok.button(
+    #     "OK", key="rank_ok_btn", on_click=self.load_tab
+    # )
+    # self.load_tab()
+
+
 class RankingTab:
     def __init__(self, main, tab: DeltaGenerator) -> None:
         self.main: Main = main
         self.rt_cons: dict[str, DeltaGenerator] = {}
-        self.create_tab(tab)       
+        self.create_tab(tab)
         self.load_tab()
-        
+
         # tab.markdown("##### 🔻 LOAD RANKINGS 🔻")
         # self.buttonload: bool = tab.button(
         #     "OK", key="rank_load_btn"
@@ -43,44 +47,42 @@ class RankingTab:
         # else:
         #     self.rt_cons["live_update"] = col_ok.container()
 
-
-
-
     def create_tab(self, tab: DeltaGenerator) -> None:
         col_rank: DeltaGenerator
         col_rank2: DeltaGenerator
         col_rank3: DeltaGenerator
         col_rank, col_rank2, col_rank3 = tab.columns([2, 2, 1.5])
-    
+
         self.rt_cons["live_update"] = col_rank.container()
         self.rt_cons["live_xp"] = col_rank.expander(
             "🥇 **BUMPKINS LEADERBOARD**", expanded=True
         )
-    
+
         col_rank2.info(
             f"❤️ **Shoutout to Victor Gianvechio for providing the data.** "
         )
         self.rt_cons["live_resources"] = col_rank2.expander(
             "🏅 **ACTIVITIES LEADERBOARD**", expanded=True
         )
-    
+
         self.rt_cons["live_how"] = col_rank3.expander(
             "📝 **HOW IT WORKS?**", expanded=True
         )
         self.rt_cons["live_mush"] = col_rank3.expander(
             "🍄 **WILD MUSHROOM**", expanded=True
-            )    
-        
+        )
+
         # self.rt_cons["live_point"] = col_rank.expander(
         #     "🥇 **POINTS SYSTEM**", expanded=False
         # )
         # self.rt_cons["live_minted"] = col_rank.expander(
         #     "⚡ **CURRENT MINTS**", expanded=True
-        # )        
+        # )
         # self.rt_cons["live_ranking"] = col_rank3.expander(
         #     "🎟️ **DAWN BREAKER TICKETS**", expanded=True
         # )
-        # self.rt_cons["live_minted_error"] = col_rank3.container()   
+        # self.rt_cons["live_minted_error"] = col_rank3.container()
+
     def load_tab(self) -> None:
         self.rt_cons["live_how"].info(
             f"📌 This is using a **fixed list of 10K of farms**, originally used "
@@ -131,6 +133,7 @@ class RankingTab:
                 hours_remaining, minutes_remaining
             )
         )
+
         # Iterate over the list of queries and retrieve the owner counts
         def create_dataframe() -> DataFrame:
             data: list = []
@@ -154,6 +157,7 @@ class RankingTab:
                 data, columns=["NFT", "Owners", "Supply"]
             )  # "Tickets"
             return df_dune
+
         # Create or fetch the cached dataframe
         # @st.cache_data(ttl=30)
         def get_cached_dataframe() -> DataFrame:
@@ -162,9 +166,11 @@ class RankingTab:
             except Exception as e:
                 st.error(f"Failed to fetch NFT mints. Error: {e}")
                 return pd.DataFrame()
+
         # df_dune: DataFrame = get_cached_dataframe()
         # live_minted.info(f"👨‍🔬 **This info is from Dune**")
         # Display the dataframe
-        # self.rt_cons["live_minted"].dataframe(df_dune, hide_index=True)    
+        # self.rt_cons["live_minted"].dataframe(df_dune, hide_index=True)
+
     def get_containers(self) -> dict[str, DeltaGenerator]:
         return self.rt_cons
