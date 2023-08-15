@@ -1,19 +1,20 @@
-from collections import defaultdict
-from typing import TYPE_CHECKING, Hashable
-from decimal import Decimal
-import streamlit as st
-import requests
-from streamlit.delta_generator import DeltaGenerator
-from typing import Any
 import json
-import pandas as pd
+from collections import defaultdict
 from datetime import datetime
+from decimal import Decimal
+from typing import TYPE_CHECKING, Any, Hashable
 
-from functions import nft_price, nft_buffs, wearable_list
+import pandas as pd
+import requests
+import streamlit as st
+from streamlit.delta_generator import DeltaGenerator
+
+from functions import nft_buffs, nft_price, wearable_list
 
 if TYPE_CHECKING:
-    from main import Main
     from pandas import DataFrame
+
+    from main import Main
 
 
 class HomeTab:
@@ -427,7 +428,7 @@ class HomeTab:
         }
         baloon_inv: dict = {}
         baloon_quantity: dict = {}
-        total_inv_value = 0
+        # total_inv_value = 0
         buildings_farm: dict = {}
         buildings_farm_price: dict = {}
 
@@ -534,41 +535,39 @@ class HomeTab:
 
         we = state.get("witchesEve", {})
         assert isinstance(we, dict)
-        maze = we.get("maze", {})
+        # maze = we.get("maze", {})
 
         bumpkin: dict | float | None = state.get("bumpkin", None)
-        taskcount = 0
-        count_chore = 0
+        # taskcount = 0
+        # count_chore = 0
 
-        skip_chores = 0
-        completed_chore = 0
-        requirement_chore = 0
-        description_chore = ""
-        ticket_chore = 0
+        # skip_chores = 0
+        # completed_chore = 0
+        # requirement_chore = 0
+        # description_chore = ""
+        # ticket_chore = 0
         if isinstance(bumpkin, dict):
             skills_dict: dict[str, int] = bumpkin.get("skills", {})
             # skills_dict = eval(str(skills))
             equipped_dict: dict[str, str] = bumpkin.get("equipped", {})
             # equipped_dict = eval(str(equipped))
-            activities = bumpkin.get("activity", {})
+            b_act = bumpkin.get("activity", {})
 
             hayseed: dict | float = state.get("hayseedHank", {})
             assert isinstance(hayseed, dict)
-            completed_chore: int = hayseed.get("dawnBreakerChoresCompleted", 0)
-            skip_chores: int = hayseed.get("dawnBreakerChoresSkipped", 0)
-            chore: dict = hayseed.get("chore", {})
-            progress_chore: dict = hayseed.get("progress", {})
-            if progress_chore is None:
-                count_chore = 0  # Or whatever default value you want to use
-            else:
-                count_chore: int = progress_chore.get("startCount", 0)
-            activitytask: str = chore.get("activity", "N/A")
-            description_chore: str = chore.get("description", "N/A")
-            reward_chore: dict = chore.get("reward", {})
-            requirement_chore: int = chore.get("requirement", 0)
-            item_chore: dict = reward_chore.get("items", {})
-            ticket_chore: int = item_chore.get("Dawn Breaker Ticket", 0)
-            taskcount: int | float = activities.get(activitytask, 0)
+            # chore: dict = hayseed.get("chore", {})
+            # progress_chore: dict = hayseed.get("progress", {})
+            # if progress_chore is None:
+            #     count_chore = 0  # Or whatever default value you want to use
+            # else:
+            # count_chore: int = progress_chore.get("startCount", 0)
+            # activitytask: str = chore.get("activity", "N/A")
+            # description_chore: str = chore.get("description", "N/A")
+            # reward_chore: dict = chore.get("reward", {})
+            # requirement_chore: int = chore.get("requirement", 0)
+            # item_chore: dict = reward_chore.get("items", {})
+            # ticket_chore: int = item_chore.get("Dawn Breaker Ticket", 0)
+            # taskcount: int | float = b_act.get(activitytask, 0)
 
             chores: dict | float | None = state.get("chores", None)
             if chores is not None:
@@ -576,7 +575,7 @@ class HomeTab:
                 chores_completed: int = chores.get("choresCompleted", 0)
                 chores_skipped: int = chores.get("choresSkipped", 0)
                 self.ft_cons["chores"].info(
-                f"⏩ **Chores skipped: {chores_skipped}**"
+                    f"⏩ **Chores skipped: {chores_skipped}**"
                 )
                 self.ft_cons["chores"].success(
                     f"📊 **Chores completed: {chores_completed}**"
@@ -589,10 +588,10 @@ class HomeTab:
                         for task in chores["chores"].values()
                     ],
                     "Progress": [
-                        ("✅ " if "completedAt" in task else "❌ ")
-                        + f"{activities.get(task['activity'], 0) - task['startCount']}"
-                        + f" / {task['requirement']}"
-                        for task in chores["chores"].values()
+                        ("✅ " if "completedAt" in t else "❌ ")
+                        + f"{b_act.get(t['activity'], 0) - t['startCount']}"
+                        + f" / {t['requirement']}"
+                        for t in chores["chores"].values()
                     ],
                     "Reward": [
                         f"{task['tickets']} 🎟️"
@@ -690,7 +689,7 @@ class HomeTab:
 
         chickens: dict | float = state.get("chickens", {})
         if isinstance(chickens, dict):
-            chickens_str = str(chickens)
+            # chickens_str = str(chickens)
             chickens_dict: dict | float = state["chickens"]
 
             if isinstance(chickens_dict, dict):
@@ -1004,7 +1003,7 @@ class HomeTab:
             total_baloon_market
         ) * Decimal(self.main.sfl_price)
 
-        self.ft_cons["farm_info"].info(f"\n 🌱 **Crops to be Harvest:**")
+        self.ft_cons["farm_info"].info("\n 🌱 **Crops to be Harvest:**")
         for crop_name, info in crop_data.items():
             final_amount = round(info["amount"], 2)
             emoji = self.main.emojis.get(crop_name, "")
@@ -1018,9 +1017,7 @@ class HomeTab:
             )
 
         self.ft_cons["farm_info"].write("\n")
-        self.ft_cons["farm_info"].success(
-            f"\n ⚒️ **Resources to be Gathered:**"
-        )
+        self.ft_cons["farm_info"].success("\n ⚒️ **Resources to be Gathered:**")
         self.ft_cons["farm_info"].write(
             f" - 🌲 **{total_wood_amount:.2f} Wood** — {num_wood}x Trees"
         )
@@ -1039,11 +1036,11 @@ class HomeTab:
         )
 
         # Define progress_count with default value of 0
-        progress_count = 0
+        # progress_count = 0
 
         # Check if taskcount and count_chore are not None
-        if taskcount is not None and count_chore is not None:
-            progress_count: int | float = taskcount - count_chore
+        # if taskcount is not None and count_chore is not None:
+        #     progress_count: int | float = taskcount - count_chore
 
         if bumpkin:
             # Start of the Season August 1st
@@ -1058,7 +1055,9 @@ class HomeTab:
             try:
                 # Extract the attempts list for the last week
                 attempts_list = we["maze"][str(weeks_passed)]["attempts"]
-                claimedFeathers = we["maze"][str(weeks_passed)]["claimedFeathers"]
+                claimedFeathers = we["maze"][str(weeks_passed)][
+                    "claimedFeathers"
+                ]
             except KeyError:
                 claimedFeathers = 0
                 attempts_list = []  # Empty list or another default value
@@ -1140,7 +1139,7 @@ class HomeTab:
             )
         else:
             self.ft_cons["dawn_breaker"].error(
-                f" **There aren't Bumpkins in this Farm.**"
+                " **There aren't Bumpkins in this Farm.**"
             )
             
         #To count the Total Feathers deliveries
@@ -1195,7 +1194,7 @@ class HomeTab:
                 if npc:
                     npc_name = order["from"]
                     if npc_name and "pumpkin' pete" in npc_name:
-                        npc_name = f"pete"
+                        npc_name = "pete"
                         deliveryNpc = npc_name.capitalize()
                     else:
                         deliveryNpc = npc_name.capitalize()
@@ -1203,12 +1202,12 @@ class HomeTab:
                     deliveryNpc = ""
 
                 if items:
-                    deliveryItems: str = ", ".join(items.keys())
+                    # deliveryItems: str = ", ".join(items.keys())
                     deliveryItems_value: str = ", ".join(
                         [f"{value}x {key}" for key, value in items.items()]
                     )
                 else:
-                    deliveryItems = ""
+                    # deliveryItems = ""
                     deliveryItems_value = ""
                 if reward and "sfl" in reward:
                     reward_sfl = reward["sfl"]
@@ -1315,11 +1314,11 @@ class HomeTab:
             )
         else:
             self.ft_cons["farm_ti"].error(
-                f" **This farm didn't use Treasure Island today**"
+                " **This farm didn't use Treasure Island today**"
             )
 
         self.ft_cons["basket_how"].info(
-            f"\n **The NPC market sales is using the values of the in game "
+            "\n **The NPC market sales is using the values of the in game "
             + "shops, like the seeds shop or the Treasure Island one, to "
             + "calculate the prices/cost (Includes your boost)**"
         )
@@ -1442,9 +1441,9 @@ class HomeTab:
                 bump_url_last: str = bump_url[image_url + len("v1_"):]
                 # fmt: on
                 bump_img_url: str = (
-                    f'<img src="'
+                    '<img src="'
                     + f'https://images.bumpkins.io/nfts/{bump_url_last}.png" '
-                    + f"width = 100%>"
+                    + "width = 100%>"
                 )
                 self.bt_cons["bump_info"].markdown(
                     bump_img_url, unsafe_allow_html=True
@@ -1530,7 +1529,7 @@ class HomeTab:
                 filtered_df = wearable_list(
                     self.main, equipped_dict, return_type="filtered_df"
                 )
-            except Exception as e:
+            except Exception:
                 self.worth_cons["farm_worth_nft"].error(
                     "Error reading the Opensea Prices"
                 )
@@ -1539,7 +1538,7 @@ class HomeTab:
                 total_value_wearable = wearable_list(
                     self.main, equipped_dict, return_type="total"
                 )
-            except Exception as e:
+            except Exception:
                 self.worth_cons["farm_worth_nft"].error(
                     "Error reading the Opensea Prices"
                 )
@@ -1553,20 +1552,20 @@ class HomeTab:
             )
 
             self.bt_cons["bump_worth_how"].error(
-                f"**Note that this info in linked to the last state of the "
+                "**Note that this info in linked to the last state of the "
                 + "bumpkin in that farm, if the player changed the wearables "
                 + "and didn't log again in their farm the info is going to be "
                 + "outdated, you can use the Bumpkin ID search to see the "
                 + "current state.**"
             )
             self.bt_cons["bump_worth_how"].info(
-                f"The value of **Levels Price** are calculated using "
+                "The value of **Levels Price** are calculated using "
                 + "**750 XP = 1 SFL**, considering this kinda as average "
                 + "value cost of the most used meals XP and lowered a little "
                 + "bit to also **'value the time'**."
             )
             self.bt_cons["bump_worth_how"].success(
-                f"For **Bumpkin Wearables**, it uses the **average between "
+                "For **Bumpkin Wearables**, it uses the **average between "
                 + "the last sold price and the current lowest listing price "
                 + "on Opensea**, which is updated 1-2 times per day "
                 + "(semi-manually)."
@@ -1580,14 +1579,14 @@ class HomeTab:
             )
             if current_lvl == max(self.main.xp_dict.keys()):
                 self.bt_cons["bump_general"].write(
-                    f" - 📙 Current Progress: **(MAX)**"
+                    " - 📙 Current Progress: **(MAX)**"
                 )
                 self.bt_cons["bump_general"].write(
-                    f" - ⏭️ XP for Next LVL: **(MAX)**"
+                    " - ⏭️ XP for Next LVL: **(MAX)**"
                 )
             else:
                 self.bt_cons["bump_general"].write(
-                    f" - 📙 Current Progress: **["
+                    " - 📙 Current Progress: **["
                     + f"{round(extra_xp, 1)} / {nextlvl_xp}]**"
                 )
                 self.bt_cons["bump_general"].write(
@@ -1751,7 +1750,7 @@ class HomeTab:
             self.bt_cons["food"].write(df_activities)
         else:
             self.bt_cons["status_bumpkin"].error(
-                f" **There aren't Bumpkins in this Farm.**"
+                " **There aren't Bumpkins in this Farm.**"
             )
 
         expansion_resources: list[str] = ["Wood", "Stone", "Iron", "Gold"]
@@ -1891,7 +1890,7 @@ class HomeTab:
             nft_buffs(self.main, inventory_dict, return_type="result_df")
         )
         self.worth_cons["farm_worth_nft"].success(
-            f"\n📊 Total Price: **$"
+            "\n📊 Total Price: **$"
             + f"{nft_buffs(self.main, inventory_dict, return_type='total'):.2f}"
             + "**"
         )
@@ -2080,11 +2079,11 @@ class HomeTab:
         for item in inventory_dict.keys():
             if item in legacy_skill:
                 skill_farm: float = legacy_skill[item]
-                nft = item
+                # nft = item
                 price = skill_farm
 
                 if isinstance(skill_farm, list):
-                    nft = skill_farm[0]["NFT"]
+                    # nft = skill_farm[0]["NFT"]
                     if len(skill_farm) == 2:
                         price = skill_farm[0]["Average Price"] * skill_farm[1]
                     else:
@@ -2127,7 +2126,7 @@ class HomeTab:
                 f"\n - 👖 Wearables Total Price: **${total_value_wearable:.2f}**"
                 + f" \n - 📚 Levels Price Estimate: **${level_price:.2f}**"
             )
-            self.worth_cons["farm_worth_bump"].write(f"\n")
+            self.worth_cons["farm_worth_bump"].write("\n")
             self.worth_cons["farm_worth_bump"].success(
                 f"\n 📊 Bumpkin Worth Estimate: **${bump_price_usd:.2f}**"
             )
@@ -2187,19 +2186,19 @@ class HomeTab:
         )
 
         self.worth_cons["farm_worth_how"].info(
-            f"The value of **Buildings, Expansions and Extras** are calculated "
+            "The value of **Buildings, Expansions and Extras** are calculated "
             + "using the **lowest listed price** for the required resources "
             + "**at the Balloon**."
         )
         self.worth_cons["farm_worth_how"].success(
-            f"For **Tradables NFTs**, it uses the **average between the "
+            "For **Tradables NFTs**, it uses the **average between the "
             + "last sold price and the current lowest listing price on "
             + "Opensea**, which is updated 1-2 times per day (semi-manually). "
             + "And the **Extras** includes Flags (fixed $5), NFT's from "
             + "Helios and also others non withdrawables"
         )
         self.worth_cons["farm_worth_how"].info(
-            f"The **Legacy Skills** are calculated **pairing them with "
+            "The **Legacy Skills** are calculated **pairing them with "
             + "NFT's that have similar boost** and also considering their "
             + "supply. Examples, **Seed Specialist = Lunar Calendar** or "
             + "**Gold Rush = Nugget x 3**."
