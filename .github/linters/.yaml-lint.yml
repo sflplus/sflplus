@@ -48,11 +48,7 @@ rules:
     indent-sequences: true
     check-multi-line-strings: false
   key-duplicates: enable
-  line-length:
-    level: warning
-    max: 80
-    allow-non-breakable-words: true
-    allow-non-breakable-inline-mappings: true
+  line-length: disable
   new-line-at-end-of-file: disable
   new-lines:
     type: unix

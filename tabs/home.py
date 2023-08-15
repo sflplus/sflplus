@@ -13,7 +13,6 @@ from functions import nft_buffs, nft_price, wearable_list
 
 if TYPE_CHECKING:
     from pandas import DataFrame
-
     from main import Main
 
 
