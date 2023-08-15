@@ -723,7 +723,7 @@ class HomeTab:
         if not isinstance(crops_dict, dict):
             return
 
-        dawn_breaker_tickets_count = 0
+        crop_tickets_count = 0
         for crop_id, crop_info in crops_dict.items():
             if "crop" in crop_info:
                 crop_name: str = crop_info["crop"]["name"]
@@ -731,8 +731,8 @@ class HomeTab:
                 if "reward" in crop_info["crop"]:
                     reward_items = crop_info["crop"]["reward"]["items"]
                     for reward_item in reward_items:
-                        if reward_item["name"] == "Dawn Breaker Ticket":
-                            dawn_breaker_tickets_count += reward_item["amount"]
+                        if reward_item["name"] == "Crow Feather":
+                            crop_tickets_count += reward_item["amount"]
                 if crop_name in crop_data:
                     crop_data[crop_name]["mentions"] += 1
                     crop_data[crop_name]["amount"] += crop_amount
@@ -1012,9 +1012,9 @@ class HomeTab:
                 f" - {emoji} **{final_amount:.2f} {crop_name}** — "
                 + f"{info['mentions']}x Plots"
             )
-        if dawn_breaker_tickets_count > 0:
+        if crop_tickets_count > 0:
             self.ft_cons["farm_info"].write(
-                f"- 🎟️ **{dawn_breaker_tickets_count} Dawn Breaker Ticket**"
+                f"- 🎟️ **{crop_tickets_count} Crow Feathers**"
             )
 
         self.ft_cons["farm_info"].write("\n")
