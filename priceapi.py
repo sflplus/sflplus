@@ -1,7 +1,8 @@
-from typing import TYPE_CHECKING
-import streamlit as st
-import requests
 from decimal import Decimal
+from typing import TYPE_CHECKING
+
+import requests
+import streamlit as st
 
 DS_BASE_URL = "https://api.dexscreener.com/latest/dex/pairs"
 CG_BASE_URL = "https://api.coingecko.com/api/v3/simple/price"
@@ -23,7 +24,7 @@ DEXSCREENER_ETH_URL: str = (
 SFL_CONTRACT = "0xd1f9c58e33933a993a3891f8acfe05a68e1afc05"
 POLYGONSCAN_API_KEY = st.secrets["api_polygonscan"]
 SUPPLY_URL: str = (
-    f"https://api.polygonscan.com/api?module=stats"
+    "https://api.polygonscan.com/api?module=stats"
     + f"&action=tokensupply&contractaddress={SFL_CONTRACT}"
     + f"&apikey={POLYGONSCAN_API_KEY}"
 )
@@ -66,7 +67,7 @@ class PriceAPI:
         try:
             price = float(eth_price)
             return price
-        except ValueError as e:
+        except ValueError:
             raise Exception("Failed to get ETH price from Dexscreener API.")
 
     def get_eth_price_cg(_self) -> float:
@@ -84,7 +85,7 @@ class PriceAPI:
         try:
             price = float(matic_price)
             return price
-        except ValueError as e:
+        except ValueError:
             raise Exception("Failed to get Matic price from Dexscreener API.")
 
     def get_matic_price_cg(_self) -> float:
@@ -102,7 +103,7 @@ class PriceAPI:
         try:
             price = float(sfl_price)
             return price
-        except ValueError as e:
+        except ValueError:
             raise Exception("Failed to get SFL price from Dexscreener API.")
 
     def get_sfl_price_cg(_self) -> float:
@@ -118,7 +119,7 @@ class PriceAPI:
     def retrieve_eth_price(_self) -> float:
         eth_price: float = _self.get_eth_price_ds()
         if eth_price is None:
-            eth_price: float = _self.get_eth_price_cg()
+            eth_price = _self.get_eth_price_cg()
             if eth_price is None:
                 raise Exception(
                     "Failed to retrieve Ethereum price from both Coingecko "

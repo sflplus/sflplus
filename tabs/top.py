@@ -11,9 +11,7 @@ class TopTab:
         "https://discord.com/channels/880987707214544966/"
         + "1087607534967341087/1087607534967341087"
     )
-    DC_NANCY_URL = (
-        "https://discord.gg/faz4EkJVab"
-    )
+    DC_NANCY_URL = "https://discord.gg/faz4EkJVab"
 
     def __init__(self, main) -> None:
         self.main: Main = main
@@ -55,10 +53,10 @@ class TopTab:
             supply_progress_percentage: float = 100 - float(
                 supply_percentage_number
             )
-            supply_percentage_final: float = (
-                float(supply_percentage_number) / 100
-            )
-            supply_percentage_inv: float = 1 - supply_percentage_final
+            # supply_percentage_final: float = (
+            #     float(supply_percentage_number) / 100
+            # )
+            # supply_percentage_inv: float = 1 - supply_percentage_final
 
             # current_time = datetime.now().timestamp()
             # timestamp3 = 1688947200
@@ -77,7 +75,7 @@ class TopTab:
                 + f"🌻 SFL: **{main.sfl_price:.4f}**"
             )
             general_info.write(f" 📈 Current Supply: **{format_supply}**")
-            general_info2.write(f" ⏳ Next Halvening: **40,000,000**")
+            general_info2.write(" ⏳ Next Halvening: **40,000,000**")
             general_info2.write(
                 f" 📊 In Percentage: **{supply_progress_percentage:.2f}%**"
             )
@@ -88,7 +86,7 @@ class TopTab:
 
         st.divider()
         general_info3.markdown(
-            f"💬 Feedback? Tag me `@Vitt0c` or use this "
+            "💬 Feedback? Tag me `@Vitt0c` or use this "
             + f"[Discord thread]({self.DC_THREAD_URL})"
         )
         general_info3.markdown(
@@ -99,6 +97,6 @@ class TopTab:
         # - 💰 SFL Balance \n - 🍒 Fruits Harvest Left  - 👨‍🌾 Bumpkins Stats \n
         #  - 🐔 Mutant Chickens ")
         general_info3.markdown(
-            f"🤖 Looking for automatic notifications on Discord or Telegram?" 
+            "🤖 Looking for automatic notifications on Discord or Telegram?"
             + f" Try out [Nancy]({self.DC_NANCY_URL}) by `@Maschs`"
         )

@@ -1,10 +1,10 @@
-import streamlit as st
-from streamlit.delta_generator import DeltaGenerator
-from typing import TYPE_CHECKING
 import json
 import sys
-import requests
+from typing import TYPE_CHECKING
+
 import pandas as pd
+import requests
+from streamlit.delta_generator import DeltaGenerator
 
 from functions import wearable_list
 
@@ -69,9 +69,9 @@ class BumpkinTab:
             headers: dict[str, str] = {"Content-Type": "application/json"}
             try:
                 response2: dict = requests.request(
-                    "POST", url, headers=headers, data=payload
+                    "POST", url, headers=headers, data=payload, timeout=10
                 ).json()
-            except requests.exceptions.RequestException as e:
+            except requests.exceptions.RequestException:
                 status_ok2.error(
                     "Error: Too many requests, please try again "
                     + "in a few seconds"
@@ -102,10 +102,10 @@ class BumpkinTab:
                 f" ✅ Done! Bumpkin **{text_search_value}** loaded."
             )
             bump_xp2 = bumpkin2.get("experience")
-            bump_id2 = bumpkin2.get("id")
+            # bump_id2 = bumpkin2.get("id")
             bump_achi2 = bumpkin2.get("achievements")
             bump_url2 = bumpkin2.get("tokenUri")
-            skills_dict2 = {}
+            # skills_dict2 = {}
             equipped_dict = {}
 
             skills2 = bumpkin2.get("skills")
@@ -122,7 +122,7 @@ class BumpkinTab:
                 ]
                 # fmt: on
                 bump_img_url2: str = (
-                    f'<img src="https://images.bumpkins.io/'
+                    '<img src="https://images.bumpkins.io/'
                     + f'nfts/{bump_url_last2}.png" width = 100%>'
                 )
             else:
@@ -194,24 +194,26 @@ class BumpkinTab:
                 f" - 📘 Current Total XP: **{round(bump_xp2, 1)}**"
             )
             if current_lvl2 == max(self.main.xp_dict.keys()):
-                bump_general2.write(f" - 📙 Current Progress: **(MAX)**")
-                bump_general2.write(f" - ⏭️ XP for Next LVL: **(MAX)**")
+                bump_general2.write(" - 📙 Current Progress: **(MAX)**")
+                bump_general2.write(" - ⏭️ XP for Next LVL: **(MAX)**")
             else:
+                assert isinstance(extra_xp2, float)
+                assert isinstance(xp_needed2, float)
                 bump_general2.write(
-                    f" - 📙 Current Progress: "
+                    " - 📙 Current Progress: "
                     + f"**[{round(extra_xp2, 1)} / {nextlvl_xp2}]**"
                 )
                 bump_general2.write(
-                    f" - ⏭️ XP for Next LVL: " + f"**{round(xp_needed2, 1)}**"
+                    " - ⏭️ XP for Next LVL: " + f"**{round(xp_needed2, 1)}**"
                 )
             bump_general2.write("\n")
             bump_general2.success(
-                f"\n📊 Levels Price Estimate: " + f"**${level_price2:.2f}**"
+                "\n📊 Levels Price Estimate: " + f"**${level_price2:.2f}**"
             )
 
             bump_wearables2.write(filtered_df2)
             bump_wearables2.success(
-                f"\n📊 Wearables Total Price: "
+                "\n📊 Wearables Total Price: "
                 + f"**${total_value_wearable2:.2f}**"
             )
 

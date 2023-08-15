@@ -1,8 +1,9 @@
-import streamlit as st
-from pandas import DataFrame, Series
+from typing import TYPE_CHECKING, Any
+
 import pandas as pd
 import requests
-from typing import Any, TYPE_CHECKING
+import streamlit as st
+from pandas import DataFrame, Series
 
 if TYPE_CHECKING:
     from main import Main
@@ -27,7 +28,7 @@ def nft_price(
 ) -> DataFrame | None:
     dfs: list[DataFrame] | None = nft_price_read()
     if dfs is None:
-        return
+        return None
     df: DataFrame = pd.concat(dfs, axis=0)
     # drop the first columns
     df.drop(df.columns[[0]], axis=1, inplace=True)
@@ -105,12 +106,12 @@ def nft_price(
     for i, row in df.iterrows():
         last_sale = row["Last Sale"]
         if isinstance(last_sale, str) and last_sale.endswith("K MATIC"):
-            price_str = last_sale.replace("K MATIC", "")
+            price_str: str = last_sale.replace("K MATIC", "")
             price_float = float(price_str.replace(",", ""))
-            last_sale_usd = price_float * _main.matic_price * 1000
+            last_sale_usd: float = price_float * _main.matic_price * 1000
             df.at[i, "Last Sale"] = f"{last_sale_usd:.2f} USDC"
         elif isinstance(last_sale, str) and last_sale.endswith("MATIC"):
-            last_sale_usd: float = (
+            last_sale_usd = (
                 float(last_sale.split()[0].replace(",", "")) * _main.matic_price
             )
             df.at[i, "Last Sale"] = f"{last_sale_usd:.2f} USDC"
@@ -120,12 +121,12 @@ def nft_price(
             )
             df.at[i, "Last Sale"] = f"{last_sale_usd:.2f} USDC"
         elif isinstance(last_sale, str) and last_sale.endswith("K USDC"):
-            price_str: str = last_sale.replace("K USDC", "")
+            price_str = last_sale.replace("K USDC", "")
             price_float = float(price_str.replace(",", ""))
             last_sale_usd = int(price_float * 1000)
             df.at[i, "Last Sale"] = f"{last_sale_usd:.2f} USDC"
 
-        current_price = row["Current Price"]
+        current_price: Any = row["Current Price"]
         if isinstance(current_price, str) and current_price.endswith("K MATIC"):
             price_str = current_price.replace("K MATIC", "")
             price_float = float(price_str.replace(",", ""))
@@ -133,7 +134,7 @@ def nft_price(
             df.at[i, "Current Price"] = f"{current_price_usd:.2f} USDC"
         elif isinstance(current_price, str) and current_price.endswith("MATIC"):
             matic_price_usd = float(_main.matic_price)
-            current_price_usd: float = (
+            current_price_usd = (
                 float(current_price.split()[0].replace(",", ""))
                 * matic_price_usd
             )
@@ -181,7 +182,7 @@ def nft_price(
     # Return the result based on the specified 'return_type'
     if return_type == "nft_list":
         if item_name is not None and item_name in df["NFT"].values:
-            current_price: Any = df.loc[df["NFT"] == item_name, "Average Price"]
+            current_price = df.loc[df["NFT"] == item_name, "Average Price"]
             return current_price.values[0]
         else:
             return None
@@ -189,11 +190,11 @@ def nft_price(
         return df
 
 
-def nft_buffs(main, inventory, return_type="result_df"):
+def nft_buffs(main, inventory, return_type="result_df") -> float | DataFrame:
     df: DataFrame | None = nft_price(main, return_type=return_type)
     if df is None:
         df = pd.DataFrame()
-    result_df = pd.concat([df], axis=0)
+    result_df: DataFrame = pd.concat([df], axis=0)
 
     # Check if the items in the 'NFT' column are present in the
     # keys of the 'inventory' dictionary
@@ -236,7 +237,7 @@ def nft_buffs(main, inventory, return_type="result_df"):
     )
 
     # Set the 'NFT' column as the index of the dataframe
-    result_df: DataFrame = result_df.set_index("NFT")
+    result_df = result_df.set_index("NFT")
 
     # Return the result based on the specified 'return_type'
     if return_type == "total":
@@ -291,10 +292,10 @@ def wearable_price(_main: "Main", item_name=None, return_type="result_df"):
     for i, row in df.iterrows():
         last_sale = row["Last Sale"]
         if isinstance(last_sale, str) and last_sale.endswith("K MATIC"):
-            price_str = last_sale.replace("K MATIC", "")
+            price_str: str = last_sale.replace("K MATIC", "")
             price_float = float(price_str.replace(",", ""))
             matic_price_usd = float(_main.matic_price)
-            last_sale_usd = price_float * matic_price_usd * 1000
+            last_sale_usd: float = price_float * matic_price_usd * 1000
             df.at[i, "Last Sale"] = f"{last_sale_usd:.2f} USDC"
         elif isinstance(last_sale, str) and last_sale.endswith("MATIC"):
             matic_price_usd = float(_main.matic_price)
@@ -304,17 +305,17 @@ def wearable_price(_main: "Main", item_name=None, return_type="result_df"):
             df.at[i, "Last Sale"] = f"{last_sale_usd:.2f} USDC"
         elif isinstance(last_sale, str) and last_sale.endswith("ETH"):
             eth_price_usd = float(_main.eth_price)
-            last_sale_usd: float = (
+            last_sale_usd = (
                 float(last_sale.split()[0].replace(",", "")) * eth_price_usd
             )
             df.at[i, "Last Sale"] = f"{last_sale_usd:.2f} USDC"
         elif isinstance(last_sale, str) and last_sale.endswith("K USDC"):
-            price_str: str = last_sale.replace("K USDC", "")
+            price_str = last_sale.replace("K USDC", "")
             price_float = float(price_str.replace(",", ""))
             last_sale_usd = int(price_float * 1000)
             df.at[i, "Last Sale"] = f"{last_sale_usd:.2f} USDC"
 
-        current_price = row["Current Price"]
+        current_price: Any = row["Current Price"]
         if isinstance(current_price, str) and current_price.endswith("K MATIC"):
             price_str = current_price.replace("K MATIC", "")
             price_float = float(price_str.replace(",", ""))
@@ -369,9 +370,7 @@ def wearable_price(_main: "Main", item_name=None, return_type="result_df"):
     # Return the result based on the specified 'return_type'
     if return_type == "nft_list":
         if item_name is not None and item_name in df["Wearable"].values:
-            current_price: Any = df.loc[
-                df["Wearable"] == item_name, "Average Price"
-            ]
+            current_price = df.loc[df["Wearable"] == item_name, "Average Price"]
             return current_price.values[0]
         else:
             return None
@@ -399,7 +398,7 @@ def retrieve_lantern_ingredients() -> tuple[Any, None] | tuple[Any, Any]:
             return lanterns_ing, lanterns_sfl
     else:
         raise Exception(
-            f"Failed to retrieve lantern ingredients. "
+            "Failed to retrieve lantern ingredients. "
             + f"Error: {response.status_code}"
         )
 
@@ -409,7 +408,7 @@ def retrieve_lantern_ingredients() -> tuple[Any, None] | tuple[Any, Any]:
 )  # cache for 30 MIN
 def fetch_owner_count(query_id, api_key: str) -> int | None:
     dune_api_url: str = (
-        f"https://api.dune.com/api/v1/query/"
+        "https://api.dune.com/api/v1/query/"
         + f"{query_id}/results?api_key={api_key}"
     )
     response: requests.Response = requests.get(dune_api_url)
@@ -420,14 +419,11 @@ def fetch_owner_count(query_id, api_key: str) -> int | None:
         return owner_count
     else:
         raise Exception()
-        live_minted_error.error(
-            f"Error fetching NFT owners"
-        )  # for query {query_id}
 
 
 def wearable_list(
     _main: "Main", equipped_dict: dict, return_type="filtered_df"
-):
+) -> float | DataFrame:
     df: DataFrame | None = wearable_price(_main, return_type=return_type)
     if df is None:
         df = pd.DataFrame()
@@ -448,7 +444,7 @@ def wearable_list(
         lambda x: f"${x:.2f}"
     )
 
-    total_value_wearable = (
+    total_value_wearable: float = (
         filtered_df["Average Price"]
         .str.replace("$", "", regex=False)
         .astype(float)

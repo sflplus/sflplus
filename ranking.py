@@ -1,10 +1,8 @@
-from typing import TYPE_CHECKING, Any
-import streamlit as st
-import requests
 import json
+from typing import Any
 
-if TYPE_CHECKING:
-    from requests import Response
+import requests
+import streamlit as st
 
 
 @st.cache_resource(
@@ -39,7 +37,7 @@ def retrieve_lanterns_data(top_ten_ids):
     ).json()
 
     # Processing the response from the first API
-    skipped_farms = response["skipped"]
+    # skipped_farms = response["skipped"]
     farms = response["farms"]
 
     lanterns_data = {}
@@ -52,7 +50,7 @@ def retrieve_lanterns_data(top_ten_ids):
                 str(week): farm_data.get(str(week), 0) for week in range(1, 9)
             }
             lanterns_data[str(farm_id)] = week_data
-        except Exception as e:
+        except Exception:
             pass
 
     return lanterns_data
