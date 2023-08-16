@@ -1142,7 +1142,19 @@ class HomeTab:
             self.ft_cons["dawn_breaker"].error(
                 f" **There aren't Bumpkins in this Farm.**"
             )
-
+            
+        #To count the Total Feathers deliveries
+        npcs_data: dict | float = state.get("npcs", {})
+        assert isinstance(npcs_data, dict)
+        
+        total_feather_deliveries = 0 
+        npc_names = ['bert', 'tywin', 'raven', "pumpkin' pete", 'cornwell', 'timmy']
+        
+        for npc_name in npc_names:
+            npc_info = npcs_data.get(npc_name, {})
+            delivery_count = npc_info.get('deliveryCount', 0)
+            total_feather_deliveries += delivery_count
+        
         deliveryNpcList = []
         deliveryItemList: list = []
         deliveryRewardList: list = []
@@ -1154,7 +1166,7 @@ class HomeTab:
                 npc = order["from"]
                 items = order["items"]
                 reward = order["reward"]
-                readytime = order["readyAt"]
+                readytime = order.get("completedAt")
 
                 if npc:
                     deliveryNpcList.append(npc)
@@ -1178,7 +1190,7 @@ class HomeTab:
                 npc = order.get("from")
                 items: dict = order.get("items", {})
                 reward: dict = order.get("reward", {})
-                readytime: int = order.get("readyAt", int)
+                readytime: int = order.get("completedAt")
 
                 if npc:
                     npc_name = order["from"]
@@ -1218,19 +1230,10 @@ class HomeTab:
                     # continue #Skip until release
                     reward_tickets = reward["tickets"]
                     deliveryReward = f"🎟️ {reward_tickets} tickets"
-                if readytime and readytime > current_time:
-                    remaining_time = readytime - current_time
-                    hours_remaining = int(
-                        remaining_time / (1000 * 60 * 60)
-                    )  # Convert milliseconds to hours
-                    minutes_remaining = int(
-                        (remaining_time / (1000 * 60)) % 60
-                    )  # Convert milliseconds to minutes
-                    deliveryTime: str = (
-                        f"{hours_remaining}hrs {minutes_remaining}mins"
-                    )
+                if readytime is None:
+                    deliveryTime = "❌ Not Done"
                 else:
-                    deliveryTime = "✅ Available"
+                    deliveryTime = "✅ Completed"
 
                 order_status = "✅"
                 if deliveryItems_value:
@@ -1263,11 +1266,15 @@ class HomeTab:
                     ]
                 )
 
-        columns = ["NPC", "Order and Status", "Reward", "Time"]
+        columns = ["NPC", "Order and Status", "Reward", "Done"]
         df_order = pd.DataFrame(ddata, columns=columns)
         df_order.set_index("NPC", inplace=True)
         self.ft_cons["farm_delivery"].write(df_order)
 
+        self.ft_cons["farm_delivery"].info(
+            f" 📊 **Total Feathers Deliveries: {total_feather_deliveries}**"
+        )
+   
         self.ft_cons["farm_delivery"].success(
             f" 📊 **Total Deliveries Completed: {deliveryTotal}**"
         )
