@@ -1140,19 +1140,26 @@ class HomeTab:
             self.ft_cons["dawn_breaker"].error(
                 " **There aren't Bumpkins in this Farm.**"
             )
-            
-        #To count the Total Feathers deliveries
+
+        # To count the Total Feathers deliveries
         npcs_data: dict | float = state.get("npcs", {})
         assert isinstance(npcs_data, dict)
-        
-        total_feather_deliveries = 0 
-        npc_names = ['bert', 'tywin', 'raven', "pumpkin' pete", 'cornwell', 'timmy']
-        
+
+        total_feather_deliveries = 0
+        npc_names = [
+            "bert",
+            "tywin",
+            "raven",
+            "pumpkin' pete",
+            "cornwell",
+            "timmy",
+        ]
+
         for npc_name in npc_names:
             npc_info = npcs_data.get(npc_name, {})
-            delivery_count = npc_info.get('deliveryCount', 0)
+            delivery_count = npc_info.get("deliveryCount", 0)
             total_feather_deliveries += delivery_count
-        
+
         deliveryNpcList = []
         deliveryItemList: list = []
         deliveryRewardList: list = []
@@ -1164,7 +1171,7 @@ class HomeTab:
                 npc = order["from"]
                 items = order["items"]
                 reward = order["reward"]
-                readytime = order.get("completedAt")
+                readytime = order.get("completedAt", 0)
 
                 if npc:
                     deliveryNpcList.append(npc)
@@ -1180,23 +1187,23 @@ class HomeTab:
                 if readytime:
                     deliveryTimeList.append(readytime)
 
-            current_time: float = (
-                datetime.now().timestamp() * 1000
-            )  # Convert to milliseconds
+            # current_time: float = (
+            #     datetime.now().timestamp() * 1000
+            # )  # Convert to milliseconds
 
             for index, order in enumerate(delivery_data, start=1):
                 npc = order.get("from")
                 items: dict = order.get("items", {})
                 reward: dict = order.get("reward", {})
-                readytime: int = order.get("completedAt")
+                completed: int | None = order.get("completedAt")
 
                 if npc:
-                    npc_name = order["from"]
+                    npc_name: str = order["from"]
                     if npc_name and "pumpkin' pete" in npc_name:
                         npc_name = "pete"
-                        deliveryNpc = npc_name.capitalize()
+                        deliveryNpc: str = npc_name.capitalize()
                     else:
-                        deliveryNpc = npc_name.capitalize()
+                        deliveryNpc: str = npc_name.capitalize()
                 else:
                     deliveryNpc = ""
 
@@ -1228,7 +1235,7 @@ class HomeTab:
                     # continue #Skip until release
                     reward_tickets = reward["tickets"]
                     deliveryReward = f"🎟️ {reward_tickets} tickets"
-                if readytime is None:
+                if completed is None:
                     deliveryTime = "❌ Not Done"
                 else:
                     deliveryTime = "✅ Completed"
@@ -1272,7 +1279,7 @@ class HomeTab:
         self.ft_cons["farm_delivery"].info(
             f" 📊 **Total Feathers Deliveries: {total_feather_deliveries}**"
         )
-   
+
         self.ft_cons["farm_delivery"].success(
             f" 📊 **Total Deliveries Completed: {deliveryTotal}**"
         )
