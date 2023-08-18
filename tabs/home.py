@@ -1,6 +1,6 @@
 import json
 from collections import defaultdict
-from datetime import datetime
+from datetime import datetime, timedelta
 from decimal import Decimal
 from typing import TYPE_CHECKING, Any, Hashable
 
@@ -1428,6 +1428,30 @@ class HomeTab:
             + f"(${total_sales_usd:.2f})**"
         )
 
+        first_respawn = 1682899200
+        respawn_interval: timedelta = timedelta(hours=16)
+        current_time: float = datetime.now().timestamp()
+        respawns: float = (
+            current_time - first_respawn
+        ) // respawn_interval.total_seconds()
+        next_respawn: datetime = (
+            datetime.fromtimestamp(first_respawn)
+            + (respawns + 1) * respawn_interval
+        )
+        time_remaining: timedelta = next_respawn - datetime.fromtimestamp(
+            current_time
+        )
+        hours_remaining = int(time_remaining.total_seconds() // 3600)
+        minutes_remaining = int((time_remaining.total_seconds() % 3600) // 60)
+        self.ft_cons["mushroom"].info(
+            "📊 **Total Respawns: {}**".format(int(respawns))
+        )
+        self.ft_cons["mushroom"].success(
+            "⏭️ **Next Respawn in: {:02d}:{:02d} hours**".format(
+                hours_remaining, minutes_remaining
+            )
+        )
+
         if fruit_patches_dict:
             for patch_id, patch_data in fruit_patches_dict.items():
                 fdata: dict = patch_data.get("fruit")
@@ -2312,6 +2336,9 @@ class HomeTab:
             )
             containers["basket_info"] = st.expander(
                 "👜  **INVENTORY CHECKER**", expanded=True
+            )
+            containers["mushroom"] = st.expander(
+                "🍄 **WILD MUSHROOM**", expanded=True
             )
         return containers
 
