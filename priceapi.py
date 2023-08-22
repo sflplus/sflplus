@@ -1,4 +1,5 @@
 from decimal import Decimal
+import os
 from typing import TYPE_CHECKING
 
 import requests
@@ -22,7 +23,7 @@ DEXSCREENER_ETH_URL: str = (
 )
 
 SFL_CONTRACT = "0xd1f9c58e33933a993a3891f8acfe05a68e1afc05"
-POLYGONSCAN_API_KEY = st.secrets["api_polygonscan"]
+POLYGONSCAN_API_KEY = os.environ.get("POLYGONSCAN_API")
 SUPPLY_URL: str = (
     "https://api.polygonscan.com/api?module=stats"
     + f"&action=tokensupply&contractaddress={SFL_CONTRACT}"
