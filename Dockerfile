@@ -6,6 +6,8 @@ WORKDIR /root/sflplus
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
+RUN apt-get update --yes && apt-get install curl --yes
+
 COPY . .
 
 HEALTHCHECK CMD curl --fail http://localhost:8501/_stcore/health
