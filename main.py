@@ -39,7 +39,7 @@ def local_css(file_name) -> None:
 
 class Main:
     def __init__(self) -> None:
-        self.version = "v3.2"
+        self.version = "v3.3"
         self.priceAPI: PriceAPI = PriceAPI()
         local_css("style.css")
         self.eth_price: float = self.priceAPI.retrieve_eth_price()
