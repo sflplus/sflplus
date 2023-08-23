@@ -52,7 +52,8 @@ class RankingTab:
         else:
             self.rt_cons["live_update"] = col_ok.container()
 
-    @st.cache_data(ttl=10, show_spinner="Loading ranked data")
+    # cache for 6 hours
+    @st.cache_data(ttl=21600, show_spinner=False)
     def retrieve_rank_data(
         _self,
     ) -> dict:
@@ -96,6 +97,96 @@ class RankingTab:
             )
             st.stop()
 
+    @st.cache_data(ttl=21600, show_spinner="Loading ranked data")
+    def build_dataframes(_self, data) -> list[DataFrame]:
+        df1 = pd.DataFrame(
+            {
+                "Farm": list(data["main_ranking"]["experience"].keys()),
+                "Bumpkin XP": list(data["main_ranking"]["experience"].values()),
+                "Expansion": list(data["main_ranking"]["expansion"].values()),
+                "SFL Earned": list(data["main_ranking"]["sfl_earned"].values()),
+                "SFL Spent": list(data["main_ranking"]["sfl_spent"].values()),
+                "Streak": list(data["main_ranking"]["daily_streak"].values()),
+            }
+        )
+
+        df2 = pd.DataFrame(
+            {
+                "Farm": list(data["secondary_ranking"]["sunflower"].keys()),
+                "Sunflowers": list(
+                    data["secondary_ranking"]["sunflower"].values()
+                ),
+                "Trees": list(data["secondary_ranking"]["tree"].values()),
+                "Stone": list(data["secondary_ranking"]["stone"].values()),
+                "Iron": list(data["secondary_ranking"]["iron"].values()),
+                "Gold": list(data["secondary_ranking"]["gold"].values()),
+                "Shovels": list(data["secondary_ranking"]["dug"].values()),
+                "Drills": list(data["secondary_ranking"]["drilled"].values()),
+            }
+        )
+
+        # Remove rows with missing ticket counts
+        # and convert farm numbers to int
+        df1: DataFrame = df1.dropna(subset=["Bumpkin XP"])
+        df2: DataFrame = df2.dropna(subset=["Sunflowers"])
+
+        df1["Expansion"] = pd.to_numeric(df1["Expansion"])
+
+        # Create a new column "Level" in the DataFrame
+        df1.assign(Level=None)  # Initialize the "Level" column with None
+
+        # Iterate through the DataFrame rows and determine the level based
+        # on "Bumpkin XP"
+        for index, row in df1.iterrows():
+            bump_xp = row["Bumpkin XP"]
+            current_lvl: int | None = None
+
+            for level, info in _self.main.xp_dict.items():
+                if bump_xp >= info["Total XP"]:
+                    current_lvl = level
+
+            if current_lvl is None:
+                current_lvl = max(_self.main.xp_dict.keys())
+
+            df1.at[index, "Level"] = current_lvl
+
+        # reorder columns
+        df1 = df1.reindex(
+            [
+                "Farm",
+                "Bumpkin XP",
+                "Level",
+                "Expansion",
+                "SFL Earned",
+                "SFL Spent",
+                "Streak",
+            ],
+            axis=1,
+        )
+
+        # Sort by Total Ticket in descending order
+        df1 = df1.sort_values(by="Bumpkin XP", ascending=False)
+        df2 = df2.sort_values(by="Sunflowers", ascending=False)
+
+        df1 = df1.rename(columns={"Bumpkin XP": "Bumpkin XP 🔻"})
+        df2 = df2.rename(columns={"Sunflowers": "Sunflowers 🔻"})
+
+        # Reset index and set the "Ranking" column as the new index
+        df1 = df1.reset_index(drop=True)
+        df2 = df2.reset_index(drop=True)
+
+        df1.index = df1.index + 1
+        df2.index = df2.index + 1
+
+        # Rename the index to "Ranking"
+        df1.index.name = "Rank"
+        df2.index.name = "Rank"
+
+        # Convert index to integer values
+        df1.index = df1.index.astype(int)
+        df2.index = df2.index.astype(int)
+        return [df1, df2]
+
     def load_tab(self) -> None:
         self.rt_cons["live_how"].info(
             "📌 This is using a **fixed list of 10K of farms**, originally "
@@ -108,104 +199,13 @@ class RankingTab:
             + "couple of days.**"
         )
 
+        df1: DataFrame
+        df2: DataFrame
+
         data: dict[str, Any] = self.retrieve_rank_data()
+        df1, df2 = self.build_dataframes(data)
+
         try:
-            df1 = pd.DataFrame(
-                {
-                    "Farm": list(data["main_ranking"]["experience"].keys()),
-                    "Bumpkin XP": list(
-                        data["main_ranking"]["experience"].values()
-                    ),
-                    "Expansion": list(
-                        data["main_ranking"]["expansion"].values()
-                    ),
-                    "SFL Earned": list(
-                        data["main_ranking"]["sfl_earned"].values()
-                    ),
-                    "SFL Spent": list(
-                        data["main_ranking"]["sfl_spent"].values()
-                    ),
-                }
-            )
-
-            df2 = pd.DataFrame(
-                {
-                    "Farm": list(data["secondary_ranking"]["sunflower"].keys()),
-                    "Sunflowers": list(
-                        data["secondary_ranking"]["sunflower"].values()
-                    ),
-                    "Trees": list(data["secondary_ranking"]["tree"].values()),
-                    "Stone": list(data["secondary_ranking"]["stone"].values()),
-                    "Iron": list(data["secondary_ranking"]["iron"].values()),
-                    "Gold": list(data["secondary_ranking"]["gold"].values()),
-                    "Shovels": list(data["secondary_ranking"]["dug"].values()),
-                    "Drills": list(
-                        data["secondary_ranking"]["drilled"].values()
-                    ),
-                }
-            )
-
-            # Remove rows with missing ticket counts
-            # and convert farm numbers to int
-            df1: DataFrame = df1.dropna(subset=["Bumpkin XP"])
-            df1["Farm"] = pd.to_numeric(df1["Farm"])
-
-            df2 = df2.dropna(subset=["Sunflowers"])
-            df2["Farm"] = pd.to_numeric(df2["Farm"])
-
-            # Create a new column "Level" in the DataFrame
-            df1.assign(Level=None)  # Initialize the "Level" column with None
-
-            # Iterate through the DataFrame rows and determine the level based
-            # on "Bumpkin XP"
-            for index, row in df1.iterrows():
-                bump_xp = row["Bumpkin XP"]
-                current_lvl: int | None = None
-
-                for level, info in self.main.xp_dict.items():
-                    if bump_xp >= info["Total XP"]:
-                        current_lvl = level
-
-                if current_lvl is None:
-                    current_lvl = max(self.main.xp_dict.keys())
-
-                df1.at[index, "Level"] = current_lvl
-
-            # reorder columns
-            df1.reindex(
-                [
-                    "Farm",
-                    "Level",
-                    "Bumpkin XP",
-                    "Expansion",
-                    "SFL Earned",
-                    "SFL Spent",
-                ],
-                axis=1,
-            )
-
-            # Sort by Total Ticket in descending order
-            df1 = df1.sort_values(by="Bumpkin XP", ascending=False)
-            df2: DataFrame = df2.sort_values(by="Sunflowers", ascending=False)
-
-            df1 = df1.rename(columns={"Bumpkin XP": "Bumpkin XP 🔻"})
-            df2 = df2.rename(columns={"Sunflowers": "Sunflowers 🔻"})
-
-            # Reset index and set the "Ranking" column as the new index
-            df1 = df1.reset_index(drop=True)
-            df2 = df2.reset_index(drop=True)
-
-            df1.index = df1.index + 1
-            df2.index = df2.index + 1
-
-            # Rename the index to "Ranking"
-            df1.index.name = "Rank"
-            df2.index.name = "Rank"
-
-            # Convert index to integer values
-            df1.index = df1.index.astype(int)
-            df2.index = df2.index.astype(int)
-
             if df1.empty:
                 self.rt_cons["live_update"].error(
                     " The ranking is currently not working, it will "
