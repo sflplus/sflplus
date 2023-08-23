@@ -6,7 +6,10 @@ WORKDIR /root/sflplus
 COPY requirements.txt requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
 
-RUN apt-get update --yes && apt-get install curl --yes
+RUN apt-get update \
+    && apt-get install curl --yes --no-install-recommends \
+    && apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY . .
 
