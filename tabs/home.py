@@ -1318,6 +1318,56 @@ class HomeTab:
                 f" **This farm didn't use Treasure Island today**"
             )
 
+        tickets_dict: dict[str, int] = {
+            50: 1,
+            55: 1,
+            60: 2,
+            65: 3,
+            70: 4,
+            75: 7,
+            80: 12,
+            90: 25,
+            100: 50
+        }
+
+        potion = state.get("potionHouse")
+        if potion:
+            potion_history = potion.get("history")    
+            total_tickets = 0       
+
+            df_potion = []
+            total_tickets = 0 
+        
+            for key, value in potion_history.items():
+                score = int(key)
+                games = value
+                tickets = tickets_dict.get(score, 0) * games
+                total_tickets += tickets
+                df_potion.append({"Score": score, "Games": games, "Tickets": tickets})
+    
+            potion_df = pd.DataFrame(df_potion)
+            potion_df.set_index("Score", inplace=True)
+            
+            # Calculate total games played and sum of keys for average calculation
+            total_games = potion_df["Games"].sum()
+            total_points = (potion_df.index * potion_df["Games"]).sum()
+            
+            self.ft_cons["farm_potion"].write(potion_df)
+            self.ft_cons["farm_potion"].info(
+            f"🕹️ **Total Games: {total_games}**  \n 🎫 **Tickets Earn: {total_tickets}**"
+            )
+            if total_games > 0:
+                average_point = total_points / total_games
+                average_tickets = total_tickets / total_games
+                self.ft_cons["farm_potion"].success(
+                f"📊 **Avg Tickets: {average_tickets:.2f}**  \n 🏅 **Avg Score: {average_point:.2f}**"
+                )
+
+        else:
+            self.ft_cons["farm_potion"].error(
+                f" **This farm didn't use Potion House**"
+            )
+
         self.ft_cons["basket_how"].info(
             f"\n **The NPC market sales is using the values of the in game "
             + "shops, like the seeds shop or the Treasure Island one, to "
@@ -2236,8 +2286,11 @@ class HomeTab:
             containers["c_mutant"] = st.expander(
                 "\U0001F414 **MUTANT CHICKENS DROP**", expanded=True
             )
+            containers["farm_potion"] = st.expander(
+                "⚗️ **POTION HOUSE**", expanded=True
+            )            
             containers["h_fruit"] = st.expander(
-                "\U0001f352 **FRUIT HARVEST LEFT**", expanded=True
+                "\U0001f352 **FRUIT HARVEST LEFT**", expanded=False
             )
         with right_col:
             containers["chores"] = st.expander(
