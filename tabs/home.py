@@ -1371,7 +1371,7 @@ class HomeTab:
                 average_point: float = total_points / total_games
                 average_tickets = total_tickets / total_games
                 self.ft_cons["farm_potion"].success(
-                    f" **Avg Tickets: {average_tickets:.2f}**  \n "
+                    f"📊 **Avg Tickets: {average_tickets:.2f}**  \n "
                     + f"🏅 **Avg Score: {average_point:.2f}**"
                 )
 
