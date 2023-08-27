@@ -23,7 +23,6 @@ class RankingTab:
     def create_tab(self, tab: DeltaGenerator) -> None:
         tab.markdown("##### 🔻 LOAD RANKINGS 🔻")
         col_ok: DeltaGenerator
-        # pylint: disable-next=unused-variable
         [col_ok] = tab.columns([2.5])
         self.buttonload: bool = col_ok.button("OK", key="rank_load_btn")
 
@@ -45,6 +44,15 @@ class RankingTab:
 
         self.rt_cons["live_how"] = col_rank3.expander(
             "📝 **HOW IT WORKS?**", expanded=True
+        )
+
+        [col_potion, col_potion_info, _] = tab.columns([2.6, 1.4, 1.5])
+        self.rt_cons["potion_house"] = col_potion.expander(
+            "🧪 **POTION HOUSE LEADERBOARD**", expanded=True
+        )
+
+        self.rt_cons["potion_info"] = col_potion_info.expander(
+            "📊 **POTION HOUSE STATS**", expanded=True
         )
 
         if self.buttonload:
@@ -81,15 +89,24 @@ class RankingTab:
                     except json.JSONDecodeError:
                         pass
 
+            potion_ranking: dict = requests.get(
+                BASE_URL + "potion", timeout=5
+            ).json()
+            potion_ranking["data"]["stats"] = json.loads(
+                potion_ranking["data"]["stats"]
+            )
+
             return {
                 "updated_at": main_ranking.get("updated_at", 0),
                 "main_ranking": main_ranking["data"],
                 "secondary_ranking": secondary_ranking["data"],
+                "potion_ranking": potion_ranking["data"],
             }
         except (
             requests.exceptions.JSONDecodeError,
             requests.exceptions.Timeout,
             requests.exceptions.ConnectionError,
+            json.JSONDecodeError,
         ) as e:
             _self.rt_cons["live_update"].error(
                 "The ranking is currently not working, "
@@ -123,6 +140,21 @@ class RankingTab:
                 "Shovels": list(data["secondary_ranking"]["dug"].values()),
                 "Drills": list(data["secondary_ranking"]["drilled"].values()),
             }
+        )
+
+        df3: DataFrame = pd.DataFrame.from_dict(
+            data["potion_ranking"]["dataframe"]
+        )
+        df3 = df3.reindex(
+            [
+                "Farm",
+                "Total Games",
+                "Avg. Points",
+                "Total Points",
+                "Avg. Tickets",
+                "Total Tickets",
+            ],
+            axis=1,
         )
 
         # Remove rows with missing ticket counts
@@ -167,63 +199,96 @@ class RankingTab:
         # Sort by Total Ticket in descending order
         df1 = df1.sort_values(by="Bumpkin XP", ascending=False)
         df2 = df2.sort_values(by="Sunflowers", ascending=False)
+        df3 = df3.sort_values(by="Avg. Points", ascending=False)
 
         df1 = df1.rename(columns={"Bumpkin XP": "Bumpkin XP 🔻"})
         df2 = df2.rename(columns={"Sunflowers": "Sunflowers 🔻"})
+        df3 = df3.rename(columns={"Avg. Points": "Avg. Points 🔻"})
 
         # Reset index and set the "Ranking" column as the new index
         df1 = df1.reset_index(drop=True)
         df2 = df2.reset_index(drop=True)
+        df3 = df3.reset_index(drop=True)
 
         df1.index = df1.index + 1
         df2.index = df2.index + 1
+        df3.index = df3.index + 1
 
         # Rename the index to "Ranking"
         df1.index.name = "Rank"
         df2.index.name = "Rank"
+        df3.index.name = "Rank"
 
         # Convert index to integer values
         df1.index = df1.index.astype(int)
         df2.index = df2.index.astype(int)
-        return [df1, df2]
+        df3.index = df3.index.astype(int)
+        return [df1, df2, df3]
 
     def load_tab(self) -> None:
         self.rt_cons["live_how"].info(
-            "📌 This is using a **fixed list of 10K of farms**, originally "
-            + "used from the Dawn Breaker ranking, and then using the SFL API "
-            + "**every 6 hours** to refresh the info of the farms."
+            "📌 The ranking uses the most recent list of farms having a "
+            + "towncenter in their inventory. The list is retrieved from "
+            + "**dune**, filtered, sorted and truncated to **10,000 farms**."
+            + "  \n  \nThe bumpkin leaderboard is sorted by **Bumpkin XP**, the"
+            + " activities leaderboard is sorted by **Sunflowers harvested**, "
+            + "the potion house leaderboard is sorted by **average points**."
         )
         self.rt_cons["live_how"].success(
-            "⚠️ **Note that if your farm isn't here you can ask in Discord "
-            + "to be manually added, but is only going to be update every "
-            + "couple of days.**"
+            "⚠️ The ranking updated every **12 hours**, the most recent "
+            + "update time is displayed above the ranking.  \n  \n"
+            + "The minimum amount of games played to appear in the potion "
+            + "house leaderboard is currently 50."
         )
 
         df1: DataFrame
         df2: DataFrame
+        df3: DataFrame
 
         data: dict[str, Any] = self.retrieve_rank_data()
-        df1, df2 = self.build_dataframes(data)
+        df1, df2, df3 = self.build_dataframes(data)
 
         try:
-            if df1.empty:
+            if df1.empty or df2.empty or df3.empty:
                 self.rt_cons["live_update"].error(
                     " The ranking is currently not working, it will "
                     + "be fixed soon™ "
                 )
-            else:
-                out_fmt = "%Y-%m-%d %H:%M"
-                update: str = datetime.utcfromtimestamp(
-                    int(data["updated_at"])
-                ).strftime(out_fmt)
-                self.rt_cons["live_update"].success(
-                    f"🕘Updated at: **{update} UTC**"
-                )
+                st.stop()
+            out_fmt = "%Y-%m-%d %H:%M"
+            update: str = datetime.utcfromtimestamp(
+                int(data["updated_at"])
+            ).strftime(out_fmt)
+            self.rt_cons["live_update"].success(
+                f"🕘Updated at: **{update} UTC**"
+            )
 
-                self.rt_cons["live_xp"].write(df1)
-                self.rt_cons["live_resources"].write(df2)
-        # pylint: disable-next=broad-exception-caught
-        except Exception as exception:
+            self.rt_cons["live_xp"].dataframe(df1, use_container_width=True)
+            self.rt_cons["live_resources"].dataframe(
+                df2, use_container_width=True
+            )
+            self.rt_cons["potion_house"].dataframe(
+                df3, use_container_width=True
+            )
+
+            potion_stats: dict[str, int] = {
+                "unique": data["potion_ranking"]["stats"]["unique"],
+                "total_games": data["potion_ranking"]["stats"]["total_games"],
+                "total_tickets": data["potion_ranking"]["stats"][
+                    "total_tickets"
+                ],
+            }
+            self.rt_cons["potion_info"].success(
+                f"🕹️ Unique players: {potion_stats['unique']}"
+            )
+            avg_tickets: float = (
+                potion_stats["total_tickets"] / potion_stats["total_games"]
+            )
+            self.rt_cons["potion_info"].info(
+                f"🔥 Total SFL burned: {potion_stats['total_games']}  "
+                + f"\n🎫 Avg. tickets per game: {round(avg_tickets, 2)}"
+            )
+        except KeyError as exception:
             self.rt_cons["live_update"].error(
                 " The ranking is currently not working, it will "
                 + f"be fixed soon™, Error: {str(exception)}"
