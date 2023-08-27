@@ -46,24 +46,10 @@ class Main:
         self.matic_price: float = self.priceAPI.retrieve_matic_price()
         self.sfl_price: float = self.priceAPI.retrieve_sfl_price()
         self.sfl_supply: int | None = self.priceAPI.get_token_supply()
-        # self.API_KEY_DUNE = st.secrets["api_dune"]
-        # self.queries_owners: list[Any] = [100, None, None]
-        # self.queries: list[str] = ["2649121", "2649118", "2427499"]  #
-        # self.queries_name: list[str] = [
-        #     "Emerald Turtle",
-        #     "Tin Turtle",
-        #     "Purple Trail",
-        # ]  #
-        # self.queries_quantity: list[str] = [
-        #     "100 (SOLD OUT)",
-        #     "3000",
-        #     "10000",
-        # ]  #
-        # self.queries_emoji: list[str] = ["🐢", "🥫", "🐌"]  #
-        # queries_ticket = ["3200", "1200", "500"]
         app_state_temp: dict[
             str, list[str]
         ] = st.experimental_get_query_params()
+
         # fetch the first item in each query string as we don't have multiple
         # values for each query string key in this example
         self.app_state: dict[str, str] = {
@@ -125,9 +111,3 @@ async def main() -> None:
 
 if __name__ == "__main__":
     asyncio.run(main())
-
-# with tab8:
-#     col_nft, buff11 = st.columns([2,2])
-#     with col_nft:
-#         st.error(f"The NFT List is momentarely disable,
-# it will be enable back soon™")
