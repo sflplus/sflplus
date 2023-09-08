@@ -145,11 +145,11 @@ class BumpkinTab:
             else:
                 if current_lvl2 in self.main.xp_dict:
                     level_info2 = self.main.xp_dict[current_lvl2]
-                    xp_needed2 = level_info2["XP_next"] - (
-                        bump_xp2 - level_info2["Total XP"]
+                    xp_needed2 = float(level_info2["XP_next"] - (
+                        bump_xp2 - level_info2["Total XP"])
                     )
                     nextlvl_xp2 = level_info2["XP_next"]
-                    extra_xp2 = nextlvl_xp2 - xp_needed2
+                    extra_xp2 = float(nextlvl_xp2 - xp_needed2)
                 else:
                     xp_needed2 = "N/A"
                     nextlvl_xp2 = "N/A"
