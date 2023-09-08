@@ -1,4 +1,5 @@
 import streamlit as st
+from datetime import datetime, timedelta
 from streamlit.delta_generator import DeltaGenerator
 from typing import TYPE_CHECKING
 
@@ -70,6 +71,23 @@ class TopTab:
             # formatted_time_remaining2 = "{} Days and {:02d}:{:02d} hours".
             # format(days_remaining3, hours_remaining3, minutes_remaining3)
 
+            # Mushrooms time
+            first_respawn = 1682899200
+            respawn_interval: timedelta = timedelta(hours=16)
+            current_time: float = datetime.now().timestamp()
+            respawns: float = (
+                current_time - first_respawn
+            ) // respawn_interval.total_seconds()
+            next_respawn: datetime = (
+                datetime.fromtimestamp(first_respawn)
+                + (respawns + 1) * respawn_interval
+            )
+            time_remaining: timedelta = next_respawn - datetime.fromtimestamp(
+                current_time
+            )
+            hours_remaining = int(time_remaining.total_seconds() // 3600)
+            minutes_remaining = int((time_remaining.total_seconds() % 3600) // 60)            
+
             general_info.write(
                 f" 🟣 Matic: **{main.matic_price:.2f}** - "
                 + f"🌻 SFL: **{main.sfl_price:.4f}**"
@@ -78,6 +96,11 @@ class TopTab:
             general_info2.write(" ⏳ Next Halvening: **40,000,000**")
             general_info2.write(
                 f" 📊 In Percentage: **{supply_progress_percentage:.2f}%**"
+            )
+            general_info2.write(
+                "🍄 Next Respawn in: **{:02d}:{:02d} hrs**".format(
+                    hours_remaining, minutes_remaining
+                )
             )
             # general_info2.write("⏳ **{}**".format(formatted_time_remaining2))
             # general_info2.write(f" ⏳ {formatted_time_remaining2}")
