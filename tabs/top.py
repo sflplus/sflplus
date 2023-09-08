@@ -86,7 +86,9 @@ class TopTab:
                 current_time
             )
             hours_remaining = int(time_remaining.total_seconds() // 3600)
-            minutes_remaining = int((time_remaining.total_seconds() % 3600) // 60)
+            minutes_remaining = int(
+                (time_remaining.total_seconds() % 3600) // 60
+            )
 
             general_info.write(
                 f" 🟣 Matic: **{main.matic_price:.2f}** - "
