@@ -13,6 +13,7 @@ class TopTab:
         + "1087607534967341087/1087607534967341087"
     )
     DC_NANCY_URL = "https://discord.gg/faz4EkJVab"
+    DC_GITHUB_URL = "https://github.com/sflplus/sflplus"
 
     def __init__(self, main) -> None:
         self.main: Main = main
@@ -94,16 +95,21 @@ class TopTab:
                 f" 🟣 Matic: **{main.matic_price:.2f}** - "
                 + f"🌻 SFL: **{main.sfl_price:.4f}**"
             )
-            general_info.write(f" 📈 Current Supply: **{format_supply}**")
-            general_info2.write(" ⏳ Next Halvening: **40,000,000**")
-            general_info2.write(
-                f" 📊 In Percentage: **{supply_progress_percentage:.2f}%**"
-            )
-            general_info2.write(
+            general_info.write(
                 "🍄 Next Respawn in: **{:02d}:{:02d} hrs**".format(
                     hours_remaining, minutes_remaining
                 )
             )
+            general_info.markdown(
+                f"⚙️ Contribute to SFL+ on [Github]({self.DC_GITHUB_URL})"
+            )
+
+            general_info2.write(f" 📈 Current Supply: **{format_supply}**")
+            general_info2.write(" ⏳ Next Halvening: **40,000,000**")
+            general_info2.write(
+                f" 📊 In Percentage: **{supply_progress_percentage:.2f}%**"
+            )
+
             # general_info2.write("⏳ **{}**".format(formatted_time_remaining2))
             # general_info2.write(f" ⏳ {formatted_time_remaining2}")
             # general_info.progress(supply_percentage_inv, text=None)
