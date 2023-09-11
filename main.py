@@ -147,7 +147,8 @@ a:hover,  a:active {
 
 </style>
 <div class="footer">
-<p style="font-size: 0.9rem;">Live Trade Prices Powered 💚 by
+<p style="font-size: 0.9rem;">💚 Live Trade Prices Powered by
+    <img src="https://sflplus.info/sfl-tools.png" width="22px">
     <b><a href="https://sfl.tools/" target="_blank">sfl.tools</a></b>
 </p>
 </div>
