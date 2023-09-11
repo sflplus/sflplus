@@ -1387,8 +1387,8 @@ class HomeTab:
         )
         self.ft_cons["basket_how"].success(
             "\n **The balloon sales is using the lowest listed price at the "
-            + "Balloon and counting the 10% Goblins fee, but it doesn't "
-            + "include the listing fee**"
+            + "Balloon provided by sfl.tools and counting the 10% Goblins fee,"
+            + " but it doesn't include the listing fee**"
         )
 
         self.ft_cons["basket_info"].info(
@@ -2251,7 +2251,7 @@ class HomeTab:
         self.worth_cons["farm_worth_how"].info(
             "The value of **Buildings, Expansions and Extras** are calculated "
             + "using the **lowest listed price** for the required resources "
-            + "**at the Balloon**."
+            + "**at the Balloon provided by sfl.tools**."
         )
         self.worth_cons["farm_worth_how"].success(
             "For **Tradables NFTs**, it uses the **average between the "
