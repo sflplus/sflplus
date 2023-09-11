@@ -111,3 +111,44 @@ async def main() -> None:
 
 if __name__ == "__main__":
     asyncio.run(main())
+
+
+footer="""<style>
+a:link , a:visited{
+    color:rgba(250, 250, 250, 0.9);
+    text-decoration: underline;
+}
+
+a:hover,  a:active {
+    color:rgba(250, 250, 250, 1);
+    text-decoration: underline;
+}
+.footer {
+    background: rgb(14, 17, 23);
+    color: rgba(250, 250, 250, 0.7);
+    padding-top: 0.5rem;
+    z-index: 1;
+}
+@media screen and (min-width: 768px) {
+    .footer {
+        position: fixed;
+        bottom: -0.5rem;
+        left: 0;
+        padding-left:5rem;
+        padding-right:5rem;
+        width: 100%;
+    }
+}
+@media screen and (max-width: 767px) {
+    .footer {
+        position: relative;
+    }
+}
+
+</style>
+<div class="footer">
+<p style="font-size: 0.9rem;">Live Trade Prices Powered 💚 by 
+<b><a href="https://sfl.tools/" target="_blank">sfl.tools</a></b></p>
+</div>
+"""
+st.markdown(footer,unsafe_allow_html=True)
