@@ -329,6 +329,25 @@ class HomeTab:
             "Sauerkraut",
             "Fancy Fries",
         }
+
+        cakes: set[str] = {
+            "Sunflower Cake",
+            "Potato Cake",
+            "Pumpkin Cake",
+            "Carrot Cake",
+            "Cabbage Cake",
+            "Beetroot Cake",
+            "Cauliflower Cake",
+            "Parsnip Cake",
+            "Radish Cake",
+            "Wheat Cake",
+            "Apple Pie",
+            "Honey Cake",
+            "Orange Cake",
+            "Eggplant Cake",
+            "Pirate Cake",
+        }
+
         food_xp: dict[str, int] = {
             "Mashed Potato": 3,
             "Pumpkin Soup": 24,
@@ -526,8 +545,10 @@ class HomeTab:
         daily_limit: float = balance_float - prevbalance_float
         inventory_dict: dict | float | None = state.get("inventory")
         assert isinstance(inventory_dict, dict)
-        buildings_dict: dict | float | None = state.get("buildings")
+        buildings_dict: dict[str, Any] | float | None = state.get("buildings")
         assert isinstance(buildings_dict, dict)
+        collectibles_dict: dict | float | None = state.get("collectibles", {})
+        assert isinstance(collectibles_dict, dict)
 
         db = state.get("dawnBreaker", {})
         assert isinstance(db, dict)
@@ -610,7 +631,11 @@ class HomeTab:
                 continue
             if quantity == "0":
                 continue
-            if item in food_items:
+            if item in cakes:
+                xp = int(food_xp[item])
+                if "Grain Grinder" in collectibles_dict:
+                    xp *= 1.20
+            elif item in food_items:
                 xp = int(food_xp[item])
             elif item in food_deli_items:
                 xp = int(food_deli_xp[item])
@@ -1358,7 +1383,7 @@ class HomeTab:
             # Calculate total games played and sum of keys for
             # average calculation
             total_games: int = potion_df["Games"].sum()
-            total_points: int = pd.Series(
+            total_points: Any = pd.Series(
                 potion_df.index * potion_df["Games"]
             ).sum()
 
