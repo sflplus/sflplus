@@ -341,7 +341,6 @@ class HomeTab:
             "Parsnip Cake",
             "Radish Cake",
             "Wheat Cake",
-            "Apple Pie",
             "Honey Cake",
             "Orange Cake",
             "Eggplant Cake",
