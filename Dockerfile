@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM python:slim
+FROM python:3.11-slim
 
 WORKDIR /root/sflplus
 COPY requirements.txt requirements.txt

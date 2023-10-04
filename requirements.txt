@@ -2,7 +2,5 @@ requests==2.31.0
 streamlit==1.23.1
 streamlit-extras
 streamlit-tags
-pandas==2.0.3
+pandas
 aiohttp
-python-Levenshtein
-fuzzywuzzy
