@@ -554,39 +554,15 @@ class HomeTab:
 
         we = state.get("witchesEve", {})
         assert isinstance(we, dict)
-        # maze = we.get("maze", {})
 
         bumpkin: dict | float | None = state.get("bumpkin", None)
-        # taskcount = 0
-        # count_chore = 0
-
-        # skip_chores = 0
-        # completed_chore = 0
-        # requirement_chore = 0
-        # description_chore = ""
-        # ticket_chore = 0
         if isinstance(bumpkin, dict):
             skills_dict: dict[str, int] = bumpkin.get("skills", {})
-            # skills_dict = eval(str(skills))
             equipped_dict: dict[str, str] = bumpkin.get("equipped", {})
-            # equipped_dict = eval(str(equipped))
             b_act = bumpkin.get("activity", {})
 
             hayseed: dict | float = state.get("hayseedHank", {})
             assert isinstance(hayseed, dict)
-            # chore: dict = hayseed.get("chore", {})
-            # progress_chore: dict = hayseed.get("progress", {})
-            # if progress_chore is None:
-            #     count_chore = 0  # Or whatever default value you want to use
-            # else:
-            # count_chore: int = progress_chore.get("startCount", 0)
-            # activitytask: str = chore.get("activity", "N/A")
-            # description_chore: str = chore.get("description", "N/A")
-            # reward_chore: dict = chore.get("reward", {})
-            # requirement_chore: int = chore.get("requirement", 0)
-            # item_chore: dict = reward_chore.get("items", {})
-            # ticket_chore: int = item_chore.get("Dawn Breaker Ticket", 0)
-            # taskcount: int | float = b_act.get(activitytask, 0)
 
             chores: dict | float | None = state.get("chores", None)
             if chores is not None:
@@ -886,8 +862,6 @@ class HomeTab:
         self.ft_cons["balance_check"].info(
             f"📈 SFL Current Price: **${self.main.sfl_price:.4f}**"
         )
-        # balance_check.info(f"\n
-        # 🟣 MATIC Current Price: **${matic_price:.2f}**")
         self.ft_cons["balance_check"].write(
             f" - 💰 SFL Balance: **:green[{balance_sfl:.2f}]**"
         )
@@ -1211,10 +1185,6 @@ class HomeTab:
                 if readytime:
                     deliveryTimeList.append(readytime)
 
-            # current_time: float = (
-            #     datetime.now().timestamp() * 1000
-            # )  # Convert to milliseconds
-
             for index, order in enumerate(delivery_data, start=1):
                 npc = order.get("from")
                 items: dict = order.get("items", {})
@@ -1232,12 +1202,10 @@ class HomeTab:
                     deliveryNpc = ""
 
                 if items:
-                    # deliveryItems: str = ", ".join(items.keys())
                     deliveryItems_value: str = ", ".join(
                         [f"{value}x {key}" for key, value in items.items()]
                     )
                 else:
-                    # deliveryItems = ""
                     deliveryItems_value = ""
                 if reward and "sfl" in reward:
                     reward_sfl = reward["sfl"]
@@ -2290,11 +2258,6 @@ class HomeTab:
             + "supply. Examples, **Seed Specialist = Lunar Calendar** or "
             + "**Gold Rush = Nugget x 3**."
         )
-        # except Exception as e:
-        #     error_message = f"Error occurred in Farm {self.farm_id}: {str(e)}"
-        #     sys.stderr.write(error_message)
-        #     # Display the error message in Streamlit
-        #     st.error(error_message)
 
     def create_farm_tab(self, tab: DeltaGenerator) -> dict[str, DeltaGenerator]:
         left_col: DeltaGenerator
