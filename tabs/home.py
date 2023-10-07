@@ -8,8 +8,11 @@ import pandas as pd
 import requests
 import streamlit as st
 from streamlit.delta_generator import DeltaGenerator
+from streamlit_extras.grid import grid
+from streamlit_extras.grid import GridDeltaGenerator
 
 from functions import nft_buffs, nft_price, wearable_list
+from models.bud import Bud
 
 if TYPE_CHECKING:
     from pandas import DataFrame
@@ -62,13 +65,14 @@ class HomeTab:
             return
         farm_tab: DeltaGenerator
         bumpkin_tab: DeltaGenerator
+        bud_tab: DeltaGenerator
         worth_tab: DeltaGenerator
-        farm_tab, bumpkin_tab, worth_tab = self.tab.tabs(
-            ["🏡FARM ", "👨‍🌾BUMPKIN ", "💎WORTH "]
+        farm_tab, bumpkin_tab, bud_tab, worth_tab = self.tab.tabs(
+            ["🏡FARM ", "👨‍🌾BUMPKIN ", "🐛BUDS ", "💎WORTH "]
         )
-
         self.ft_cons = self.create_farm_tab(farm_tab)
         self.bt_cons = self.create_bp_tab(bumpkin_tab)
+        self.bud_grid: GridDeltaGenerator = self.create_bud_tab(bud_tab)
         self.worth_cons = self.create_worth_tab(worth_tab)
 
         app_state: dict[str, list[str]] = st.experimental_get_query_params()
@@ -548,6 +552,10 @@ class HomeTab:
         assert isinstance(buildings_dict, dict)
         collectibles_dict: dict | float | None = state.get("collectibles", {})
         assert isinstance(collectibles_dict, dict)
+        bud_dict: dict[str, dict[Any, Any]] | float | None = state.get(
+            "buds", {}
+        )
+        assert isinstance(bud_dict, dict)
 
         db = state.get("dawnBreaker", {})
         assert isinstance(db, dict)
@@ -1808,6 +1816,34 @@ class HomeTab:
                 " **There aren't Bumpkins in this Farm.**"
             )
 
+        # Load bud tab
+        if len(bud_dict) > 0:
+            for id, data in list(bud_dict.items()):
+                processed_bud = Bud(
+                    int(id),
+                    str(data["colour"]),
+                    str(data["ears"]),
+                    str(data["type"]),
+                    str(data["aura"]),
+                    str(data["stem"]),
+                )
+                exp = self.bud_grid.expander(
+                    f"Bud #{processed_bud.id}", expanded=True
+                )
+                img_url: str = (
+                    '<img src="'
+                    + f'https://buds.sunflower-land.com/nfts/{processed_bud.id}.gif" '
+                    + "width = 100%>"
+                )
+                exp.markdown(img_url, unsafe_allow_html=True)
+                exp.divider()
+                buffs: str = "  \n \n".join(map(str, processed_bud.buffs))
+                exp.info(buffs)
+        else:
+            self.bud_grid.expander("Buds", expanded=True).info(
+                "This farm does not have any buds"
+            )
+
         expansion_resources: list[str] = ["Wood", "Stone", "Iron", "Gold"]
         previous_resources = {}
 
@@ -2353,6 +2389,11 @@ class HomeTab:
         )
         containers["food"] = col7.expander("🍲 **MEALS FED**", expanded=True)
         return containers
+
+    def create_bud_tab(self, tab: DeltaGenerator) -> GridDeltaGenerator:
+        with tab:
+            grid1: GridDeltaGenerator = grid(4, 4, 4, 4)
+            return grid1
 
     def create_worth_tab(
         self, tab: DeltaGenerator
