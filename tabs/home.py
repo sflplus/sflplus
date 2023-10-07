@@ -1817,6 +1817,7 @@ class HomeTab:
             )
 
         # Load bud tab
+        bud_url = "https://buds.sunflower-land.com/"
         if len(bud_dict) > 0:
             for id, data in list(bud_dict.items()):
                 processed_bud = Bud(
@@ -1832,7 +1833,7 @@ class HomeTab:
                 )
                 img_url: str = (
                     '<img src="'
-                    + f'https://buds.sunflower-land.com/nfts/{processed_bud.id}.gif" '
+                    + f'{bud_url}nfts/{processed_bud.id}.gif" '
                     + "width = 100%>"
                 )
                 exp.markdown(img_url, unsafe_allow_html=True)
