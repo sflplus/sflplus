@@ -8,8 +8,11 @@ import pandas as pd
 import requests
 import streamlit as st
 from streamlit.delta_generator import DeltaGenerator
+from streamlit_extras.grid import grid
+from streamlit_extras.grid import GridDeltaGenerator
 
 from functions import nft_buffs, nft_price, wearable_list
+from models.bud import Bud
 
 if TYPE_CHECKING:
     from pandas import DataFrame
@@ -62,13 +65,14 @@ class HomeTab:
             return
         farm_tab: DeltaGenerator
         bumpkin_tab: DeltaGenerator
+        bud_tab: DeltaGenerator
         worth_tab: DeltaGenerator
-        farm_tab, bumpkin_tab, worth_tab = self.tab.tabs(
-            ["🏡FARM ", "👨‍🌾BUMPKIN ", "💎WORTH "]
+        farm_tab, bumpkin_tab, bud_tab, worth_tab = self.tab.tabs(
+            ["🏡FARM ", "👨‍🌾BUMPKIN ", "🐛BUDS ", "💎WORTH "]
         )
-
         self.ft_cons = self.create_farm_tab(farm_tab)
         self.bt_cons = self.create_bp_tab(bumpkin_tab)
+        self.bud_grid: GridDeltaGenerator = self.create_bud_tab(bud_tab)
         self.worth_cons = self.create_worth_tab(worth_tab)
 
         app_state: dict[str, list[str]] = st.experimental_get_query_params()
@@ -548,45 +552,25 @@ class HomeTab:
         assert isinstance(buildings_dict, dict)
         collectibles_dict: dict | float | None = state.get("collectibles", {})
         assert isinstance(collectibles_dict, dict)
+        bud_dict: dict[str, dict[Any, Any]] | float | None = state.get(
+            "buds", {}
+        )
+        assert isinstance(bud_dict, dict)
 
         db = state.get("dawnBreaker", {})
         assert isinstance(db, dict)
 
         we = state.get("witchesEve", {})
         assert isinstance(we, dict)
-        # maze = we.get("maze", {})
 
         bumpkin: dict | float | None = state.get("bumpkin", None)
-        # taskcount = 0
-        # count_chore = 0
-
-        # skip_chores = 0
-        # completed_chore = 0
-        # requirement_chore = 0
-        # description_chore = ""
-        # ticket_chore = 0
         if isinstance(bumpkin, dict):
             skills_dict: dict[str, int] = bumpkin.get("skills", {})
-            # skills_dict = eval(str(skills))
             equipped_dict: dict[str, str] = bumpkin.get("equipped", {})
-            # equipped_dict = eval(str(equipped))
             b_act = bumpkin.get("activity", {})
 
             hayseed: dict | float = state.get("hayseedHank", {})
             assert isinstance(hayseed, dict)
-            # chore: dict = hayseed.get("chore", {})
-            # progress_chore: dict = hayseed.get("progress", {})
-            # if progress_chore is None:
-            #     count_chore = 0  # Or whatever default value you want to use
-            # else:
-            # count_chore: int = progress_chore.get("startCount", 0)
-            # activitytask: str = chore.get("activity", "N/A")
-            # description_chore: str = chore.get("description", "N/A")
-            # reward_chore: dict = chore.get("reward", {})
-            # requirement_chore: int = chore.get("requirement", 0)
-            # item_chore: dict = reward_chore.get("items", {})
-            # ticket_chore: int = item_chore.get("Dawn Breaker Ticket", 0)
-            # taskcount: int | float = b_act.get(activitytask, 0)
 
             chores: dict | float | None = state.get("chores", None)
             if chores is not None:
@@ -886,8 +870,6 @@ class HomeTab:
         self.ft_cons["balance_check"].info(
             f"📈 SFL Current Price: **${self.main.sfl_price:.4f}**"
         )
-        # balance_check.info(f"\n
-        # 🟣 MATIC Current Price: **${matic_price:.2f}**")
         self.ft_cons["balance_check"].write(
             f" - 💰 SFL Balance: **:green[{balance_sfl:.2f}]**"
         )
@@ -1211,10 +1193,6 @@ class HomeTab:
                 if readytime:
                     deliveryTimeList.append(readytime)
 
-            # current_time: float = (
-            #     datetime.now().timestamp() * 1000
-            # )  # Convert to milliseconds
-
             for index, order in enumerate(delivery_data, start=1):
                 npc = order.get("from")
                 items: dict = order.get("items", {})
@@ -1232,12 +1210,10 @@ class HomeTab:
                     deliveryNpc = ""
 
                 if items:
-                    # deliveryItems: str = ", ".join(items.keys())
                     deliveryItems_value: str = ", ".join(
                         [f"{value}x {key}" for key, value in items.items()]
                     )
                 else:
-                    # deliveryItems = ""
                     deliveryItems_value = ""
                 if reward and "sfl" in reward:
                     reward_sfl = reward["sfl"]
@@ -1840,6 +1816,35 @@ class HomeTab:
                 " **There aren't Bumpkins in this Farm.**"
             )
 
+        # Load bud tab
+        bud_url = "https://buds.sunflower-land.com/"
+        if len(bud_dict) > 0:
+            for id, data in list(bud_dict.items()):
+                processed_bud = Bud(
+                    int(id),
+                    str(data["colour"]),
+                    str(data["ears"]),
+                    str(data["type"]),
+                    str(data["aura"]),
+                    str(data["stem"]),
+                )
+                exp = self.bud_grid.expander(
+                    f"Bud #{processed_bud.id}", expanded=True
+                )
+                img_url: str = (
+                    '<img src="'
+                    + f'{bud_url}nfts/{processed_bud.id}.gif" '
+                    + "width = 100%>"
+                )
+                exp.markdown(img_url, unsafe_allow_html=True)
+                exp.divider()
+                buffs: str = "  \n \n".join(map(str, processed_bud.buffs))
+                exp.info(buffs)
+        else:
+            self.bud_grid.expander("Buds", expanded=True).info(
+                "This farm does not have any buds"
+            )
+
         expansion_resources: list[str] = ["Wood", "Stone", "Iron", "Gold"]
         previous_resources = {}
 
@@ -2290,11 +2295,6 @@ class HomeTab:
             + "supply. Examples, **Seed Specialist = Lunar Calendar** or "
             + "**Gold Rush = Nugget x 3**."
         )
-        # except Exception as e:
-        #     error_message = f"Error occurred in Farm {self.farm_id}: {str(e)}"
-        #     sys.stderr.write(error_message)
-        #     # Display the error message in Streamlit
-        #     st.error(error_message)
 
     def create_farm_tab(self, tab: DeltaGenerator) -> dict[str, DeltaGenerator]:
         left_col: DeltaGenerator
@@ -2390,6 +2390,11 @@ class HomeTab:
         )
         containers["food"] = col7.expander("🍲 **MEALS FED**", expanded=True)
         return containers
+
+    def create_bud_tab(self, tab: DeltaGenerator) -> GridDeltaGenerator:
+        with tab:
+            grid1: GridDeltaGenerator = grid(4, 4, 4, 4)
+            return grid1
 
     def create_worth_tab(
         self, tab: DeltaGenerator
