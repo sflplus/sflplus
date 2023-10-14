@@ -31,7 +31,7 @@ stem_buffs: dict[str, dict[str, float | str]] = {
     "Miner Hat": {"category": "Iron", "value": 0.2, "emoji": "🟠"},
     "Carrot Head": {"category": "Carrots", "value": 0.3, "emoji": "🥕"},
     "Basic Leaf": {"category": "Basic Crops", "value": 0.2, "emoji": "🍃"},
-    "Sunflower Head": {"category": "Sunflowers", "value": 0.5, "emoji": "🌻"},
+    "Sunflower Hat": {"category": "Sunflowers", "value": 0.5, "emoji": "🌻"},
     "Ruby Gem": {"category": "Stone", "value": 0.2, "emoji": "⚪"},
     "Mushroom": {"category": "Mushrooms", "value": 0.3, "emoji": "🍄"},
     "Magic Mushrooms": {
