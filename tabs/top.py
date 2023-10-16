@@ -13,6 +13,7 @@ class TopTab:
     )
     DC_NANCY_URL = "https://discord.gg/faz4EkJVab"
     DC_GITHUB_URL = "https://github.com/sflplus/sflplus"
+    DC_WORLD_URL = "https://sfl.world"
 
     def __init__(self, main) -> None:
         self.main: Main = main
@@ -29,13 +30,13 @@ class TopTab:
             general_info2: DeltaGenerator = st.container()
 
             general_info2.markdown(
-                f"🔒 We are sorry to let you know that the development of "
+                "🔒 We are sorry to let you know that the development of "
                 + f"[SFL+]({self.DC_GITHUB_URL}) has come to an end and is "
-                + f"not longer going to be updated, read more about "
+                + "not longer going to be updated, read more about "
                 + f"[here]({self.DC_THREAD_URL}). We recommend you to use "
-                + f"[sfl.world](https://sfl.world) instead as a web alternative "
-                + f"or [Nancy]({self.DC_NANCY_URL}) for automatic "
-                + f"notifications on Discord/Telegram."
+                + f"[sfl.world]({self.DC_WORLD_URL}) instead as a web "
+                + f"alternative or [Nancy]({self.DC_NANCY_URL}) for "
+                + "automatic notifications on Discord/Telegram."
             )
 
         st.divider()
