@@ -1,5 +1,4 @@
 import streamlit as st
-from datetime import datetime, timedelta
 from streamlit.delta_generator import DeltaGenerator
 from typing import TYPE_CHECKING
 
@@ -30,11 +29,11 @@ class TopTab:
             general_info2: DeltaGenerator = st.container()
 
             general_info2.markdown(
-                f"🔒 We are sorry to let you know that the developent of "
-                + f"[SFL+]({self.DC_GITHUB_URL}) has come to a end and is "
+                f"🔒 We are sorry to let you know that the development of "
+                + f"[SFL+]({self.DC_GITHUB_URL}) has come to an end and is "
                 + f"not longer going to be updated, read more about "
-                + f"[here]({self.DC_THREAD_URL}). We recomend you to use "
-                + f"[sfl.world](https://sfl.world) instead as web alternative "
+                + f"[here]({self.DC_THREAD_URL}). We recommend you to use "
+                + f"[sfl.world](https://sfl.world) instead as a web alternative "
                 + f"or [Nancy]({self.DC_NANCY_URL}) for automatic "
                 + f"notifications on Discord/Telegram."
             )
